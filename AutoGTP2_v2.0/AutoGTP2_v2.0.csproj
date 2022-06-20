@@ -79,6 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="appManager\ProjectHelper.cs" />
+    <Compile Include="AuthTestBase.cs" />
     <Compile Include="tests\CreateProjectTests.cs" />
     <Compile Include="tests\LoginPageTests.cs" />
     <Compile Include="tests\AddBudgetTests.cs" />

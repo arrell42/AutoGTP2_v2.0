@@ -4,7 +4,7 @@
 namespace AutoGTP2Tests
 {
     [TestFixture]
-    public class AddBudgetTests : TestBase
+    public class AddBudgetTests : AuthTestBase
     {   
         [Test]
         public void AddBudgetTest()

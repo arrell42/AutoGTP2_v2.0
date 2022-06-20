@@ -5,16 +5,18 @@ namespace AutoGTP2Tests
 {
     [TestFixture]
     public class LoginPageTests : TestBase
-    {       
+    {        
         [Test]
         //В поле Username or email ввести корректный логин.
         //В поле Password ввести корректный пароль.
         public void CorrectLoginTest_1()
         {
+            applicationManager.Auth.Logout();
             LoginData newData = new LoginData("dtest_user_2", "123456");
             applicationManager.Auth.CorrectAuth(newData);
+            Assert.IsTrue(applicationManager.Auth.IsLoggedIn(newData));
         }
-
+        /*
         [Test]
         //В поле Username or email ввести корректный логин с последующими 2мя пробелами.
         //В поле Password ввести корректный пароль с последующими 2мя пробелами.
@@ -32,16 +34,20 @@ namespace AutoGTP2Tests
             LoginData newData = new LoginData("DtEsT_uSeR_2", "123456");
             applicationManager.Auth.CorrectAuth(newData);
         }
+        */
 
         [Test]
         //В поле Username or email ввести некорректный логин.
         //В поле Password ввести некорретный пароль.
         public void IncorrectLoginTest_1()
         {
+            applicationManager.Auth.Logout();
             LoginData newData = new LoginData("Main_test123", "123");
-            applicationManager.Auth.IncorrectAuth(newData);            
+            applicationManager.Auth.IncorrectAuth(newData);
+            Assert.IsFalse(applicationManager.Auth.IsLoggedIn(newData));
         }
 
+        /*
         [Test]
         //В поле Username or email ввести некорректный логин.
         //В поле Password ввести корретный пароль.
@@ -218,6 +224,6 @@ namespace AutoGTP2Tests
             LoginData newData = new LoginData("<Main_test>", "123456");
             applicationManager.Auth.IncorrectAuth(newData);
         }
-        
+        */
     }
 }

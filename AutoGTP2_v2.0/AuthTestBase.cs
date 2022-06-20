@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -10,12 +11,12 @@ using OpenQA.Selenium.Support.UI;
 
 namespace AutoGTP2Tests
 {
-    public class CreateProjectTests : AuthTestBase
+    public class AuthTestBase : TestBase
     {
-        [Test]
-        public void CreateProjectTest()
-        {            
-            applicationManager.Service.CreateProject();
+        [SetUp]
+        public void SetupLogin()
+        {
+            applicationManager.Auth.Login(new LoginData("Main_test", "123456"));            
         }
     }
 }

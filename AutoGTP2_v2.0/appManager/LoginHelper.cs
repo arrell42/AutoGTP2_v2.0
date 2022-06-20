@@ -21,9 +21,34 @@ namespace AutoGTP2Tests
         //Высокоуровневые методы
         public void Login(LoginData account)
         {
+            if (IsLoggedIn())
+            {
+                if (IsLoggedIn(account))
+                {
+                    return;
+                }
+                Logout();
+            }
             EnterUsername(account);
             EnterPassword(account);
             SignInButtonClick();
+        }
+
+        public bool IsLoggedIn()
+        {
+            return IsElementPresent(By.XPath("//a[@id='MENU_LOGOUT']/div/p"));
+        }
+
+        public bool IsLoggedIn(LoginData account)
+        {
+            return IsLoggedIn()
+                && driver.FindElement(By.XPath("//a[@id='MENU_LOGOUT']/div/p"))
+                .FindElement(By.Id("MENU_ADMINISTRATION")).Displayed;
+        }
+
+        public void Logout()
+        {
+            driver.FindElement(By.XPath("//a[@id='MENU_LOGOUT']/div/p")).Click();
         }
 
         public void CorrectAuth(LoginData newData)

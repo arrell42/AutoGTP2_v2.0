@@ -16,13 +16,10 @@ namespace AutoGTP2Tests
     {
         protected ApplicationManager applicationManager;
 
-        [TestFixtureSetUp]
-        public void SetupTest()
-        {
-            applicationManager = new ApplicationManager();
-            
-            applicationManager.Auth.Login(new LoginData("Main_test", "123456"));
-            applicationManager.WaitUntilLogoutButtonDisplay();
+        [SetUp]
+        public void SetupApplicationManager()
+        {   
+            applicationManager = ApplicationManager.GetInstance();
         }
     }
 

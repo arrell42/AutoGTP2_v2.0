@@ -61,13 +61,6 @@ namespace AutoGTP2Tests
 
         public IWebDriver Driver { get { return driver; } }
 
-
-        public void WaitUntilLogoutButtonDisplay()
-        {
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(4));
-            wait.Until(driver => driver.FindElement(By.Id("MENU_LOGOUT")));
-        }
-        
         public void Refresh()
         {
             try

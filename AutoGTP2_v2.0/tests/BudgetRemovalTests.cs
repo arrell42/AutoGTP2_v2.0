@@ -5,7 +5,7 @@ using NUnit.Framework;
 namespace AutoGTP2Tests
 {
     [TestFixture]
-    public class BudgetRemovalTests : TestBase
+    public class BudgetRemovalTests : AuthTestBase
     {
         [Test]
         public void BudgetRemovalCancelTest()
