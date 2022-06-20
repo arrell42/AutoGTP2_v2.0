@@ -20,17 +20,10 @@ namespace AutoGTP2Tests
         public void SetupTest()
         {
             applicationManager = new ApplicationManager();
-            applicationManager.Navigator.GoToLoginPage();
+            
             applicationManager.Auth.Login(new LoginData("Main_test", "123456"));
             applicationManager.WaitUntilLogoutButtonDisplay();
         }
-
-        [TestFixtureTearDown]
-        public void TeardownTest()
-        {
-            applicationManager.Stop();
-        }
-
     }
 
 }

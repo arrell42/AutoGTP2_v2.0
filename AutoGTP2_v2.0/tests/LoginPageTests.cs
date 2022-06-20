@@ -4,24 +4,8 @@
 namespace AutoGTP2Tests
 {
     [TestFixture]
-    public class LoginPageTests
-    {
-        protected ApplicationManager applicationManager;        
-
-        [TestFixtureSetUp]
-        public void SetupTest()
-        {
-            applicationManager = new ApplicationManager();
-            applicationManager.Navigator.GoToLoginPage();
-        }
-
-        [TestFixtureTearDown]
-        public void TeardownTest()
-        {
-            applicationManager.Stop();            
-        }
-
-                
+    public class LoginPageTests : TestBase
+    {       
         [Test]
         //В поле Username or email ввести корректный логин.
         //В поле Password ввести корректный пароль.

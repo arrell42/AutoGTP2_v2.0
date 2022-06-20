@@ -22,6 +22,8 @@ namespace AutoGTP2Tests
         protected BudgetHelper budgetHelper;
         protected ProjectHelper serviceHelper;
 
+        private static ThreadLocal<ApplicationManager> app = new ThreadLocal<ApplicationManager>();
+
         public ApplicationManager()
         {
             driver = new ChromeDriver();                       
@@ -33,15 +35,19 @@ namespace AutoGTP2Tests
             serviceHelper = new ProjectHelper(this);
         }
 
-        public IWebDriver Driver { get { return driver; } }
-
-
-        public void WaitUntilLogoutButtonDisplay()
+        public static ApplicationManager GetInstance()
         {
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(4));
-            wait.Until(driver => driver.FindElement(By.Id("MENU_LOGOUT")));
+            if(!app.IsValueCreated)
+            {
+                ApplicationManager newInstance = new ApplicationManager();
+                newInstance.Navigator.GoToLoginPage();
+                app.Value = newInstance;
+                
+            }
+            return app.Value;
         }
-        public void Stop()
+
+        ~ApplicationManager()
         {
             try
             {
@@ -50,9 +56,18 @@ namespace AutoGTP2Tests
             catch (Exception)
             {
                 // Ignore errors if unable to close the browser
-            }            
+            }
         }
 
+        public IWebDriver Driver { get { return driver; } }
+
+
+        public void WaitUntilLogoutButtonDisplay()
+        {
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(4));
+            wait.Until(driver => driver.FindElement(By.Id("MENU_LOGOUT")));
+        }
+        
         public void Refresh()
         {
             try
