@@ -12,7 +12,7 @@ namespace AutoGTP2Tests
 {
     public class LoginHelper : HelperBase
     {
-        public object TimeUnit { get; private set; }
+        //public object TimeUnit { get; private set; }
 
         public LoginHelper(ApplicationManager manager) : base(manager)
         {
@@ -23,59 +23,40 @@ namespace AutoGTP2Tests
         {
             if (IsLoggedIn())
             {
-                if (IsLoggedIn(account))
-                {
-                    return;
-                }
-                Logout();
+                return;
             }
             EnterUsername(account);
             EnterPassword(account);
             SignInButtonClick();
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            wait.Until(driver => driver.FindElement(By.Id("MENU_LOGOUT")));
         }
+
+        // для проверки некорректных данных
+        public void IncorrectLogin(LoginData account)
+        {
+            if (IsLoggedIn())
+            {
+                return;
+            }
+            EnterUsername(account);
+            EnterPassword(account);
+            SignInButtonClick();            
+        }
+
 
         public bool IsLoggedIn()
-        {
-            return IsElementPresent(By.XPath("//a[@id='MENU_LOGOUT']/div/p"));
-        }
-
-        public bool IsLoggedIn(LoginData account)
-        {
-            return IsLoggedIn()
-                && driver.FindElement(By.XPath("//a[@id='MENU_LOGOUT']/div/p"))
-                .FindElement(By.Id("MENU_ADMINISTRATION")).Displayed;
-        }
+        {            
+            return IsElementPresent(By.Id("MENU_LOGOUT"));
+        }                
 
         public void Logout()
         {
-            driver.FindElement(By.XPath("//a[@id='MENU_LOGOUT']/div/p")).Click();
-        }
-
-        public void CorrectAuth(LoginData newData)
-        {
-            EnterUsername(newData);
-            EnterPassword(newData);
-            SignInButtonClick();            
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(4));
-            wait.Until(driver => driver.FindElement(By.Id("MENU_LOGOUT")));
+            if (IsLoggedIn())
+            { 
             driver.FindElement(By.Id("MENU_LOGOUT")).Click();
-            wait.Until(driver => driver.FindElement(By.Id("LOGIN_FORM_BUTTON")));
-            driver.Navigate().Refresh();
-
+            }
         }
-
-        public void IncorrectAuth(LoginData newData)
-        {
-            EnterUsername(newData);
-            EnterPassword(newData);
-            SignInButtonClick();            
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(4));
-            wait.Until(driver => driver.FindElement(By.XPath("//div[@class='__floater __floater__open']")));
-            driver.Navigate().Refresh();
-
-        }
-
-
 
         //Низкоуровневые методы
 

@@ -23,10 +23,11 @@ namespace AutoGTP2Tests
             NewProjectButtonClick();
             EnterProjectName();
             SaveButtonClick();
+            //ждем пока исчезнет всплывающее окно с проектом
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            wait.Until(driver => driver.FindElements(By.Id("PROJECT_CARD_SAVE_AND_EXIT")).Count == 0);
             return this;
         }
-
-
 
         //Низкоуровневые методы
         public ProjectHelper SaveButtonClick()

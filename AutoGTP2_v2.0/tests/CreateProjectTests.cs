@@ -15,7 +15,7 @@ namespace AutoGTP2Tests
         [Test]
         public void CreateProjectTest()
         {            
-            applicationManager.Service.CreateProject();
+            applicationManager.Project.CreateProject();            
         }
     }
 }

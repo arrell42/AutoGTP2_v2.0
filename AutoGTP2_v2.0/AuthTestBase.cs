@@ -11,6 +11,7 @@ using OpenQA.Selenium.Support.UI;
 
 namespace AutoGTP2Tests
 {
+    [TestFixture]
     public class AuthTestBase : TestBase
     {
         [SetUp]

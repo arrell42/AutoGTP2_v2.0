@@ -16,7 +16,7 @@ namespace AutoGTP2Tests
         public HelperBase(ApplicationManager manager)
         {
             this.manager = manager;
-            driver = manager.Driver;
+            this.driver = manager.Driver;
         }
 
         public bool IsElementPresent(By by)

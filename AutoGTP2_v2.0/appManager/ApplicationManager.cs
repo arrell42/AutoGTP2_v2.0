@@ -16,7 +16,7 @@ namespace AutoGTP2Tests
         protected IWebDriver driver;        
         protected string baseURL;
         
-        //HELPERS   
+        //HELPERS ADD 
         protected LoginHelper loginHelper;
         protected NavigationHelper navigationHelper;
         protected BudgetHelper budgetHelper;
@@ -24,7 +24,7 @@ namespace AutoGTP2Tests
 
         private static ThreadLocal<ApplicationManager> app = new ThreadLocal<ApplicationManager>();
 
-        public ApplicationManager()
+        private ApplicationManager()
         {
             driver = new ChromeDriver();                       
             baseURL = "https://gtp-test.janusww.com:9999/";            
@@ -33,6 +33,18 @@ namespace AutoGTP2Tests
             navigationHelper = new NavigationHelper(this, baseURL);
             budgetHelper = new BudgetHelper(this);
             serviceHelper = new ProjectHelper(this);
+        }
+
+        ~ApplicationManager()
+        {
+            try
+            {                
+                driver.Quit();
+            }
+            catch (Exception)
+            {
+                // Ignore errors if unable to close the browser
+            }
         }
 
         public static ApplicationManager GetInstance()
@@ -47,31 +59,7 @@ namespace AutoGTP2Tests
             return app.Value;
         }
 
-        ~ApplicationManager()
-        {
-            try
-            {
-                driver.Quit();
-            }
-            catch (Exception)
-            {
-                // Ignore errors if unable to close the browser
-            }
-        }
-
         public IWebDriver Driver { get { return driver; } }
-
-        public void Refresh()
-        {
-            try
-            {
-                driver.Navigate().Refresh();
-            }
-            catch (Exception)
-            {
-                // Ignore errors if unable to close the browser
-            }
-        }
 
         public string GetRandomString(int length)
         {
@@ -97,7 +85,7 @@ namespace AutoGTP2Tests
             get { return budgetHelper; }
         }
 
-        public ProjectHelper Service
+        public ProjectHelper Project
         {
             get { return serviceHelper; }
         }

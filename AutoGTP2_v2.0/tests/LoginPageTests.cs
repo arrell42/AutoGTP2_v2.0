@@ -1,6 +1,5 @@
 ﻿using NUnit.Framework;
 
-
 namespace AutoGTP2Tests
 {
     [TestFixture]
@@ -12,18 +11,20 @@ namespace AutoGTP2Tests
         public void CorrectLoginTest_1()
         {
             applicationManager.Auth.Logout();
-            LoginData newData = new LoginData("dtest_user_2", "123456");
-            applicationManager.Auth.CorrectAuth(newData);
-            Assert.IsTrue(applicationManager.Auth.IsLoggedIn(newData));
+            LoginData account = new LoginData("Main_test", "123456");
+            applicationManager.Auth.Login(account);            
+            Assert.IsTrue(applicationManager.Auth.IsLoggedIn());
         }
-        /*
+        
         [Test]
         //В поле Username or email ввести корректный логин с последующими 2мя пробелами.
         //В поле Password ввести корректный пароль с последующими 2мя пробелами.
         public void CorrectLoginTest_2()
         {
-            LoginData newData = new LoginData("dtest_user_2  ", "123456  ");
-            applicationManager.Auth.CorrectAuth(newData);
+            applicationManager.Auth.Logout();
+            LoginData account = new LoginData("dtest_user_2  ", "123456  ");
+            applicationManager.Auth.Login(account);            
+            Assert.IsTrue(applicationManager.Auth.IsLoggedIn());
         }
 
         [Test]
@@ -31,22 +32,26 @@ namespace AutoGTP2Tests
         //В поле Password ввести корректный пароль.
         public void CorrectLoginTest_3()
         {
-            LoginData newData = new LoginData("DtEsT_uSeR_2", "123456");
-            applicationManager.Auth.CorrectAuth(newData);
+            applicationManager.Auth.Logout();
+            LoginData account = new LoginData("DtEsT_uSeR_2", "123456");
+            applicationManager.Auth.Login(account);            
+            Assert.IsTrue(applicationManager.Auth.IsLoggedIn());
         }
-        */
+        
 
         [Test]
         //В поле Username or email ввести некорректный логин.
         //В поле Password ввести некорретный пароль.
+
+        
         public void IncorrectLoginTest_1()
         {
             applicationManager.Auth.Logout();
-            LoginData newData = new LoginData("Main_test123", "123");
-            applicationManager.Auth.IncorrectAuth(newData);
-            Assert.IsFalse(applicationManager.Auth.IsLoggedIn(newData));
+            LoginData account = new LoginData("Main_test123", "123");
+            applicationManager.Auth.IncorrectLogin(account);
+            Assert.IsFalse(applicationManager.Auth.IsLoggedIn());
         }
-
+       
         /*
         [Test]
         //В поле Username or email ввести некорректный логин.
