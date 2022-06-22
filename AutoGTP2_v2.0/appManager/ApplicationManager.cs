@@ -53,8 +53,7 @@ namespace AutoGTP2Tests
             {
                 ApplicationManager newInstance = new ApplicationManager();
                 newInstance.Navigator.GoToLoginPage();
-                app.Value = newInstance;
-                
+                app.Value = newInstance;                
             }
             return app.Value;
         }
