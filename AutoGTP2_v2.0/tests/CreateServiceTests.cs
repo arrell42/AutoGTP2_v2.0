@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -10,17 +12,20 @@ using OpenQA.Selenium.Support.UI;
 
 namespace AutoGTP2Tests
 {
-    public class CreateProjectTests : AuthTestBase
+    [TestFixture]
+    public class CreateServiceTests : AuthTestBase
     {
         [Test]
-        public void CreateProjectTest()
+        public void CreateServiceTest()
         {
             ProjectData projectData = new ProjectData()
             {
                 ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
             };
-            applicationManager.Project.CreateProject(projectData);            
+            applicationManager.Service.CreateService(projectData);
         }
+
+
 
     }
 }

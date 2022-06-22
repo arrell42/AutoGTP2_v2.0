@@ -20,10 +20,12 @@ namespace AutoGTP2Tests
         protected LoginHelper loginHelper;
         protected NavigationHelper navigationHelper;
         protected BudgetHelper budgetHelper;
-        protected ProjectHelper serviceHelper;
+        protected ProjectHelper projectHelper;
+        protected ServiceHelper serviceHelper;
 
         private static ThreadLocal<ApplicationManager> app = new ThreadLocal<ApplicationManager>();
 
+        // Начало теста - открыть браузер, перейти на нужную страницу
         private ApplicationManager()
         {
             driver = new ChromeDriver();                       
@@ -32,9 +34,11 @@ namespace AutoGTP2Tests
             loginHelper = new LoginHelper(this);
             navigationHelper = new NavigationHelper(this, baseURL);
             budgetHelper = new BudgetHelper(this);
-            serviceHelper = new ProjectHelper(this);
+            projectHelper = new ProjectHelper(this);
+            serviceHelper = new ServiceHelper(this);
         }
 
+        //Завершение теста - закрыть браузер
         ~ApplicationManager()
         {
             try
@@ -47,6 +51,7 @@ namespace AutoGTP2Tests
             }
         }
 
+        
         public static ApplicationManager GetInstance()
         {
             if(!app.IsValueCreated)
@@ -86,8 +91,14 @@ namespace AutoGTP2Tests
 
         public ProjectHelper Project
         {
+            get { return projectHelper; }
+        }
+
+        public ServiceHelper Service
+        {
             get { return serviceHelper; }
         }
+        
 
     }
 }

@@ -11,82 +11,128 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="AutoGTP2Tests.ApplicationManager" Collapsed="true">
-    <Position X="2.5" Y="0.5" Width="1.75" />
+    <Position X="3" Y="0.75" Width="1.75" />
     <Compartments>
       <Compartment Name="Properties" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAAAAAAABABAAAQAAAABgASABAAAwAAAECAAABEAACA=</HashCode>
+      <HashCode>AAAAAAAABAAAAAQAAAABiASABAIAwAAAECAAABEAACA=</HashCode>
       <FileName>appManager\ApplicationManager.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Field Name="loginHelper" />
       <Field Name="navigationHelper" />
       <Field Name="budgetHelper" />
+      <Field Name="projectHelper" />
       <Field Name="serviceHelper" />
     </ShowAsAssociation>
   </Class>
   <Class Name="AutoGTP2Tests.HelperBase" Collapsed="true">
-    <Position X="7.25" Y="0.5" Width="1.5" />
+    <Position X="7.75" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAABCEAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>appManager\HelperBase.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="AutoGTP2Tests.AddBudgetTests" Collapsed="true">
-    <Position X="0.5" Y="4" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>tests\AddBudgetTests.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="AutoGTP2Tests.BudgetRemovalTests" Collapsed="true">
-    <Position X="0.5" Y="3.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAEAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>tests\BudgetRemovalTests.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="AutoGTP2Tests.LoginPageTests" Collapsed="true">
-    <Position X="2.75" Y="3.75" Width="1.5" />
+    <Position X="0.5" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAIAAAAAAAA=</HashCode>
+      <HashCode>IAAAAAAAAAAAAAAAAEAAAACAQAABAAAAIAJAAAAAkAA=</HashCode>
       <FileName>tests\LoginPageTests.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="AutoGTP2Tests.CreateProjectTests" Collapsed="true">
-    <Position X="0.5" Y="4.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>tests\CreateProjectTests.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="AutoGTP2Tests.NavigationHelper" Collapsed="true">
-    <Position X="4.75" Y="1.25" Width="1.5" />
+    <Position X="5.75" Y="1.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAAAAAgAAAAAAAACAAACA=</HashCode>
       <FileName>appManager\NavigationHelper.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="AutoGTP2Tests.ProjectHelper" Collapsed="true">
-    <Position X="4.75" Y="2" Width="1.5" />
+    <Position X="5.75" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAQIAAAIAAAAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <HashCode>AAAAAAAAAAQIAIAIAAACAAAAAEAAAIgAAAAAAABAiCA=</HashCode>
       <FileName>appManager\ProjectHelper.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="AutoGTP2Tests.LoginHelper" Collapsed="true">
-    <Position X="4.75" Y="0.5" Width="1.5" />
+    <Position X="5.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAFAABAAAQAAAAAAAAAAAIAAAQAAAAAAAASAAAAAEA=</HashCode>
+      <HashCode>AAAFAAAAAAQAAAAAAAQAAAIAAAAAAAAAgAASAAAAAEA=</HashCode>
       <FileName>appManager\LoginHelper.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="AutoGTP2Tests.BudgetHelper" Collapsed="true">
-    <Position X="4.75" Y="2.75" Width="1.5" />
+    <Position X="5.75" Y="2.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>gAAAAICgAAEAAAQAAgACBAAAAECAABCAAAAAAAAAAAA=</HashCode>
+      <HashCode>gAAAAICgAAEgAAQAAgACAAAAAECAABCAAAAAAAAAAAA=</HashCode>
       <FileName>appManager\BudgetHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AutoGTP2Tests.ServiceHelper" Collapsed="true">
+    <Position X="5.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAEAAAAAAAAAAAAAAAABQAwAAAAAAAEAAAAAABAA=</HashCode>
+      <FileName>appManager\ServiceHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AutoGTP2Tests.AuthTestBase">
+    <Position X="0.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>tests\AuthTestBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AutoGTP2Tests.AddBudgetTests" Collapsed="true">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>tests\AddBudgetTests.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AutoGTP2Tests.BudgetRemovalTests" Collapsed="true">
+    <Position X="2" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>tests\BudgetRemovalTests.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AutoGTP2Tests.CreateProjectTests" Collapsed="true">
+    <Position X="3.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>tests\CreateProjectTests.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AutoGTP2Tests.CreateServiceTests" Collapsed="true">
+    <Position X="6.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>tests\CreateServiceTests.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AutoGTP2Tests.RemoveProjectTests" Collapsed="true">
+    <Position X="5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>tests\RemoveProjectTest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AutoGTP2Tests.LoginData" Collapsed="true">
+    <Position X="9.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAEAAAAAAAACAAAAAgAAAAA=</HashCode>
+      <FileName>model\LoginData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AutoGTP2Tests.BudgetData" Collapsed="true">
+    <Position X="9.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAhAAAAAAAAAAAAAAIAAAAAAAAAACEAAAIAAAAA=</HashCode>
+      <FileName>model\BudgetData.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

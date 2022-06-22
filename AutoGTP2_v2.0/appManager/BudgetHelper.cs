@@ -26,7 +26,7 @@ namespace AutoGTP2Tests
             return this;
         }
 
-        public BudgetHelper Remove()
+        public BudgetHelper RemoveBudget()
         {
             manager.Navigator.GoToBudgetPage();
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(4));
@@ -51,7 +51,7 @@ namespace AutoGTP2Tests
 
 
 
-        //Низкоуровневые методы
+        // Низкоуровневые методы
         public BudgetHelper CreateButtonClick()
         {
             driver.FindElement(By.Id("NEW_BUDGET_CREATE")).Click();
