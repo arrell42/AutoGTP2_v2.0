@@ -37,7 +37,7 @@ namespace AutoGTP2Tests
             return this;
         }
 
-        public BudgetHelper CancelRemove()
+        public BudgetHelper CancelRemoveBudget()
         {
             manager.Navigator.GoToBudgetPage();
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));

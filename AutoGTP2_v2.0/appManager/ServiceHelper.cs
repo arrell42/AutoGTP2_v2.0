@@ -28,6 +28,7 @@ namespace AutoGTP2Tests
             EnterQuantity();
             //SourceFileLoad();
             SaveServiceButtonClick();
+            manager.Project.SaveProjectButtonClick();
             return this;
         }
 

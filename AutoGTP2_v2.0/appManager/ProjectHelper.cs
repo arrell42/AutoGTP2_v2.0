@@ -25,10 +25,7 @@ namespace AutoGTP2Tests
             manager.Navigator.GoToProjectPage();
             NewProjectButtonClick();
             EnterProjectName(projectData);
-            SaveButtonClick();
-            //ждем пока исчезнет всплывающее окно с проектом
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            wait.Until(driver => driver.FindElements(By.Id("PROJECT_CARD_SAVE_AND_EXIT")).Count == 0);
+            SaveProjectButtonClick();            
             return this;
         }
 
@@ -100,9 +97,12 @@ namespace AutoGTP2Tests
             return this;
         }
 
-        public ProjectHelper SaveButtonClick()
+        public ProjectHelper SaveProjectButtonClick()
         {
             driver.FindElement(By.Id("PROJECT_CARD_SAVE_AND_EXIT")).Click();
+            //ждем пока исчезнет всплывающее окно с проектом
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            wait.Until(driver => driver.FindElements(By.Id("PROJECT_CARD_SAVE_AND_EXIT")).Count == 0);
             return this;
         }
 

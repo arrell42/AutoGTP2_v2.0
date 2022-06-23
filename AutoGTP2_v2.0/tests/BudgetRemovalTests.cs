@@ -10,7 +10,7 @@ namespace AutoGTP2Tests
         [Test]
         public void BudgetRemovalCancelTest()
         {
-            applicationManager.Budgets.CancelRemove();
+            applicationManager.Budgets.CancelRemoveBudget();
         }
 
         [Test]

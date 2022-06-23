@@ -25,7 +25,7 @@ namespace AutoGTP2Tests
 
         private static ThreadLocal<ApplicationManager> app = new ThreadLocal<ApplicationManager>();
 
-        // Начало теста - открыть браузер, перейти на нужную страницу
+        // Начало теста - открыть браузер, перейти на нужную страницу, инициализация хелперов
         private ApplicationManager()
         {
             driver = new ChromeDriver();                       
@@ -65,13 +65,12 @@ namespace AutoGTP2Tests
 
         public IWebDriver Driver { get { return driver; } }
 
+        //генерация набора случайных символов
         public string GetRandomString(int length)
         {
             var r = new Random();
-            return new String(Enumerable.Range(0, length).Select(n => (Char)(r.Next(32, 127))).ToArray());
+            return new string(Enumerable.Range(0, length).Select(n => (Char)(r.Next(32, 127))).ToArray());
         }
-
-
 
         //Property for helpers - чтобы не делать их public
         public LoginHelper Auth
