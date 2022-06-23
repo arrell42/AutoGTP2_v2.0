@@ -21,7 +21,7 @@ namespace AutoGTP2Tests
         protected NavigationHelper navigationHelper;
         protected BudgetHelper budgetHelper;
         protected ProjectHelper projectHelper;
-        protected ServiceHelper serviceHelper;
+        protected ServiceHelper serviceHelper;        
 
         private static ThreadLocal<ApplicationManager> app = new ThreadLocal<ApplicationManager>();
 

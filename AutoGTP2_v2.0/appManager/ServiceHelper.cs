@@ -1,12 +1,7 @@
-﻿using System;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading;
-using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Firefox;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using System;
+using System.Linq;
 
 namespace AutoGTP2Tests
 {
@@ -16,17 +11,17 @@ namespace AutoGTP2Tests
         {
         }
 
-        public ServiceHelper CreateService(ProjectData projectData)
+
+        public ServiceHelper CreateService(ProjectData projectName)
         {
             manager.Navigator.GoToProjectPage();
             manager.Project.NewProjectButtonClick();
-            manager.Project.EnterProjectName(projectData);
+            manager.Project.EnterProjectName(projectName);
             CreateServiceButtonClick();
-            SelectSourceLanguage();
-            SelectTargetLanguage();
+            SelectSourceLanguage("English");
+            SelectTargetLanguage("German");
             SelectQuantityTypeManual();
-            EnterQuantity();
-            //SourceFileLoad();
+            EnterQuantity();            
             SaveServiceButtonClick();
             manager.Project.SaveProjectButtonClick();
             return this;
@@ -40,17 +35,21 @@ namespace AutoGTP2Tests
             return this;
         }
 
-        public ServiceHelper SelectSourceLanguage()
+        public ServiceHelper SelectSourceLanguage(string indexValue)
         {
             driver.FindElement(By.Name("SERVICE_SOURCE_LANG")).Click();
-            driver.FindElement(By.Id("SERVICE_SOURCE_LANG_2")).Click();            
+            WaitUntilItemFind(10, By.Id("SERVICE_SOURCE_LANG_0"));
+            LanguageFind(indexValue);
             return this;
         }
 
-        public ServiceHelper SelectTargetLanguage()
+        
+
+        public ServiceHelper SelectTargetLanguage(string indexValue)
         {
-            driver.FindElement(By.XPath("//input[@name = 'SERVICE_TARGET_LANG']")).Click();            
-            driver.FindElement(By.Id("SERVICE_TARGET_LANG_1")).Click();            
+            driver.FindElement(By.XPath("//input[@name = 'SERVICE_TARGET_LANG']")).Click();
+            WaitUntilItemFind(10, By.Id("SERVICE_TARGET_LANG_0"));            
+            LanguageFind(indexValue);
             return this;
         }
 
@@ -67,16 +66,13 @@ namespace AutoGTP2Tests
             driver.FindElement(By.Id("SERVICE_MANUAL_QUANTITY")).SendKeys("100");
             return this;
         }
-        public ServiceHelper SourceFileLoad()
-        {
-            driver.FindElement(By.Id("FILE_LOADER")).Click();            
-            return this;
-        }
-
+        
         public ServiceHelper SaveServiceButtonClick()
         {
             driver.FindElement(By.Id("SERVICE_SAVE")).Click();
             return this;
         }
+
+        
     }
 }

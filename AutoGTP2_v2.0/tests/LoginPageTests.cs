@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using System;
 
 namespace AutoGTP2Tests
 {
@@ -8,7 +9,7 @@ namespace AutoGTP2Tests
         [Test]
         //В поле Username or email ввести корректный логин.
         //В поле Password ввести корректный пароль.
-        public void CorrectLoginTest_1()
+        public void CorrectLoginTest()
         {
             applicationManager.Auth.Logout();
             LoginData account = new LoginData("Main_test", "123456");
@@ -19,7 +20,7 @@ namespace AutoGTP2Tests
         [Test]
         //В поле Username or email ввести корректный логин с последующими 2мя пробелами.
         //В поле Password ввести корректный пароль с последующими 2мя пробелами.
-        public void CorrectLoginTest_2()
+        public void CorrectLoginTestWithSpacesAfter()
         {
             applicationManager.Auth.Logout();
             LoginData account = new LoginData("dtest_user_2  ", "123456  ");
@@ -30,7 +31,7 @@ namespace AutoGTP2Tests
         [Test]
         //В поле Username or email ввести корректный логин с буквами разного регистра.
         //В поле Password ввести корректный пароль.
-        public void CorrectLoginTest_3()
+        public void CorrectLoginTestWithCamelStyle()
         {
             applicationManager.Auth.Logout();
             LoginData account = new LoginData("DtEsT_uSeR_2", "123456");
@@ -42,8 +43,7 @@ namespace AutoGTP2Tests
         [Test]
         //В поле Username or email ввести некорректный логин.
         //В поле Password ввести некорретный пароль.
-
-        
+                
         public void IncorrectLoginTest_1()
         {
             applicationManager.Auth.Logout();
@@ -51,8 +51,7 @@ namespace AutoGTP2Tests
             applicationManager.Auth.IncorrectLogin(account);
             Assert.IsFalse(applicationManager.Auth.IsLoggedIn());
         }
-       
-        
+               
         [Test]
         //В поле Username or email ввести некорректный логин.
         //В поле Password ввести корретный пароль.
@@ -111,6 +110,11 @@ namespace AutoGTP2Tests
             LoginData account = new LoginData(s100, "qwerty");
             applicationManager.Auth.IncorrectLogin(account);
             Assert.IsFalse(applicationManager.Auth.IsLoggedIn());
+        }
+
+        private string NewMethod()
+        {
+            throw new NotImplementedException();
         }
 
         [Test]

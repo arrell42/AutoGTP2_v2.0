@@ -29,8 +29,7 @@ namespace AutoGTP2Tests
         public BudgetHelper RemoveBudget()
         {
             manager.Navigator.GoToBudgetPage();
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(4));
-            wait.Until(driver => driver.FindElement(By.CssSelector("#BUDGETS_BURGER_0 > svg > path")));
+            WaitUntilItemFind(5, By.CssSelector("#BUDGETS_BURGER_0 > svg > path"));            
             BudgetBurgerClick();
             BudgetDeleteButtonClick();
             BudgetDeleteConfirm();
@@ -40,8 +39,7 @@ namespace AutoGTP2Tests
         public BudgetHelper CancelRemoveBudget()
         {
             manager.Navigator.GoToBudgetPage();
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            wait.Until(driver => driver.FindElement(By.CssSelector("#BUDGETS_BURGER_0 > svg > path")));
+            WaitUntilItemFind(10, By.CssSelector("#BUDGETS_BURGER_0 > svg > path"));            
             BudgetBurgerClick();
             BudgetDeleteButtonClick();
             BudgetDeleteCancel();            

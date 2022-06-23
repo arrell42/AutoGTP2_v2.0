@@ -11,7 +11,7 @@ using OpenQA.Selenium.Support.UI;
 namespace AutoGTP2Tests
 {
     [TestFixture]
-    public class RemoveProjectTests : AuthTestBase
+    public class ProjectRemovalTests : AuthTestBase
     {
         [Test]
         public void RemoveProjectTest()
