@@ -13,9 +13,9 @@ namespace AutoGTP2Tests
         }
 
         [Test]
-        public void BudgetRemovalTest()
+        public void BudgetRemovalTest(BudgetData budget)
         {
-            applicationManager.Budgets.RemoveBudget();            
+            applicationManager.Budgets.RemoveBudget(budget);           
         }
         
     }

@@ -1,6 +1,5 @@
-﻿using System;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
+﻿using OpenQA.Selenium;
+
 
 namespace AutoGTP2Tests
 {

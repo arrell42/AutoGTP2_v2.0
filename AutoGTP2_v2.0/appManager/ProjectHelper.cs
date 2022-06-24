@@ -1,6 +1,5 @@
-﻿using System;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
+﻿using OpenQA.Selenium;
+
 
 namespace AutoGTP2Tests
 {
@@ -24,27 +23,26 @@ namespace AutoGTP2Tests
         public ProjectHelper RemoveProjectDecline()
         {
             manager.Navigator.GoToProjectPage();
-            if (DeleteButtonIsDisabled())
+            if (ProjectDeleteButtonIsDisabled())
             {
                 FindPendingProject();
             }
             ClickProjectBurger();
-            ClickDeleteButton();
-            DeclineDelete();
+            ProjectDeleteButtonClick();
+            ProjectDeleteDeclineButtonClick();
             return this;
         }
-
 
         public ProjectHelper RemoveProjectConfirm()
         {
             manager.Navigator.GoToProjectPage();
-            if (DeleteButtonIsDisabled())
+            if (ProjectDeleteButtonIsDisabled())
             {
                 FindPendingProject();                
             }
             ClickProjectBurger();
-            ClickDeleteButton();
-            ConfirmDelete();
+            ProjectDeleteButtonClick();
+            ProjectDeleteConfirmButtonClick();
             return this;
         }
         
@@ -61,13 +59,13 @@ namespace AutoGTP2Tests
             return this;
         }
 
-        public ProjectHelper ConfirmDelete()
+        public ProjectHelper ProjectDeleteConfirmButtonClick()
         {
             driver.FindElement(By.Id("PROJECTS_DELETE_CONFIRMATION")).Click();
             return this;
         }
 
-        public ProjectHelper ClickDeleteButton()
+        public ProjectHelper ProjectDeleteButtonClick()
         {
             driver.FindElement(By.Id("PROJECT_SUB_DELETE")).Click();            
             return this;
@@ -79,7 +77,7 @@ namespace AutoGTP2Tests
             return this;
         }
 
-        public ProjectHelper DeclineDelete()
+        public ProjectHelper ProjectDeleteDeclineButtonClick()
         {
             driver.FindElement(By.XPath("//button[@class = 'btn primary-btn']")).Click();            
             return this;
@@ -108,6 +106,6 @@ namespace AutoGTP2Tests
         }
 
         // ищем неактивную кнопку Delete при удалении бюджета
-        public bool DeleteButtonIsDisabled() => driver.FindElements(By.XPath("//p[@class = 'delete-project-btn disabled']")).Count == 1;
+        public bool ProjectDeleteButtonIsDisabled() => driver.FindElements(By.XPath("//p[@class = 'delete-project-btn disabled']")).Count == 1;
     }
 }

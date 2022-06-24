@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using OpenQA.Selenium;
 
 
@@ -23,15 +24,22 @@ namespace AutoGTP2Tests
             return this;
         }
 
-        public BudgetHelper RemoveBudget()
+        public BudgetHelper RemoveBudget(BudgetData budget)
         {
             manager.Navigator.GoToBudgetPage();
             WaitUntiFindElement(5, By.CssSelector("#BUDGETS_BURGER_0 > svg > path"));            
             BudgetBurgerClick();
+            if (BudgetDeleteButtonIsDisabled())
+            {
+                manager.Budgets.CreateBudget(budget);
+            }
             BudgetDeleteButtonClick();
             BudgetDeleteConfirm();
             return this;
         }
+
+        public bool BudgetDeleteButtonIsDisabled() => driver.FindElements(By.XPath("//p[@class = 'delete-project-btn disabled']")).Count == 1;
+
 
         public BudgetHelper CancelRemoveBudget()
         {
