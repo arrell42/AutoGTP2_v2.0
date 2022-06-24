@@ -1,17 +1,14 @@
-﻿using System;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading;
-using NUnit.Framework;
+﻿using System.Threading;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.Support.UI;
+
 
 namespace AutoGTP2Tests
 {
     public class BudgetHelper : HelperBase
     {
+        public BudgetHelper(ApplicationManager manager) : base(manager)
+        {
+        }
         //Высокоуровневые методы
         public BudgetHelper CreateBudget(BudgetData budget)
         {
@@ -42,7 +39,7 @@ namespace AutoGTP2Tests
             WaitUntilItemFind(10, By.CssSelector("#BUDGETS_BURGER_0 > svg > path"));            
             BudgetBurgerClick();
             BudgetDeleteButtonClick();
-            BudgetDeleteCancel();            
+            BudgetDeleteDecline();            
             return this;
         }
 
@@ -91,12 +88,8 @@ namespace AutoGTP2Tests
         {
             driver.FindElement(By.Id("BUDGETS_CREATE_NEW_BUDGET")).Click();
             return this;
-        }
-
+        }                
         
-        public BudgetHelper(ApplicationManager manager) : base(manager)
-        {                        
-        }
         public BudgetHelper BudgetBurgerClick()
         {
             driver.FindElement(By.CssSelector("#BUDGETS_BURGER_0 > svg > path")).Click();
@@ -114,7 +107,7 @@ namespace AutoGTP2Tests
             driver.FindElement(By.Id("BUDGETS_0_BURGER_MENU_DELETE_DELETE")).Click();
             return this;
         }
-        public BudgetHelper BudgetDeleteCancel()
+        public BudgetHelper BudgetDeleteDecline()
         {
             driver.FindElement(By.Id("BUDGETS_0_BURGER_MENU_DELETE_DECLINE")).Click();
             return this;

@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading;
-using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.Support.UI;
+
 
 namespace AutoGTP2Tests
 {
@@ -65,14 +61,14 @@ namespace AutoGTP2Tests
 
         public IWebDriver Driver { get { return driver; } }
 
-        //генерация набора случайных символов
+        // генерация набора случайных символов
         public string GetRandomString(int length)
         {
             var r = new Random();
             return new string(Enumerable.Range(0, length).Select(n => (Char)(r.Next(32, 127))).ToArray());
         }
 
-        //Property for helpers - чтобы не делать их public
+        // Property for helpers - чтобы не делать их public
         public LoginHelper Auth
         {
             get { return loginHelper; }
