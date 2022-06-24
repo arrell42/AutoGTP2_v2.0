@@ -43,8 +43,7 @@ namespace AutoGTP2Tests
                 manager.Auth.Login(account);
             }
             driver.FindElement(By.Id("MENU_PROJECTS")).Click();
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            wait.Until(driver => driver.FindElement(By.Id("PROJECT_0")));
+            WaitUntiFindElement(10, By.Id("PROJECT_0"));            
         }
     }
 }

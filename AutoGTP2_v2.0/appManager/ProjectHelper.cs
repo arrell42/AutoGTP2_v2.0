@@ -48,9 +48,6 @@ namespace AutoGTP2Tests
             return this;
         }
         
-        public bool DeleteButtonIsDisabled() => driver.FindElements(By.XPath("//p[@class = 'delete-project-btn disabled']")).Count == 1;
-
-
 
         // Низкоуровневые методы
 
@@ -60,8 +57,7 @@ namespace AutoGTP2Tests
             driver.FindElement(By.XPath("//div[@class = 'statuses-dropdown-lock']//input")).Click();
             driver.FindElement(By.XPath("//span[@aria-label= 'Pending']")).Click();
             driver.FindElement(By.Id("PROJECTS_FILTERS_APPLY")).Click();
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
-            wait.Until(driver => driver.FindElement(By.XPath("//div[@id = 'PROJECT_0']//div[@id = 'PROJECT_STATUS']//span[contains(text(), 'Pending')]")));            
+            WaitUntiFindElement(20, By.XPath("//div[@id = 'PROJECT_0']//div[@id = 'PROJECT_STATUS']//span[contains(text(), 'Pending')]"));                        
             return this;
         }
 
@@ -93,8 +89,7 @@ namespace AutoGTP2Tests
         {
             driver.FindElement(By.Id("PROJECT_CARD_SAVE_AND_EXIT")).Click();
             //ждем пока исчезнет всплывающее окно с проектом
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            wait.Until(driver => driver.FindElements(By.Id("PROJECT_CARD_SAVE_AND_EXIT")).Count == 0);
+            WaitUntiFindElements(15, By.Id("PROJECT_CARD_SAVE_AND_EXIT"), 0);            
             return this;
         }
 
@@ -104,8 +99,6 @@ namespace AutoGTP2Tests
             driver.FindElement(By.Id("PROJECT_CARD_NAME")).Clear();
             driver.FindElement(By.Id("PROJECT_CARD_NAME")).SendKeys(projectData.ProjectName);
             return this;
-
-            
         }
 
         public ProjectHelper NewProjectButtonClick()
@@ -113,5 +106,8 @@ namespace AutoGTP2Tests
             driver.FindElement(By.Id("PROJECTS_NEW_PROJECT_BUTTON")).Click();
             return this;
         }
+
+        // ищем неактивную кнопку Delete при удалении бюджета
+        public bool DeleteButtonIsDisabled() => driver.FindElements(By.XPath("//p[@class = 'delete-project-btn disabled']")).Count == 1;
     }
 }

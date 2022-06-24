@@ -22,8 +22,7 @@ namespace AutoGTP2Tests
             EnterUsername(account);
             EnterPassword(account);
             SignInButtonClick();
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            wait.Until(driver => driver.FindElement(By.Id("MENU_LOGOUT")));
+            WaitUntiFindElement(10, By.Id("MENU_LOGOUT"));            
         }
                 
         public void CorrectLogin(LoginData account)
@@ -32,8 +31,7 @@ namespace AutoGTP2Tests
             EnterUsername(account);
             EnterPassword(account);
             SignInButtonClick();
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            wait.Until(driver => driver.FindElement(By.Id("MENU_LOGOUT")));
+            WaitUntiFindElement(10, By.Id("MENU_LOGOUT"));            
         }
         
         public void IncorrectLogin(LoginData account)
@@ -42,8 +40,7 @@ namespace AutoGTP2Tests
             EnterUsername(account);
             EnterPassword(account);
             SignInButtonClick();
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            wait.Until(driver => driver.FindElement(By.XPath("//div[@class = '__floater __floater__open']")));
+            WaitUntiFindElement(10, By.XPath("//div[@class = '__floater __floater__open']"));            
             driver.Navigate().Refresh();
         }
                 
@@ -65,8 +62,7 @@ namespace AutoGTP2Tests
             if (IsLoggedIn())
             { 
             driver.FindElement(By.Id("MENU_LOGOUT")).Click();
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            wait.Until(driver => driver.FindElement(By.Id("LOGIN_FORM_BUTTON")));
+            WaitUntiFindElement(10, By.Id("LOGIN_FORM_BUTTON"));            
             }
         }
 

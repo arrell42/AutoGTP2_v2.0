@@ -26,7 +26,7 @@ namespace AutoGTP2Tests
         public BudgetHelper RemoveBudget()
         {
             manager.Navigator.GoToBudgetPage();
-            WaitUntilItemFind(5, By.CssSelector("#BUDGETS_BURGER_0 > svg > path"));            
+            WaitUntiFindElement(5, By.CssSelector("#BUDGETS_BURGER_0 > svg > path"));            
             BudgetBurgerClick();
             BudgetDeleteButtonClick();
             BudgetDeleteConfirm();
@@ -36,7 +36,7 @@ namespace AutoGTP2Tests
         public BudgetHelper CancelRemoveBudget()
         {
             manager.Navigator.GoToBudgetPage();
-            WaitUntilItemFind(10, By.CssSelector("#BUDGETS_BURGER_0 > svg > path"));            
+            WaitUntiFindElement(10, By.CssSelector("#BUDGETS_BURGER_0 > svg > path"));            
             BudgetBurgerClick();
             BudgetDeleteButtonClick();
             BudgetDeleteDecline();            

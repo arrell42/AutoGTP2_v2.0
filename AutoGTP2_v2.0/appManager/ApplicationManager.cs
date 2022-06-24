@@ -21,6 +21,8 @@ namespace AutoGTP2Tests
 
         private static ThreadLocal<ApplicationManager> app = new ThreadLocal<ApplicationManager>();
 
+        public IWebDriver Driver { get { return driver; } }
+
         // Начало теста - открыть браузер, перейти на нужную страницу, инициализация хелперов
         private ApplicationManager()
         {
@@ -47,7 +49,7 @@ namespace AutoGTP2Tests
             }
         }
 
-        
+        // Проверка на открытый браузер - если открыт, то НЕ открывать новый экземпляр
         public static ApplicationManager GetInstance()
         {
             if(!app.IsValueCreated)
@@ -58,8 +60,6 @@ namespace AutoGTP2Tests
             }
             return app.Value;
         }
-
-        public IWebDriver Driver { get { return driver; } }
 
         // генерация набора случайных символов
         public string GetRandomString(int length)
