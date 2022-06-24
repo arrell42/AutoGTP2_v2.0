@@ -9,12 +9,20 @@ namespace AutoGTP2Tests
         [Test]
         public void BudgetRemovalCancelTest()
         {
-            applicationManager.Budgets.CancelRemoveBudget();
+            BudgetData budget = new BudgetData()
+            {
+                BudgetTotal = "1000"
+            };
+            applicationManager.Budgets.CancelRemoveBudget(budget);
         }
 
         [Test]
-        public void BudgetRemovalTest(BudgetData budget)
+        public void BudgetRemovalTest()
         {
+            BudgetData budget = new BudgetData()
+            {
+                BudgetTotal = "1000"
+            };
             applicationManager.Budgets.RemoveBudget(budget);           
         }
         

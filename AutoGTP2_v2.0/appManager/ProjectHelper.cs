@@ -105,7 +105,7 @@ namespace AutoGTP2Tests
             return this;
         }
 
-        // ищем неактивную кнопку Delete при удалении бюджета
+        // ищем неактивную кнопку Delete при удалении проекта
         public bool ProjectDeleteButtonIsDisabled() => driver.FindElements(By.XPath("//p[@class = 'delete-project-btn disabled']")).Count == 1;
     }
 }
