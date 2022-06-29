@@ -44,7 +44,7 @@ namespace AutoGTP2Tests
         }
 
         // ожидание появления элемента по локатору
-        public void WaitUntiFindElement(int time, By locator)
+        public void WaitUntilFindElement(int time, By locator)
         {
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(time));
             wait.Until(driver => driver.FindElement(locator));

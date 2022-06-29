@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
-
+using OpenQA.Selenium.Support.UI;
+using System;
 
 namespace AutoGTP2Tests
 {
@@ -11,7 +12,7 @@ namespace AutoGTP2Tests
                
 
         //Высокоуровневые методы
-        public ProjectHelper CreateProject(ProjectData projectData)
+        public ProjectHelper CreatePendingProject(ProjectData projectData)
         {
             manager.Navigator.GoToProjectPage();
             NewProjectButtonClick();
@@ -22,11 +23,7 @@ namespace AutoGTP2Tests
 
         public ProjectHelper RemoveProjectDecline()
         {
-            manager.Navigator.GoToProjectPage();
-            if (ProjectDeleteButtonIsDisabled())
-            {
-                FindPendingProject();
-            }
+            manager.Navigator.GoToProjectPage();            
             ClickProjectBurger();
             ProjectDeleteButtonClick();
             ProjectDeleteDeclineButtonClick();
@@ -35,29 +32,34 @@ namespace AutoGTP2Tests
 
         public ProjectHelper RemoveProjectConfirm()
         {
-            manager.Navigator.GoToProjectPage();
-            if (ProjectDeleteButtonIsDisabled())
-            {
-                FindPendingProject();                
-            }
+            manager.Navigator.GoToProjectPage();            
             ClickProjectBurger();
             ProjectDeleteButtonClick();
             ProjectDeleteConfirmButtonClick();
             return this;
         }
-        
+
+
+        // выбор даты в проекте
+        public void SetDatePicker(IWebDriver driver, string cssSelector, string date)
+        {
+            new WebDriverWait(driver, TimeSpan.FromSeconds(30)).Until<bool>(
+                d => driver.FindElement(By.CssSelector(cssSelector)).Displayed);
+            (driver as IJavaScriptExecutor).ExecuteScript(
+                string.Format("$('{0}').datepicker('setDate', '{1}')", cssSelector, date));
+
+
+
+
+            driver.SwitchTo().Frame(
+            driver.FindElement(By.CssSelector("iframe.demo-frame")));
+            SetDatePicker(driver, "#datepicker", "02/20/2002");
+        }
+
+
+
 
         // Низкоуровневые методы
-
-        public ProjectHelper FindPendingProject()
-        {
-            driver.FindElement(By.Id("PROJECTS_FILTERS_BUTTON")).Click();
-            driver.FindElement(By.XPath("//div[@class = 'statuses-dropdown-lock']//input")).Click();
-            driver.FindElement(By.XPath("//span[@aria-label= 'Pending']")).Click();
-            driver.FindElement(By.Id("PROJECTS_FILTERS_APPLY")).Click();
-            WaitUntiFindElement(20, By.XPath("//div[@id = 'PROJECT_0']//div[@id = 'PROJECT_STATUS']//span[contains(text(), 'Pending')]"));                        
-            return this;
-        }
 
         public ProjectHelper ProjectDeleteConfirmButtonClick()
         {
@@ -106,6 +108,15 @@ namespace AutoGTP2Tests
         }
 
         // ищем неактивную кнопку Delete при удалении проекта
-        public bool ProjectDeleteButtonIsDisabled() => driver.FindElements(By.XPath("//p[@class = 'delete-project-btn disabled']")).Count == 1;
+        public bool ProjectDeleteButtonIsDisabled()
+        {
+            manager.Navigator.GoToProjectPage();
+            ClickProjectBurger();
+            if (driver.FindElements(By.XPath("//p[@class = 'delete-project-btn disabled']")).Count == 1)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

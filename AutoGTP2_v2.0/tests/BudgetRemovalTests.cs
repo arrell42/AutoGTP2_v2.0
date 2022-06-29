@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-
+using OpenQA.Selenium;
 
 namespace AutoGTP2Tests
 {
@@ -9,21 +9,40 @@ namespace AutoGTP2Tests
         [Test]
         public void BudgetRemovalCancelTest()
         {
-            BudgetData budget = new BudgetData()
+            
+            if (applicationManager.Budgets.BudgetDeleteButtonIsDisabled())
             {
-                BudgetTotal = "1000"
-            };
-            applicationManager.Budgets.CancelRemoveBudget(budget);
+                BudgetData budget = new BudgetData()
+                {
+                    BudgetTotal = "1000"
+                };
+                applicationManager.Budgets.CreateBudget(budget);
+                applicationManager.Budgets.WaitUntilFindElement(5, By.CssSelector("#BUDGETS_BURGER_0 > svg > path"));
+                applicationManager.Budgets.BudgetBurgerClick();                
+            }
+            
+            applicationManager.Budgets.BudgetRemovalCancel();
+            
+            
+            
         }
 
         [Test]
         public void BudgetRemovalTest()
         {
-            BudgetData budget = new BudgetData()
+                      
+            if (applicationManager.Budgets.BudgetDeleteButtonIsDisabled())
             {
-                BudgetTotal = "1000"
-            };
-            applicationManager.Budgets.RemoveBudget(budget);           
+                BudgetData budget = new BudgetData()
+                {
+                    BudgetTotal = "1000"
+                };
+                applicationManager.Budgets.CreateBudget(budget);
+                applicationManager.Budgets.WaitUntilFindElement(5, By.CssSelector("#BUDGETS_BURGER_0 > svg > path"));
+                applicationManager.Budgets.BudgetBurgerClick();                
+            }
+
+            applicationManager.Budgets.BudgetRemoval();
         }
         
     }

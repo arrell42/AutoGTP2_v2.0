@@ -82,12 +82,12 @@
     <Compile Include="appManager\ServiceHelper.cs" />
     <Compile Include="model\ProjectData.cs" />
     <Compile Include="model\ServiceData.cs" />
-    <Compile Include="tests\CreateServiceTests.cs" />
+    <Compile Include="tests\ServiceCreateTests.cs" />
     <Compile Include="tests\ProjectRemovalTests.cs" />
     <Compile Include="tests\AuthTestBase.cs" />
-    <Compile Include="tests\CreateProjectTests.cs" />
+    <Compile Include="tests\ProjectCreateTests.cs" />
     <Compile Include="tests\LoginPageTests.cs" />
-    <Compile Include="tests\CreateBudgetTests.cs" />
+    <Compile Include="tests\BudgetCreateTests.cs" />
     <Compile Include="appManager\ApplicationManager.cs" />
     <Compile Include="appManager\BudgetHelper.cs" />
     <Compile Include="appManager\HelperBase.cs" />

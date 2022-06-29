@@ -37,8 +37,7 @@ namespace AutoGTP2Tests
             LoginData account = new LoginData("DtEsT_uSeR_2", "123456");
             applicationManager.Auth.CorrectLogin(account);            
             Assert.IsTrue(applicationManager.Auth.IsLoggedIn());
-        }
-        
+        }        
 
         [Test]
         //В поле Username or email ввести некорректный логин.

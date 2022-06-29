@@ -4,7 +4,7 @@ using NUnit.Framework;
 
 namespace AutoGTP2Tests
 {
-    public class CreateProjectTests : AuthTestBase
+    public class ProjectCreateTests : AuthTestBase
     {
         [Test]
         public void CreateProjectTest()
@@ -13,7 +13,7 @@ namespace AutoGTP2Tests
             {
                 ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
             };
-            applicationManager.Project.CreateProject(projectData);            
+            applicationManager.Project.CreatePendingProject(projectData);            
         }
 
     }

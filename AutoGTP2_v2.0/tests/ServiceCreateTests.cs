@@ -5,7 +5,7 @@ using NUnit.Framework;
 namespace AutoGTP2Tests
 {
     [TestFixture]
-    public class CreateServiceTests : AuthTestBase
+    public class ServiceCreateTests : AuthTestBase
     {
         [Test]
         public void CreateServiceTest()

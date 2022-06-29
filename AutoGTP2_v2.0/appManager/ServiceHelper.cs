@@ -36,7 +36,7 @@ namespace AutoGTP2Tests
         public ServiceHelper SelectSourceLanguage(string indexValue)
         {
             driver.FindElement(By.Name("SERVICE_SOURCE_LANG")).Click();
-            WaitUntiFindElement(10, By.Id("SERVICE_SOURCE_LANG_0"));
+            WaitUntilFindElement(10, By.Id("SERVICE_SOURCE_LANG_0"));
             LanguageFind(indexValue);
             return this;
         }
@@ -46,7 +46,7 @@ namespace AutoGTP2Tests
         public ServiceHelper SelectTargetLanguage(string indexValue)
         {
             driver.FindElement(By.XPath("//input[@name = 'SERVICE_TARGET_LANG']")).Click();
-            WaitUntiFindElement(10, By.Id("SERVICE_TARGET_LANG_0"));            
+            WaitUntilFindElement(10, By.Id("SERVICE_TARGET_LANG_0"));            
             LanguageFind(indexValue);
             return this;
         }

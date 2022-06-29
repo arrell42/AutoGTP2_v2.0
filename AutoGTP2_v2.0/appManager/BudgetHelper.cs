@@ -24,33 +24,21 @@ namespace AutoGTP2Tests
             return this;
         }
 
-        public BudgetHelper RemoveBudget(BudgetData budget)
+        public BudgetHelper BudgetRemoval()
         {
             manager.Navigator.GoToBudgetPage();
-            WaitUntiFindElement(5, By.CssSelector("#BUDGETS_BURGER_0 > svg > path"));            
-            BudgetBurgerClick();
-            if (BudgetDeleteButtonIsDisabled())
-            {
-                CreateBudget(budget);
-                WaitUntiFindElement(5, By.CssSelector("#BUDGETS_BURGER_0 > svg > path"));
-                BudgetBurgerClick();
-            }            
+            WaitUntilFindElement(5, By.CssSelector("#BUDGETS_BURGER_0 > svg > path"));            
+            BudgetBurgerClick();                      
             BudgetDeleteButtonClick();
             BudgetDeleteConfirm();
             return this;
         }
 
-        public BudgetHelper CancelRemoveBudget(BudgetData budget)
+        public BudgetHelper BudgetRemovalCancel()
         {
             manager.Navigator.GoToBudgetPage();
-            WaitUntiFindElement(10, By.CssSelector("#BUDGETS_BURGER_0 > svg > path"));            
-            BudgetBurgerClick();
-            if (BudgetDeleteButtonIsDisabled())
-            {
-                CreateBudget(budget);
-                WaitUntiFindElement(5, By.CssSelector("#BUDGETS_BURGER_0 > svg > path"));
-                BudgetBurgerClick();
-            }
+            WaitUntilFindElement(10, By.CssSelector("#BUDGETS_BURGER_0 > svg > path"));            
+            BudgetBurgerClick();            
             BudgetDeleteButtonClick();
             BudgetDeleteDecline();            
             return this;
@@ -125,8 +113,20 @@ namespace AutoGTP2Tests
             driver.FindElement(By.Id("BUDGETS_0_BURGER_MENU_DELETE_DECLINE")).Click();
             return this;
         }
+
         // ищем неактивную кнопку Delete при удалении бюджета
-        public bool BudgetDeleteButtonIsDisabled() => driver.FindElements(By.XPath("//p[@class = 'delete-project-btn disabled']")).Count == 1;
+        public bool BudgetDeleteButtonIsDisabled()
+        {
+            manager.Navigator.GoToBudgetPage();
+            WaitUntilFindElement(10, By.CssSelector("#BUDGETS_BURGER_0 > svg > path"));
+            BudgetBurgerClick();
+            if (driver.FindElements(By.XPath("//p[@class = 'delete-project-btn disabled']")).Count == 1)
+            {
+                return true;
+            }
+            return false;            
+        }
+        
 
 
     }
