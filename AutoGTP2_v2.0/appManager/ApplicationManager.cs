@@ -22,8 +22,7 @@ namespace AutoGTP2Tests
         private static ThreadLocal<ApplicationManager> app = new ThreadLocal<ApplicationManager>();
 
         public IWebDriver Driver { get { return driver; } }
-
-        ProjectList table;
+                
 
 
         // Начало теста - открыть браузер, перейти на нужную страницу, инициализация хелперов
@@ -37,7 +36,7 @@ namespace AutoGTP2Tests
             budgetHelper = new BudgetHelper(this);
             projectHelper = new ProjectHelper(this);
             serviceHelper = new ServiceHelper(this);
-            table = new ProjectList(this);
+            
         }
 
         //Завершение теста - закрыть браузер
@@ -81,7 +80,7 @@ namespace AutoGTP2Tests
             get { return budgetHelper; }
         }
 
-        public ProjectHelper Project
+        public ProjectHelper Projects
         {
             get { return projectHelper; }
         }
@@ -89,11 +88,6 @@ namespace AutoGTP2Tests
         public ServiceHelper Service
         {
             get { return serviceHelper; }
-        }
-
-        public ProjectList Table
-        {
-            get { return table; }
         }
 
     }

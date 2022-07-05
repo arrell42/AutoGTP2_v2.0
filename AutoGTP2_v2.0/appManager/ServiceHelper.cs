@@ -13,15 +13,15 @@ namespace AutoGTP2Tests
         public ServiceHelper CreateService(ProjectData projectName)
         {
             manager.Navigator.GoToProjectPage();
-            manager.Project.NewProjectButtonClick();
-            manager.Project.EnterProjectName(projectName);
+            manager.Projects.NewProjectButtonClick();
+            manager.Projects.EnterProjectName(projectName);
             CreateServiceButtonClick();
             SelectSourceLanguage("English");
             SelectTargetLanguage("German");
             SelectQuantityTypeManual();
             EnterQuantity();            
             SaveServiceButtonClick();
-            manager.Project.SaveProjectButtonClick();
+            manager.Projects.SaveProjectButtonClick();
             return this;
         }
 

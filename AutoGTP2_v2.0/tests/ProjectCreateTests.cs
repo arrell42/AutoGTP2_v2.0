@@ -8,15 +8,23 @@ namespace AutoGTP2Tests
     public class ProjectCreateTests : AuthTestBase
     {
         [Test]
-        public void CreateProjectTest()
+        public void CreatePendingProjectTest()
         {
             ProjectData projectData = new ProjectData("")
             {
-                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
+                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
             };
 
-            applicationManager.Project.CreatePendingProject(projectData);
+            List<ProjectData> oldProjects = applicationManager.Projects.GetProjectList();
 
+            applicationManager.Projects.CreatePendingProject(projectData);
+
+            List<ProjectData> newProjects =  applicationManager.Projects.GetProjectList();            
+            oldProjects.Add(projectData);
+            oldProjects.RemoveAt(19);
+            oldProjects.Sort();
+            newProjects.Sort();
+            Assert.AreEqual(oldProjects, newProjects);
         }
 
     }

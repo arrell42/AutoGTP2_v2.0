@@ -22,26 +22,19 @@ namespace AutoGTP2Tests
             return this;
         }
 
-        // Создаем список проектов
-
-        /*
+        //Получение списка проектов
         public List<ProjectData> GetProjectList()
         {
+            List<ProjectData> projects = new List<ProjectData>();
+            manager.Navigator.GoToProjectPage();
+            ICollection<IWebElement> elements = driver.FindElements(By.XPath("//div[@class = 'NISN5104MJmPjvzE4xDN']//div"));
+            foreach (IWebElement element in elements)
             {
-                List<ProjectData> projects = new List<ProjectData>();
-
-                manager.Navigator.GoToProjectPage();
-                ICollection<IWebElement> elements = driver.FindElements(By.XPath("//div[@class = 'Y60VrDynu5B8vFAVkO5A']"));
-
-
-                foreach (IWebElement element in elements)
-                {
-                    projects.Add(new ProjectData(element.Text));
-                }
-                return projects;
+                projects.Add(new ProjectData(element.Text));
             }
+
+            return projects;
         }
-        */
 
         public ProjectHelper RemoveProjectDecline()
         {

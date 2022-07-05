@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 
 namespace AutoGTP2Tests
 {
@@ -9,31 +10,37 @@ namespace AutoGTP2Tests
         [Test]
         public void RemoveProjectConfirmTest()
         {
-            if (applicationManager.Project.ProjectDeleteButtonIsDisabled())
+            if (applicationManager.Projects.ProjectDeleteButtonIsDisabled())
             {
                 ProjectData projectData = new ProjectData("")
                 {
                     ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
                 };
-                applicationManager.Project.CreatePendingProject(projectData);
+                applicationManager.Projects.CreatePendingProject(projectData);
             }
 
-            applicationManager.Project.RemoveProjectConfirm();
+            List<ProjectData> oldProjects = applicationManager.Projects.GetProjectList();
+
+            applicationManager.Projects.RemoveProjectConfirm();
+
+            List<ProjectData> newProjects = applicationManager.Projects.GetProjectList();                       
+            Assert.AreEqual(oldProjects, newProjects);
         }
 
         [Test]
         public void RemoveProjectDeclineTest()
         {
-            if (applicationManager.Project.ProjectDeleteButtonIsDisabled())
+            if (applicationManager.Projects.ProjectDeleteButtonIsDisabled())
             {
                 ProjectData projectData = new ProjectData("")
                 {
                     ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
                 };
-                applicationManager.Project.CreatePendingProject(projectData);
+                applicationManager.Projects.CreatePendingProject(projectData);
             }
 
-            applicationManager.Project.RemoveProjectDecline();            
+            applicationManager.Projects.RemoveProjectDecline();
+            
         }
 
 
