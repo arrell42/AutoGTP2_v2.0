@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
+using System.Collections.Generic;
 
 namespace AutoGTP2Tests
 {
@@ -20,6 +21,27 @@ namespace AutoGTP2Tests
             SaveProjectButtonClick();            
             return this;
         }
+
+        // Создаем список проектов
+
+        /*
+        public List<ProjectData> GetProjectList()
+        {
+            {
+                List<ProjectData> projects = new List<ProjectData>();
+
+                manager.Navigator.GoToProjectPage();
+                ICollection<IWebElement> elements = driver.FindElements(By.XPath("//div[@class = 'Y60VrDynu5B8vFAVkO5A']"));
+
+
+                foreach (IWebElement element in elements)
+                {
+                    projects.Add(new ProjectData(element.Text));
+                }
+                return projects;
+            }
+        }
+        */
 
         public ProjectHelper RemoveProjectDecline()
         {

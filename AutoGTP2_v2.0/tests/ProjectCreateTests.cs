@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using NUnit.Framework;
 
 
@@ -9,11 +10,13 @@ namespace AutoGTP2Tests
         [Test]
         public void CreateProjectTest()
         {
-            ProjectData projectData = new ProjectData()
+            ProjectData projectData = new ProjectData("")
             {
                 ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
             };
-            applicationManager.Project.CreatePendingProject(projectData);            
+
+            applicationManager.Project.CreatePendingProject(projectData);
+
         }
 
     }

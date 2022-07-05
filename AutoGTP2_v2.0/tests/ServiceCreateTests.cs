@@ -10,10 +10,8 @@ namespace AutoGTP2Tests
         [Test]
         public void CreateServiceTest()
         {
-            ProjectData projectData = new ProjectData()
-            {
-                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
-            };
+            ProjectData projectData = new ProjectData("");
+                       
             applicationManager.Service.CreateService(projectData);
         }
 

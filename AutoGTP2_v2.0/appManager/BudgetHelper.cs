@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using OpenQA.Selenium;
 
@@ -19,15 +20,14 @@ namespace AutoGTP2Tests
             EnterBudgetName();
             SelectUSDCurrency();
             EnterTotal(budget);
-            CreateButtonClick();
+            BudgetCreateButtonClick();
             Thread.Sleep(500);
             return this;
         }
 
         public BudgetHelper BudgetRemoval()
         {
-            manager.Navigator.GoToBudgetPage();
-            WaitUntilFindElement(5, By.CssSelector("#BUDGETS_BURGER_0 > svg > path"));            
+            manager.Navigator.GoToBudgetPage();                        
             BudgetBurgerClick();                      
             BudgetDeleteButtonClick();
             BudgetDeleteConfirm();
@@ -36,8 +36,7 @@ namespace AutoGTP2Tests
 
         public BudgetHelper BudgetRemovalCancel()
         {
-            manager.Navigator.GoToBudgetPage();
-            WaitUntilFindElement(10, By.CssSelector("#BUDGETS_BURGER_0 > svg > path"));            
+            manager.Navigator.GoToBudgetPage();                        
             BudgetBurgerClick();            
             BudgetDeleteButtonClick();
             BudgetDeleteDecline();            
@@ -48,7 +47,23 @@ namespace AutoGTP2Tests
 
 
         // Низкоуровневые методы
-        public BudgetHelper CreateButtonClick()
+
+        // Создаем список бюджетов
+        public List<BudgetData> GetBudgetList()
+        {
+            List<BudgetData> budgets = new List<BudgetData>();
+
+            manager.Navigator.GoToBudgetPage();
+            ICollection<IWebElement> elements = driver.FindElements(By.XPath("//div[@class = 'oTwbbIIc9i_OOdONf0OL']"));
+            foreach(IWebElement element in elements)
+            {                
+                budgets.Add(new BudgetData(element.Text, element.Text));
+            }
+
+            return budgets;
+        }
+
+        public BudgetHelper BudgetCreateButtonClick()
         {
             driver.FindElement(By.Id("NEW_BUDGET_CREATE")).Click();
             return this;
@@ -73,7 +88,7 @@ namespace AutoGTP2Tests
         {
             driver.FindElement(By.Id("NEW_BUDGET_COST")).Click();
             driver.FindElement(By.Id("NEW_BUDGET_COST")).Clear();
-            driver.FindElement(By.Id("NEW_BUDGET_COST")).SendKeys(manager.GetRandomString(5));
+            driver.FindElement(By.Id("NEW_BUDGET_COST")).SendKeys(GetRandomString(5));
             return this;
         }
 
@@ -81,7 +96,7 @@ namespace AutoGTP2Tests
         {
             driver.FindElement(By.Id("NEW_BUDGET_PO")).Click();
             driver.FindElement(By.Id("NEW_BUDGET_PO")).Clear();
-            driver.FindElement(By.Id("NEW_BUDGET_PO")).SendKeys(manager.GetRandomString(5));
+            driver.FindElement(By.Id("NEW_BUDGET_PO")).SendKeys(GetRandomString(5));
             return this;
         }
 

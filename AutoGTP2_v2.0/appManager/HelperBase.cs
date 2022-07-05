@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 
@@ -12,6 +13,14 @@ namespace AutoGTP2Tests
         {
             this.manager = manager;
             this.driver = manager.Driver;
+        }
+
+
+        // генерация набора случайных символов
+        public string GetRandomString(int length)
+        {
+            var r = new Random();
+            return new string(Enumerable.Range(0, length).Select(n => (Char)(r.Next(32, 127))).ToArray());
         }
 
         // Проверка присутствия элемента

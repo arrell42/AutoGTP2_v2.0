@@ -11,7 +11,7 @@ namespace AutoGTP2Tests
         {
             if (applicationManager.Project.ProjectDeleteButtonIsDisabled())
             {
-                ProjectData projectData = new ProjectData()
+                ProjectData projectData = new ProjectData("")
                 {
                     ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
                 };
@@ -26,7 +26,7 @@ namespace AutoGTP2Tests
         {
             if (applicationManager.Project.ProjectDeleteButtonIsDisabled())
             {
-                ProjectData projectData = new ProjectData()
+                ProjectData projectData = new ProjectData("")
                 {
                     ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
                 };

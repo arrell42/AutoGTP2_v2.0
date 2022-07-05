@@ -23,6 +23,9 @@ namespace AutoGTP2Tests
 
         public IWebDriver Driver { get { return driver; } }
 
+        ProjectList table;
+
+
         // Начало теста - открыть браузер, перейти на нужную страницу, инициализация хелперов
         private ApplicationManager()
         {
@@ -34,6 +37,7 @@ namespace AutoGTP2Tests
             budgetHelper = new BudgetHelper(this);
             projectHelper = new ProjectHelper(this);
             serviceHelper = new ServiceHelper(this);
+            table = new ProjectList(this);
         }
 
         //Завершение теста - закрыть браузер
@@ -61,13 +65,6 @@ namespace AutoGTP2Tests
             return app.Value;
         }
 
-        // генерация набора случайных символов
-        public string GetRandomString(int length)
-        {
-            var r = new Random();
-            return new string(Enumerable.Range(0, length).Select(n => (Char)(r.Next(32, 127))).ToArray());
-        }
-
         // Property for helpers - чтобы не делать их public
         public LoginHelper Auth
         {
@@ -93,7 +90,11 @@ namespace AutoGTP2Tests
         {
             get { return serviceHelper; }
         }
-        
+
+        public ProjectList Table
+        {
+            get { return table; }
+        }
 
     }
 }
