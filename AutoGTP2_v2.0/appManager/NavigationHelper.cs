@@ -3,7 +3,7 @@
 
 namespace AutoGTP2Tests
 {
-    public class NavigationHelper : HelperBase
+    public class NavigationHelper : BaseHelper
     {        
         private string baseURL;
 

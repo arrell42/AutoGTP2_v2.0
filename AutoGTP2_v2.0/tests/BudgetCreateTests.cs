@@ -9,18 +9,30 @@ namespace AutoGTP2Tests
     {   
         [Test]
         public void CreateBudgetTest()
-        {  
-            BudgetData budget = new BudgetData("", "")
+        {
+            BudgetData budgetData = new BudgetData("", "")
             {
+                BudgetPO = applicationManager.GetRandomString(5),
+                BudgetCost = applicationManager.GetRandomString(5),
                 BudgetTotal = "1000"
             };
 
-            List<BudgetData> oldBudgets = applicationManager.Budgets.GetBudgetList();
 
-            applicationManager.Budgets.CreateBudget(budget);
+            List<BudgetData> oldBudgets = applicationManager.Budgets.GetBudgetList();            
+
+            applicationManager.Budgets.CreateBudget(budgetData);
 
             List<BudgetData> newBudgets = applicationManager.Budgets.GetBudgetList();
-            Assert.AreEqual(oldBudgets.Count + 1, newBudgets.Count);
+
+            oldBudgets.Add(budgetData); //добавляет данные в старый список
+            if(oldBudgets.Count > 20)
+            {
+                oldBudgets.RemoveAt(oldBudgets.Count - 2);
+            }
+            oldBudgets.Sort(); // сортировка старого списка
+            newBudgets.Sort(); // сортировка нового списка            
+            Assert.AreEqual(oldBudgets, newBudgets);
         }
+
     }
 }

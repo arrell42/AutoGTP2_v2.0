@@ -15,8 +15,6 @@ namespace AutoGTP2Tests
 
 
 
-
-
         //вспомогательный метод для сортировки
         public int CompareTo(ProjectData other)
         {

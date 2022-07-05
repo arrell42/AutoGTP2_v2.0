@@ -3,7 +3,7 @@
 
 namespace AutoGTP2Tests
 {
-    public class LoginHelper : HelperBase
+    public class LoginHelper : BaseHelper
     {
         public object TimeUnit { get; private set; }
 

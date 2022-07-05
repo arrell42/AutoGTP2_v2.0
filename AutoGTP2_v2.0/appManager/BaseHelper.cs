@@ -5,24 +5,17 @@ using OpenQA.Selenium.Support.UI;
 
 namespace AutoGTP2Tests
 {
-    public class HelperBase
+    public class BaseHelper
     {
         protected IWebDriver driver;
         protected ApplicationManager manager;
-        public HelperBase(ApplicationManager manager)
+        public BaseHelper(ApplicationManager manager)
         {
             this.manager = manager;
             this.driver = manager.Driver;
         }
 
-
-        // генерация набора случайных символов
-        public string GetRandomString(int length)
-        {
-            var r = new Random();
-            return new string(Enumerable.Range(0, length).Select(n => (Char)(r.Next(32, 127))).ToArray());
-        }
-
+        
         // Проверка присутствия элемента
         public bool IsElementPresent(By by)
         {

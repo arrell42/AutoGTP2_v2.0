@@ -6,20 +6,20 @@ using OpenQA.Selenium;
 
 namespace AutoGTP2Tests
 {
-    public class BudgetHelper : HelperBase
+    public class BudgetHelper : BaseHelper
     {
         public BudgetHelper(ApplicationManager manager) : base(manager)
         {
         }
         //Высокоуровневые методы
-        public BudgetHelper CreateBudget(BudgetData budget)
+        public BudgetHelper CreateBudget(BudgetData budgetData)
         {
             manager.Navigator.GoToBudgetPage();
             NewBudgetButtonClick();
-            EnterPOnumber();
-            EnterBudgetName();
+            EnterPOnumber(budgetData);
+            EnterBudgetName(budgetData);
             SelectUSDCurrency();
-            EnterTotal(budget);
+            EnterTotal(budgetData);
             BudgetCreateButtonClick();
             Thread.Sleep(500);
             return this;
@@ -54,14 +54,14 @@ namespace AutoGTP2Tests
             List<BudgetData> budgets = new List<BudgetData>();
 
             manager.Navigator.GoToBudgetPage();
-            ICollection<IWebElement> elements = driver.FindElements(By.XPath("//div[@class = 'oTwbbIIc9i_OOdONf0OL']"));
+            ICollection<IWebElement> elements = driver.FindElements(By.XPath("//div[@class = 'JS5QDNbVwPTSQkGOFVx8 VgojOW_8K2ghpiOYWLsE']"));
             foreach(IWebElement element in elements)
             {                
                 budgets.Add(new BudgetData(element.Text, element.Text));
-            }
-
+            }            
             return budgets;
         }
+
 
         public BudgetHelper BudgetCreateButtonClick()
         {
@@ -69,11 +69,11 @@ namespace AutoGTP2Tests
             return this;
         }
 
-        public BudgetHelper EnterTotal(BudgetData budget)
+        public BudgetHelper EnterTotal(BudgetData budgetData)
         {
             driver.FindElement(By.Id("NEW_BUDGET_TOTAL")).Click();
             driver.FindElement(By.Id("NEW_BUDGET_TOTAL")).Clear();
-            driver.FindElement(By.Id("NEW_BUDGET_TOTAL")).SendKeys(budget.BudgetTotal);
+            driver.FindElement(By.Id("NEW_BUDGET_TOTAL")).SendKeys(budgetData.BudgetTotal);
             return this;
         }
 
@@ -84,19 +84,19 @@ namespace AutoGTP2Tests
             return this;
         }
 
-        public BudgetHelper EnterBudgetName()
+        public BudgetHelper EnterBudgetName(BudgetData budgetData)
         {
             driver.FindElement(By.Id("NEW_BUDGET_COST")).Click();
             driver.FindElement(By.Id("NEW_BUDGET_COST")).Clear();
-            driver.FindElement(By.Id("NEW_BUDGET_COST")).SendKeys(GetRandomString(5));
+            driver.FindElement(By.Id("NEW_BUDGET_COST")).SendKeys(budgetData.BudgetCost);
             return this;
         }
 
-        public BudgetHelper EnterPOnumber()
+        public BudgetHelper EnterPOnumber(BudgetData budgetData)
         {
             driver.FindElement(By.Id("NEW_BUDGET_PO")).Click();
             driver.FindElement(By.Id("NEW_BUDGET_PO")).Clear();
-            driver.FindElement(By.Id("NEW_BUDGET_PO")).SendKeys(GetRandomString(5));
+            driver.FindElement(By.Id("NEW_BUDGET_PO")).SendKeys(budgetData.BudgetPO);
             return this;
         }
 

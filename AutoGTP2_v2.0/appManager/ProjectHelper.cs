@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace AutoGTP2Tests
 {
-    public class ProjectHelper : HelperBase
+    public class ProjectHelper : BaseHelper
     {   
         public ProjectHelper(ApplicationManager manager) : base(manager)
         {
@@ -31,8 +31,7 @@ namespace AutoGTP2Tests
             foreach (IWebElement element in elements)
             {
                 projects.Add(new ProjectData(element.Text));
-            }
-
+            }            
             return projects;
         }
 
@@ -104,7 +103,7 @@ namespace AutoGTP2Tests
         {
             driver.FindElement(By.Id("PROJECT_CARD_SAVE_AND_EXIT")).Click();
             //ждем пока исчезнет всплывающее окно с проектом
-            WaitUntiFindElements(15, By.Id("PROJECT_CARD_SAVE_AND_EXIT"), 0);            
+            WaitUntiFindElements(15, By.Id("PROJECT_CARD_SAVE_AND_EXIT"), 0);
             return this;
         }
 

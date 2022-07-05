@@ -3,7 +3,7 @@
 
 namespace AutoGTP2Tests
 {
-    public class ServiceHelper : HelperBase
+    public class ServiceHelper : BaseHelper
     {
         public ServiceHelper(ApplicationManager manager) : base(manager)
         {
