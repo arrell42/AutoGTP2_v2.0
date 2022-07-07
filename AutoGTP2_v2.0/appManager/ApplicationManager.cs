@@ -93,7 +93,7 @@ namespace AutoGTP2Tests
             get { return projectHelper; }
         }
 
-        public ServiceHelper Service
+        public ServiceHelper Services
         {
             get { return serviceHelper; }
         }

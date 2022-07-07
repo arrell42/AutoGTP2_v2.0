@@ -7,8 +7,7 @@ namespace AutoGTP2Tests
     {
         public ProjectData(string projectName)
         {
-            ProjectName = projectName;
-            
+            ProjectName = projectName;            
         }
 
         public string ProjectName { get; set; }

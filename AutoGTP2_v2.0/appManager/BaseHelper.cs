@@ -30,8 +30,9 @@ namespace AutoGTP2Tests
             }
         }
 
+        /*
         // Поиск определенного языка по indexValue в рамках сервиса
-        public void LanguageFind(string indexValue)
+        public void LanguageFindByValue(string indexValue)
         {
             string index = indexValue;
             var langs = driver.FindElements(By.ClassName("YxhDSz1flbKA8yowp3RE  "));
@@ -42,8 +43,9 @@ namespace AutoGTP2Tests
                     langs[i].Click();
                     break;
                 }
-            }            
+            }
         }
+        */
 
         // ожидание появления элемента по локатору
         public void WaitUntilFindElement(int time, By locator)

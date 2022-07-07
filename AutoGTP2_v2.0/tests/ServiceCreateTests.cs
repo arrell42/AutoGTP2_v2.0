@@ -8,11 +8,58 @@ namespace AutoGTP2Tests
     public class ServiceCreateTests : AuthTestBase
     {
         [Test]
-        public void CreateServiceTest()
+        public void ServiceCancelButtonTest()
         {
             ProjectData projectData = new ProjectData("");
-                       
-            applicationManager.Service.CreateService(projectData);
+            ServiceData serviceData = new ServiceData("100");
+
+            applicationManager.Services.ServiceCancelButton(projectData, serviceData);
+
+            Assert.IsTrue(applicationManager.Services.CreateButtonIsPresent());
+        }
+
+        [Test]
+        public void ServiceManualCorrectQuantityTest()
+        {
+            ProjectData projectData = new ProjectData("");
+            ServiceData serviceData = new ServiceData("100");
+
+            applicationManager.Services.ServiceManualCorrectQuantity(projectData, serviceData);
+
+            Assert.AreEqual(applicationManager.Services.QuantityTextValue(), "100.00");
+        }
+
+        [Test]
+        public void ServiceManualQuantityWordTest()
+        {
+            ProjectData projectData = new ProjectData("");
+            ServiceData serviceData = new ServiceData("word");
+
+            applicationManager.Services.ServiceCreateManualQuantityWord(projectData, serviceData);
+
+            Assert.AreEqual(applicationManager.Services.QuantityTextValue(), "0.00");
+        }
+
+        [Test]
+        public void ServiceManualQuantityZeroFirstTest()
+        {
+            ProjectData projectData = new ProjectData("");
+            ServiceData serviceData = new ServiceData("00078");
+
+            applicationManager.Services.ServiceCreateManualQuantityZeroFirst(projectData, serviceData);
+
+            Assert.AreEqual(applicationManager.Services.QuantityTextValue(), "78.00");
+        }
+
+        [Test]
+        public void ServiceManualQuantityMinusTest()
+        {
+            ProjectData projectData = new ProjectData("");
+            ServiceData serviceData = new ServiceData("-190");
+
+            applicationManager.Services.ServiceCreateManualQuantityMinus(projectData, serviceData);
+
+            Assert.AreEqual(applicationManager.Services.QuantityTextValue(), "190.00");            
         }
 
 

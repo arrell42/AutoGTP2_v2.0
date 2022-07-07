@@ -27,8 +27,8 @@ namespace AutoGTP2Tests
             oldBudgets.Add(budgetData); //добавляет данные в старый список
             if(oldBudgets.Count > 20)
             {
-                oldBudgets.RemoveAt(oldBudgets.Count - 2);
-            }
+                oldBudgets.RemoveAt(oldBudgets.Count - 2); // удаляем предпоследний элемент из списка, в котором 21 элемент
+            }            
             oldBudgets.Sort(); // сортировка старого списка
             newBudgets.Sort(); // сортировка нового списка            
             Assert.AreEqual(oldBudgets, newBudgets);
