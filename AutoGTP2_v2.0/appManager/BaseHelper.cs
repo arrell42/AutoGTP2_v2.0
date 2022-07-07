@@ -61,6 +61,14 @@ namespace AutoGTP2Tests
             wait.Until(driver => driver.FindElements(locator).Count == index);
         }
 
+        // ожидание пока элемент пропадет со страницы
+        public void WaitUntilElementIsHide(int time, By locator)
+        {
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(time));
+            wait.Until(ExpectedConditions.InvisibilityOfElementLocated(locator));
+            
+        }
+
     }
 
     

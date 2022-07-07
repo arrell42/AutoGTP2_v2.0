@@ -93,6 +93,7 @@
     <Compile Include="appManager\BaseHelper.cs" />
     <Compile Include="appManager\LoginHelper.cs" />
     <Compile Include="appManager\NavigationHelper.cs" />
+    <Compile Include="tests\ServiceRemovalTests.cs" />
     <Compile Include="tests\TestBase.cs" />
     <Compile Include="model\BudgetData.cs" />
     <Compile Include="tests\BudgetRemovalTests.cs" />

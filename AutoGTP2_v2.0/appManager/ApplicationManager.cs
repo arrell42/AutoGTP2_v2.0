@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-
+using OpenQA.Selenium.Support.UI;
 
 namespace AutoGTP2Tests
 {
@@ -65,12 +65,13 @@ namespace AutoGTP2Tests
         }
 
         // генерация набора случайных символов
-        public string GetRandomString(int length)
+        public  string GetRandomString(int length)
         {
             var r = new Random();
             return new string(Enumerable.Range(0, length).Select(n => (Char)(r.Next(32, 127))).ToArray());
         }
 
+        
 
         // Property for helpers - чтобы не делать их public
         public LoginHelper Auth

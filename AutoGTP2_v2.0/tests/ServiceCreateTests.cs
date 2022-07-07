@@ -15,7 +15,7 @@ namespace AutoGTP2Tests
 
             applicationManager.Services.ServiceCancelButton(projectData, serviceData);
 
-            Assert.IsTrue(applicationManager.Services.CreateButtonIsPresent());
+            Assert.IsTrue(applicationManager.Services.PlugItemIsPresent());
         }
 
         [Test]
@@ -27,6 +27,7 @@ namespace AutoGTP2Tests
             applicationManager.Services.ServiceManualCorrectQuantity(projectData, serviceData);
 
             Assert.AreEqual(applicationManager.Services.QuantityTextValue(), "100.00");
+            Assert.IsTrue(applicationManager.Services.ServiceIsCalculated());
         }
 
         [Test]
@@ -38,6 +39,7 @@ namespace AutoGTP2Tests
             applicationManager.Services.ServiceCreateManualQuantityWord(projectData, serviceData);
 
             Assert.AreEqual(applicationManager.Services.QuantityTextValue(), "0.00");
+            Assert.IsTrue(applicationManager.Services.ServiceIsNotCalculated());
         }
 
         [Test]
@@ -49,6 +51,7 @@ namespace AutoGTP2Tests
             applicationManager.Services.ServiceCreateManualQuantityZeroFirst(projectData, serviceData);
 
             Assert.AreEqual(applicationManager.Services.QuantityTextValue(), "78.00");
+            Assert.IsTrue(applicationManager.Services.ServiceIsCalculated());
         }
 
         [Test]
@@ -59,8 +62,11 @@ namespace AutoGTP2Tests
 
             applicationManager.Services.ServiceCreateManualQuantityMinus(projectData, serviceData);
 
-            Assert.AreEqual(applicationManager.Services.QuantityTextValue(), "190.00");            
+            Assert.AreEqual(applicationManager.Services.QuantityTextValue(), "190.00");
+            Assert.IsTrue(applicationManager.Services.ServiceIsCalculated());
         }
+
+
 
 
 
