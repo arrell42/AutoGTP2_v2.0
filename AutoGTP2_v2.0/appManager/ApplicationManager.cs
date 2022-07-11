@@ -4,6 +4,7 @@ using System.Threading;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace AutoGTP2Tests
 {
@@ -11,7 +12,8 @@ namespace AutoGTP2Tests
     {
         protected IWebDriver driver;        
         protected string baseURL;
-        
+        public string sourceFilePath;
+
         //HELPERS ADD 
         protected LoginHelper loginHelper;
         protected NavigationHelper navigationHelper;
@@ -30,13 +32,14 @@ namespace AutoGTP2Tests
         {
             driver = new ChromeDriver();                       
             baseURL = "https://gtp-test.janusww.com:9999/";            
+            sourceFilePath = @"C:\Users\d_inozemtsev\source\repos\AutoGTP2_v2.0\AutoGTP2_v2.0\Files\SourceTest.txt";            
+
             //HELPERS INIT
             loginHelper = new LoginHelper(this);
             navigationHelper = new NavigationHelper(this, baseURL);
             budgetHelper = new BudgetHelper(this);
             projectHelper = new ProjectHelper(this);
-            serviceHelper = new ServiceHelper(this);
-            
+            serviceHelper = new ServiceHelper(this);            
         }
 
         //Завершение теста - закрыть браузер

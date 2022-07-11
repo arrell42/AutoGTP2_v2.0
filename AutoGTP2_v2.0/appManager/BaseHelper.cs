@@ -8,11 +8,11 @@ namespace AutoGTP2Tests
     public class BaseHelper
     {
         protected IWebDriver driver;
-        protected ApplicationManager manager;
+        protected ApplicationManager manager;        
         public BaseHelper(ApplicationManager manager)
         {
             this.manager = manager;
-            this.driver = manager.Driver;
+            driver = manager.Driver;
         }
 
         
@@ -65,8 +65,7 @@ namespace AutoGTP2Tests
         public void WaitUntilElementIsHide(int time, By locator)
         {
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(time));
-            wait.Until(ExpectedConditions.InvisibilityOfElementLocated(locator));
-            
+            wait.Until(ExpectedConditions.InvisibilityOfElementLocated(locator));            
         }
 
     }

@@ -66,9 +66,31 @@ namespace AutoGTP2Tests
             Assert.IsTrue(applicationManager.Services.ServiceIsCalculated());
         }
 
+        [Test]
+        public void ServiceCreateAutoCountTest()
+        {
+            ProjectData projectData = new ProjectData("");            
 
+            applicationManager.Services.ServiceCreateAutoCount(projectData);
 
+            Assert.IsTrue(applicationManager.Services.ServiceIsNotCalculated());
+        }
 
+        [Test]
+        public void ServiceAutoCountRequestQuoteTest()
+        {
+            ProjectData projectData = new ProjectData("");
 
+            applicationManager.Services.ServiceAutoCountRequestQuote(projectData);
+
+            Assert.IsTrue(applicationManager.Services.ServiceIsCalculated());
+            Assert.AreEqual(applicationManager.Services.QuantityTextValue(), "Auto");
+            Assert.AreNotEqual(applicationManager.Services.TotalAmountText(), "0.00");
+            Assert.AreNotEqual(applicationManager.Services.ServiceCostValueText(), 0.00);
+            Assert.IsTrue(applicationManager.Services.ServiceEditButtonIsPresent());
+            Assert.IsTrue(applicationManager.Services.ServiceStatisticsButtonIsPresent());
+            Assert.AreEqual(applicationManager.Services.QuantityPriceMultiplication(), applicationManager.Services.ServiceCostValueText());
+            Assert.AreEqual(applicationManager.Services.QuantityPriceMultiplication(), applicationManager.Services.ServiceCostValueTextInTable());
+        }
     }
 }

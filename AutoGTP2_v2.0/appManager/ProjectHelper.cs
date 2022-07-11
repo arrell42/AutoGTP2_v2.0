@@ -22,19 +22,6 @@ namespace AutoGTP2Tests
             return this;
         }
 
-        //Получение списка проектов
-        public List<ProjectData> GetProjectList()
-        {
-            List<ProjectData> projects = new List<ProjectData>();
-            manager.Navigator.GoToProjectPage();
-            ICollection<IWebElement> elements = driver.FindElements(By.XPath("//div[@class = 'NISN5104MJmPjvzE4xDN']//div"));
-            foreach (IWebElement element in elements)
-            {
-                projects.Add(new ProjectData(element.Text));
-            }            
-            return projects;
-        }
-
         public ProjectHelper RemoveProjectDecline()
         {
             manager.Navigator.GoToProjectPage();            
@@ -62,15 +49,23 @@ namespace AutoGTP2Tests
             (driver as IJavaScriptExecutor).ExecuteScript(
                 string.Format("$('{0}').datepicker('setDate', '{1}')", cssSelector, date));
 
-
-
-
             driver.SwitchTo().Frame(
             driver.FindElement(By.CssSelector("iframe.demo-frame")));
             SetDatePicker(driver, "#datepicker", "02/20/2002");
         }
 
-
+        //Получение списка проектов
+        public List<ProjectData> GetProjectList()
+        {
+            List<ProjectData> projects = new List<ProjectData>();
+            manager.Navigator.GoToProjectPage();
+            ICollection<IWebElement> elements = driver.FindElements(By.XPath("//div[@class = 'NISN5104MJmPjvzE4xDN']//div"));
+            foreach (IWebElement element in elements)
+            {
+                projects.Add(new ProjectData(element.Text));
+            }
+            return projects;
+        }
 
 
         // Низкоуровневые методы
