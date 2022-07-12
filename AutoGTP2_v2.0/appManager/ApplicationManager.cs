@@ -3,16 +3,17 @@ using System.Linq;
 using System.Threading;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Support.UI;
-using static System.Net.Mime.MediaTypeNames;
+
+
 
 namespace AutoGTP2Tests
 {
     public class ApplicationManager
-    {
+    {        
         protected IWebDriver driver;        
         protected string baseURL;
         public string sourceFilePath;
+        public string CATLogFilePath;
 
         //HELPERS ADD 
         protected LoginHelper loginHelper;
@@ -32,7 +33,8 @@ namespace AutoGTP2Tests
         {
             driver = new ChromeDriver();                       
             baseURL = "https://gtp-test.janusww.com:9999/";            
-            sourceFilePath = @"C:\Users\d_inozemtsev\source\repos\AutoGTP2_v2.0\AutoGTP2_v2.0\Files\SourceTest.txt";            
+            sourceFilePath = @"C:\Users\d_inozemtsev\source\repos\AutoGTP2_v2.0\AutoGTP2_v2.0\Files\SourceTest.txt";
+            CATLogFilePath = @"C:\Users\d_inozemtsev\source\repos\AutoGTP2_v2.0\AutoGTP2_v2.0\Files\memoQ.csv";
 
             //HELPERS INIT
             loginHelper = new LoginHelper(this);

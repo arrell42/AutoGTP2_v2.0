@@ -10,7 +10,6 @@ namespace AutoGTP2Tests
         public ProjectHelper(ApplicationManager manager) : base(manager)
         {
         }
-               
 
         //Высокоуровневые методы
         public ProjectHelper CreatePendingProject(ProjectData projectData)
@@ -41,19 +40,6 @@ namespace AutoGTP2Tests
         }
 
 
-        // выбор даты в проекте
-        public void SetDatePicker(IWebDriver driver, string cssSelector, string date)
-        {
-            new WebDriverWait(driver, TimeSpan.FromSeconds(30)).Until<bool>(
-                d => driver.FindElement(By.CssSelector(cssSelector)).Displayed);
-            (driver as IJavaScriptExecutor).ExecuteScript(
-                string.Format("$('{0}').datepicker('setDate', '{1}')", cssSelector, date));
-
-            driver.SwitchTo().Frame(
-            driver.FindElement(By.CssSelector("iframe.demo-frame")));
-            SetDatePicker(driver, "#datepicker", "02/20/2002");
-        }
-
         //Получение списка проектов
         public List<ProjectData> GetProjectList()
         {
@@ -66,6 +52,7 @@ namespace AutoGTP2Tests
             }
             return projects;
         }
+
 
 
         // Низкоуровневые методы

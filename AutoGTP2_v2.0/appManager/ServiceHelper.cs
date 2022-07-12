@@ -2,14 +2,18 @@
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Threading;
+using System.Globalization;
+using System.IO;
 
 namespace AutoGTP2Tests
 {
     public class ServiceHelper : BaseHelper
     {
+        IFormatProvider formatter = new NumberFormatInfo { NumberDecimalSeparator = "." };
         public ServiceHelper(ApplicationManager manager) : base(manager)
         {
         }
+                
 
         // Основные методы
         public ServiceHelper ServiceManualCorrectQuantity(ProjectData projectData, ServiceData serviceData)
@@ -102,30 +106,31 @@ namespace AutoGTP2Tests
             return this;
         }
 
+        
         public int QuantityPriceMultiplication()
         {
-            if (LanguagePairsTableIsHidden())
-            {
-                driver.FindElement(By.Id("SHOW_LANGUAGE_PAIRS")).Click();
-            }
+           // if (LanguagePairsTableIsHidden())
+           // {
+           //     driver.FindElement(By.Id("SHOW_LANGUAGE_PAIRS")).Click();
+           // }
             string a = driver.FindElement(By.XPath("//div[@class = 'row']/div/p[@class = 'GxpMAeiU_LKN4yZsTEhL']")).Text;
             string b = driver.FindElement(By.XPath("//div[@class = 'row']/div/p[@class = 'GxpMAeiU_LKN4yZsTEhL']")).Text;
-            //int i = int.Parse(a);
-            //int i = int.Parse(b);
-            int i = Convert.ToInt32(a) * Convert.ToInt32(b);            
-            return i;
+            double c = double.Parse(a, formatter);
+            double d = double.Parse(b, formatter);
+            double i = c * d;            
+            return (int)i;
         }
 
+        
         public int ServiceCostValueTextInTable()
         {
-            if (LanguagePairsTableIsHidden())
-            {
-                driver.FindElement(By.Id("SHOW_LANGUAGE_PAIRS")).Click();
-            }
+          //  if (LanguagePairsTableIsHidden())
+           // {
+           //     driver.FindElement(By.Id("SHOW_LANGUAGE_PAIRS")).Click();
+           // }
             string a = driver.FindElement(By.XPath("//p[@class = 'cost-row']")).Text;
-            int i = Convert.ToInt32(a);
-            //int i = int.Parse(a);
-            return i;
+            double i = double.Parse(a, formatter);
+            return (int)i;
         }
 
         public bool LanguagePairsTableIsHidden()
@@ -146,15 +151,71 @@ namespace AutoGTP2Tests
             return this;
         }
 
+        public ServiceHelper ServiceCreateCATLog(ProjectData projectData)
+        {
+            OpenNewProject(projectData);
+            CreateServiceButtonClick();
+            SelectSourceLanguage();
+            SelectTargetLanguage();
+            SelectQuantityTypeCATLog();
+            SelectCATToolMemoQ();
+            UploadCATFile();
+            ServiceSaveButtonClick();
+            return this;
+        }
+
+        public ServiceHelper ServiceAutoCountDownloadSourceFile(ProjectData projectData)
+        {
+            OpenNewProject(projectData);
+            CreateServiceButtonClick();
+            SelectSourceLanguage();
+            SelectTargetLanguage();
+            SelectQuantityTypeAuto();
+            SourceFileAttach();
+            Thread.Sleep(200);
+            SourceFileDownloadButtonClick();
+            Thread.Sleep(4000);
+            return this;
+        }
+
+        public ServiceHelper SourceFileDownloadButtonClick()
+        {
+            driver.FindElement(By.Id("FILE_DOWNLOAD")).Click();
+            return this;
+        }
+
 
 
         // Низкоуровневые методы
 
+        public ServiceHelper SelectQuantityTypeCATLog()
+        {
+            driver.FindElement(By.XPath("//input[@name = 'SERVICE_TYPE']")).Click();
+            driver.FindElement(By.XPath("//p[@title = 'CAT log file']")).Click();
+            return this;
+        }
+
+        public ServiceHelper SelectCATToolMemoQ()
+        {
+            driver.FindElement(By.Name("SERVICE_CAT_DROP")).Click();
+            WaitUntilFindElement(10, By.Id("SERVICE_CAT_DROP_2"));
+            driver.FindElement(By.Id("SERVICE_CAT_DROP_2")).Click();
+            return this;
+        }
+
+        public ServiceHelper UploadCATFile()
+        {
+            driver.FindElement(By.Id("SERVICE_CAT_FILES_UPLOAD")).SendKeys(manager.CATLogFilePath);
+            Thread.Sleep(200);
+            WaitUntilElementIsHide(10, By.XPath("//span[@class = 'hRFbZ85DzhNaXfrQ_8Uv']"));
+            return this;
+        }
+
         public int ServiceCostValueText()
         {
             string a = driver.FindElement(By.XPath("//div[@class = 'cost']//p[@class = 'value']/span")).Text;
-            int i = Convert.ToInt32(a);
-            return i;
+            double i = double.Parse(a, formatter);
+            return (int)i;
         }
         public string TotalAmountText()
         {
@@ -174,7 +235,7 @@ namespace AutoGTP2Tests
         public ServiceHelper SourceFileAttach()
         {
             driver.FindElement(By.Id("FILE_LOADER")).SendKeys(manager.sourceFilePath);
-            WaitUntilFindElement(10, By.Id("FILE_DELETE"));
+            WaitUntilFindElement(10, By.Id("FILE_DOWNLOAD"));
             return this;
         }
         public ServiceHelper RequestQuoteButtonClick()
