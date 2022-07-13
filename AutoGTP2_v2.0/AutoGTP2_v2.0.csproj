@@ -82,6 +82,7 @@
     <Compile Include="appManager\ServiceHelper.cs" />
     <Compile Include="model\ProjectData.cs" />
     <Compile Include="model\ServiceData.cs" />
+    <Compile Include="tests\FilesTests.cs" />
     <Compile Include="tests\ServiceCreateTests.cs" />
     <Compile Include="tests\ProjectRemovalTests.cs" />
     <Compile Include="tests\AuthTestBase.cs" />

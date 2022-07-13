@@ -110,17 +110,37 @@ namespace AutoGTP2Tests
         }
 
         [Test]
-        public void ServiceAutoCountDownloadSourceFileTest()
+        public void ServiceCATLogWithOutCATFileTest()
         {
             ProjectData projectData = new ProjectData("");
-            ServiceData filename = new ServiceData("")
-            {
-                FileName = "SourceTest"
-            };
 
-            applicationManager.Services.ServiceAutoCountDownloadSourceFile(projectData);
-                        
-            Assert.IsTrue(applicationManager.Services.CheckFileDownloaded(filename));
+            applicationManager.Services.ServiceCATLogWithOutCATFile(projectData);
+
+            Assert.IsTrue(applicationManager.Services.WarningPopupIsPresent());
         }
+
+        [Test]
+        public void ServiceCATLogWithOutCATFileContinueButtonTest()
+        {
+            ProjectData projectData = new ProjectData("");
+
+            applicationManager.Services.ServiceCATLogWithOutCATFileContinueButton(projectData);
+
+            Assert.IsFalse(applicationManager.Services.WarningPopupIsPresent());
+            Assert.IsFalse(applicationManager.Services.PlugItemIsPresent());
+        }
+
+        [Test]
+        public void ServiceCATLogWithOutCATFileCancelButtonTest()
+        {
+            ProjectData projectData = new ProjectData("");
+
+            applicationManager.Services.ServiceCATLogWithOutCATFileCancelButton(projectData);
+
+            Assert.IsFalse(applicationManager.Services.WarningPopupIsPresent());
+            Assert.IsTrue(applicationManager.Services.PlugItemIsPresent());
+        }
+
+
     }
 }

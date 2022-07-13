@@ -10,10 +10,11 @@ namespace AutoGTP2Tests
 {
     public class ApplicationManager
     {        
-        protected IWebDriver driver;        
+        protected IWebDriver driver;                
         protected string baseURL;
         public string sourceFilePath;
         public string CATLogFilePath;
+        public string invalidSourceFilePath;
 
         //HELPERS ADD 
         protected LoginHelper loginHelper;
@@ -28,13 +29,18 @@ namespace AutoGTP2Tests
                 
 
 
+
         // Начало теста - открыть браузер, перейти на нужную страницу, инициализация хелперов
         private ApplicationManager()
         {
-            driver = new ChromeDriver();                       
+            ChromeOptions options = new ChromeOptions();
+            options.AddArguments("start-maximized");
+            driver = new ChromeDriver(options);            
+                        
             baseURL = "https://gtp-test.janusww.com:9999/";            
             sourceFilePath = @"C:\Users\d_inozemtsev\source\repos\AutoGTP2_v2.0\AutoGTP2_v2.0\Files\SourceTest.txt";
             CATLogFilePath = @"C:\Users\d_inozemtsev\source\repos\AutoGTP2_v2.0\AutoGTP2_v2.0\Files\memoQ.csv";
+            invalidSourceFilePath = @"C:\Users\d_inozemtsev\source\repos\AutoGTP2_v2.0\AutoGTP2_v2.0\Files\InvaildSourceFileTest.dwg";
 
             //HELPERS INIT
             loginHelper = new LoginHelper(this);

@@ -4,6 +4,7 @@ using System;
 using System.Threading;
 using System.Globalization;
 using System.IO;
+using System.Collections.Generic;
 
 namespace AutoGTP2Tests
 {
@@ -133,10 +134,8 @@ namespace AutoGTP2Tests
             return (int)i;
         }
 
-        public bool LanguagePairsTableIsHidden()
-        {
-            return IsElementPresent(By.XPath("//div[@class = 'language-pairs-table hidden']"));
-        }
+
+        
 
         public ServiceHelper ServiceAutoCountRequestQuote(ProjectData projectData)
         {
@@ -164,7 +163,7 @@ namespace AutoGTP2Tests
             return this;
         }
 
-        public ServiceHelper ServiceAutoCountDownloadSourceFile(ProjectData projectData)
+        public ServiceHelper DownloadSourceFileFromEditPage(ProjectData projectData)
         {
             OpenNewProject(projectData);
             CreateServiceButtonClick();
@@ -173,20 +172,196 @@ namespace AutoGTP2Tests
             SelectQuantityTypeAuto();
             SourceFileAttach();
             Thread.Sleep(200);
-            SourceFileDownloadButtonClick();
-            Thread.Sleep(4000);
+            ServiceSaveButtonClick();
+            EditButtonClick();
+            SourceFileInServiceEditPageDownloadButtonClick();            
             return this;
         }
 
-        public ServiceHelper SourceFileDownloadButtonClick()
+        public ServiceHelper DownloadSourceFileFromServiceList(ProjectData projectData)
         {
-            driver.FindElement(By.Id("FILE_DOWNLOAD")).Click();
+            OpenNewProject(projectData);
+            CreateServiceButtonClick();
+            SelectSourceLanguage();
+            SelectTargetLanguage();
+            SelectQuantityTypeAuto();
+            SourceFileAttach();
+            Thread.Sleep(200);
+            ServiceSaveButtonClick();            
+            SourceFileInServiceListDownloadButtonClick();            
             return this;
         }
+
+        public ServiceHelper DownloadCATLogFile(ProjectData projectData)
+        {
+            OpenNewProject(projectData);
+            CreateServiceButtonClick();
+            SelectSourceLanguage();
+            SelectTargetLanguage();
+            SelectQuantityTypeCATLog();
+            SelectCATToolMemoQ();
+            UploadCATFile();
+            ServiceSaveButtonClick();
+            EditButtonClick();
+            CATFileDownloadButtonClick();
+            return this;
+        }
+
+        public ServiceHelper SourceFileRemove(ProjectData projectData)
+        {
+            OpenNewProject(projectData);
+            CreateServiceButtonClick();
+            SelectSourceLanguage();
+            SelectTargetLanguage();
+            SelectQuantityTypeAuto();
+            SourceFileAttach();
+            Thread.Sleep(200);
+            ServiceSaveButtonClick();
+            EditButtonClick();            
+            SourceFileRemoveButtonClick();
+            return this;
+        }
+
+        public ServiceHelper ServiceCATLogWithOutCATFile(ProjectData projectData)
+        {
+            OpenNewProject(projectData);
+            CreateServiceButtonClick();
+            SelectSourceLanguage();
+            SelectTargetLanguage();
+            SelectQuantityTypeCATLog();
+            SelectCATToolMemoQ();            
+            ServiceSaveButtonClick();
+            return this;
+        }
+
+        public ServiceHelper ServiceCATLogWithOutCATFileContinueButton(ProjectData projectData)
+        {
+            OpenNewProject(projectData);
+            CreateServiceButtonClick();
+            SelectSourceLanguage();
+            SelectTargetLanguage();
+            SelectQuantityTypeCATLog();
+            SelectCATToolMemoQ();
+            ServiceSaveButtonClick();
+            WarningContinueButtonClick();
+            return this;
+        }
+
+        public ServiceHelper ServiceCATLogWithOutCATFileCancelButton(ProjectData projectData)
+        {
+            OpenNewProject(projectData);
+            CreateServiceButtonClick();
+            SelectSourceLanguage();
+            SelectTargetLanguage();
+            SelectQuantityTypeCATLog();
+            SelectCATToolMemoQ();
+            ServiceSaveButtonClick();
+            WarningCancelButtonClick();
+            return this;
+        }
+
+        public ServiceHelper UploadInvalidSourceFile(ProjectData projectData)
+        {
+            OpenNewProject(projectData);
+            CreateServiceButtonClick();
+            SelectSourceLanguage();
+            SelectTargetLanguage();
+            SelectQuantityTypeAuto();
+            InvalidSourceFileAttach();
+            BackToProjectButtonClick();
+            ExclamationClick();
+            BackToProjectButtonClick();
+            CircleNextToTheFileClick();
+            return this;
+        }
+
+
+
+
+
+
+
+
 
 
 
         // Низкоуровневые методы
+        public bool CircleNextToTheFilePopupIsPresent()
+        {
+            return IsElementPresent(By.XPath("//div[@class = '__react_component_tooltip show place-top type-dark fAxMCCe7_OgpcIpCLAsy']"));
+        }
+        public ServiceHelper BackToProjectButtonClick()
+        {
+            driver.FindElement(By.XPath("//button[@class = 'btn secondary-btn']")).Click();
+            return this;
+        }
+        public ServiceHelper ExclamationClick()
+        {
+            driver.FindElement(By.Id("Path_301")).Click();
+            return this;
+        }
+        public ServiceHelper CircleNextToTheFileClick()
+        {
+            driver.FindElement(By.XPath("//span[@class = 'geRBJYkHaPThqun2Myj_']")).Click();
+            return this;
+        }
+
+        public ServiceHelper InvalidSourceFileAttach()
+        {
+            driver.FindElement(By.Id("FILE_LOADER")).SendKeys(manager.invalidSourceFilePath);
+            WaitUntilFindElement(10, By.XPath("//div[@class = 'styles_modal__gNwvD styles_modalCenter__L9F2w gjXLfDGk0Gk3_3dIbrxy']"));
+            return this;
+        }
+        public ServiceHelper WarningCancelButtonClick()
+        {
+            driver.FindElement(By.XPath("//button[@class = 'TcMMo6iDjW2Wg_KudxB2 WwSFVDblp_mIPZp2ZJYT']")).Click();
+            return this;
+        }
+        public bool UploadFileButtonIsPresent()
+        {
+            return driver.FindElements(By.Id("SERVICE_CAT_FILES_UPLOAD")).Count == 1;
+        }
+        public ServiceHelper WarningContinueButtonClick()
+        {
+            driver.FindElement(By.Id("SERVICE_CAT_CONTINUE")).Click();
+            WaitUntilElementIsHide(10, By.XPath("//div[@class = 'styles_modal__gNwvD styles_modalCenter__L9F2w Nrf1TFC7pwuCLdZKvQtK']"));
+            return this;
+        }
+        public bool WarningPopupIsPresent()
+        {
+            return IsElementPresent(By.XPath("//div[@class = 'styles_modal__gNwvD styles_modalCenter__L9F2w Nrf1TFC7pwuCLdZKvQtK']"));            
+        }
+        public bool SourceFileIsRemoved()
+        {
+            return driver.FindElements(By.XPath("//div[@class = 'YmshXQqoZM73RbpHd4Fq']")).Count == 0;
+        }
+
+        public ServiceHelper SourceFileRemoveButtonClick()
+        {
+            driver.FindElement(By.Id("FILE_DELETE")).Click();
+            WaitUntilElementIsHide(10, By.XPath("//div[@class = 'YmshXQqoZM73RbpHd4Fq']"));
+            return this;
+        }
+        public ServiceHelper CATFileDownloadButtonClick()
+        {
+            driver.FindElement(By.Id("SERVICE_CAT_DOWNLOAD")).Click();
+            Thread.Sleep(4000);
+            return this;
+        }
+        public ServiceHelper SourceFileInServiceListDownloadButtonClick()
+        {
+            driver.FindElement(By.Id("SHOW_SOURCE_FILES")).Click();
+            driver.FindElement(By.Id("DOWNLOAD_FILE")).Click();
+            Thread.Sleep(4000);
+            return this;
+        }
+
+        public ServiceHelper SourceFileInServiceEditPageDownloadButtonClick()
+        {
+            driver.FindElement(By.Id("FILE_DOWNLOAD")).Click();
+            Thread.Sleep(4000);
+            return this;
+        }
 
         public ServiceHelper SelectQuantityTypeCATLog()
         {
@@ -352,7 +527,10 @@ namespace AutoGTP2Tests
         public ServiceHelper ServiceSaveButtonClick()
         {
             driver.FindElement(By.Id("SERVICE_SAVE")).Click();
-            WaitUntilFindElement(10, By.XPath("//div[@class = 'services-list']"));
+            if (!WarningPopupIsPresent())
+            {
+                WaitUntilFindElement(10, By.XPath("//div[@class = 'services-list']"));
+            }            
             return this;
         }
         
