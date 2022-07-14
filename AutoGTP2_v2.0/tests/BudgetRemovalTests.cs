@@ -20,10 +20,7 @@ namespace AutoGTP2Tests
                 applicationManager.Budgets.BudgetBurgerClick();                
             }
             
-            applicationManager.Budgets.BudgetRemovalCancel();
-            
-            
-            
+            applicationManager.Budgets.BudgetRemovalCancel();            
         }
 
         [Test]

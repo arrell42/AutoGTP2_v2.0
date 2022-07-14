@@ -2,6 +2,7 @@
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace AutoGTP2Tests
 {
@@ -39,9 +40,47 @@ namespace AutoGTP2Tests
             return this;
         }
 
+        public ProjectHelper CreateExpressProject(ProjectData projectData)
+        {
+            OpenNewExpressProject(projectData);
+            SaveProjectButtonClick();
+            return this;
+        }
+
+        public ProjectHelper ExpressProjectExclamationPopup(ProjectData projectData)
+        {
+            OpenNewExpressProject(projectData);
+            ExpressProjectExclamationClick();
+            return this;
+        }
+
+        public ProjectHelper ExpressProjectFileAttach(ProjectData projectData)
+        {
+            OpenNewExpressProject(projectData);
+            manager.Services.SourceFileAttach();
+            manager.Services.RequestQuoteButtonClick();
+            return this;
+        }
+
+        public ProjectHelper ExpressProjectTextAttach8000(ProjectData projectData)
+        {
+            OpenNewExpressProject(projectData);
+            FillTextArea();
+            //SaveProjectButtonClick();
+            return this;
+        }
+
+        public ProjectHelper FillTextArea()
+        {            
+            driver.FindElement(By.Id("PROJECTS_EXPRESS_TEXT")).Click();
+            driver.FindElement(By.Id("PROJECTS_EXPRESS_TEXT")).SendKeys(manager.TextGenerator(10,3));
+            Thread.Sleep(1000);
+            return this;
+        }
+
 
         //Получение списка проектов
-        public List<ProjectData> GetProjectList()
+        public List<ProjectData> GetProjecNametList()
         {
             List<ProjectData> projects = new List<ProjectData>();
             manager.Navigator.GoToProjectPage();
@@ -55,7 +94,53 @@ namespace AutoGTP2Tests
 
 
 
+
         // Низкоуровневые методы
+        public ProjectHelper OpenNewExpressProject(ProjectData projectData)
+        {
+            manager.Navigator.GoToProjectPage();
+            NewProjectButtonClick();
+            ExpressCheckBoxClick();
+            EnterProjectName(projectData);
+            SelectExpressSourceLanguage();
+            SelectExpressTargetLanguage();
+            return this;
+        }
+
+        public bool ExpressProjectExclamationPopupIsFilled()
+        {
+            return driver.FindElements(By.XPath("//p[@class = 'Se8iQWVOc1XTMFZTdZCI']")).Count <= 4;
+        }
+        public bool ExpressProjectExclamationPopupIsPresent()
+        {
+            return IsElementPresent(By.XPath("//div[@class = 'ant-tooltip-inner']"));
+        }
+        public ProjectHelper ExpressProjectExclamationClick()
+        {
+            driver.FindElement(By.Id("Path_301")).Click();
+            WaitUntilFindElement(10, By.XPath("//div[@class = 'ant-tooltip-inner']"));
+
+            return this;
+        }
+        public ProjectHelper SelectExpressSourceLanguage()
+        {
+            driver.FindElement(By.XPath("//input[@name = 'source-language']")).Click();
+            WaitUntilFindElement(10, By.Id("PROJECT_EXPRESS_LANGUAGE_SOURCE_OPTION_1"));
+            driver.FindElement(By.Id("PROJECT_EXPRESS_LANGUAGE_SOURCE_OPTION_1")).Click();
+            return this;
+        }
+        public ProjectHelper SelectExpressTargetLanguage()
+        {
+            driver.FindElement(By.XPath("//input[@name = 'PROJECT_EXPRESS_LANGUAGE_TARGET']")).Click();
+            WaitUntilFindElement(10, By.Id("PROJECT_EXPRESS_LANGUAGE_TARGET_OPTION_1"));
+            driver.FindElement(By.Id("PROJECT_EXPRESS_LANGUAGE_TARGET_OPTION_1")).Click();
+            return this;
+        }
+        public ProjectHelper ExpressCheckBoxClick()
+        {
+            driver.FindElement(By.XPath("//div[@class = 'USxIMGQdXNMaIPLJs7fT']")).Click();
+            return this;
+        }
 
         public ProjectHelper ProjectDeleteConfirmButtonClick()
         {
@@ -85,7 +170,7 @@ namespace AutoGTP2Tests
         {
             driver.FindElement(By.Id("PROJECT_CARD_SAVE_AND_EXIT")).Click();
             //ждем пока исчезнет всплывающее окно с проектом
-            WaitUntiFindElements(15, By.Id("PROJECT_CARD_SAVE_AND_EXIT"), 0);
+            WaitUntilFindElements(15, By.Id("PROJECT_CARD_SAVE_AND_EXIT"), 0);
             return this;
         }
 

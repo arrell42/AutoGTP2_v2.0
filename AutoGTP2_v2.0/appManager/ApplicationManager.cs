@@ -3,6 +3,8 @@ using System.Linq;
 using System.Threading;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using Bogus;
+using Bogus.DataSets;
 
 
 
@@ -63,6 +65,7 @@ namespace AutoGTP2Tests
             }
         }
 
+        
         // Проверка на открытый браузер - если открыт, то НЕ открывать новый экземпляр
         public static ApplicationManager GetInstance()
         {
@@ -75,8 +78,55 @@ namespace AutoGTP2Tests
             return app.Value;
         }
 
+        //
+        public string RandomText(int w, int l)
+        {
+            char[] chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
+            var wordNum = new char[w];
+            var letterNum = new char[l];
+            var r = new Random();
+            
+            for (int i = 0; i < w; i++)
+            {
+                wordNum[i] = chars[r.Next(chars.Length)];
+                
+                for(int j = 0; j < l; j++)
+                {
+                    letterNum[i] = wordNum[r.Next(wordNum.Length - 1)];
+                }
+            }
+            return new string(letterNum);
+        }
+
+        public string TextGenerator(int w, int l)
+        {
+            string result = "";
+            char[] letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
+            Random rnd = new Random();
+
+            for (int i = 1; i <= w; i++)
+            {
+                // Сделайте слово.
+                string word = "";
+                for (int j = 1; j <= l; j++)
+                {
+                    // Выбор случайного числа от 0 до 25
+                    // для выбора буквы из массива букв.
+                    int letter_num = rnd.Next(0, letters.Length - 1);
+
+                    word += letters[letter_num];                    
+                }
+                result = result + " " + word;
+            }
+            return result.Trim();
+        }
+
+
+
+
+
         // генерация набора случайных символов
-        public  string GetRandomString(int length)
+        public string GetRandomString(int length)
         {
             var r = new Random();
             return new string(Enumerable.Range(0, length).Select(n => (Char)(r.Next(32, 127))).ToArray());

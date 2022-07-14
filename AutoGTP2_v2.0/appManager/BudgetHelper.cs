@@ -54,12 +54,13 @@ namespace AutoGTP2Tests
             List<BudgetData> budgets = new List<BudgetData>();
 
             manager.Navigator.GoToBudgetPage();
-            ICollection<IWebElement> elements = driver.FindElements(By.XPath("//div[@class = 'JS5QDNbVwPTSQkGOFVx8 VgojOW_8K2ghpiOYWLsE']"));
-            foreach(IWebElement element in elements)
+            ICollection<IWebElement> elements = driver.FindElements(By.XPath("//div[@class = 'oTwbbIIc9i_OOdONf0OL']")); //driver.FindElements(By.XPath("//div[@class = 'JS5QDNbVwPTSQkGOFVx8 VgojOW_8K2ghpiOYWLsE']"));
+            foreach (IWebElement element in elements)
             {                
                 budgets.Add(new BudgetData(element.Text, element.Text));
             }            
             return budgets;
+
         }
 
 

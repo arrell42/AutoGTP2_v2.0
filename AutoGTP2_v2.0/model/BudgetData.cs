@@ -43,7 +43,7 @@ namespace AutoGTP2Tests
         //возвращаем строковое представление объектов типа projectdata
         public override string ToString()
         {
-            return BudgetCost;
+            return "cost= " + BudgetCost; 
         }
 
 

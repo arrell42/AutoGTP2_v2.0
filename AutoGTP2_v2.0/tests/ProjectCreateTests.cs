@@ -15,14 +15,14 @@ namespace AutoGTP2Tests
                 ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
             };
 
-            List<ProjectData> oldProjects = applicationManager.Projects.GetProjectList();
+            List<ProjectData> oldProjects = applicationManager.Projects.GetProjecNametList();
 
             applicationManager.Projects.CreatePendingProject(projectData);
 
-            List<ProjectData> newProjects =  applicationManager.Projects.GetProjectList();
+            List<ProjectData> newProjects = applicationManager.Projects.GetProjecNametList();
 
             oldProjects.Add(projectData); //добавляет данные в старый список
-            if(oldProjects.Count > 20)
+            if (oldProjects.Count > 20)
             {
                 oldProjects.RemoveAt(oldProjects.Count - 2);
             }
@@ -31,5 +31,30 @@ namespace AutoGTP2Tests
             Assert.AreEqual(oldProjects, newProjects); // сравнение списков
         }
 
+        [Test]
+        public void CreateExpressProjectTest()
+        {
+            ProjectData projectData = new ProjectData("")
+            {
+                ProjectName = "Express " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
+            };
+
+            List<ProjectData> oldProjects = applicationManager.Projects.GetProjecNametList();
+
+            applicationManager.Projects.CreateExpressProject(projectData);
+
+            List<ProjectData> newProjects = applicationManager.Projects.GetProjecNametList();
+
+            oldProjects.Add(projectData); //добавляет данные в старый список
+            if (oldProjects.Count > 20)
+            {
+                oldProjects.RemoveAt(oldProjects.Count - 2);
+            }
+            oldProjects.Sort(); // сортировка старого списка
+            newProjects.Sort(); // сортировка нового списка
+            Assert.AreEqual(oldProjects, newProjects); // сравнение списков
+
+
+        }
     }
 }
