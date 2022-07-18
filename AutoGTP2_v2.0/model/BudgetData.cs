@@ -18,7 +18,11 @@ namespace AutoGTP2Tests
             {
                 return 1;
             }
-            return BudgetCost.CompareTo(other.BudgetCost);
+            if(BudgetCost != other.BudgetCost)
+            {
+                return 1;
+            }
+            return BudgetPO.CompareTo(other.BudgetPO);
         }
 
         //сравнение по наличию имени проекта

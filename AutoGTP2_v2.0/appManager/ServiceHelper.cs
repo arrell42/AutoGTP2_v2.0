@@ -382,7 +382,7 @@ namespace AutoGTP2Tests
         {
             driver.FindElement(By.Id("SERVICE_CAT_FILES_UPLOAD")).SendKeys(manager.CATLogFilePath);
             Thread.Sleep(200);
-            WaitUntilElementIsHide(10, By.XPath("//span[@class = 'hRFbZ85DzhNaXfrQ_8Uv']"));
+            WaitUntilElementIsHide(20, By.XPath("//span[@class = 'hRFbZ85DzhNaXfrQ_8Uv']"));
             return this;
         }
 

@@ -21,17 +21,21 @@ namespace AutoGTP2Tests
 
             applicationManager.Budgets.CreateBudget(budgetData);
 
+            
             List<BudgetData> newBudgets = applicationManager.Budgets.GetBudgetList();
 
-            //oldBudgets.Add(budgetData); //добавляет данные в старый список
+            //проверка количества бюджетов в списках
+            Assert.AreEqual(oldBudgets.Count + 1, newBudgets.Count);
+
+             //добавляет данные в старый список
             if(oldBudgets.Count > 20)
             {
                 oldBudgets.RemoveAt(oldBudgets.Count - 2); // удаляем предпоследний элемент из списка, в котором 21 элемент
-            }            
-            //oldBudgets.Sort(); // сортировка старого списка
-            //newBudgets.Sort(); // сортировка нового списка            
-            Assert.AreEqual(oldBudgets.Count + 1, newBudgets.Count);
-            //Assert.AreEqual(oldBudgets, newBudgets);
+            }
+            oldBudgets.Add(budgetData);
+            oldBudgets.Sort((x, y) => x.BudgetCost.CompareTo(y.BudgetCost)); // сортировка старого списка
+            newBudgets.Sort((x, y) => x.BudgetCost.CompareTo(y.BudgetCost)); // сортировка нового списка
+            Assert.AreEqual(newBudgets, oldBudgets);
         }
 
     }

@@ -73,8 +73,8 @@ namespace AutoGTP2Tests
         public ProjectHelper FillTextArea()
         {            
             driver.FindElement(By.Id("PROJECTS_EXPRESS_TEXT")).Click();
-            driver.FindElement(By.Id("PROJECTS_EXPRESS_TEXT")).SendKeys(manager.TextGenerator(10,3));
-            Thread.Sleep(1000);
+            driver.FindElement(By.Id("PROJECTS_EXPRESS_TEXT")).SendKeys("234234");            
+            Thread.Sleep(10000);
             return this;
         }
 

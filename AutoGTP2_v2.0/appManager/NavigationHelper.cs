@@ -25,7 +25,7 @@ namespace AutoGTP2Tests
                 manager.Auth.Login(account);
             }
             driver.FindElement(By.Id("MENU_BUDGETS")).Click();
-            WaitUntilFindElement(10, By.CssSelector("#BUDGETS_BURGER_0 > svg > path"));
+            WaitUntilFindElement(10, By.XPath("//div[@class = 'vKOuKRPiTZr_i_RoPDcw']"));
         }
 
         public void GoToProjectPage()

@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Linq;
+using System.Text;
 using System.Threading;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using Bogus;
-using Bogus.DataSets;
 
 
 
@@ -25,7 +24,7 @@ namespace AutoGTP2Tests
         protected ProjectHelper projectHelper;
         protected ServiceHelper serviceHelper;        
 
-        private static ThreadLocal<ApplicationManager> app = new ThreadLocal<ApplicationManager>();
+        private static readonly ThreadLocal<ApplicationManager> app = new ThreadLocal<ApplicationManager>();
 
         public IWebDriver Driver { get { return driver; } }
                 
@@ -39,7 +38,7 @@ namespace AutoGTP2Tests
             options.AddArguments("start-maximized");
             driver = new ChromeDriver(options);            
                         
-            baseURL = "https://gtp-test.janusww.com:9999/";            
+            baseURL = "https://gtp-test.janusww.com:9999";            
             sourceFilePath = @"C:\Users\d_inozemtsev\source\repos\AutoGTP2_v2.0\AutoGTP2_v2.0\Files\SourceTest.txt";
             CATLogFilePath = @"C:\Users\d_inozemtsev\source\repos\AutoGTP2_v2.0\AutoGTP2_v2.0\Files\memoQ.csv";
             invalidSourceFilePath = @"C:\Users\d_inozemtsev\source\repos\AutoGTP2_v2.0\AutoGTP2_v2.0\Files\InvaildSourceFileTest.dwg";
@@ -78,52 +77,26 @@ namespace AutoGTP2Tests
             return app.Value;
         }
 
-        //
-        public string RandomText(int w, int l)
-        {
-            char[] chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
-            var wordNum = new char[w];
-            var letterNum = new char[l];
-            var r = new Random();
-            
-            for (int i = 0; i < w; i++)
-            {
-                wordNum[i] = chars[r.Next(chars.Length)];
-                
-                for(int j = 0; j < l; j++)
-                {
-                    letterNum[i] = wordNum[r.Next(wordNum.Length - 1)];
-                }
-            }
-            return new string(letterNum);
-        }
-
-        public string TextGenerator(int w, int l)
+        // Генератор рандомных слов        
+        public static Random rnd = new Random();
+        public string TextGenerator(int wrd, int let)
         {
             string result = "";
             char[] letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
-            Random rnd = new Random();
-
-            for (int i = 1; i <= w; i++)
+            
+            for (int i = 1; i <= wrd; i++)
             {
-                // Сделайте слово.
                 string word = "";
-                for (int j = 1; j <= l; j++)
+                for(int j = 0; j < let; j++)
                 {
-                    // Выбор случайного числа от 0 до 25
-                    // для выбора буквы из массива букв.
                     int letter_num = rnd.Next(0, letters.Length - 1);
+                    word += letters[letter_num];
 
-                    word += letters[letter_num];                    
                 }
                 result = result + " " + word;
             }
             return result.Trim();
         }
-
-
-
-
 
         // генерация набора случайных символов
         public string GetRandomString(int length)

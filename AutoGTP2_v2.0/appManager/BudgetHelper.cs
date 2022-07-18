@@ -52,18 +52,20 @@ namespace AutoGTP2Tests
         public List<BudgetData> GetBudgetList()
         {
             List<BudgetData> budgets = new List<BudgetData>();
-
             manager.Navigator.GoToBudgetPage();
-            ICollection<IWebElement> elements = driver.FindElements(By.XPath("//div[@class = 'oTwbbIIc9i_OOdONf0OL']")); //driver.FindElements(By.XPath("//div[@class = 'JS5QDNbVwPTSQkGOFVx8 VgojOW_8K2ghpiOYWLsE']"));
-            foreach (IWebElement element in elements)
-            {                
-                budgets.Add(new BudgetData(element.Text, element.Text));
-            }            
+            
+            IList<IWebElement> cost = driver.FindElements(By.XPath("//div[@class = 'JS5QDNbVwPTSQkGOFVx8 VgojOW_8K2ghpiOYWLsE']"));
+            IList<IWebElement> po = driver.FindElements(By.XPath("//div[@class = 'B0SPSwpmzHVycntXiybb']//div[@class = 'JS5QDNbVwPTSQkGOFVx8']"));
+            if(cost.Count == po.Count)
+            {
+                for (int i = 0; i < cost.Count; i++)
+                {
+                    budgets.Add(new BudgetData(cost[i].Text, po[i].Text));
+                }
+            }
             return budgets;
-
         }
-
-
+        
         public BudgetHelper BudgetCreateButtonClick()
         {
             driver.FindElement(By.Id("NEW_BUDGET_CREATE")).Click();
