@@ -15,19 +15,19 @@ namespace AutoGTP2Tests
                 ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
             };
 
-            List<ProjectData> oldProjects = applicationManager.Projects.GetProjecNametList();
+            List<ProjectData> oldProjects = applicationManager.Projects.GetProjectList();
 
             applicationManager.Projects.CreatePendingProject(projectData);
 
-            List<ProjectData> newProjects = applicationManager.Projects.GetProjecNametList();
+            List<ProjectData> newProjects = applicationManager.Projects.GetProjectList();
 
             oldProjects.Add(projectData); //добавляет данные в старый список
             if (oldProjects.Count > 20)
             {
                 oldProjects.RemoveAt(oldProjects.Count - 2);
             }
-            oldProjects.Sort(); // сортировка старого списка
-            newProjects.Sort(); // сортировка нового списка
+            oldProjects.Sort((x, y) => x.ProjectName.CompareTo(y.ProjectName)); // сортировка старого списка
+            newProjects.Sort((x, y) => x.ProjectName.CompareTo(y.ProjectName)); // сортировка нового списка
             Assert.AreEqual(oldProjects, newProjects); // сравнение списков
         }
 
@@ -39,19 +39,19 @@ namespace AutoGTP2Tests
                 ProjectName = "Express " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
             };
 
-            List<ProjectData> oldProjects = applicationManager.Projects.GetProjecNametList();
+            List<ProjectData> oldProjects = applicationManager.Projects.GetProjectList();
 
             applicationManager.Projects.CreateExpressProject(projectData);
 
-            List<ProjectData> newProjects = applicationManager.Projects.GetProjecNametList();
+            List<ProjectData> newProjects = applicationManager.Projects.GetProjectList();
 
             oldProjects.Add(projectData); //добавляет данные в старый список
             if (oldProjects.Count > 20)
             {
                 oldProjects.RemoveAt(oldProjects.Count - 2);
             }
-            oldProjects.Sort(); // сортировка старого списка
-            newProjects.Sort(); // сортировка нового списка
+            oldProjects.Sort((x, y) => x.ProjectName.CompareTo(y.ProjectName)); // сортировка старого списка
+            newProjects.Sort((x, y) => x.ProjectName.CompareTo(y.ProjectName)); // сортировка нового списка
             Assert.AreEqual(oldProjects, newProjects); // сравнение списков
 
 

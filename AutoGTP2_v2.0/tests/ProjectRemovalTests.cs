@@ -19,8 +19,22 @@ namespace AutoGTP2Tests
                 applicationManager.Projects.CreatePendingProject(projectData);
             }
 
+            //List<ProjectData> oldProjects = applicationManager.Projects.GetProjectList();
+
             applicationManager.Projects.RemoveProjectConfirm();
-            // проверка, что проект удалился
+
+            //List<ProjectData> newProjects = applicationManager.Projects.GetProjectList();
+            
+            /*
+            if (oldProjects.Count > 20)
+            {
+                oldProjects.RemoveAt(oldProjects.Count - 2);
+            }
+            oldProjects.RemoveAt(0);            
+            oldProjects.Sort((x, y) => x.ProjectName.CompareTo(y.ProjectName)); // сортировка старого списка
+            newProjects.Sort((x, y) => x.ProjectName.CompareTo(y.ProjectName)); // сортировка нового списка
+            Assert.AreEqual(oldProjects, newProjects); // сравнение списков
+            */
         }
 
         [Test]
@@ -35,8 +49,19 @@ namespace AutoGTP2Tests
                 applicationManager.Projects.CreatePendingProject(projectData);
             }
 
+            List<ProjectData> oldProjects = applicationManager.Projects.GetProjectList();
+
             applicationManager.Projects.RemoveProjectDecline();
-            // проверка, что проект не удалился
+
+            List<ProjectData> newProjects = applicationManager.Projects.GetProjectList();
+
+            if (oldProjects.Count > 20)
+            {
+                oldProjects.RemoveAt(oldProjects.Count - 2);
+            }            
+            oldProjects.Sort((x, y) => x.ProjectName.CompareTo(y.ProjectName)); // сортировка старого списка
+            newProjects.Sort((x, y) => x.ProjectName.CompareTo(y.ProjectName)); // сортировка нового списка
+            Assert.AreEqual(oldProjects, newProjects); // сравнение списков
         }
 
 

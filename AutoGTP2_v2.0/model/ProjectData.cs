@@ -11,6 +11,8 @@ namespace AutoGTP2Tests
         }
 
         public string ProjectName { get; set; }
+        public string ProjectStatus { get; set; }
+        public string ExpressField { get; set; }
 
         //вспомогательный метод для сортировки
         public int CompareTo(ProjectData other)
@@ -19,7 +21,11 @@ namespace AutoGTP2Tests
             {
                 return 1;
             }
-            return ProjectName.CompareTo(other.ProjectName);
+            if(ProjectName != other.ProjectName)
+            {
+                return 1;
+            }
+            return ProjectStatus.CompareTo(other.ProjectStatus);
         }
 
         //сравнение по наличию имени проекта

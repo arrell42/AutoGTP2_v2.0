@@ -2,6 +2,9 @@
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
 using System.Threading;
 
 namespace AutoGTP2Tests
@@ -70,25 +73,35 @@ namespace AutoGTP2Tests
             return this;
         }
 
+        
         public ProjectHelper FillTextArea()
         {            
+            string text = InternalReadAllText(manager.test, Encoding.UTF8);
+            IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+            js.ExecuteScript("arguments[0].innerText = '{0}';", text);
+
             driver.FindElement(By.Id("PROJECTS_EXPRESS_TEXT")).Click();
-            driver.FindElement(By.Id("PROJECTS_EXPRESS_TEXT")).SendKeys("234234");            
+            driver.FindElement(By.Id("PROJECTS_EXPRESS_TEXT")).SendKeys(text);
+            
+            
             Thread.Sleep(10000);
             return this;
         }
 
-
         //Получение списка проектов
-        public List<ProjectData> GetProjecNametList()
+        public List<ProjectData> GetProjectList()
         {
             List<ProjectData> projects = new List<ProjectData>();
             manager.Navigator.GoToProjectPage();
-            ICollection<IWebElement> elements = driver.FindElements(By.XPath("//div[@class = 'NISN5104MJmPjvzE4xDN']//div"));
-            foreach (IWebElement element in elements)
+            IList<IWebElement> name = driver.FindElements(By.Id("PROJECTS_PROJECT_NAME"));
+            IList<IWebElement> stat = driver.FindElements(By.Id("PROJECTS_PROJECT_NAME"));
+            if (name.Count == stat.Count)
             {
-                projects.Add(new ProjectData(element.Text));
-            }
+                for (int i = 0; i < name.Count; i++)
+                {
+                    projects.Add(new ProjectData(name[i].Text));
+                }
+            }            
             return projects;
         }
 

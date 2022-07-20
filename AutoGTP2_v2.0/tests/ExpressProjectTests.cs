@@ -33,7 +33,7 @@ namespace AutoGTP2Tests
             
             // добавить проверки правильного расчета
         }
-
+        
         [Test]
         public void ExpressProjectTextAttach8000Test()
         {
@@ -46,6 +46,6 @@ namespace AutoGTP2Tests
 
             // добавить проверки правильного расчета
         }
-
+        
     }
 }

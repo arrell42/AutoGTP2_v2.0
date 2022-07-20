@@ -28,6 +28,8 @@ namespace AutoGTP2Tests
 
             Assert.AreEqual(applicationManager.Services.QuantityTextValue(), "100.00");
             Assert.IsTrue(applicationManager.Services.ServiceIsCalculated());
+            Assert.AreEqual(applicationManager.Services.QuantityPriceMultiplication(), 
+                applicationManager.Services.ServiceCostValueText());
         }
 
         [Test]

@@ -1,10 +1,8 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
 using System;
 using System.Threading;
 using System.Globalization;
-using System.IO;
-using System.Collections.Generic;
+
 
 namespace AutoGTP2Tests
 {
@@ -52,7 +50,6 @@ namespace AutoGTP2Tests
             ServiceSaveButtonClick();
             return this;
         }
-
         public ServiceHelper ServiceCreateManualQuantityZeroFirst(ProjectData projectData, ServiceData serviceData)
         {
             OpenNewProject(projectData);
@@ -106,36 +103,6 @@ namespace AutoGTP2Tests
             ServiceSaveButtonClick();            
             return this;
         }
-
-        
-        public int QuantityPriceMultiplication()
-        {
-           // if (LanguagePairsTableIsHidden())
-           // {
-           //     driver.FindElement(By.Id("SHOW_LANGUAGE_PAIRS")).Click();
-           // }
-            string a = driver.FindElement(By.XPath("//div[@class = 'row']/div/p[@class = 'GxpMAeiU_LKN4yZsTEhL']")).Text;
-            string b = driver.FindElement(By.XPath("//div[@class = 'row']/div/p[@class = 'GxpMAeiU_LKN4yZsTEhL']")).Text;
-            double c = double.Parse(a, formatter);
-            double d = double.Parse(b, formatter);
-            double i = c * d;            
-            return (int)i;
-        }
-
-        
-        public int ServiceCostValueTextInTable()
-        {
-          //  if (LanguagePairsTableIsHidden())
-           // {
-           //     driver.FindElement(By.Id("SHOW_LANGUAGE_PAIRS")).Click();
-           // }
-            string a = driver.FindElement(By.XPath("//p[@class = 'cost-row']")).Text;
-            double i = double.Parse(a, formatter);
-            return (int)i;
-        }
-
-
-        
 
         public ServiceHelper ServiceAutoCountRequestQuote(ProjectData projectData)
         {
@@ -286,6 +253,29 @@ namespace AutoGTP2Tests
 
 
         // Низкоуровневые методы
+
+        public int QuantityPriceMultiplication()
+        {
+            OpenServiceLanguagePairsTable();
+            string a = driver.FindElement(By.XPath("//div[@class = 'row']/div/p[@class = 'GxpMAeiU_LKN4yZsTEhL']")).Text;
+            string b = driver.FindElement(By.XPath("//div[@class = 'row']/div/p[@class = 'zEEPIQ2axxHqUkIhoCtb']")).Text;
+
+            double i = Convert.ToDouble(a.Replace(".", ",").Trim()) * Convert.ToDouble(b.Replace(".", ",").Trim());
+            return (int)i;
+        }
+        public int ServiceCostValueTextInTable()
+        {
+            string a = driver.FindElement(By.XPath("//p[@class = 'cost-row']")).Text;
+            double i = Convert.ToDouble(a.Replace(".", ",").Trim());
+            return (int)i;
+        }
+
+        public ServiceHelper OpenServiceLanguagePairsTable()
+        {
+            driver.FindElement(By.Id("SHOW_LANGUAGE_PAIRS")).Click();
+            Thread.Sleep(500);
+            return this;
+        }
         public bool CircleNextToTheFilePopupIsPresent()
         {
             return IsElementPresent(By.XPath("//div[@class = '__react_component_tooltip show place-top type-dark fAxMCCe7_OgpcIpCLAsy']"));
@@ -497,7 +487,7 @@ namespace AutoGTP2Tests
         public ServiceHelper SelectSourceLanguage()
         {
             driver.FindElement(By.Name("SERVICE_SOURCE_LANG")).Click();            
-            Thread.Sleep(200);
+            Thread.Sleep(300);
             driver.FindElement(By.Id("SERVICE_SOURCE_LANG_2")).Click();
             return this;
         }        
@@ -505,7 +495,7 @@ namespace AutoGTP2Tests
         public ServiceHelper SelectTargetLanguage()
         {
             driver.FindElement(By.XPath("//input[@name = 'SERVICE_TARGET_LANG']")).Click();            
-            Thread.Sleep(200);
+            Thread.Sleep(300);
             driver.FindElement(By.Id("SERVICE_TARGET_LANG_1")).Click();
             return this;
         }
@@ -529,7 +519,7 @@ namespace AutoGTP2Tests
             driver.FindElement(By.Id("SERVICE_SAVE")).Click();
             if (!WarningPopupIsPresent())
             {
-                WaitUntilFindElement(10, By.XPath("//div[@class = 'services-list']"));
+                WaitUntilFindElement(10, By.XPath("//div[@class = 'services-list']"));                
             }            
             return this;
         }

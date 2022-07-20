@@ -39,8 +39,7 @@ namespace AutoGTP2Tests
             EnterUsername(account);
             EnterPassword(account);
             SignInButtonClick();
-            WaitUntilFindElement(10, By.XPath("//div[@class = '__floater __floater__open']"));            
-            driver.Navigate().Refresh();
+            WaitUntilFindElement(10, By.XPath("//div[@class = '__floater __floater__open']"));
         }
                 
 
@@ -53,7 +52,8 @@ namespace AutoGTP2Tests
             }
         }
         public bool IsLoggedIn()
-        {            
+        {
+            driver.Navigate().Refresh();
             return IsElementPresent(By.Id("MENU_LOGOUT"));
         }
         public void Logout()

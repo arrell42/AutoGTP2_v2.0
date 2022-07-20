@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -16,6 +15,10 @@ namespace AutoGTP2Tests
         public string sourceFilePath;
         public string CATLogFilePath;
         public string invalidSourceFilePath;
+        public string expressFile8000;
+        public string expressFile8001;
+        public string expressFile7999;
+        public string test;
 
         //HELPERS ADD 
         protected LoginHelper loginHelper;
@@ -27,10 +30,8 @@ namespace AutoGTP2Tests
         private static readonly ThreadLocal<ApplicationManager> app = new ThreadLocal<ApplicationManager>();
 
         public IWebDriver Driver { get { return driver; } }
-                
 
-
-
+        
         // Начало теста - открыть браузер, перейти на нужную страницу, инициализация хелперов
         private ApplicationManager()
         {
@@ -42,6 +43,10 @@ namespace AutoGTP2Tests
             sourceFilePath = @"C:\Users\d_inozemtsev\source\repos\AutoGTP2_v2.0\AutoGTP2_v2.0\Files\SourceTest.txt";
             CATLogFilePath = @"C:\Users\d_inozemtsev\source\repos\AutoGTP2_v2.0\AutoGTP2_v2.0\Files\memoQ.csv";
             invalidSourceFilePath = @"C:\Users\d_inozemtsev\source\repos\AutoGTP2_v2.0\AutoGTP2_v2.0\Files\InvaildSourceFileTest.dwg";
+            expressFile8000 = @"C:\Users\d_inozemtsev\source\repos\AutoGTP2_v2.0\AutoGTP2_v2.0\Files\Express8000.txt";
+            expressFile8001 = @"C:\Users\d_inozemtsev\source\repos\AutoGTP2_v2.0\AutoGTP2_v2.0\Files\Express8001.txt";
+            expressFile7999 = @"C:\Users\d_inozemtsev\source\repos\AutoGTP2_v2.0\AutoGTP2_v2.0\Files\Express7999.txt";
+            test = @"C:\Users\d_inozemtsev\source\repos\AutoGTP2_v2.0\AutoGTP2_v2.0\Files\test.txt";
 
             //HELPERS INIT
             loginHelper = new LoginHelper(this);

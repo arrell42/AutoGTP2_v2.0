@@ -1,22 +1,35 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
-using System.Linq;
+using System.Text;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 
 namespace AutoGTP2Tests
 {
     public class BaseHelper
-    {                
+    {
         protected IWebDriver driver;
-        protected ApplicationManager manager;        
+        protected ApplicationManager manager;
         public BaseHelper(ApplicationManager manager)
         {
             this.manager = manager;
             driver = manager.Driver;
         }
 
+
         
+        // чтение текста из файла
+        public static string InternalReadAllText(string path, Encoding encoding)
+        {            
+            string result;
+            using (StreamReader streamReader = new StreamReader(path, encoding))
+            {
+                result = streamReader.ReadToEnd();
+            }            
+            return result;
+        }
+
         // Проверка присутствия элемента
         public bool IsElementPresent(By by)
         {
@@ -55,8 +68,9 @@ namespace AutoGTP2Tests
             return exist;
         }
 
-        /*
+
         // Поиск определенного языка по indexValue в рамках сервиса
+        /*
         public void LanguageFindByValue(string indexValue)
         {
             string index = indexValue;
@@ -75,8 +89,8 @@ namespace AutoGTP2Tests
         // ожидание появления элемента по локатору
         public void WaitUntilFindElement(int time, By locator)
         {
-              WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(time));
-              wait.Until(driver => driver.FindElement(locator));            
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(time));
+            wait.Until(driver => driver.FindElement(locator));
         }
 
         // ожидание всех элементов по локатору (с помощью index можно выбрать количество элементов)
@@ -90,10 +104,10 @@ namespace AutoGTP2Tests
         public void WaitUntilElementIsHide(int time, By locator)
         {
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(time));
-            wait.Until(ExpectedConditions.InvisibilityOfElementLocated(locator));            
+            wait.Until(ExpectedConditions.InvisibilityOfElementLocated(locator));
         }
 
-    }
 
-    
+
+    }
 }

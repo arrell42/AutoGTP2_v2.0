@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
+using System.Collections.Generic;
 
 namespace AutoGTP2Tests
 {
@@ -19,8 +20,17 @@ namespace AutoGTP2Tests
                 applicationManager.Budgets.WaitUntilFindElement(5, By.CssSelector("#BUDGETS_BURGER_0 > svg > path"));
                 applicationManager.Budgets.BudgetBurgerClick();                
             }
-            
-            applicationManager.Budgets.BudgetRemovalCancel();            
+
+            List<BudgetData> oldBudgets = applicationManager.Budgets.GetBudgetList();
+
+            applicationManager.Budgets.BudgetRemovalCancel();
+
+            List<BudgetData> newBudgets = applicationManager.Budgets.GetBudgetList();
+
+            Assert.AreEqual(oldBudgets.Count, newBudgets.Count);
+            oldBudgets.Sort((x, y) => x.BudgetCost.CompareTo(y.BudgetCost)); // сортировка старого списка
+            newBudgets.Sort((x, y) => x.BudgetCost.CompareTo(y.BudgetCost)); // сортировка нового списка
+            Assert.AreEqual(newBudgets, oldBudgets);
         }
 
         [Test]
@@ -37,7 +47,17 @@ namespace AutoGTP2Tests
                 applicationManager.Budgets.BudgetBurgerClick();                
             }
 
+            List<BudgetData> oldBudgets = applicationManager.Budgets.GetBudgetList();
+
             applicationManager.Budgets.BudgetRemoval();
+
+            List<BudgetData> newBudgets = applicationManager.Budgets.GetBudgetList();
+            Assert.AreEqual(oldBudgets.Count - 1, newBudgets.Count);
+
+            oldBudgets.RemoveAt(0);
+            oldBudgets.Sort((x, y) => x.BudgetCost.CompareTo(y.BudgetCost)); // сортировка старого списка
+            newBudgets.Sort((x, y) => x.BudgetCost.CompareTo(y.BudgetCost)); // сортировка нового списка
+            Assert.AreEqual(newBudgets, oldBudgets);
         }
         
     }
