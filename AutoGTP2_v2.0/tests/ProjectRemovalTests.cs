@@ -19,22 +19,21 @@ namespace AutoGTP2Tests
                 applicationManager.Projects.CreatePendingProject(projectData);
             }
 
-            //List<ProjectData> oldProjects = applicationManager.Projects.GetProjectList();
+            List<ProjectData> oldProjects = applicationManager.Projects.GetProjectList();
 
             applicationManager.Projects.RemoveProjectConfirm();
 
-            //List<ProjectData> newProjects = applicationManager.Projects.GetProjectList();
+            List<ProjectData> newProjects = applicationManager.Projects.GetProjectList();            
             
-            /*
             if (oldProjects.Count > 20)
             {
                 oldProjects.RemoveAt(oldProjects.Count - 2);
             }
-            oldProjects.RemoveAt(0);            
+            oldProjects.RemoveAt(0); // удаляем первый в старом списке
+            newProjects.RemoveAt(19); // удаляем последний в новом списке
             oldProjects.Sort((x, y) => x.ProjectName.CompareTo(y.ProjectName)); // сортировка старого списка
             newProjects.Sort((x, y) => x.ProjectName.CompareTo(y.ProjectName)); // сортировка нового списка
-            Assert.AreEqual(oldProjects, newProjects); // сравнение списков
-            */
+            Assert.AreEqual(oldProjects, newProjects); // сравнение списков            
         }
 
         [Test]

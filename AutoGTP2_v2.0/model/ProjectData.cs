@@ -12,7 +12,8 @@ namespace AutoGTP2Tests
 
         public string ProjectName { get; set; }
         public string ProjectStatus { get; set; }
-        public string ExpressField { get; set; }
+        
+
 
         //вспомогательный метод для сортировки
         public int CompareTo(ProjectData other)

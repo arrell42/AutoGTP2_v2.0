@@ -12,7 +12,7 @@ namespace AutoGTP2Tests
     {        
         protected IWebDriver driver;                
         protected string baseURL;
-        public string sourceFilePath;
+        public string sourceFile;
         public string CATLogFilePath;
         public string invalidSourceFilePath;
         public string expressFile8000;
@@ -39,14 +39,13 @@ namespace AutoGTP2Tests
             options.AddArguments("start-maximized");
             driver = new ChromeDriver(options);            
                         
-            baseURL = "https://gtp-test.janusww.com:9999";            
-            sourceFilePath = @"C:\Users\d_inozemtsev\source\repos\AutoGTP2_v2.0\AutoGTP2_v2.0\Files\SourceTest.txt";
+            baseURL = "https://gtp-test.janusww.com:9999";
+            sourceFile = @"C:\Users\d_inozemtsev\source\repos\AutoGTP2_v2.0\AutoGTP2_v2.0\Files\SourceTest.txt";
             CATLogFilePath = @"C:\Users\d_inozemtsev\source\repos\AutoGTP2_v2.0\AutoGTP2_v2.0\Files\memoQ.csv";
             invalidSourceFilePath = @"C:\Users\d_inozemtsev\source\repos\AutoGTP2_v2.0\AutoGTP2_v2.0\Files\InvaildSourceFileTest.dwg";
             expressFile8000 = @"C:\Users\d_inozemtsev\source\repos\AutoGTP2_v2.0\AutoGTP2_v2.0\Files\Express8000.txt";
             expressFile8001 = @"C:\Users\d_inozemtsev\source\repos\AutoGTP2_v2.0\AutoGTP2_v2.0\Files\Express8001.txt";
-            expressFile7999 = @"C:\Users\d_inozemtsev\source\repos\AutoGTP2_v2.0\AutoGTP2_v2.0\Files\Express7999.txt";
-            test = @"C:\Users\d_inozemtsev\source\repos\AutoGTP2_v2.0\AutoGTP2_v2.0\Files\test.txt";
+            expressFile7999 = @"C:\Users\d_inozemtsev\source\repos\AutoGTP2_v2.0\AutoGTP2_v2.0\Files\Express7999.txt";            
 
             //HELPERS INIT
             loginHelper = new LoginHelper(this);

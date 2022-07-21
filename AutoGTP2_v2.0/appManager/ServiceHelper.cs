@@ -254,6 +254,12 @@ namespace AutoGTP2Tests
 
         // Низкоуровневые методы
 
+        public ServiceHelper ReferenceTabClick()
+        {
+            driver.FindElement(By.Id("ProjectCardReferenceMaterials"));
+            return this; ;
+        }
+
         public int QuantityPriceMultiplication()
         {
             OpenServiceLanguagePairsTable();
@@ -399,7 +405,7 @@ namespace AutoGTP2Tests
 
         public ServiceHelper SourceFileAttach()
         {
-            driver.FindElement(By.Id("FILE_LOADER")).SendKeys(manager.sourceFilePath);
+            driver.FindElement(By.Id("FILE_LOADER")).SendKeys(manager.sourceFile);
             WaitUntilFindElement(10, By.Id("FILE_DOWNLOAD"));
             return this;
         }

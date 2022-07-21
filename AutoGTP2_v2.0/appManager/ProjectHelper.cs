@@ -1,11 +1,8 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading;
+
 
 namespace AutoGTP2Tests
 {
@@ -65,28 +62,36 @@ namespace AutoGTP2Tests
             return this;
         }
 
-        public ProjectHelper ExpressProjectTextAttach8000(ProjectData projectData)
+        public ProjectHelper ExpressProjectTextAttach(ProjectData projectData, string filePath)
         {
             OpenNewExpressProject(projectData);
-            FillTextArea();
-            //SaveProjectButtonClick();
+            FillTextAreaFromFile(filePath);            
+            return this;
+        }
+
+        public ProjectHelper ExpressProjectLimitPopupCancelButton(ProjectData projectData, string filePath)
+        {
+            OpenNewExpressProject(projectData);
+            FillTextAreaFromFile(filePath);
+            MouseClickImitation();                        
+            LimitPopupCancelButtonClick();            
+            return this;
+        }
+
+        public ProjectHelper ExpressProjectLimitPopupSwitchButton(ProjectData projectData, string filePath)
+        {
+            OpenNewExpressProject(projectData);
+            FillTextAreaFromFile(filePath);
+            MouseClickImitation();
+            LimitPopupSwitchButtonClick();
+            WaitUntilElementIsHide(10, By.XPath("//div[@class = 'c8SKZENNUPbG9odvBGrJ ']"));
             return this;
         }
 
         
-        public ProjectHelper FillTextArea()
-        {            
-            string text = InternalReadAllText(manager.test, Encoding.UTF8);
-            IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
-            js.ExecuteScript("arguments[0].innerText = '{0}';", text);
 
-            driver.FindElement(By.Id("PROJECTS_EXPRESS_TEXT")).Click();
-            driver.FindElement(By.Id("PROJECTS_EXPRESS_TEXT")).SendKeys(text);
-            
-            
-            Thread.Sleep(10000);
-            return this;
-        }
+
+
 
         //Получение списка проектов
         public List<ProjectData> GetProjectList()
@@ -101,14 +106,44 @@ namespace AutoGTP2Tests
                 {
                     projects.Add(new ProjectData(name[i].Text));
                 }
-            }            
+            }
             return projects;
         }
 
-
-
-
         // Низкоуровневые методы
+
+        public ProjectHelper LimitPopupSwitchButtonClick()
+        {
+            driver.FindElement(By.Id("PROJECTS_EXPRESS_BACK_TO_CLASSIC")).Click();
+            return this;
+        }
+
+        public bool ExpressProjectTextAreaIsPresent()
+        {
+            return IsElementPresent(By.XPath("//div[@class = 'c8SKZENNUPbG9odvBGrJ ']"));
+        }
+
+        public ProjectHelper LimitPopupCancelButtonClick()
+        {
+            driver.FindElement(By.XPath("//button[@class = 'btn bordered-btn']"));
+            return this;
+        }                
+
+        public string ExpressWordCount()
+        {   
+            return driver.FindElement(By.XPath("//textarea[@id = 'PROJECTS_EXPRESS_TEXT']//following-sibling::p")).Text;            
+        }
+
+        public ProjectHelper FillTextAreaFromFile(string filePath)
+        {
+            string text = InternalReadAllText(filePath, Encoding.UTF8).Trim().Replace(Environment.NewLine, "");
+            IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+            js.ExecuteScript("document.getElementById('PROJECTS_EXPRESS_TEXT').value = '" + text + "';");
+            driver.FindElement(By.Id("PROJECTS_EXPRESS_TEXT")).SendKeys(" "); //чтобы слова подсчитались, иначе подсчета не происходит
+            
+            return this;
+        }
+
         public ProjectHelper OpenNewExpressProject(ProjectData projectData)
         {
             manager.Navigator.GoToProjectPage();
