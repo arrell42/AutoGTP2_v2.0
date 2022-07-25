@@ -17,15 +17,15 @@ namespace AutoGTP2Tests
         public string invalidSourceFilePath;
         public string expressFile8000;
         public string expressFile8001;
-        public string expressFile7999;
-        public string test;
+        public string expressFile7999;        
 
         //HELPERS ADD 
         protected LoginHelper loginHelper;
         protected NavigationHelper navigationHelper;
         protected BudgetHelper budgetHelper;
         protected ProjectHelper projectHelper;
-        protected ServiceHelper serviceHelper;        
+        protected ServiceHelper serviceHelper;
+        protected DashportHelper dashportHelper;
 
         private static readonly ThreadLocal<ApplicationManager> app = new ThreadLocal<ApplicationManager>();
 
@@ -40,6 +40,7 @@ namespace AutoGTP2Tests
             driver = new ChromeDriver(options);            
                         
             baseURL = "https://gtp-test.janusww.com:9999";
+            //baseURL = "https://gtp2.janusww.com";
             sourceFile = @"C:\Users\d_inozemtsev\source\repos\AutoGTP2_v2.0\AutoGTP2_v2.0\Files\SourceTest.txt";
             CATLogFilePath = @"C:\Users\d_inozemtsev\source\repos\AutoGTP2_v2.0\AutoGTP2_v2.0\Files\memoQ.csv";
             invalidSourceFilePath = @"C:\Users\d_inozemtsev\source\repos\AutoGTP2_v2.0\AutoGTP2_v2.0\Files\InvaildSourceFileTest.dwg";
@@ -52,8 +53,9 @@ namespace AutoGTP2Tests
             navigationHelper = new NavigationHelper(this, baseURL);
             budgetHelper = new BudgetHelper(this);
             projectHelper = new ProjectHelper(this);
-            serviceHelper = new ServiceHelper(this);            
-        }
+            serviceHelper = new ServiceHelper(this);
+            dashportHelper = new DashportHelper();
+    }
 
         //Завершение теста - закрыть браузер
         ~ApplicationManager()
@@ -67,7 +69,6 @@ namespace AutoGTP2Tests
                 // Ignore errors if unable to close the browser
             }
         }
-
         
         // Проверка на открытый браузер - если открыт, то НЕ открывать новый экземпляр
         public static ApplicationManager GetInstance()
@@ -116,25 +117,25 @@ namespace AutoGTP2Tests
         {
             get { return loginHelper; }
         }
-
         public NavigationHelper Navigator
         {
             get { return navigationHelper; }
         }
-
         public BudgetHelper Budgets
         {
             get { return budgetHelper; }
         }
-
         public ProjectHelper Projects
         {
             get { return projectHelper; }
         }
-
         public ServiceHelper Services
         {
             get { return serviceHelper; }
+        }
+        public DashportHelper Dashport
+        {
+            get { return dashportHelper; }
         }
 
     }

@@ -81,10 +81,12 @@
   <ItemGroup>
     <Compile Include="appManager\ProjectHelper.cs" />
     <Compile Include="appManager\ServiceHelper.cs" />
+    <Compile Include="model\DashportHelper.cs" />
     <Compile Include="model\ProjectData.cs" />
     <Compile Include="model\ServiceData.cs" />
     <Compile Include="tests\ExpressProjectTests.cs" />
     <Compile Include="tests\FilesTests.cs" />
+    <Compile Include="tests\GanttChartTests.cs" />
     <Compile Include="tests\ServiceCreateTests.cs" />
     <Compile Include="tests\ProjectRemovalTests.cs" />
     <Compile Include="tests\AuthTestBase.cs" />

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Threading;
 using OpenQA.Selenium;
 
-
 namespace AutoGTP2Tests
 {
     public class BudgetHelper : BaseHelper
@@ -33,7 +32,6 @@ namespace AutoGTP2Tests
             BudgetDeleteConfirm();
             return this;
         }
-
         public BudgetHelper BudgetRemovalCancel()
         {
             manager.Navigator.GoToBudgetPage();                        
@@ -46,7 +44,7 @@ namespace AutoGTP2Tests
 
 
 
-        // Низкоуровневые методы
+        
 
         // Создаем список бюджетов
         public List<BudgetData> GetBudgetList()
@@ -64,7 +62,8 @@ namespace AutoGTP2Tests
             }
             return budgets;
         }
-        
+
+        // Низкоуровневые методы
         public BudgetHelper BudgetCreateButtonClick()
         {
             driver.FindElement(By.Id("NEW_BUDGET_CREATE")).Click();
@@ -85,7 +84,6 @@ namespace AutoGTP2Tests
             driver.FindElement(By.XPath("//p[@title='USD']")).Click();
             return this;
         }
-
         public BudgetHelper EnterBudgetName(BudgetData budgetData)
         {
             driver.FindElement(By.Id("NEW_BUDGET_COST")).Click();
@@ -93,7 +91,6 @@ namespace AutoGTP2Tests
             driver.FindElement(By.Id("NEW_BUDGET_COST")).SendKeys(budgetData.BudgetCost);
             return this;
         }
-
         public BudgetHelper EnterPOnumber(BudgetData budgetData)
         {
             driver.FindElement(By.Id("NEW_BUDGET_PO")).Click();
@@ -106,20 +103,17 @@ namespace AutoGTP2Tests
         {
             driver.FindElement(By.Id("BUDGETS_CREATE_NEW_BUDGET")).Click();
             return this;
-        }                
-        
+        }
         public BudgetHelper BudgetBurgerClick()
         {
             driver.FindElement(By.CssSelector("#BUDGETS_BURGER_0 > svg > path")).Click();
             return this;
         }
-
         public BudgetHelper BudgetDeleteButtonClick()
         {
             driver.FindElement(By.Id("BUDGETS_0_BURGER_MENU_DELETE")).Click();
             return this;
         }
-
         public BudgetHelper BudgetDeleteConfirm()
         {
             driver.FindElement(By.Id("BUDGETS_0_BURGER_MENU_DELETE_DELETE")).Click();
@@ -141,10 +135,8 @@ namespace AutoGTP2Tests
             {
                 return true;
             }
-            return false;            
+            return false;
         }
-        
-
 
     }
 }

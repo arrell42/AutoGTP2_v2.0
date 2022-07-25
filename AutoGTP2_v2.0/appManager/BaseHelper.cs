@@ -3,6 +3,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 
 namespace AutoGTP2Tests
@@ -66,24 +67,6 @@ namespace AutoGTP2Tests
             return exist;
         }
 
-
-        // Поиск определенного языка по indexValue в рамках сервиса
-        /*
-        public void LanguageFindByValue(string indexValue)
-        {
-            string index = indexValue;
-            var langs = driver.FindElements(By.ClassName("YxhDSz1flbKA8yowp3RE  "));
-            for (int i = 0; i < langs.Count; i++)
-            {
-                if (langs[i].Text == index && langs[i].Displayed)
-                {
-                    langs[i].Click();
-                    break;
-                }
-            }
-        }
-        */
-
         // ожидание появления элемента по локатору
         public void WaitUntilFindElement(int time, By locator)
         {
@@ -106,6 +89,14 @@ namespace AutoGTP2Tests
         }
 
         // имитация клика мышкой
+        public void MouseClickImitation()
+        {
+            IWebElement clickable = driver.FindElement(By.XPath("//p[@class = 'RjSxBXvO6oCmh2PBtYg9']"));
+            new Actions(driver).Click(clickable).Perform();
+        }
+
+        /*
+        // имитация клика мышкой - второй вариант
         [DllImport("User32.dll")]
         static extern void mouse_event(MouseFlags dwFlags, int dx, int dy, int dwData, UIntPtr dwExtraInfo);
 
@@ -127,7 +118,24 @@ namespace AutoGTP2Tests
             mouse_event(MouseFlags.Absolute | MouseFlags.RightDown, x, y, 0, UIntPtr.Zero);
             mouse_event(MouseFlags.Absolute | MouseFlags.RightUp, x, y, 0, UIntPtr.Zero);
         }
+        */
 
+        // Поиск определенного языка по indexValue в рамках сервиса
+        /*
+        public void LanguageFindByValue(string indexValue)
+        {
+            string index = indexValue;
+            var langs = driver.FindElements(By.ClassName("YxhDSz1flbKA8yowp3RE  "));
+            for (int i = 0; i < langs.Count; i++)
+            {
+                if (langs[i].Text == index && langs[i].Displayed)
+                {
+                    langs[i].Click();
+                    break;
+                }
+            }
+        }
+        */
 
     }
 }

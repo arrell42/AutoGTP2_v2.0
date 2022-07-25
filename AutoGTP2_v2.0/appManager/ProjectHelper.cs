@@ -1,8 +1,9 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 using System;
 using System.Collections.Generic;
 using System.Text;
-
+using System.Threading;
 
 namespace AutoGTP2Tests
 {
@@ -73,8 +74,8 @@ namespace AutoGTP2Tests
         {
             OpenNewExpressProject(projectData);
             FillTextAreaFromFile(filePath);
-            MouseClickImitation();                        
-            LimitPopupCancelButtonClick();            
+            MouseClickImitation();
+            LimitPopupCancelButtonClick();
             return this;
         }
 
@@ -83,8 +84,7 @@ namespace AutoGTP2Tests
             OpenNewExpressProject(projectData);
             FillTextAreaFromFile(filePath);
             MouseClickImitation();
-            LimitPopupSwitchButtonClick();
-            WaitUntilElementIsHide(10, By.XPath("//div[@class = 'c8SKZENNUPbG9odvBGrJ ']"));
+            LimitPopupSwitchButtonClick();            
             return this;
         }
 
@@ -115,6 +115,7 @@ namespace AutoGTP2Tests
         public ProjectHelper LimitPopupSwitchButtonClick()
         {
             driver.FindElement(By.Id("PROJECTS_EXPRESS_BACK_TO_CLASSIC")).Click();
+            WaitUntilElementIsHide(10, By.XPath("//div[@class = 'c8SKZENNUPbG9odvBGrJ ']"));
             return this;
         }
 
