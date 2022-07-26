@@ -14,6 +14,8 @@ namespace AutoGTP2Tests
             {
                 BudgetData budget = new BudgetData("", "")
                 {
+                    BudgetPO = applicationManager.TextGenerator(1, 5),
+                    BudgetCost = applicationManager.TextGenerator(1, 3),
                     BudgetTotal = "1000"
                 };
                 applicationManager.Budgets.CreateBudget(budget);
@@ -28,8 +30,8 @@ namespace AutoGTP2Tests
             List<BudgetData> newBudgets = applicationManager.Budgets.GetBudgetList();
 
             Assert.AreEqual(oldBudgets.Count, newBudgets.Count);
-            oldBudgets.Sort((x, y) => x.BudgetCost.CompareTo(y.BudgetCost)); // сортировка старого списка
-            newBudgets.Sort((x, y) => x.BudgetCost.CompareTo(y.BudgetCost)); // сортировка нового списка
+            oldBudgets.Sort(); // сортировка старого списка
+            newBudgets.Sort(); // сортировка нового списка
             Assert.AreEqual(newBudgets, oldBudgets);
         }
 
@@ -39,9 +41,11 @@ namespace AutoGTP2Tests
             if (applicationManager.Budgets.BudgetDeleteButtonIsDisabled())
             {
                 BudgetData budget = new BudgetData("", "")
-            {
-                BudgetTotal = "1000"
-            };  
+                {
+                    BudgetPO = applicationManager.TextGenerator(1, 5),
+                    BudgetCost = applicationManager.TextGenerator(1, 3),
+                    BudgetTotal = "1000"
+                };  
                 applicationManager.Budgets.CreateBudget(budget);
                 applicationManager.Budgets.WaitUntilFindElement(5, By.CssSelector("#BUDGETS_BURGER_0 > svg > path"));
                 applicationManager.Budgets.BudgetBurgerClick();                
@@ -55,8 +59,8 @@ namespace AutoGTP2Tests
             Assert.AreEqual(oldBudgets.Count - 1, newBudgets.Count);
 
             oldBudgets.RemoveAt(0);
-            oldBudgets.Sort((x, y) => x.BudgetCost.CompareTo(y.BudgetCost)); // сортировка старого списка
-            newBudgets.Sort((x, y) => x.BudgetCost.CompareTo(y.BudgetCost)); // сортировка нового списка
+            oldBudgets.Sort(); // сортировка старого списка
+            newBudgets.Sort(); // сортировка нового списка
             Assert.AreEqual(newBudgets, oldBudgets);
         }
         

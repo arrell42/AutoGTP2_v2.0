@@ -12,8 +12,8 @@ namespace AutoGTP2Tests
         {
             BudgetData budgetData = new BudgetData("", "")
             {
-                BudgetPO = applicationManager.GetRandomString(5),
-                BudgetCost = applicationManager.GetRandomString(10),
+                BudgetPO = applicationManager.TextGenerator(1, 5),
+                BudgetCost = applicationManager.TextGenerator(1, 3),
                 BudgetTotal = "1000"
             };
 
@@ -33,8 +33,8 @@ namespace AutoGTP2Tests
                 oldBudgets.RemoveAt(oldBudgets.Count - 2); // удаляем предпоследний элемент из списка, в котором 21 элемент
             }
             oldBudgets.Add(budgetData);
-            oldBudgets.Sort((x, y) => x.BudgetCost.CompareTo(y.BudgetCost)); // сортировка старого списка
-            newBudgets.Sort((x, y) => x.BudgetCost.CompareTo(y.BudgetCost)); // сортировка нового списка
+            oldBudgets.Sort(); // сортировка старого списка
+            newBudgets.Sort(); // сортировка нового списка
             Assert.AreEqual(newBudgets, oldBudgets);
         }
 

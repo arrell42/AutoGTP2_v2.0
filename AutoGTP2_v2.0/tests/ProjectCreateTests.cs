@@ -26,8 +26,8 @@ namespace AutoGTP2Tests
             {
                 oldProjects.RemoveAt(oldProjects.Count - 2);
             }
-            oldProjects.Sort((x, y) => x.ProjectName.CompareTo(y.ProjectName)); // сортировка старого списка
-            newProjects.Sort((x, y) => x.ProjectName.CompareTo(y.ProjectName)); // сортировка нового списка
+            oldProjects.Sort(); // сортировка старого списка
+            newProjects.Sort(); // сортировка нового списка
             Assert.AreEqual(oldProjects, newProjects); // сравнение списков
         }
 
@@ -50,8 +50,8 @@ namespace AutoGTP2Tests
             {
                 oldProjects.RemoveAt(oldProjects.Count - 2);
             }
-            oldProjects.Sort((x, y) => x.ProjectName.CompareTo(y.ProjectName)); // сортировка старого списка
-            newProjects.Sort((x, y) => x.ProjectName.CompareTo(y.ProjectName)); // сортировка нового списка
+            oldProjects.Sort(); // сортировка старого списка
+            newProjects.Sort(); // сортировка нового списка
             Assert.AreEqual(oldProjects, newProjects); // сравнение списков
 
 

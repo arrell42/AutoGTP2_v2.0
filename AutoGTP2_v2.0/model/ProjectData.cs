@@ -21,12 +21,8 @@ namespace AutoGTP2Tests
             if(other == null)
             {
                 return 1;
-            }
-            if(ProjectName != other.ProjectName)
-            {
-                return 1;
-            }
-            return ProjectStatus.CompareTo(other.ProjectStatus);
+            }            
+            return ProjectName.CompareTo(other.ProjectName);
         }
 
         //сравнение по наличию имени проекта
