@@ -74,7 +74,7 @@ namespace AutoGTP2Tests
         {
             OpenNewExpressProject(projectData);
             FillTextAreaFromFile(filePath);
-            MouseClickImitation();
+            MouseClickImitation(By.XPath("//p[@class = 'RjSxBXvO6oCmh2PBtYg9']"));
             LimitPopupCancelButtonClick();
             return this;
         }
@@ -83,7 +83,7 @@ namespace AutoGTP2Tests
         {
             OpenNewExpressProject(projectData);
             FillTextAreaFromFile(filePath);
-            MouseClickImitation();
+            MouseClickImitation(By.XPath("//p[@class = 'RjSxBXvO6oCmh2PBtYg9']"));
             LimitPopupSwitchButtonClick();            
             return this;
         }

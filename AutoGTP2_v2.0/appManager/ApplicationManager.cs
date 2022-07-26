@@ -54,7 +54,7 @@ namespace AutoGTP2Tests
             budgetHelper = new BudgetHelper(this);
             projectHelper = new ProjectHelper(this);
             serviceHelper = new ServiceHelper(this);
-            dashportHelper = new DashportHelper();
+            dashportHelper = new DashportHelper(this);
     }
 
         //Завершение теста - закрыть браузер

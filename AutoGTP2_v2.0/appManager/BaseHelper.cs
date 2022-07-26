@@ -89,10 +89,17 @@ namespace AutoGTP2Tests
         }
 
         // имитация клика мышкой
-        public void MouseClickImitation()
+        public void MouseClickImitation(By by)
         {
-            IWebElement clickable = driver.FindElement(By.XPath("//p[@class = 'RjSxBXvO6oCmh2PBtYg9']"));
-            new Actions(driver).Click(clickable).Perform();
+            IWebElement clickable = driver.FindElement(by);
+            new Actions(driver).Click(clickable).Perform();            
+        }
+
+        // имитация клик и задержка на элементе
+        public void MouseClickAndHoldImitation(By by)
+        {
+            IWebElement clickable = driver.FindElement(by);
+            new Actions(driver).ClickAndHold(clickable).Perform();
         }
 
         /*

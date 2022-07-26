@@ -81,7 +81,7 @@
   <ItemGroup>
     <Compile Include="appManager\ProjectHelper.cs" />
     <Compile Include="appManager\ServiceHelper.cs" />
-    <Compile Include="model\DashportHelper.cs" />
+    <Compile Include="appManager\DashportHelper.cs" />
     <Compile Include="model\ProjectData.cs" />
     <Compile Include="model\ServiceData.cs" />
     <Compile Include="tests\ExpressProjectTests.cs" />
