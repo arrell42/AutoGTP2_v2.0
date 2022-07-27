@@ -5,12 +5,12 @@ namespace AutoGTP2Tests
 {
     public class TestBase
     {
-        protected ApplicationManager applicationManager;
+        protected ApplicationManager app;
 
         [SetUp]
         public void SetupApplicationManager()
         {   
-            applicationManager = ApplicationManager.GetInstance();
+            app = ApplicationManager.GetInstance();
         }
     }
 

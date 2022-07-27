@@ -13,46 +13,46 @@ namespace AutoGTP2Tests
         [Test]
         public void ProjectFromTableNameTest()
         {
-            applicationManager.Dashport.OpenProjectFromTableName();
-            Assert.IsTrue(applicationManager.Dashport.ProjectPopupIsPresent());
+            app.Dashport.OpenProjectFromTableName();
+            Assert.IsTrue(app.Dashport.ProjectPopupIsPresent());
         }
 
         [Test]
         public void ProjectFromTableLineTest()
         {
-            applicationManager.Dashport.OpenProjectFromTableLine();
-            Assert.IsTrue(applicationManager.Dashport.ProjectPopupIsPresent());
+            app.Dashport.OpenProjectFromTableLine();
+            Assert.IsTrue(app.Dashport.ProjectPopupIsPresent());
         }
 
         [Test]
         public void ProjectFromTableLinePopupTest()
         {
-            applicationManager.Dashport.ProjectFromTableLinePopup();
-            Assert.IsTrue(applicationManager.Dashport.ProjectLinePopupIsPresent());
+            app.Dashport.ProjectFromTableLinePopup();
+            Assert.IsTrue(app.Dashport.ProjectLinePopupIsPresent());
         }
 
         [Test]
         public void RegularProjectTypeTests()
         {
-            applicationManager.Dashport.RegularProjectTypeFilter();
+            app.Dashport.RegularProjectTypeFilter();
             
-            Assert.IsFalse(applicationManager.Dashport.ExpressProjectsNotPresent());            
+            Assert.IsFalse(app.Dashport.ExpressProjectsNotPresent());            
         }
 
         [Test]
         public void ExpressProjectTypeTests()
         {
-            applicationManager.Dashport.ExpressProjectTypeFilter();
+            app.Dashport.ExpressProjectTypeFilter();
             
-            Assert.IsTrue(applicationManager.Dashport.ExpressProjectsNotPresent());
+            Assert.IsTrue(app.Dashport.ExpressProjectsNotPresent());
         }
 
-        [Test]
+        //[Test]
         public void OrderedStatusFilterTests()
         {
-            applicationManager.Dashport.OrderedStatusFilter();
+            //applicationManager.Dashport.OrderedStatusFilter();
 
-            Assert.IsTrue(applicationManager.Dashport.ExpressProjectsNotPresent());
+            Assert.IsTrue(app.Dashport.ExpressProjectsNotPresent());
         }
 
 

@@ -15,11 +15,11 @@ namespace AutoGTP2Tests
                 ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
             };
 
-            List<ProjectData> oldProjects = applicationManager.Projects.GetProjectList();
+            List<ProjectData> oldProjects = app.Projects.GetProjectList();
 
-            applicationManager.Projects.CreatePendingProject(projectData);
+            app.Projects.CreatePendingProject(projectData);
 
-            List<ProjectData> newProjects = applicationManager.Projects.GetProjectList();
+            List<ProjectData> newProjects = app.Projects.GetProjectList();
 
             oldProjects.Add(projectData); //добавляет данные в старый список
             if (oldProjects.Count > 20)
@@ -39,11 +39,11 @@ namespace AutoGTP2Tests
                 ProjectName = "Express " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
             };
 
-            List<ProjectData> oldProjects = applicationManager.Projects.GetProjectList();
+            List<ProjectData> oldProjects = app.Projects.GetProjectList();
 
-            applicationManager.Projects.CreateExpressProject(projectData);
+            app.Projects.CreateExpressProject(projectData);
 
-            List<ProjectData> newProjects = applicationManager.Projects.GetProjectList();
+            List<ProjectData> newProjects = app.Projects.GetProjectList();
 
             oldProjects.Add(projectData); //добавляет данные в старый список
             if (oldProjects.Count > 20)

@@ -9,7 +9,7 @@ namespace AutoGTP2Tests
         [SetUp]
         public void SetupLogin()
         {
-            applicationManager.Auth.Login(new LoginData("Main_test", "123456"));
+            app.Auth.Login(new LoginData("Main_test", "123456"));
             //applicationManager.Auth.Login(new LoginData("Denis Inozemtsev CR", "xe3q7z-"));
         }
     }

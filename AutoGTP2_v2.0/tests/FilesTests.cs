@@ -15,9 +15,9 @@ namespace AutoGTP2Tests
                 FileName = "SourceTest"
             };
 
-            applicationManager.Services.DownloadSourceFileFromEditPage(projectData);
+            app.Services.DownloadSourceFileFromEditPage(projectData);
 
-            Assert.IsTrue(applicationManager.Services.CheckFileDownloaded(filename));
+            Assert.IsTrue(app.Services.CheckFileDownloaded(filename));
         }
 
         [Test]
@@ -29,9 +29,9 @@ namespace AutoGTP2Tests
                 FileName = "SourceTest"
             };
 
-            applicationManager.Services.DownloadSourceFileFromServiceList(projectData);
+            app.Services.DownloadSourceFileFromServiceList(projectData);
 
-            Assert.IsTrue(applicationManager.Services.CheckFileDownloaded(filename));
+            Assert.IsTrue(app.Services.CheckFileDownloaded(filename));
         }
 
         [Test]
@@ -43,9 +43,9 @@ namespace AutoGTP2Tests
                 FileName = "memoQ"
             };
 
-            applicationManager.Services.DownloadCATLogFile(projectData);
+            app.Services.DownloadCATLogFile(projectData);
 
-            Assert.IsTrue(applicationManager.Services.CheckFileDownloaded(filename));
+            Assert.IsTrue(app.Services.CheckFileDownloaded(filename));
         }
 
         [Test]
@@ -53,9 +53,9 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData("");                        
 
-            applicationManager.Services.SourceFileRemove(projectData);
+            app.Services.SourceFileRemove(projectData);
 
-            Assert.IsTrue(applicationManager.Services.SourceFileIsRemoved());
+            Assert.IsTrue(app.Services.SourceFileIsRemoved());
         }
 
         [Test]
@@ -63,9 +63,9 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData("");
 
-            applicationManager.Services.UploadInvalidSourceFile(projectData);
+            app.Services.UploadInvalidSourceFile(projectData);
 
-            Assert.IsTrue(applicationManager.Services.CircleNextToTheFilePopupIsPresent());
+            Assert.IsTrue(app.Services.CircleNextToTheFilePopupIsPresent());
         }
 
 

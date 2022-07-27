@@ -13,9 +13,9 @@ namespace AutoGTP2Tests
             ProjectData projectData = new ProjectData("");
             ServiceData serviceData = new ServiceData("100");
 
-            applicationManager.Services.ServiceCancelButton(projectData, serviceData);
+            app.Services.ServiceCancelButton(projectData, serviceData);
 
-            Assert.IsTrue(applicationManager.Services.PlugItemIsPresent());
+            Assert.IsTrue(app.Services.PlugItemIsPresent());
         }
 
         [Test]
@@ -24,12 +24,12 @@ namespace AutoGTP2Tests
             ProjectData projectData = new ProjectData("");
             ServiceData serviceData = new ServiceData("100");
 
-            applicationManager.Services.ServiceManualCorrectQuantity(projectData, serviceData);
+            app.Services.ServiceManualCorrectQuantity(projectData, serviceData);
 
-            Assert.AreEqual(applicationManager.Services.QuantityTextValue(), "100.00");
-            Assert.IsTrue(applicationManager.Services.ServiceIsCalculated());
-            Assert.AreEqual(applicationManager.Services.QuantityPriceMultiplication(), 
-                applicationManager.Services.ServiceCostValueText());
+            Assert.AreEqual(app.Services.QuantityTextValue(), "100.00");
+            Assert.IsTrue(app.Services.ServiceIsCalculated());
+            Assert.AreEqual(app.Services.QuantityPriceMultiplication(), 
+                app.Services.ServiceCostValueText());
         }
 
         [Test]
@@ -38,10 +38,10 @@ namespace AutoGTP2Tests
             ProjectData projectData = new ProjectData("");
             ServiceData serviceData = new ServiceData("word");
 
-            applicationManager.Services.ServiceCreateManualQuantityWord(projectData, serviceData);
+            app.Services.ServiceCreateManualQuantityWord(projectData, serviceData);
 
-            Assert.AreEqual(applicationManager.Services.QuantityTextValue(), "0.00");
-            Assert.IsTrue(applicationManager.Services.ServiceIsNotCalculated());
+            Assert.AreEqual(app.Services.QuantityTextValue(), "0.00");
+            Assert.IsTrue(app.Services.ServiceIsNotCalculated());
         }
 
         [Test]
@@ -50,10 +50,10 @@ namespace AutoGTP2Tests
             ProjectData projectData = new ProjectData("");
             ServiceData serviceData = new ServiceData("00078");
 
-            applicationManager.Services.ServiceCreateManualQuantityZeroFirst(projectData, serviceData);
+            app.Services.ServiceCreateManualQuantityZeroFirst(projectData, serviceData);
 
-            Assert.AreEqual(applicationManager.Services.QuantityTextValue(), "78.00");
-            Assert.IsTrue(applicationManager.Services.ServiceIsCalculated());
+            Assert.AreEqual(app.Services.QuantityTextValue(), "78.00");
+            Assert.IsTrue(app.Services.ServiceIsCalculated());
         }
 
         [Test]
@@ -62,10 +62,10 @@ namespace AutoGTP2Tests
             ProjectData projectData = new ProjectData("");
             ServiceData serviceData = new ServiceData("-190");
 
-            applicationManager.Services.ServiceCreateManualQuantityMinus(projectData, serviceData);
+            app.Services.ServiceCreateManualQuantityMinus(projectData, serviceData);
 
-            Assert.AreEqual(applicationManager.Services.QuantityTextValue(), "190.00");
-            Assert.IsTrue(applicationManager.Services.ServiceIsCalculated());
+            Assert.AreEqual(app.Services.QuantityTextValue(), "190.00");
+            Assert.IsTrue(app.Services.ServiceIsCalculated());
         }
 
         [Test]
@@ -73,9 +73,9 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData("");
 
-            applicationManager.Services.ServiceCreateAutoCount(projectData);
+            app.Services.ServiceCreateAutoCount(projectData);
 
-            Assert.IsTrue(applicationManager.Services.ServiceIsNotCalculated());
+            Assert.IsTrue(app.Services.ServiceIsNotCalculated());
         }
 
         /*
@@ -103,12 +103,12 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData("");
 
-            applicationManager.Services.ServiceCreateCATLog(projectData);
+            app.Services.ServiceCreateCATLog(projectData);
 
-            Assert.IsTrue(applicationManager.Services.ServiceIsCalculated());
-            Assert.AreEqual(applicationManager.Services.QuantityTextValue(), "CAT log file");
-            Assert.IsTrue(applicationManager.Services.ServiceEditButtonIsPresent());
-            Assert.IsTrue(applicationManager.Services.ServiceStatisticsButtonIsPresent());
+            Assert.IsTrue(app.Services.ServiceIsCalculated());
+            Assert.AreEqual(app.Services.QuantityTextValue(), "CAT log file");
+            Assert.IsTrue(app.Services.ServiceEditButtonIsPresent());
+            Assert.IsTrue(app.Services.ServiceStatisticsButtonIsPresent());
         }
 
         [Test]
@@ -116,9 +116,9 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData("");
 
-            applicationManager.Services.ServiceCATLogWithOutCATFile(projectData);
+            app.Services.ServiceCATLogWithOutCATFile(projectData);
 
-            Assert.IsTrue(applicationManager.Services.WarningPopupIsPresent());
+            Assert.IsTrue(app.Services.WarningPopupIsPresent());
         }
 
         [Test]
@@ -126,10 +126,10 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData("");
 
-            applicationManager.Services.ServiceCATLogWithOutCATFileContinueButton(projectData);
+            app.Services.ServiceCATLogWithOutCATFileContinueButton(projectData);
 
-            Assert.IsFalse(applicationManager.Services.WarningPopupIsPresent());
-            Assert.IsFalse(applicationManager.Services.PlugItemIsPresent());
+            Assert.IsFalse(app.Services.WarningPopupIsPresent());
+            Assert.IsFalse(app.Services.PlugItemIsPresent());
         }
 
         [Test]
@@ -137,10 +137,10 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData("");
 
-            applicationManager.Services.ServiceCATLogWithOutCATFileCancelButton(projectData);
+            app.Services.ServiceCATLogWithOutCATFileCancelButton(projectData);
 
-            Assert.IsFalse(applicationManager.Services.WarningPopupIsPresent());
-            Assert.IsTrue(applicationManager.Services.PlugItemIsPresent());
+            Assert.IsFalse(app.Services.WarningPopupIsPresent());
+            Assert.IsTrue(app.Services.PlugItemIsPresent());
         }
 
 

@@ -14,9 +14,9 @@ namespace AutoGTP2Tests
             ProjectData projectData = new ProjectData("");
             ServiceData serviceData = new ServiceData("100");
 
-            applicationManager.Services.ServiceDeleteDecline(projectData, serviceData);
+            app.Services.ServiceDeleteDecline(projectData, serviceData);
 
-            Assert.IsFalse(applicationManager.Services.WarningOverlayIsPresent());
+            Assert.IsFalse(app.Services.WarningOverlayIsPresent());
         }
 
 
@@ -27,9 +27,9 @@ namespace AutoGTP2Tests
             ProjectData projectData = new ProjectData("");
             ServiceData serviceData = new ServiceData("100");
 
-            applicationManager.Services.ServiceDeleteConfirm(projectData, serviceData);
+            app.Services.ServiceDeleteConfirm(projectData, serviceData);
 
-            Assert.IsTrue(applicationManager.Services.PlugItemIsPresent());
+            Assert.IsTrue(app.Services.PlugItemIsPresent());
         }
     }
 }

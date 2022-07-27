@@ -14,10 +14,10 @@ namespace AutoGTP2Tests
                 ProjectName = "Express " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
             };
 
-            applicationManager.Projects.ExpressProjectExclamationPopup(projectData);
+            app.Projects.ExpressProjectExclamationPopup(projectData);
 
-            Assert.IsTrue(applicationManager.Projects.ExpressProjectExclamationPopupIsPresent());
-            Assert.IsTrue(applicationManager.Projects.ExpressProjectExclamationPopupIsFilled());
+            Assert.IsTrue(app.Projects.ExpressProjectExclamationPopupIsPresent());
+            Assert.IsTrue(app.Projects.ExpressProjectExclamationPopupIsFilled());
         }
 
         [Test]
@@ -28,7 +28,7 @@ namespace AutoGTP2Tests
                 ProjectName = "Express " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
             };
 
-            applicationManager.Projects.ExpressProjectFileAttach(projectData);
+            app.Projects.ExpressProjectFileAttach(projectData);
             
             // добавить проверки правильного расчета
         }
@@ -41,9 +41,9 @@ namespace AutoGTP2Tests
                 ProjectName = "Express " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"                
             };            
             
-            applicationManager.Projects.ExpressProjectTextAttach(projectData, applicationManager.expressFile8000);
+            app.Projects.ExpressProjectTextAttach(projectData, app.expressFile8000);
 
-            Assert.AreEqual(applicationManager.Projects.ExpressWordCount(), "0 out of 8,000 left");
+            Assert.AreEqual(app.Projects.ExpressWordCount(), "0 out of 8,000 left");
         }
 
         [Test]
@@ -54,9 +54,9 @@ namespace AutoGTP2Tests
                 ProjectName = "Express " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
             };
 
-            applicationManager.Projects.ExpressProjectTextAttach(projectData, applicationManager.expressFile8001);
+            app.Projects.ExpressProjectTextAttach(projectData, app.expressFile8001);
 
-            Assert.AreEqual(applicationManager.Projects.ExpressWordCount(), "-1 out of 8,000 left");
+            Assert.AreEqual(app.Projects.ExpressWordCount(), "-1 out of 8,000 left");
         }
 
         [Test]
@@ -67,9 +67,9 @@ namespace AutoGTP2Tests
                 ProjectName = "Express " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
             };
 
-            applicationManager.Projects.ExpressProjectTextAttach(projectData, applicationManager.expressFile7999);
+            app.Projects.ExpressProjectTextAttach(projectData, app.expressFile7999);
 
-            Assert.AreEqual(applicationManager.Projects.ExpressWordCount(), "1 out of 8,000 left");
+            Assert.AreEqual(app.Projects.ExpressWordCount(), "1 out of 8,000 left");
         }
 
         [Test]
@@ -80,10 +80,10 @@ namespace AutoGTP2Tests
                 ProjectName = "Express " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
             };
 
-            applicationManager.Projects.ExpressProjectLimitPopupCancelButton(projectData, applicationManager.expressFile8001);
+            app.Projects.ExpressProjectLimitPopupCancelButton(projectData, app.expressFile8001);
 
-            Assert.IsTrue(applicationManager.Projects.ExpressProjectTextAreaIsPresent());
-            Assert.AreEqual(applicationManager.Projects.ExpressWordCount(), "-1 out of 8,000 left");
+            Assert.IsTrue(app.Projects.ExpressProjectTextAreaIsPresent());
+            Assert.AreEqual(app.Projects.ExpressWordCount(), "-1 out of 8,000 left");
         }
 
         [Test]
@@ -94,10 +94,10 @@ namespace AutoGTP2Tests
                 ProjectName = "Express " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
             };
 
-            applicationManager.Projects.ExpressProjectLimitPopupSwitchButton(projectData, applicationManager.expressFile8001);
+            app.Projects.ExpressProjectLimitPopupSwitchButton(projectData, app.expressFile8001);
 
-            Assert.IsFalse(applicationManager.Projects.ExpressProjectTextAreaIsPresent());
-            Assert.IsTrue(applicationManager.Services.ServiceIsNotCalculated());
+            Assert.IsFalse(app.Projects.ExpressProjectTextAreaIsPresent());
+            Assert.IsTrue(app.Services.ServiceIsNotCalculated());
         }
 
     }

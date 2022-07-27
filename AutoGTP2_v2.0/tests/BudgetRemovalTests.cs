@@ -10,24 +10,24 @@ namespace AutoGTP2Tests
         [Test]
         public void BudgetRemovalCancelTest()
         {
-            if (applicationManager.Budgets.BudgetDeleteButtonIsDisabled())
+            if (app.Budgets.BudgetDeleteButtonIsDisabled())
             {
                 BudgetData budget = new BudgetData("", "")
                 {
-                    BudgetPO = applicationManager.TextGenerator(1, 5),
-                    BudgetCost = applicationManager.TextGenerator(1, 3),
+                    BudgetPO = app.TextGenerator(1, 5),
+                    BudgetCost = app.TextGenerator(1, 3),
                     BudgetTotal = "1000"
                 };
-                applicationManager.Budgets.CreateBudget(budget);
-                applicationManager.Budgets.WaitUntilFindElement(5, By.CssSelector("#BUDGETS_BURGER_0 > svg > path"));
-                applicationManager.Budgets.BudgetBurgerClick();                
+                app.Budgets.CreateBudget(budget);
+                app.Budgets.WaitUntilFindElement(5, By.CssSelector("#BUDGETS_BURGER_0 > svg > path"));
+                app.Budgets.BudgetBurgerClick();                
             }
 
-            List<BudgetData> oldBudgets = applicationManager.Budgets.GetBudgetList();
+            List<BudgetData> oldBudgets = app.Budgets.GetBudgetList();
 
-            applicationManager.Budgets.BudgetRemovalCancel();
+            app.Budgets.BudgetRemovalCancel();
 
-            List<BudgetData> newBudgets = applicationManager.Budgets.GetBudgetList();
+            List<BudgetData> newBudgets = app.Budgets.GetBudgetList();
 
             Assert.AreEqual(oldBudgets.Count, newBudgets.Count);
             oldBudgets.Sort(); // сортировка старого списка
@@ -38,24 +38,24 @@ namespace AutoGTP2Tests
         [Test]
         public void BudgetRemovalTest()
         { 
-            if (applicationManager.Budgets.BudgetDeleteButtonIsDisabled())
+            if (app.Budgets.BudgetDeleteButtonIsDisabled())
             {
                 BudgetData budget = new BudgetData("", "")
                 {
-                    BudgetPO = applicationManager.TextGenerator(1, 5),
-                    BudgetCost = applicationManager.TextGenerator(1, 3),
+                    BudgetPO = app.TextGenerator(1, 5),
+                    BudgetCost = app.TextGenerator(1, 3),
                     BudgetTotal = "1000"
                 };  
-                applicationManager.Budgets.CreateBudget(budget);
-                applicationManager.Budgets.WaitUntilFindElement(5, By.CssSelector("#BUDGETS_BURGER_0 > svg > path"));
-                applicationManager.Budgets.BudgetBurgerClick();                
+                app.Budgets.CreateBudget(budget);
+                app.Budgets.WaitUntilFindElement(5, By.CssSelector("#BUDGETS_BURGER_0 > svg > path"));
+                app.Budgets.BudgetBurgerClick();                
             }
 
-            List<BudgetData> oldBudgets = applicationManager.Budgets.GetBudgetList();
+            List<BudgetData> oldBudgets = app.Budgets.GetBudgetList();
 
-            applicationManager.Budgets.BudgetRemoval();
+            app.Budgets.BudgetRemoval();
 
-            List<BudgetData> newBudgets = applicationManager.Budgets.GetBudgetList();
+            List<BudgetData> newBudgets = app.Budgets.GetBudgetList();
             Assert.AreEqual(oldBudgets.Count - 1, newBudgets.Count);
 
             oldBudgets.RemoveAt(0);

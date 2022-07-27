@@ -10,20 +10,20 @@ namespace AutoGTP2Tests
         [Test]
         public void RemoveProjectConfirmTest()
         {
-            if (applicationManager.Projects.ProjectDeleteButtonIsDisabled())
+            if (app.Projects.ProjectDeleteButtonIsDisabled())
             {
                 ProjectData projectData = new ProjectData("")
                 {
                     ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
                 };
-                applicationManager.Projects.CreatePendingProject(projectData);
+                app.Projects.CreatePendingProject(projectData);
             }
 
-            List<ProjectData> oldProjects = applicationManager.Projects.GetProjectList();
+            List<ProjectData> oldProjects = app.Projects.GetProjectList();
 
-            applicationManager.Projects.RemoveProjectConfirm();
+            app.Projects.RemoveProjectConfirm();
 
-            List<ProjectData> newProjects = applicationManager.Projects.GetProjectList();            
+            List<ProjectData> newProjects = app.Projects.GetProjectList();            
             
             if (oldProjects.Count > 20)
             {
@@ -39,20 +39,20 @@ namespace AutoGTP2Tests
         [Test]
         public void RemoveProjectDeclineTest()
         {
-            if (applicationManager.Projects.ProjectDeleteButtonIsDisabled())
+            if (app.Projects.ProjectDeleteButtonIsDisabled())
             {
                 ProjectData projectData = new ProjectData("")
                 {
                     ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
                 };
-                applicationManager.Projects.CreatePendingProject(projectData);
+                app.Projects.CreatePendingProject(projectData);
             }
 
-            List<ProjectData> oldProjects = applicationManager.Projects.GetProjectList();
+            List<ProjectData> oldProjects = app.Projects.GetProjectList();
 
-            applicationManager.Projects.RemoveProjectDecline();
+            app.Projects.RemoveProjectDecline();
 
-            List<ProjectData> newProjects = applicationManager.Projects.GetProjectList();
+            List<ProjectData> newProjects = app.Projects.GetProjectList();
 
             if (oldProjects.Count > 20)
             {

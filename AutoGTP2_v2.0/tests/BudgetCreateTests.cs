@@ -12,17 +12,17 @@ namespace AutoGTP2Tests
         {
             BudgetData budgetData = new BudgetData("", "")
             {
-                BudgetPO = applicationManager.TextGenerator(1, 5),
-                BudgetCost = applicationManager.TextGenerator(1, 3),
+                BudgetPO = app.TextGenerator(1, 5),
+                BudgetCost = app.TextGenerator(1, 3),
                 BudgetTotal = "1000"
             };
 
-            List<BudgetData> oldBudgets = applicationManager.Budgets.GetBudgetList();            
+            List<BudgetData> oldBudgets = app.Budgets.GetBudgetList();            
 
-            applicationManager.Budgets.CreateBudget(budgetData);
+            app.Budgets.CreateBudget(budgetData);
 
             
-            List<BudgetData> newBudgets = applicationManager.Budgets.GetBudgetList();
+            List<BudgetData> newBudgets = app.Budgets.GetBudgetList();
 
             //проверка количества бюджетов в списках
             Assert.AreEqual(oldBudgets.Count + 1, newBudgets.Count);
