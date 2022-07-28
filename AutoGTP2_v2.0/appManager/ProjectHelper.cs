@@ -94,14 +94,10 @@ namespace AutoGTP2Tests
         {
             List<ProjectData> projects = new List<ProjectData>();
             manager.Navigator.GoToProjectPage();
-            IList<IWebElement> name = driver.FindElements(By.Id("PROJECTS_PROJECT_NAME"));
-            IList<IWebElement> stat = driver.FindElements(By.Id("PROJECTS_PROJECT_NAME"));
-            if (name.Count == stat.Count)
+            IList<IWebElement> name = driver.FindElements(By.Id("PROJECTS_PROJECT_NAME"));            
+            for(int i = 0; i < name.Count; i++)
             {
-                for (int i = 0; i < name.Count; i++)
-                {
-                    projects.Add(new ProjectData(name[i].Text));
-                }
+                projects.Add(new ProjectData(name[i].Text));
             }
             return projects;
         }

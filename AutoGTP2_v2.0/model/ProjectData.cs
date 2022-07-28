@@ -10,8 +10,7 @@ namespace AutoGTP2Tests
             ProjectName = projectName;            
         }
 
-        public string ProjectName { get; set; }
-        public string ProjectStatus { get; set; }
+        public string ProjectName { get; set; }        
         
 
 
