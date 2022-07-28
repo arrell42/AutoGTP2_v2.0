@@ -46,10 +46,9 @@ namespace AutoGTP2Tests
         // проверка на скачанный файл
         public bool CheckFileDownloaded(ServiceData filename)
         {
-            bool exist = false;
-            //доработать относительный путь
-            string Path = Environment.GetEnvironmentVariable(@"C:") + @"\Users\d_inozemtsev\\Downloads";
-            string[] filePaths = Directory.GetFiles(Path);
+            bool exist = false;            
+            string downloadPath = Path.Combine(Syroot.Windows.IO.KnownFolders.Downloads.Path);
+            string[] filePaths = Directory.GetFiles(downloadPath);
             foreach (string p in filePaths)
             {
                 if (p.Contains(filename.FileName))
