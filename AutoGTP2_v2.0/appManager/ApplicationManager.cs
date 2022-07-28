@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using OpenQA.Selenium;
@@ -39,14 +40,15 @@ namespace AutoGTP2Tests
             options.AddArguments("start-maximized");
             driver = new ChromeDriver(options);            
                         
+
             baseURL = "https://gtp-test.janusww.com:9999";
             //baseURL = "https://gtp2.janusww.com";
-            sourceFile = @"C:\Users\d_inozemtsev\source\repos\AutoGTP2_v2.0\AutoGTP2_v2.0\Files\SourceTest.txt";
-            CATLogFilePath = @"C:\Users\d_inozemtsev\source\repos\AutoGTP2_v2.0\AutoGTP2_v2.0\Files\memoQ.csv";
-            invalidSourceFilePath = @"C:\Users\d_inozemtsev\source\repos\AutoGTP2_v2.0\AutoGTP2_v2.0\Files\InvaildSourceFileTest.dwg";
-            expressFile8000 = @"C:\Users\d_inozemtsev\source\repos\AutoGTP2_v2.0\AutoGTP2_v2.0\Files\Express8000.txt";
-            expressFile8001 = @"C:\Users\d_inozemtsev\source\repos\AutoGTP2_v2.0\AutoGTP2_v2.0\Files\Express8001.txt";
-            expressFile7999 = @"C:\Users\d_inozemtsev\source\repos\AutoGTP2_v2.0\AutoGTP2_v2.0\Files\Express7999.txt";            
+            sourceFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"dataFiles\SourceTest.txt");
+            CATLogFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"dataFiles\memoQ.csv");
+            invalidSourceFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"dataFiles\InvaildSourceFileTest.dwg");
+            expressFile8000 = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"dataFiles\Express8000.txt");
+            expressFile8001 = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"dataFiles\Express8001.txt");            
+            expressFile7999 = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"dataFiles\Express7999.txt");
 
             //HELPERS INIT
             loginHelper = new LoginHelper(this);

@@ -69,6 +69,16 @@ namespace AutoGTP2Tests
             FillTextAreaFromFile(filePath);            
             return this;
         }
+        public ProjectHelper FillTextAreaFromFile2(string filePath)
+        {
+            string text = InternalReadAllText(filePath, Encoding.UTF8).Trim().Replace(Environment.NewLine, "");
+
+            IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+            js.ExecuteScript("document.getElementById('PROJECTS_EXPRESS_TEXT').value = '" + text + "';");
+            driver.FindElement(By.Id("PROJECTS_EXPRESS_TEXT")).SendKeys(" "); //чтобы слова подсчитались, иначе подсчета не происходит
+
+            return this;
+        }
 
         public ProjectHelper ExpressProjectLimitPopupCancelButton(ProjectData projectData, string filePath)
         {
