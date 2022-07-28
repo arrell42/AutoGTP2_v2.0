@@ -47,14 +47,47 @@ namespace AutoGTP2Tests
             Assert.IsTrue(app.Dashport.ExpressProjectsNotPresent());
         }
 
-        //[Test]
-        public void OrderedStatusFilterTests()
+        [Test]
+        public void ProjectStatusesOrderedFilterTests()
         {
-            //applicationManager.Dashport.OrderedStatusFilter();
+            app.Dashport.OrderedProjectStatusesFilter();             
 
-            Assert.IsTrue(app.Dashport.ExpressProjectsNotPresent());
+            Assert.IsTrue(app.Dashport.ProjectsStatusesInListIsOrdered());
         }
 
+        [Test]
+        public void ProjectStatusesInProgressFilterTests()
+        {
+            app.Dashport.InProgressProjectStatusesFilter();
+
+            Assert.IsTrue(app.Dashport.ProjectsStatusesInListInProgress());
+        }
+
+        [Test]
+        public void ClearButtonTests()
+        {
+            app.Dashport.FillFilterAndClearButtonClick();
+
+            Assert.IsTrue(app.Dashport.GanttAllButtonIsActive());
+            Assert.IsTrue(app.Dashport.GanttProjectStatusesValueIsAll());
+        }
+
+        [Test]
+        public void GanttCloseButtonTests()
+        {
+            app.Dashport.GanttClose();
+
+            Assert.IsTrue(app.Dashport.AllDashportCardsIsPresent());            
+        }
+
+        [Test]
+        public void GanttQuestionMarkPopupTests()
+        {
+            app.Dashport.GanttQuestionMarkPopup();
+
+            Assert.IsTrue(app.Dashport.GanttQuestionMarkPopupIsPresent());
+            Assert.IsTrue(app.Dashport.GanttQuestionMarkPopupIsFilled());
+        }
 
     }
 }

@@ -47,6 +47,7 @@ namespace AutoGTP2Tests
         public bool CheckFileDownloaded(ServiceData filename)
         {
             bool exist = false;
+            //доработать относительный путь
             string Path = Environment.GetEnvironmentVariable(@"C:") + @"\Users\d_inozemtsev\\Downloads";
             string[] filePaths = Directory.GetFiles(Path);
             foreach (string p in filePaths)
