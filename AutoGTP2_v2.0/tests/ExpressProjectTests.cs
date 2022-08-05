@@ -9,7 +9,7 @@ namespace AutoGTP2Tests
         [Test]
         public void ExpressProjectExclamationPopupTest()
         {
-            ProjectData projectData = new ProjectData("")
+            ProjectData projectData = new ProjectData()
             {
                 ProjectName = "Express " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
             };
@@ -23,7 +23,7 @@ namespace AutoGTP2Tests
         [Test]
         public void ExpressProjectFileAttachTest()
         {
-            ProjectData projectData = new ProjectData("")
+            ProjectData projectData = new ProjectData()
             {
                 ProjectName = "Express " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
             };
@@ -36,7 +36,7 @@ namespace AutoGTP2Tests
         [Test]
         public void ExpressProjectTextAttach8000Test()
         {
-            ProjectData projectData = new ProjectData("")
+            ProjectData projectData = new ProjectData()
             {
                 ProjectName = "Express " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"                
             };            
@@ -49,7 +49,7 @@ namespace AutoGTP2Tests
         [Test]
         public void ExpressProjectTextAttach8001Test()
         {
-            ProjectData projectData = new ProjectData("")
+            ProjectData projectData = new ProjectData()
             {
                 ProjectName = "Express " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
             };
@@ -62,7 +62,7 @@ namespace AutoGTP2Tests
         [Test]
         public void ExpressProjectTextAttach7999Test()
         {
-            ProjectData projectData = new ProjectData("")
+            ProjectData projectData = new ProjectData()
             {
                 ProjectName = "Express " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
             };
@@ -75,7 +75,7 @@ namespace AutoGTP2Tests
         [Test]
         public void ExpressProjectLimitPopupCancelButtonTest()
         {
-            ProjectData projectData = new ProjectData("")
+            ProjectData projectData = new ProjectData()
             {
                 ProjectName = "Express " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
             };
@@ -89,7 +89,7 @@ namespace AutoGTP2Tests
         [Test]
         public void ExpressProjectLimitPopupSwitchButtonTest()
         {
-            ProjectData projectData = new ProjectData("")
+            ProjectData projectData = new ProjectData()
             {
                 ProjectName = "Express " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
             };

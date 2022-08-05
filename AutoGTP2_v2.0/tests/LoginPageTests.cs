@@ -18,7 +18,7 @@ namespace AutoGTP2Tests
             foreach(string l in lines)
             {
                 string[] parts = l.Split(',');
-                loginData.Add(new LoginData(parts[0], parts[1]));                
+                loginData.Add(new LoginData(parts[0], parts[1]));
             }
             return loginData;
         }

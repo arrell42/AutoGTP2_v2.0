@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,10 +17,27 @@ namespace AutoGTP2Tests
         //Высокоуровневые методы
         public ProjectHelper CreatePendingProject(ProjectData projectData)
         {
+            OpenNewPendingProject(projectData, 3, "00:30");            
+            SaveProjectButtonClick();            
+            return this;
+        }
+
+        public ProjectHelper CreateEmptyProject()
+        {
             manager.Navigator.GoToProjectPage();
             NewProjectButtonClick();
-            EnterProjectName(projectData);
-            SaveProjectButtonClick();            
+            SaveProjectButtonClick();
+            return this;
+        }
+
+        public ProjectHelper EmptyProjecPopupButtons()
+        {
+            manager.Navigator.GoToProjectPage();
+            NewProjectButtonClick();
+            SaveProjectButtonClick();
+            AddDetailsButtonClick();
+            SaveProjectButtonClick();
+            ExitAndDeleteButtonClick();
             return this;
         }
 
@@ -46,7 +64,7 @@ namespace AutoGTP2Tests
             OpenNewExpressProject(projectData);
             SaveProjectButtonClick();
             return this;
-        }
+        }        
 
         public ProjectHelper ExpressProjectExclamationPopup(ProjectData projectData)
         {
@@ -61,7 +79,7 @@ namespace AutoGTP2Tests
             manager.Services.SourceFileAttach();
             manager.Services.RequestQuoteButtonClick();
             return this;
-        }
+        }        
 
         public ProjectHelper ExpressProjectTextAttach(ProjectData projectData, string filePath)
         {
@@ -97,13 +115,111 @@ namespace AutoGTP2Tests
             IList<IWebElement> name = driver.FindElements(By.Id("PROJECTS_PROJECT_NAME"));            
             for(int i = 0; i < name.Count; i++)
             {
-                projects.Add(new ProjectData(name[i].Text));
+                projects.Add(new ProjectData() {ProjectName = name[i].Text });                
             }
             return projects;
         }
 
 
+
+
+        public ProjectData GetDatesFromProjectList()
+        {
+            manager.Navigator.GoToProjectPage();
+            driver.FindElement(By.XPath("//div[@id= 'PROJECT_0']//div[@id= 'PROJECTS_PROJECT_NAME']")).Click();
+            WaitUntilFindElement(10, By.XPath(
+                "//div[@class= 'styles_modal__gNwvD styles_modalCenter__L9F2w project-card-modal']"));
+
+            string start = driver.FindElement(By.XPath(
+                "//div[@id= 'PROJECT_0']//div[@class= 'cKVdbe5ncl_hH94NrcVk']/div[2]")).Text;
+            string end = driver.FindElement(By.XPath(
+                "//div[@id= 'PROJECT_0']//div[@class= 'dXd7OzCXmiZiomDAUNh1']/div[2]")).Text;
+
+
+            return new ProjectData()
+            {
+                StartDate = start,
+                EndDate = end
+            };
+        }
+
+        public ProjectData GetDatesFromProject()
+        {
+            manager.Navigator.GoToProjectPage();
+
+            string start = driver.FindElement(By.XPath("//input[@name= 'start_date']")).GetAttribute("value").Trim();
+            string end = driver.FindElement(By.XPath("//input[@name= 'end_date']")).GetAttribute("value").Trim();
+            string time = driver.FindElement(By.XPath(
+                "//input[@name= 'PROJECT_CARD_END_TIME_DROP']")).GetAttribute("value").Trim();
+
+            return new ProjectData()
+            {
+                StartDate = start,
+                EndDate = end,
+                Time = time
+            };
+        }
+
+
+
+
+
+
         // Низкоуровневые методы
+        public ProjectHelper AddDetailsButtonClick()
+        {
+            driver.FindElement(By.XPath("//button[@class = 'TcMMo6iDjW2Wg_KudxB2 nbJ_lQ3s5whrR3I5IMAA']")).Click();
+            WaitUntilElementIsHide(5, By.XPath
+                ("//div[@class = 'styles_modal__gNwvD styles_modalCenter__L9F2w ewdjRZof9VeUtsLdyqQf']"));
+            return this;
+        }
+
+        public ProjectHelper ExitAndDeleteButtonClick()
+        {
+            driver.FindElement(By.XPath("//button[@class = 'TcMMo6iDjW2Wg_KudxB2 WwSFVDblp_mIPZp2ZJYT']")).Click();
+            return this;
+        }
+
+        public bool ProjectListIsPresent()
+        {
+            return IsElementPresent(By.XPath("//div[@class = 'fPooHDtNQyVHMCf4O9mn']"));
+        }
+
+        public bool WarningPopupIsPresent()
+        {
+            return IsElementPresent(By.XPath
+                ("//div[@class = 'styles_modal__gNwvD styles_modalCenter__L9F2w ewdjRZof9VeUtsLdyqQf']"));
+        }
+
+        public ProjectHelper OpenNewPendingProject(ProjectData projectData, int endDate, string time)
+        {
+            manager.Navigator.GoToProjectPage();
+            NewProjectButtonClick();
+            EnterProjectName(projectData);
+            SetEndDate(endDate);// устанавливает конечную дату, индекс указывает количество дней от начальной даты
+            SetTime(time);// время задается в формате 00:00 с шагом 30 минут
+            return this;
+        }
+
+        public ProjectHelper SetTime(string t)
+        {
+            driver.FindElement(By.XPath("//div[@class = 'kZAaPPhFtdt6fjMT3dkk']")).Click();
+            driver.FindElement(By.XPath(
+                "//p[@class = 'CKkqQTXqlkqO2CTJTb3k' and contains(text(), '" + t + "')]")).Click();
+            return this;
+        }
+
+        public ProjectHelper SetEndDate(int i)
+        {
+            driver.FindElement(By.Id("PROJECT_CARD_END_DATE")).Click();
+            Thread.Sleep(300);
+            driver.FindElement(By.Id("PROJECT_CARD_END_DATE")).Click();
+            driver.FindElement(By.XPath(
+                "//div[@class = 'nKgW2jzaADOuJ9x1mz0H FG0sahfhP8LsIt1TK7TM']//following-sibling::div["+i+"]")).Click();
+            WaitUntilFindElement(10, By.XPath("//div[@class = 'react-dropdown-select W8tRcu9L7alboUMK92q_" +
+                "  css-12zlm52-ReactDropdownSelect e1gzf2xs0']"));
+            return this;
+        }
 
         public ProjectHelper LimitPopupSwitchButtonClick()
         {
@@ -161,7 +277,6 @@ namespace AutoGTP2Tests
         {
             driver.FindElement(By.Id("Path_301")).Click();
             WaitUntilFindElement(10, By.XPath("//div[@class = 'ant-tooltip-inner']"));
-
             return this;
         }
         public ProjectHelper SelectExpressSourceLanguage()
@@ -212,7 +327,11 @@ namespace AutoGTP2Tests
         {
             driver.FindElement(By.Id("PROJECT_CARD_SAVE_AND_EXIT")).Click();
             //ждем пока исчезнет всплывающее окно с проектом
-            WaitUntilFindElements(15, By.Id("PROJECT_CARD_SAVE_AND_EXIT"), 0);
+            if (!WarningPopupIsPresent())
+            {
+                WaitUntilFindElements(15, By.Id("PROJECT_CARD_SAVE_AND_EXIT"), 0);
+            }
+            
             return this;
         }
 

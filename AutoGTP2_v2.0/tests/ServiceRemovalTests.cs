@@ -11,7 +11,10 @@ namespace AutoGTP2Tests
 
         public void ServiceDeclineTest()
         {
-            ProjectData projectData = new ProjectData("");
+            ProjectData projectData = new ProjectData()
+            {
+                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
+            };
             ServiceData serviceData = new ServiceData("100");
 
             app.Services.ServiceDeleteDecline(projectData, serviceData);
@@ -24,7 +27,10 @@ namespace AutoGTP2Tests
 
         public void ServiceDeleteConfirmTest()
         {
-            ProjectData projectData = new ProjectData("");
+            ProjectData projectData = new ProjectData()
+            {
+                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
+            };
             ServiceData serviceData = new ServiceData("100");
 
             app.Services.ServiceDeleteConfirm(projectData, serviceData);

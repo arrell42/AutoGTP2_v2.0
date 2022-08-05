@@ -5,13 +5,15 @@ namespace AutoGTP2Tests
 {
     public class ProjectData : IEquatable<ProjectData>, IComparable<ProjectData>
     {
-        public ProjectData(string projectName)
-        {
-            ProjectName = projectName;            
-        }
-
-        public string ProjectName { get; set; }        
+        public ProjectData() { }
         
+
+        public string ProjectName { get; set; }
+        public string StartDate { get; set; }
+        public string EndDate { get; set; }
+        public string Time { get; set; }
+
+
 
 
         //вспомогательный метод для сортировки

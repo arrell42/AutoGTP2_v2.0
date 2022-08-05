@@ -262,13 +262,22 @@ namespace AutoGTP2Tests
 
         public int QuantityPriceMultiplication()
         {
-            OpenServiceLanguagePairsTable();
+            if (ServiceLanguagePairsTableIsHidden())
+            {
+                OpenServiceLanguagePairsTable();
+            }            
             string a = driver.FindElement(By.XPath("//div[@class = 'row']/div/p[@class = 'GxpMAeiU_LKN4yZsTEhL']")).Text;
             string b = driver.FindElement(By.XPath("//div[@class = 'row']/div/p[@class = 'zEEPIQ2axxHqUkIhoCtb']")).Text;
 
             double i = Convert.ToDouble(a.Replace(".", ",").Trim()) * Convert.ToDouble(b.Replace(".", ",").Trim());
             return (int)i;
         }
+
+        public bool ServiceLanguagePairsTableIsHidden()
+        {
+            return IsElementPresent(By.XPath("//div[@class = 'language-pairs-table hidden']"));
+        }
+
         public int ServiceCostValueTextInTable()
         {
             string a = driver.FindElement(By.XPath("//p[@class = 'cost-row']")).Text;
@@ -279,7 +288,7 @@ namespace AutoGTP2Tests
         public ServiceHelper OpenServiceLanguagePairsTable()
         {
             driver.FindElement(By.Id("SHOW_LANGUAGE_PAIRS")).Click();
-            Thread.Sleep(500);
+            Thread.Sleep(5000);
             return this;
         }
         public bool CircleNextToTheFilePopupIsPresent()
@@ -289,6 +298,7 @@ namespace AutoGTP2Tests
         public ServiceHelper BackToProjectButtonClick()
         {
             driver.FindElement(By.XPath("//button[@class = 'btn secondary-btn']")).Click();
+            Thread.Sleep(200);
             return this;
         }
         public ServiceHelper ExclamationClick()

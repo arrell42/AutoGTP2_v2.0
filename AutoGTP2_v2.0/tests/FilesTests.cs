@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-
+using System;
 
 namespace AutoGTP2Tests
 {
@@ -9,7 +9,10 @@ namespace AutoGTP2Tests
         [Test]
         public void DownloadSourceFileFromEditPageTest()
         {
-            ProjectData projectData = new ProjectData("");
+            ProjectData projectData = new ProjectData()
+            {
+                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
+            };
             ServiceData filename = new ServiceData("")
             {
                 FileName = "SourceTest"
@@ -23,7 +26,10 @@ namespace AutoGTP2Tests
         [Test]
         public void DownloadSourceFileFromServiceListTest()
         {
-            ProjectData projectData = new ProjectData("");
+            ProjectData projectData = new ProjectData()
+            {
+                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
+            };
             ServiceData filename = new ServiceData("")
             {
                 FileName = "SourceTest"
@@ -37,7 +43,10 @@ namespace AutoGTP2Tests
         [Test]
         public void DownloadCATLogFileTest()
         {
-            ProjectData projectData = new ProjectData("");
+            ProjectData projectData = new ProjectData()
+            {
+                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
+            };
             ServiceData filename = new ServiceData("")
             {
                 FileName = "memoQ"
@@ -51,7 +60,10 @@ namespace AutoGTP2Tests
         [Test]
         public void SourceFileRemoveTest()
         {
-            ProjectData projectData = new ProjectData("");                        
+            ProjectData projectData = new ProjectData()
+            {
+                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
+            };
 
             app.Services.SourceFileRemove(projectData);
 
@@ -61,7 +73,10 @@ namespace AutoGTP2Tests
         [Test]
         public void UploadInvalidSourceFileTest()
         {
-            ProjectData projectData = new ProjectData("");
+            ProjectData projectData = new ProjectData()
+            {
+                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
+            };
 
             app.Services.UploadInvalidSourceFile(projectData);
 
