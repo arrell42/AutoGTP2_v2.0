@@ -22,6 +22,13 @@ namespace AutoGTP2Tests
             return this;
         }
 
+        public ProjectHelper ProjectCancel(ProjectData projectData)
+        {
+            OpenNewPendingProject(projectData, 3, "00:30");
+            CancelProjectButtonClick();
+            return this;
+        }
+
         public ProjectHelper CreateEmptyProject()
         {
             manager.Navigator.GoToProjectPage();
@@ -79,7 +86,15 @@ namespace AutoGTP2Tests
             manager.Services.SourceFileAttach();
             manager.Services.RequestQuoteButtonClick();
             return this;
-        }        
+        }
+
+        public ProjectHelper PlaceOrderProjectCreation(ProjectData projectData)
+        {
+            OpenNewPendingProject(projectData, 3, "00:30");
+            PlaceOrderButtonClick();
+            PlaceOrderMessageOKClick();
+            return this;
+        }
 
         public ProjectHelper ExpressProjectTextAttach(ProjectData projectData, string filePath)
         {
@@ -87,7 +102,7 @@ namespace AutoGTP2Tests
             FillTextAreaFromFile(filePath);            
             return this;
         }
-        
+
         public ProjectHelper ExpressProjectLimitPopupCancelButton(ProjectData projectData, string filePath)
         {
             OpenNewExpressProject(projectData);
@@ -105,8 +120,40 @@ namespace AutoGTP2Tests
             LimitPopupSwitchButtonClick();            
             return this;
         }
+        public ProjectHelper AddAndDeleteBudgetInProject(ProjectData projectData)
+        {
+            OpenNewPendingProject(projectData, 3, "00:30");
+            AddBudget();
+            DeleteBudget();
+            SaveProjectButtonClick();
+            return this;
+        }
 
-        
+        public ProjectHelper CreateNewBudgetInProject(ProjectData projectData)
+        {
+            OpenNewPendingProject(projectData, 3, "00:30");
+            CreateNewBudgetButtonClick();
+            return this;
+        }
+
+        public ProjectHelper NewBudgetInProjectExistPOInput(ProjectData projectData, BudgetData budgetData)
+        {
+            OpenNewPendingProject(projectData, 3, "00:30");
+            CreateNewBudgetButtonClick();
+            manager.Budgets.EnterPOnumber(budgetData);
+            manager.Budgets.EnterBudgetName(budgetData);
+            manager.Budgets.SelectUSDCurrency();
+            manager.Budgets.EnterTotal(budgetData);
+            manager.Budgets.BudgetCreateButtonClick();
+            return this;
+        }
+
+
+
+
+
+
+
         //Получение списка проектов
         public List<ProjectData> GetProjectList()
         {
@@ -119,9 +166,6 @@ namespace AutoGTP2Tests
             }
             return projects;
         }
-
-
-
 
         public ProjectData GetDatesFromProjectList()
         {
@@ -142,6 +186,8 @@ namespace AutoGTP2Tests
                 EndDate = end
             };
         }
+
+        
 
         public ProjectData GetDatesFromProject()
         {
@@ -166,6 +212,70 @@ namespace AutoGTP2Tests
 
 
         // Низкоуровневые методы
+
+        public bool NewBudgetFormIsPresent()
+        {
+            return IsElementPresent(By.XPath(
+                "//div[@class = 'styles_modal__gNwvD styles_modalCenter__L9F2w new-budget-modal']"));
+        }
+
+        public bool CreateBudgetButtonIsEnabled()
+        {
+            return driver.FindElement(By.Id("NEW_BUDGET_CREATE")).Enabled;
+            
+        }
+
+        public ProjectHelper CreateNewBudgetButtonClick()
+        {
+            driver.FindElement(By.Id("PROJECT_CARD_CREATE_NEW_BUDGET")).Click();
+            return this;
+        }
+
+        public ProjectHelper AddBudget()
+        {
+            driver.FindElement(By.XPath(
+                "//div[@class = 'react-dropdown-select  css-12zlm52-ReactDropdownSelect e1gzf2xs0']")).Click();
+            driver.FindElement(By.XPath("//div[@class = 'eI5geOyhgjozycHCJ1DC']//div[1]")).Click();
+            return this;
+        }
+
+        public ProjectHelper DeleteBudget()
+        {
+            driver.FindElement(By.XPath(
+                "//div[@class = 'react-dropdown-select  css-12zlm52-ReactDropdownSelect e1gzf2xs0']")).Click();
+            driver.FindElement(By.XPath("//p[@class = 'oBLgHpQOCsxNcp9OWrIZ']")).Click();
+            return this;
+        }
+        public ProjectHelper PlaceOrderMessageOKClick()
+        {
+            driver.FindElement(By.XPath("//button[@class = 'TcMMo6iDjW2Wg_KudxB2 WwSFVDblp_mIPZp2ZJYT']")).Click();
+            return this;
+        }
+        public ProjectHelper PlaceOrderButtonClick()
+        {
+            driver.FindElement(By.Id("PROJECT_CARD_PLACE_ORDER")).Click();
+            WaitUntilElementIsHide(10, By.XPath(
+                "//div[@class= 'styles_modal__gNwvD styles_modalCenter__L9F2w project-card-modal']"));
+            return this;
+        }
+        public bool PlaceOrderMessageIsOpen()
+        {
+            return IsElementPresent(By.XPath("//div[@class = 'styles_modal__gNwvD styles_modalCenter__L9F2w vc6thQ1uSFnJQCMf28iV']"));
+        }
+
+        public bool ProjectCardIsOpen()
+        {
+            return IsElementPresent(By.XPath(
+                "//div[@class= 'styles_modal__gNwvD styles_modalCenter__L9F2w project-card-modal']"));
+        }
+
+        public ProjectHelper CancelProjectButtonClick()
+        {
+            driver.FindElement(By.Id("PROJECT_CARD_CANCEL")).Click();
+            WaitUntilElementIsHide(10, By.XPath(
+                "//div[@class= 'styles_modal__gNwvD styles_modalCenter__L9F2w project-card-modal']"));
+            return this;
+        }
         public ProjectHelper AddDetailsButtonClick()
         {
             driver.FindElement(By.XPath("//button[@class = 'TcMMo6iDjW2Wg_KudxB2 nbJ_lQ3s5whrR3I5IMAA']")).Click();
@@ -200,7 +310,6 @@ namespace AutoGTP2Tests
             SetTime(time);// время задается в формате 00:00 с шагом 30 минут
             return this;
         }
-
         public ProjectHelper SetTime(string t)
         {
             driver.FindElement(By.XPath("//div[@class = 'kZAaPPhFtdt6fjMT3dkk']")).Click();

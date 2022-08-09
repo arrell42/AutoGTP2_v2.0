@@ -63,7 +63,15 @@ namespace AutoGTP2Tests
             return budgets;
         }
 
+
+
+
         // Низкоуровневые методы
+
+        public bool PONumberPopupIsPresent()
+        {
+            return IsElementPresent(By.XPath("//div[@class = 'popup-content ']"));
+        }
         public BudgetHelper BudgetCreateButtonClick()
         {
             driver.FindElement(By.Id("NEW_BUDGET_CREATE")).Click();
@@ -80,7 +88,8 @@ namespace AutoGTP2Tests
 
         public BudgetHelper SelectUSDCurrency()
         {
-            driver.FindElement(By.XPath("//div[@class='react-dropdown-select undefined css-12zlm52-ReactDropdownSelect e1gzf2xs0']/div")).Click();
+            driver.FindElement(By.XPath(
+                "//div[@class='react-dropdown-select undefined css-12zlm52-ReactDropdownSelect e1gzf2xs0']/div")).Click();
             driver.FindElement(By.XPath("//p[@title='USD']")).Click();
             return this;
         }
@@ -138,5 +147,6 @@ namespace AutoGTP2Tests
             return false;
         }
 
+        
     }
 }

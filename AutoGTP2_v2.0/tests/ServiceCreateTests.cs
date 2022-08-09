@@ -21,6 +21,8 @@ namespace AutoGTP2Tests
             Assert.IsTrue(app.Services.PlugItemIsPresent());
         }
 
+
+        // GTP2-R-05-01, GTP2-R-05-19
         [Test]
         public void ServiceManualCorrectQuantityTest()
         {
@@ -38,6 +40,8 @@ namespace AutoGTP2Tests
                 app.Services.ServiceCostValueText());
         }
 
+
+        // GTP2-R-05-02
         [Test]
         public void ServiceManualQuantityWordTest()
         {
@@ -53,6 +57,8 @@ namespace AutoGTP2Tests
             Assert.IsTrue(app.Services.ServiceIsNotCalculated());
         }
 
+
+        // GTP2-R-05-04
         [Test]
         public void ServiceManualQuantityZeroFirstTest()
         {
@@ -116,8 +122,9 @@ namespace AutoGTP2Tests
             Assert.AreEqual(app.Services.QuantityPriceMultiplication(), app.Services.ServiceCostValueText());
             Assert.AreEqual(app.Services.QuantityPriceMultiplication(), app.Services.ServiceCostValueTextInTable());
         }
-        
 
+
+        // GTP2-R-05-08
         [Test]
         public void ServiceCreateCATLogTest()
         {
@@ -134,6 +141,8 @@ namespace AutoGTP2Tests
             Assert.IsTrue(app.Services.ServiceStatisticsButtonIsPresent());
         }
 
+
+        // GTP2-R-05-13
         [Test]
         public void ServiceCATLogWithOutCATFileTest()
         {
@@ -147,6 +156,8 @@ namespace AutoGTP2Tests
             Assert.IsTrue(app.Services.WarningPopupIsPresent());
         }
 
+
+        // GTP2-R-05-15
         [Test]
         public void ServiceCATLogWithOutCATFileContinueButtonTest()
         {
@@ -160,6 +171,7 @@ namespace AutoGTP2Tests
             Assert.IsFalse(app.Services.PlugItemIsPresent());
         }
 
+        // GTP2-R-05-14
         [Test]
         public void ServiceCATLogWithOutCATFileCancelButtonTest()
         {

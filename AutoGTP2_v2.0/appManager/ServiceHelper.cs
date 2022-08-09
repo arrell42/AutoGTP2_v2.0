@@ -419,6 +419,7 @@ namespace AutoGTP2Tests
             WaitUntilFindElement(10, By.Id("FILE_DOWNLOAD"));
             return this;
         }
+
         public ServiceHelper RequestQuoteButtonClick()
         {
             driver.FindElement(By.Id("requestQuote")).Click();

@@ -23,6 +23,8 @@ namespace AutoGTP2Tests
             Assert.IsTrue(app.Services.CheckFileDownloaded(filename));
         }
 
+
+        // GTP2-R-05-05, GTP2-R-05-06
         [Test]
         public void DownloadSourceFileFromServiceListTest()
         {
@@ -40,6 +42,8 @@ namespace AutoGTP2Tests
             Assert.IsTrue(app.Services.CheckFileDownloaded(filename));
         }
 
+
+        // GTP2-R-05-11, GTP2-R-05-14
         [Test]
         public void DownloadCATLogFileTest()
         {
@@ -70,6 +74,8 @@ namespace AutoGTP2Tests
             Assert.IsTrue(app.Services.SourceFileIsRemoved());
         }
 
+
+        // GTP2-R-05-18
         [Test]
         public void UploadInvalidSourceFileTest()
         {
