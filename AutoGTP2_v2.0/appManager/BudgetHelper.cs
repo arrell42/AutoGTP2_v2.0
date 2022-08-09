@@ -51,8 +51,10 @@ namespace AutoGTP2Tests
         {
             List<BudgetData> budgets = new List<BudgetData>();
             manager.Navigator.GoToBudgetPage();            
-            IList<IWebElement> cost = driver.FindElements(By.XPath("//div[@class = 'JS5QDNbVwPTSQkGOFVx8 VgojOW_8K2ghpiOYWLsE']"));
-            IList<IWebElement> po = driver.FindElements(By.XPath("//div[@class = 'B0SPSwpmzHVycntXiybb']//div[@class = 'JS5QDNbVwPTSQkGOFVx8']"));
+            IList<IWebElement> cost = driver.FindElements(By.XPath(
+                "//div[@class = 'VgojOW_8K2ghpiOYWLsE']"));
+            IList<IWebElement> po = driver.FindElements(By.XPath(
+                "//div[contains(text(), 'PO number')]"));
             if(cost.Count == po.Count)
             {
                 for (int i = 0; i < cost.Count; i++)
