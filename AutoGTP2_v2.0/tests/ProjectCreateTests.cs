@@ -164,7 +164,7 @@ namespace AutoGTP2Tests
 
             BudgetData budgetData = new BudgetData("Test budget", "Test budget")
             {                
-                BudgetTotal = "100"
+                BudgetTotal = "1001"
             };
 
             app.Projects.NewBudgetInProjectExistPOInput(projectData, budgetData);
