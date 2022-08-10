@@ -58,7 +58,7 @@ namespace AutoGTP2Tests
 
         // GTP2-R-02-3
         [Test]
-        public void CreateEmptyProjecTest()
+        public void CreateEmptyProjectTest()
         {
             app.Projects.CreateEmptyProject();
 
@@ -67,7 +67,7 @@ namespace AutoGTP2Tests
 
         // GTP2-R-02-4, GTP2-R-02-5
         [Test]
-        public void CreateEmptyProjecPopupTest()
+        public void CreateEmptyProjectPopupTest()
         {
             app.Projects.EmptyProjecPopupButtons();
 
@@ -154,7 +154,7 @@ namespace AutoGTP2Tests
 
 
         // GTP2-R-02-12
-        //[Test]
+        [Test]
         public void CreateBudgetInProjectExistPOTest()
         {
             ProjectData projectData = new ProjectData()

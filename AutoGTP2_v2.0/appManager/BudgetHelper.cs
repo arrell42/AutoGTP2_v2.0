@@ -91,7 +91,7 @@ namespace AutoGTP2Tests
         public BudgetHelper SelectUSDCurrency()
         {
             driver.FindElement(By.XPath(
-                "//div[@class='react-dropdown-select undefined css-12zlm52-ReactDropdownSelect e1gzf2xs0']/div")).Click();
+                "//input[@class= 'react-dropdown-select-input css-o79eln-InputComponent e11wid6y0']")).Click();
             driver.FindElement(By.XPath("//p[@title='USD']")).Click();
             return this;
         }

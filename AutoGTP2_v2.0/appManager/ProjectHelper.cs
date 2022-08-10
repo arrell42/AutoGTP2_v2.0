@@ -421,7 +421,7 @@ namespace AutoGTP2Tests
         }
 
         public ProjectHelper ClickProjectBurger()
-        {
+        {            
             driver.FindElement(By.XPath("//div[@class = 'project-selection-menu']")).Click();
             return this;
         }
@@ -462,6 +462,7 @@ namespace AutoGTP2Tests
         public bool ProjectDeleteButtonIsDisabled()
         {
             manager.Navigator.GoToProjectPage();
+            Thread.Sleep(200);
             ClickProjectBurger();
             if (driver.FindElements(By.XPath("//p[@class = 'delete-project-btn disabled']")).Count == 1)
             {

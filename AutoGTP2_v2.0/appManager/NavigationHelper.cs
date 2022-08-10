@@ -38,8 +38,8 @@ namespace AutoGTP2Tests
                 LoginData account = new LoginData("Main_test", "123456");
                 manager.Auth.Login(account);
             }
-            driver.FindElement(By.Id("MENU_PROJECTS")).Click();
-            WaitUntilFindElement(10, By.Id("PROJECT_0"));            
+            driver.FindElement(By.Id("MENU_PROJECTS")).Click();            
+            WaitUntilFindElement(10, By.XPath("//div[@class = 'fPooHDtNQyVHMCf4O9mn']"));
         }
 
         public void GoToDashportPage()
