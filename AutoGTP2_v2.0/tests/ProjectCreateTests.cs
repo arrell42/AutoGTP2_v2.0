@@ -168,9 +168,10 @@ namespace AutoGTP2Tests
             };
 
             app.Projects.NewBudgetInProjectExistPOInput(projectData, budgetData);
-
+                        
             Assert.IsTrue(app.Projects.NewBudgetFormIsPresent());
             Assert.IsTrue(app.Budgets.PONumberPopupIsPresent());
+            Assert.IsTrue(app.Budgets.POTooltipContainCorrectText());
         }
 
 

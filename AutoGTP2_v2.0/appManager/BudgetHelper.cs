@@ -72,8 +72,15 @@ namespace AutoGTP2Tests
 
         public bool PONumberPopupIsPresent()
         {
-            return IsElementPresent(By.XPath("//div[@class = 'popup-content ']"));
+            return IsElementPresent(By.XPath("//p[@class = 'i9matKNoUHudiZkMT8BL']"));
         }
+
+        public bool POTooltipContainCorrectText()
+        {
+            string text = driver.FindElement(By.XPath("//p[@class = 'i9matKNoUHudiZkMT8BL']")).Text;
+            return text.Contains("Budget with such po number is already exists.");
+        }
+
         public BudgetHelper BudgetCreateButtonClick()
         {
             driver.FindElement(By.Id("NEW_BUDGET_CREATE")).Click();

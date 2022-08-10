@@ -145,6 +145,7 @@ namespace AutoGTP2Tests
             manager.Budgets.SelectUSDCurrency();
             manager.Budgets.EnterTotal(budgetData);
             manager.Budgets.BudgetCreateButtonClick();
+            Thread.Sleep(200);
             return this;
         }
 
