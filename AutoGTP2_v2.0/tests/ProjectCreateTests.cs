@@ -162,8 +162,9 @@ namespace AutoGTP2Tests
                 ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
             };
 
-            BudgetData budgetData = new BudgetData("Test budget", "Test budget")
-            {                
+            BudgetData budgetData = new BudgetData("", "Test budget")
+            {   
+                BudgetCost = app.TextGenerator(1, 5),
                 BudgetTotal = "100"
             };
 
@@ -174,6 +175,26 @@ namespace AutoGTP2Tests
             Assert.IsTrue(app.Budgets.POTooltipContainCorrectText());
         }
 
+        // GTP2-R-02-13
+        [Test]
+        public void CreateBudgetInProjectExistCostTest()
+        {
+            ProjectData projectData = new ProjectData()
+            {
+                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
+            };
 
+            BudgetData budgetData = new BudgetData("Test budget", "")
+            {
+                BudgetPO = app.TextGenerator(1, 5),
+                BudgetTotal = "100"
+            };
+
+            app.Projects.NewBudgetInProjectExistPOInput(projectData, budgetData);
+
+            Assert.IsTrue(app.Projects.NewBudgetFormIsPresent());
+            Assert.IsTrue(app.Budgets.PONumberPopupIsPresent());
+            Assert.IsTrue(app.Budgets.CostTooltipContainCorrectText());
+        }
     }
 }

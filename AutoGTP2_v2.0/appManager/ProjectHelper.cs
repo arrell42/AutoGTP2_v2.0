@@ -168,6 +168,7 @@ namespace AutoGTP2Tests
             return projects;
         }
 
+
         public ProjectData GetDatesFromProjectList()
         {
             manager.Navigator.GoToProjectPage();

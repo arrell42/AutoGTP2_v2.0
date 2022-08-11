@@ -51,10 +51,8 @@ namespace AutoGTP2Tests
         {
             List<BudgetData> budgets = new List<BudgetData>();
             manager.Navigator.GoToBudgetPage();            
-            IList<IWebElement> cost = driver.FindElements(By.XPath(
-                "//div[@class = 'VgojOW_8K2ghpiOYWLsE']"));
-            IList<IWebElement> po = driver.FindElements(By.XPath(
-                "//div[contains(text(), 'PO number')]"));
+            IList<IWebElement> cost = driver.FindElements(By.XPath("//div[@class = 'VgojOW_8K2ghpiOYWLsE']"));
+            IList<IWebElement> po = driver.FindElements(By.XPath("//div[contains(text(), 'PO number')]"));
             if(cost.Count == po.Count)
             {
                 for (int i = 0; i < cost.Count; i++)
@@ -79,6 +77,12 @@ namespace AutoGTP2Tests
         {
             string text = driver.FindElement(By.XPath("//p[@class = 'i9matKNoUHudiZkMT8BL']")).Text;
             return text.Contains("Budget with such po number is already exists.");
+        }
+
+        public bool CostTooltipContainCorrectText()
+        {
+            string text = driver.FindElement(By.XPath("//p[@class = 'i9matKNoUHudiZkMT8BL']")).Text;
+            return text.Contains("Such budget already defined for the client.");
         }
 
         public BudgetHelper BudgetCreateButtonClick()
@@ -156,6 +160,5 @@ namespace AutoGTP2Tests
             return false;
         }
 
-        
     }
 }
