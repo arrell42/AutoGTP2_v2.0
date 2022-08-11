@@ -68,7 +68,7 @@ namespace AutoGTP2Tests
 
         // Низкоуровневые методы
 
-        public bool PONumberPopupIsPresent()
+        public bool BudgetTooltipIsPresent()
         {
             return IsElementPresent(By.XPath("//p[@class = 'i9matKNoUHudiZkMT8BL']"));
         }
