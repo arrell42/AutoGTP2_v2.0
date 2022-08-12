@@ -18,22 +18,31 @@ namespace AutoGTP2Tests
         public string Status { get; set; }
         public string StartDate { get; set; }
         public string EndDate { get; set; }
-        public string Time { get; set; }
+        public string CreationDate { get; set; }
+        public string BudgetCost { get;  set; }
+        public string BudgetPO { get;  set; }
+        public string BudgetTotal { get;  set; }
 
-        
+
 
 
 
 
         //вспомогательный метод для сортировки
+
         public int CompareTo(ProjectData other)
         {
             if(other == null)
             {
                 return 1;
-            }            
+            }                       
             return ProjectName.CompareTo(other.ProjectName);
         }
+        
+
+        
+
+
 
         //сравнение по наличию имени проекта
         public bool Equals(ProjectData other)
@@ -46,7 +55,7 @@ namespace AutoGTP2Tests
             {
                 return true;
             }
-            return ProjectName == other.ProjectName; 
+            return ProjectName == other.ProjectName && Status == other.Status;
         }
 
         public override int GetHashCode()
@@ -57,7 +66,7 @@ namespace AutoGTP2Tests
         //возвращаем строковое представление объектов типа projectdata
         public override string ToString()
         {
-            return ProjectName;
+            return "ProjectName" + ProjectName;
         }
         
     }

@@ -44,24 +44,43 @@ namespace AutoGTP2Tests
 
 
 
-        
 
+        
         // Создаем список бюджетов
         public List<BudgetData> GetBudgetList()
         {
             List<BudgetData> budgets = new List<BudgetData>();
-            manager.Navigator.GoToBudgetPage();            
-            IList<IWebElement> cost = driver.FindElements(By.XPath("//div[@class = 'VgojOW_8K2ghpiOYWLsE']"));
-            IList<IWebElement> po = driver.FindElements(By.XPath("//div[contains(text(), 'PO number')]"));
-            if(cost.Count == po.Count)
-            {
-                for (int i = 0; i < cost.Count; i++)
-                {
-                    budgets.Add(new BudgetData(cost[i].Text, po[i].Text));
+            manager.Navigator.GoToBudgetPage();
+            ICollection<IWebElement> elements = driver.FindElements(By.XPath("//div[@class = 'ySclMvBg4360NoWcNOG5']"));            
+            foreach(var element in elements)
+            {                
+                for (int i = 0; i < elements.Count; i++)
+                {                       
+                    string cost = driver.FindElement(By.XPath(
+                        "//div[@class = 'ySclMvBg4360NoWcNOG5'][" + (i+1) + "]//div[@class = 'kyuJpfa35LDUXSJH2FJS']")).Text;
+                    string po = driver.FindElement(By.XPath(
+                        "//div[@class = 'ySclMvBg4360NoWcNOG5'][" + (i+1) + "]//div[contains(text(), 'PO number')]//following-sibling::div")).Text;
+                    string total = driver.FindElement(By.XPath(
+                        "//div[@class = 'ySclMvBg4360NoWcNOG5'][1]//div[contains(text(),  'Amount total')]//following-sibling::div")).Text;
+                    string remaining = driver.FindElement(By.XPath(
+                        "//div[@class = 'ySclMvBg4360NoWcNOG5'][" + (i + 1) + "]//div[contains(text(),  'Amount remaining')]//following-sibling::div")).Text;
+                    string date = driver.FindElement(By.XPath(
+                        "//div[@class = 'ySclMvBg4360NoWcNOG5'][1]//div[contains(text(),  'Date of creation')]//following-sibling::div")).Text;
+
+                    budgets.Add(new BudgetData(cost, po)
+                    {
+                        BudgetTotal = total,
+                        BudgetRemaining = remaining,
+                        CreationDate = date                       
+                    });
                 }
+                break;
             }
-            return budgets;
+            return new List<BudgetData>(budgets);
         }
+
+
+
 
 
 

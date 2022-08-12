@@ -9,7 +9,7 @@ using System.Threading;
 namespace AutoGTP2Tests
 {
     public class ProjectHelper : BaseHelper
-    {   
+    {        
         public ProjectHelper(ApplicationManager manager) : base(manager)
         {
         }
@@ -149,25 +149,82 @@ namespace AutoGTP2Tests
             return this;
         }
 
+        public ProjectHelper NewBudgetCreateInProject(ProjectData projectData)
+        {
+            OpenNewPendingProject(projectData, 3, "00:30");
+            CreateNewBudgetButtonClick();
+            EnterPOnumber(projectData);
+            EnterBudgetName(projectData);
+            manager.Budgets.SelectUSDCurrency();
+            EnterTotal(projectData);
+            manager.Budgets.BudgetCreateButtonClick();
+            Thread.Sleep(200);
+            SaveProjectButtonClick();
+            return this;
+        }
+        
 
 
 
 
 
 
-        //Получение списка проектов
+
+
+        //Получение списка проектов                
+
         public List<ProjectData> GetProjectList()
         {
             List<ProjectData> projects = new List<ProjectData>();
             manager.Navigator.GoToProjectPage();
-            IList<IWebElement> name = driver.FindElements(By.Id("PROJECTS_PROJECT_NAME"));            
-            for(int i = 0; i < name.Count; i++)
+            ICollection<IWebElement> elements = driver.FindElements(By.XPath("//div[@class = 'Y60VrDynu5B8vFAVkO5A']"));
+            foreach(var element in elements)
             {
-                projects.Add(new ProjectData() {ProjectName = name[i].Text });                
-            }
-            return projects;
-        }
+                for (int i = 0; i < elements.Count; i++)
+                {
+                    string name = driver.FindElement(By.XPath(
+                        "//div[@id= 'PROJECT_" + i + "']//div[@id= 'PROJECTS_PROJECT_NAME']")).Text.Trim();
+                    string budget = driver.FindElement(By.XPath(
+                        "//div[@id= 'PROJECT_" + i + "']//div[contains(text(), 'Budget')]//following-sibling::div//div")).Text.Trim();
+                    string subjectArea = driver.FindElement(By.XPath(
+                        "//div[@id= 'PROJECT_" + i + "']//div[contains(text(), 'Subject area')]//following-sibling::div")).Text.Trim();
+                    string vendor = driver.FindElement(By.XPath(
+                        "//div[@id= 'PROJECT_" + i + "']//div[contains(text(), 'Vendor')]//following-sibling::div")).Text.Trim();
+                    string pm = driver.FindElement(By.XPath(
+                        "//div[@id= 'PROJECT_" + i + "']//div[contains(text(), 'Responsible PM')]//following-sibling::div")).Text.Trim();
+                    string representative = driver.FindElement(By.XPath(
+                        "//div[@id= 'PROJECT_" + i + "']//div[contains(text(), 'representative')]//following-sibling::div")).Text.Trim();
+                    string startDate = driver.FindElement(By.XPath(
+                        "//div[@id= 'PROJECT_" + i + "']//div[contains(text(), 'Start date')]//following-sibling::div")).Text.Trim();
+                    string endDate = driver.FindElement(By.XPath(
+                        "//div[@id= 'PROJECT_" + i + "']//div[contains(text(), 'End date')]//following-sibling::div")).Text.Trim();
+                    string creationDate = driver.FindElement(By.XPath(
+                        "//div[@id= 'PROJECT_" + i + "']//div[contains(text(), 'Date of creation')]//following-sibling::div")).Text.Trim();
+                    string total = driver.FindElement(By.XPath(
+                        "//div[@id= 'PROJECT_" + i + "']//div[contains(text(), 'Total amount')]//following-sibling::div")).Text.Trim();
+                    string status = driver.FindElement(By.XPath(
+                        "//div[@id= 'PROJECT_" + i + "']//div[@id = 'PROJECT_STATUS']")).Text.Trim();
 
+                    projects.Add(new ProjectData()
+                    {
+                        ProjectName = name,
+                        Budget = budget,
+                        SubjectArea = subjectArea,
+                        Vendor = vendor,
+                        ResponsiblePM = pm,
+                        ClientRepresentative = representative,
+                        StartDate = startDate,
+                        EndDate = endDate,
+                        CreationDate = creationDate,
+                        TotalAmount = total,
+                        Status = status
+                    });
+                }
+                break;
+            }
+            return new List<ProjectData>(projects);
+        }
+                
 
         public ProjectData GetDatesFromProjectList()
         {
@@ -204,7 +261,7 @@ namespace AutoGTP2Tests
             {
                 StartDate = start,
                 EndDate = end,
-                Time = time
+                //Time = time
             };
         }
 
@@ -214,6 +271,30 @@ namespace AutoGTP2Tests
 
 
         // Низкоуровневые методы
+
+        public ProjectHelper EnterPOnumber(ProjectData projectData)
+        {
+            driver.FindElement(By.Id("NEW_BUDGET_PO")).Click();
+            driver.FindElement(By.Id("NEW_BUDGET_PO")).Clear();
+            driver.FindElement(By.Id("NEW_BUDGET_PO")).SendKeys(projectData.BudgetPO);
+            return this;
+        }
+
+        public ProjectHelper EnterBudgetName(ProjectData projectData)
+        {
+            driver.FindElement(By.Id("NEW_BUDGET_COST")).Click();
+            driver.FindElement(By.Id("NEW_BUDGET_COST")).Clear();
+            driver.FindElement(By.Id("NEW_BUDGET_COST")).SendKeys(projectData.BudgetCost);
+            return this;
+        }
+
+        public ProjectHelper EnterTotal(ProjectData projectData)
+        {
+            driver.FindElement(By.Id("NEW_BUDGET_TOTAL")).Click();
+            driver.FindElement(By.Id("NEW_BUDGET_TOTAL")).Clear();
+            driver.FindElement(By.Id("NEW_BUDGET_TOTAL")).SendKeys(projectData.BudgetTotal);
+            return this;
+        }
 
         public bool NewBudgetFormIsPresent()
         {

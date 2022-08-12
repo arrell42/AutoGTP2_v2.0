@@ -20,11 +20,11 @@ namespace AutoGTP2Tests
             if(BudgetCost == other.BudgetCost)
             {
                 return 0;
-            }
+            }            
             return BudgetPO.CompareTo(other.BudgetPO);
         }
 
-        //сравнение по наличию имени проекта
+        //сравнение по наличию имени
         public bool Equals(BudgetData other)
         {
             if (other is null)
@@ -51,11 +51,11 @@ namespace AutoGTP2Tests
 
 
 
-        public string BudgetPO { get; set; }
-        public string BudgetTotal { get; set; }
+        public string BudgetPO { get; set; }        
         public string BudgetCost { get; set; }
-        
-
+        public string BudgetTotal { get; set; }
+        public string BudgetRemaining { get; set; }
+        public string CreationDate { get; set; } 
     }
 }
 

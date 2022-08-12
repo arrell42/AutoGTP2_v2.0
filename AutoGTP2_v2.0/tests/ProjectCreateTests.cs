@@ -13,7 +13,8 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
+                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest",
+                Status = "Pending"
             };
 
             List<ProjectData> oldProjects = app.Projects.GetProjectList();
@@ -37,7 +38,8 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Express " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
+                ProjectName = "Express " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest",
+                Status = "Pending"
             };
 
             List<ProjectData> oldProjects = app.Projects.GetProjectList();
@@ -95,7 +97,8 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
+                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest",
+                Status = "Ordered"
             };
 
             List<ProjectData> oldProjects = app.Projects.GetProjectList();
@@ -115,11 +118,12 @@ namespace AutoGTP2Tests
 
         // GTP2-R-02-10
         [Test]
-        public void AddBudgetInProjectTest()
+        public void AddAndDeleteBudgetInProjectTest()
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
+                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest",
+                Status = "Pending"
             };
 
             List<ProjectData> oldProjects = app.Projects.GetProjectList();
@@ -195,6 +199,36 @@ namespace AutoGTP2Tests
             Assert.IsTrue(app.Projects.NewBudgetFormIsPresent());
             Assert.IsTrue(app.Budgets.BudgetTooltipIsPresent());
             Assert.IsTrue(app.Budgets.CostTooltipContainCorrectText());
+        }
+
+        // GTP2-R-02-14
+        [Test]
+        public void CreateBudgetInProjectTest()
+        {
+            ProjectData projectData = new ProjectData()
+            {
+                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest",
+                Status = "Pending",
+                BudgetCost = app.TextGenerator(1, 3),
+                BudgetPO = app.TextGenerator(1, 5),
+                BudgetTotal = "100"
+            };
+            
+            List<ProjectData> oldProjects = app.Projects.GetProjectList();
+
+            app.Projects.NewBudgetCreateInProject(projectData);
+
+            List<ProjectData> newProjects = app.Projects.GetProjectList();
+
+            oldProjects.Add(projectData); //добавляет данные в старый список
+            
+            if (oldProjects.Count > 20)
+            {
+                oldProjects.RemoveAt(oldProjects.Count - 2);
+            }
+            oldProjects.Sort(); // сортировка старого списка
+            newProjects.Sort(); // сортировка нового списка
+            Assert.AreEqual(oldProjects, newProjects); // сравнение списков 
         }
     }
 }
