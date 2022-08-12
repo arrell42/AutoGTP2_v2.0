@@ -230,5 +230,23 @@ namespace AutoGTP2Tests
             newProjects.Sort(); // сортировка нового списка
             Assert.AreEqual(oldProjects, newProjects); // сравнение списков 
         }
+
+        // GTP2-R-02-16
+        [Test]
+        public void RefTabInProjectTest()
+        {
+            ProjectData projectData = new ProjectData()
+            {
+                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest",
+                Status = "Pending"                
+            };
+
+            app.Projects.OpenRefTabInProject(projectData);
+
+            
+            Assert.IsTrue(app.Projects.FileLoaderIsPresent());
+            Assert.IsFalse(app.Projects.FilesNotAttached());
+        }
+
     }
 }

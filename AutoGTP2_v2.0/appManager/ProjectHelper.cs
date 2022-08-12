@@ -162,6 +162,14 @@ namespace AutoGTP2Tests
             SaveProjectButtonClick();
             return this;
         }
+
+        public ProjectHelper OpenRefTabInProject(ProjectData projectData)
+        {
+            OpenNewPendingProject(projectData, 3, "00:30");
+            OpenRefTab();
+            return this;
+        }
+
         
 
 
@@ -224,7 +232,6 @@ namespace AutoGTP2Tests
             }
             return new List<ProjectData>(projects);
         }
-                
 
         public ProjectData GetDatesFromProjectList()
         {
@@ -271,6 +278,22 @@ namespace AutoGTP2Tests
 
 
         // Низкоуровневые методы
+
+        public bool FileLoaderIsPresent()
+        {
+            return IsElementPresent(By.Id("FILE_LOADER"));
+        }
+
+        public bool FilesNotAttached()
+        {
+            return IsElementPresent(By.XPath("//div[@class = 'abj3PIbZlVZEaANnTgWi ']"));
+        }
+
+        public ProjectHelper OpenRefTab()
+        {
+            driver.FindElement(By.Id("ProjectCardReferenceMaterials")).Click();
+            return this;
+        }
 
         public ProjectHelper EnterPOnumber(ProjectData projectData)
         {
