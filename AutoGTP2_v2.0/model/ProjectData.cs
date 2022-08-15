@@ -8,8 +8,7 @@ namespace AutoGTP2Tests
         public ProjectData() { }
         
 
-        public string ProjectName { get; set; }
-        public string Budget { get; set; }
+        public string ProjectName { get; set; }        
         public string SubjectArea { get; set; }
         public string Vendor { get; set; }
         public string ResponsiblePM { get; set; }
@@ -55,7 +54,10 @@ namespace AutoGTP2Tests
             {
                 return true;
             }
-            return ProjectName == other.ProjectName && Status == other.Status;
+            return 
+                ProjectName == other.ProjectName && 
+                Status == other.Status &&
+                BudgetCost == other.BudgetCost;
         }
 
         public override int GetHashCode()

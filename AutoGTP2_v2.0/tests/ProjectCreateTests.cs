@@ -14,7 +14,8 @@ namespace AutoGTP2Tests
             ProjectData projectData = new ProjectData()
             {
                 ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest",
-                Status = "Pending"
+                Status = "Pending",
+                BudgetCost = "Unknown"
             };
 
             List<ProjectData> oldProjects = app.Projects.GetProjectList();
@@ -39,7 +40,8 @@ namespace AutoGTP2Tests
             ProjectData projectData = new ProjectData()
             {
                 ProjectName = "Express " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest",
-                Status = "Pending"
+                Status = "Pending",
+                BudgetCost = "Unknown"
             };
 
             List<ProjectData> oldProjects = app.Projects.GetProjectList();
@@ -98,7 +100,8 @@ namespace AutoGTP2Tests
             ProjectData projectData = new ProjectData()
             {
                 ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest",
-                Status = "Ordered"
+                Status = "Ordered",
+                BudgetCost = "Unknown"
             };
 
             List<ProjectData> oldProjects = app.Projects.GetProjectList();
@@ -123,7 +126,8 @@ namespace AutoGTP2Tests
             ProjectData projectData = new ProjectData()
             {
                 ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest",
-                Status = "Pending"
+                Status = "Pending",
+                BudgetCost = "Unknown"
             };
 
             List<ProjectData> oldProjects = app.Projects.GetProjectList();
@@ -143,14 +147,14 @@ namespace AutoGTP2Tests
 
         // GTP2-R-02-11 
         [Test]
-        public void CreateBudgetInProjectButtonTest()
+        public void OpenBudgetFormInProjectButtonTest()
         {
             ProjectData projectData = new ProjectData()
             {
                 ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
             };
             
-            app.Projects.CreateNewBudgetInProject(projectData);
+            app.Projects.OpenBudgetFormInProject(projectData);
 
             Assert.IsTrue(app.Projects.NewBudgetFormIsPresent());
             Assert.IsFalse(app.Projects.CreateBudgetButtonIsEnabled());
@@ -163,16 +167,13 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
-            };
-
-            BudgetData budgetData = new BudgetData("", "Test budget")
-            {   
+                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest",
                 BudgetCost = app.TextGenerator(1, 5),
+                BudgetPO = "Test budget",
                 BudgetTotal = "100"
             };
 
-            app.Projects.NewBudgetInProjectExistPOInput(projectData, budgetData);
+            app.Projects.NewBudgetInProjectExistPOInput(projectData);
                         
             Assert.IsTrue(app.Projects.NewBudgetFormIsPresent());
             Assert.IsTrue(app.Budgets.BudgetTooltipIsPresent());
@@ -185,16 +186,13 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
-            };
-
-            BudgetData budgetData = new BudgetData("Test budget", "")
-            {
+                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest",
+                BudgetCost = "Test budget",
                 BudgetPO = app.TextGenerator(1, 5),
                 BudgetTotal = "100"
             };
 
-            app.Projects.NewBudgetInProjectExistPOInput(projectData, budgetData);
+            app.Projects.NewBudgetInProjectExistPOInput(projectData);
 
             Assert.IsTrue(app.Projects.NewBudgetFormIsPresent());
             Assert.IsTrue(app.Budgets.BudgetTooltipIsPresent());
@@ -211,7 +209,7 @@ namespace AutoGTP2Tests
                 Status = "Pending",
                 BudgetCost = app.TextGenerator(1, 3),
                 BudgetPO = app.TextGenerator(1, 5),
-                BudgetTotal = "100"
+                BudgetTotal = "100",                
             };
             
             List<ProjectData> oldProjects = app.Projects.GetProjectList();
@@ -237,16 +235,43 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest",
-                Status = "Pending"                
+                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"                                
             };
 
             app.Projects.OpenRefTabInProject(projectData);
-
             
             Assert.IsTrue(app.Projects.FileLoaderIsPresent());
-            Assert.IsFalse(app.Projects.FilesNotAttached());
+            Assert.IsTrue(app.Projects.FilesAttached(0));
         }
 
+        // GTP2-R-02-17
+        [Test]
+        public void RefTabInProjectFileAttachTest()
+        {
+            ProjectData projectData = new ProjectData()
+            {
+                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
+            };
+
+            app.Projects.RefTabInProjectFileAttach(projectData);
+
+            Assert.IsTrue(app.Projects.FileLoaderIsPresent());
+            Assert.IsTrue(app.Projects.FilesAttached(1));
+        }
+
+        // GTP2-R-02-19, // GTP2-R-02-20
+        [Test]
+        public void RefTabInProjectMultipleFileAttachTest()
+        {
+            ProjectData projectData = new ProjectData()
+            {
+                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
+            };
+
+            app.Projects.RefTabInProjectMultipleFileAttach(projectData);
+
+            Assert.IsTrue(app.Projects.FileLoaderIsPresent());
+            Assert.IsTrue(app.Projects.FilesAttached(5));
+        }
     }
 }

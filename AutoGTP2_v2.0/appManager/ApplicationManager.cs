@@ -18,7 +18,8 @@ namespace AutoGTP2Tests
         public string invalidSourceFilePath;
         public string expressFile8000;
         public string expressFile8001;
-        public string expressFile7999;        
+        public string expressFile7999;
+        public string refFile;
 
         //HELPERS ADD 
         protected LoginHelper loginHelper;
@@ -49,6 +50,7 @@ namespace AutoGTP2Tests
             expressFile8000 = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"dataFiles\Express8000.txt");
             expressFile8001 = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"dataFiles\Express8001.txt");            
             expressFile7999 = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"dataFiles\Express7999.txt");
+            refFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"dataFiles\RefTest.txt");
 
             //HELPERS INIT
             loginHelper = new LoginHelper(this);

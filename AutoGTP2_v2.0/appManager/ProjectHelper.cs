@@ -129,23 +129,23 @@ namespace AutoGTP2Tests
             return this;
         }
 
-        public ProjectHelper CreateNewBudgetInProject(ProjectData projectData)
+        public ProjectHelper OpenBudgetFormInProject(ProjectData projectData)
         {
             OpenNewPendingProject(projectData, 3, "00:30");
             CreateNewBudgetButtonClick();
             return this;
         }
 
-        public ProjectHelper NewBudgetInProjectExistPOInput(ProjectData projectData, BudgetData budgetData)
+        public ProjectHelper NewBudgetInProjectExistPOInput(ProjectData projectData)
         {
             OpenNewPendingProject(projectData, 3, "00:30");
             CreateNewBudgetButtonClick();
-            manager.Budgets.EnterPOnumber(budgetData);
-            manager.Budgets.EnterBudgetName(budgetData);
+            EnterPOnumber(projectData);
+            EnterBudgetName(projectData);
             manager.Budgets.SelectUSDCurrency();
-            manager.Budgets.EnterTotal(budgetData);
+            EnterTotal(projectData);
             manager.Budgets.BudgetCreateButtonClick();
-            Thread.Sleep(200);
+            WaitUntilFindElement(4, By.XPath("//p[@class = 'i9matKNoUHudiZkMT8BL']"));
             return this;
         }
 
@@ -170,7 +170,32 @@ namespace AutoGTP2Tests
             return this;
         }
 
+        public ProjectHelper RefTabInProjectFileAttach(ProjectData projectData)
+        {
+            OpenNewPendingProject(projectData, 3, "00:30");
+            OpenRefTab();
+            RefFileAttach(1);
+            SaveProjectButtonClick();
+            OpenThisProject();
+            OpenRefTab();
+            return this;
+        }
+
+        public ProjectHelper RefTabInProjectMultipleFileAttach(ProjectData projectData)
+        {
+            OpenNewPendingProject(projectData, 3, "00:30");
+            OpenRefTab();
+            RefFileAttach(5);
+            SaveProjectButtonClick();
+            OpenThisProject();
+            OpenRefTab();
+            return this;
+        }
         
+
+
+
+
 
 
 
@@ -216,7 +241,7 @@ namespace AutoGTP2Tests
                     projects.Add(new ProjectData()
                     {
                         ProjectName = name,
-                        Budget = budget,
+                        BudgetCost = budget,
                         SubjectArea = subjectArea,
                         Vendor = vendor,
                         ResponsiblePM = pm,
@@ -232,6 +257,8 @@ namespace AutoGTP2Tests
             }
             return new List<ProjectData>(projects);
         }
+
+        
 
         public ProjectData GetDatesFromProjectList()
         {
@@ -279,14 +306,35 @@ namespace AutoGTP2Tests
 
         // Низкоуровневые методы
 
+        public ProjectHelper OpenThisProject()
+        {
+            manager.Navigator.GoToProjectPage();
+            MouseClickImitation(By.XPath("//div[@class= 'WL6eEVs3cgv5l5JGCHtM']"));
+            Thread.Sleep(200);
+            driver.FindElement(By.XPath("//div[@id= 'PROJECT_0']//div[@id= 'PROJECTS_PROJECT_NAME']")).Click();
+            WaitUntilFindElement(10, By.Id("ProjectCardReferenceMaterials"));
+            return this;
+        }
+
+        public ProjectHelper RefFileAttach(int f)
+        {
+            for (int i = 0; i < f; i++)
+            {
+                driver.FindElement(By.Id("FILE_LOADER")).SendKeys(manager.refFile);
+                WaitUntilFindElement(5, By.XPath("//div[@class= ' abj3PIbZlVZEaANnTgWi']"));
+                Thread.Sleep(2000);
+            }
+            return this;
+        }
+
         public bool FileLoaderIsPresent()
         {
             return IsElementPresent(By.Id("FILE_LOADER"));
         }
 
-        public bool FilesNotAttached()
+        public bool FilesAttached(int i)
         {
-            return IsElementPresent(By.XPath("//div[@class = 'abj3PIbZlVZEaANnTgWi ']"));
+            return driver.FindElements(By.XPath("//div[@class = 'abj3PIbZlVZEaANnTgWi ']")).Count == i;
         }
 
         public ProjectHelper OpenRefTab()
@@ -464,8 +512,7 @@ namespace AutoGTP2Tests
             string text = InternalReadAllText(filePath, Encoding.UTF8).Trim().Replace(Environment.NewLine, "");
             IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
             js.ExecuteScript("document.getElementById('PROJECTS_EXPRESS_TEXT').value = '" + text + "';");
-            driver.FindElement(By.Id("PROJECTS_EXPRESS_TEXT")).SendKeys(" "); //чтобы слова подсчитались, иначе подсчета не происходит
-            
+            driver.FindElement(By.Id("PROJECTS_EXPRESS_TEXT")).SendKeys(" "); //чтобы слова подсчитались, иначе подсчета не происходит            
             return this;
         }
 
@@ -575,6 +622,65 @@ namespace AutoGTP2Tests
                 return true;
             }
             return false;
+        }
+
+
+
+
+
+        // методы для удаления всех проектов
+
+        public ProjectHelper RemoveProject()
+        {
+            manager.Navigator.GoToProjectPage();
+            SortByPending();            
+            DeleteAllProjects(40);
+            return this;
+        }
+
+
+
+        public void DeleteAllProjects(int f)
+        {
+            for (int i = 0; i < f; i++)
+            {                
+                //driver.SwitchTo().Alert().Accept();
+                ClickProjectBurger();
+                ProjectDeleteButtonClick();
+                ProjectDeleteConfirmButtonClick();
+                Thread.Sleep(3000);
+            }
+
+        }
+
+        public ProjectHelper SortByPending()
+        {
+            FiltersButtonClick();
+            ChoosePendingStatus();
+            FilterApplyButtonClick();
+            WaitUntilFindElement(5, By.XPath("//span[contains(text(), 'Pending')]"));
+            return this;
+        }
+
+        public ProjectHelper FiltersButtonClick()
+        {
+            driver.FindElement(By.Id("PROJECTS_FILTERS_BUTTON")).Click();
+            return this;
+        }
+
+        public ProjectHelper ChoosePendingStatus()
+        {
+            driver.FindElement(By.XPath("//span[contains(text(), 'Choose status')]")).Click();
+            driver.FindElement(By.XPath(
+                "//span[@class='react-dropdown-select-item    css-148o527-ItemComponent evc32pp0' and contains(text(), 'Pending')]")).Click();
+            return this;
+        }
+
+        public ProjectHelper FilterApplyButtonClick()
+        {
+            driver.FindElement(By.Id("PROJECTS_FILTERS_APPLY")).Click();
+            Thread.Sleep(500);
+            return this;
         }
     }
 }

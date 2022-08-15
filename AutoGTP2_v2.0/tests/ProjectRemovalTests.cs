@@ -64,5 +64,12 @@ namespace AutoGTP2Tests
         }
 
 
+        // Метод для удаления не нужных проектов
+        //[Test]
+        public void RemoveAllPendingProjects()
+        {              
+            app.Projects.RemoveProject();
+        }
+
     }
 }
