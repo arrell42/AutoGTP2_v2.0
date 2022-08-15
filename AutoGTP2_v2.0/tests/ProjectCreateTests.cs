@@ -273,5 +273,20 @@ namespace AutoGTP2Tests
             Assert.IsTrue(app.Projects.FileLoaderIsPresent());
             Assert.IsTrue(app.Projects.FilesAttached(5));
         }
+
+        // GTP2-R-02-21
+        [Test]
+        public void MessagesInProjectTest()
+        {
+            ProjectData projectData = new ProjectData()
+            {
+                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
+            };
+
+            app.Projects.OpenMessageTabAndSend(projectData, "test text");
+
+            Assert.IsTrue(app.Projects.MessageIsPresent());
+            Assert.IsTrue(app.Projects.MessageDateIsCorrect());
+        }
     }
 }

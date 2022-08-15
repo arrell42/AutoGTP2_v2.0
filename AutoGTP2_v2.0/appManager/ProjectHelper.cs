@@ -191,7 +191,17 @@ namespace AutoGTP2Tests
             OpenRefTab();
             return this;
         }
+
+        public ProjectHelper OpenMessageTabAndSend(ProjectData projectData, string messageText)
+        {
+            OpenNewPendingProject(projectData, 3, "00:30");
+            OpenMessageTab();
+            SendMessage(messageText);
+            return this;
+        }
+
         
+
 
 
 
@@ -259,7 +269,6 @@ namespace AutoGTP2Tests
         }
 
         
-
         public ProjectData GetDatesFromProjectList()
         {
             manager.Navigator.GoToProjectPage();
@@ -281,7 +290,6 @@ namespace AutoGTP2Tests
         }
 
         
-
         public ProjectData GetDatesFromProject()
         {
             manager.Navigator.GoToProjectPage();
@@ -305,6 +313,36 @@ namespace AutoGTP2Tests
 
 
         // Низкоуровневые методы
+
+        public ProjectHelper OpenMessageTab()
+        {
+            driver.FindElement(By.XPath("//span[contains(text(), 'Messages')]")).Click();
+            return this;
+        }
+
+        public ProjectHelper SendMessage(string text)
+        {
+            driver.FindElement(By.Id("PROJECT_CARD_MESSAGES_INPUT")).SendKeys(text);
+            driver.FindElement(By.Id("PROJECT_CARD_MESSAGES_SEND_BUTTON")).Click();
+            WaitUntilFindElement(3, By.XPath("//div[@class = 'RhjoYcpGysnqEhJIMQeo']"));
+            return this;
+        }
+
+        public bool MessageDateIsCorrect()
+        {
+            string startDate = driver.FindElement(By.XPath("//input[@name= 'start_date']")).GetAttribute("value");
+            string messageDate = driver.FindElement(By.XPath("//p[@class = 'dFxDzSyHuO4NPeo0YjAo']")).Text;
+            if (!startDate.Equals(messageDate))
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public bool MessageIsPresent()
+        {
+            return IsElementPresent(By.XPath("//div[@class = 'RhjoYcpGysnqEhJIMQeo']"));
+        }
 
         public ProjectHelper OpenThisProject()
         {
