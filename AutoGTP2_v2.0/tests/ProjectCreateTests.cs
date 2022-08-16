@@ -335,6 +335,18 @@ namespace AutoGTP2Tests
             Assert.IsTrue(app.Projects.CheckFileDownloaded(projectData));
         }
 
+        // GTP2-R-02-25
+        [Test]
+        public void RefFileDeleteTest()
+        {
+            ProjectData projectData = new ProjectData()
+            {
+                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest",                
+            };
 
+            app.Projects.DeleteRefFile(projectData);
+
+            Assert.IsTrue(app.Projects.RefFileIsDeleted());
+        }
     }
 }

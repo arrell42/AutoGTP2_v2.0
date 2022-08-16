@@ -233,18 +233,26 @@ namespace AutoGTP2Tests
             OpenNewPendingProject(projectData, 3, "00:30");
             OpenRefTab();
             RefFileAttach(1);
-            DownloadFileButtonClick();
+            SaveProjectButtonClick();
+            OpenThisProject();
+            OpenRefTab();
+            DownloadFileButtonClick();            
             return this;
         }
 
-        public ProjectHelper DownloadFileButtonClick()
+        public ProjectHelper DeleteRefFile(ProjectData projectData)
         {
-            driver.FindElement(By.Id("FILE_DOWNLOAD")).Click();
-            Thread.Sleep(4000);
+            OpenNewPendingProject(projectData, 3, "00:30");
+            OpenRefTab();
+            RefFileAttach(1);
+            SaveProjectButtonClick();
+            OpenThisProject();
+            OpenRefTab();
+            DeleteFileButtonClick();
             return this;
         }
 
-
+        
 
 
 
@@ -351,7 +359,29 @@ namespace AutoGTP2Tests
 
 
 
+
+
+
+
         // Низкоуровневые методы
+
+        public ProjectHelper DeleteFileButtonClick()
+        {
+            driver.FindElement(By.Id("FILE_DELETE"));
+            return this;
+        }
+
+        public bool RefFileIsDeleted()
+        {
+            return IsElementPresent(By.XPath("//div[@class = 'D3WSi9SyfqedE19FLuZH ']"));
+        }
+
+        public ProjectHelper DownloadFileButtonClick()
+        {
+            driver.FindElement(By.Id("FILE_DOWNLOAD")).Click();
+            Thread.Sleep(4000);
+            return this;
+        }
 
         public string TextInDescription()
         {
@@ -491,7 +521,7 @@ namespace AutoGTP2Tests
 
         public ProjectHelper OpenRefTab()
         {
-            driver.FindElement(By.Id("ProjectCardReferenceMaterials")).Click();
+            driver.FindElement(By.Id("ProjectCardReferenceMaterials")).Click();            
             return this;
         }
 
