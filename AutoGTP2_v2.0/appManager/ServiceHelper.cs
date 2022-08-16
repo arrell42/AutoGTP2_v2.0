@@ -23,7 +23,7 @@ namespace AutoGTP2Tests
             SelectTargetLanguage();
             SelectQuantityTypeManual();
             EnterQuantity(serviceData);
-            ServiceSaveButtonClick();            
+            SaveServiceButtonClick();            
             return this;
         }                
 
@@ -47,7 +47,7 @@ namespace AutoGTP2Tests
             SelectTargetLanguage();
             SelectQuantityTypeManual();
             EnterQuantity(serviceData);
-            ServiceSaveButtonClick();
+            SaveServiceButtonClick();
             return this;
         }
         public ServiceHelper ServiceCreateManualQuantityZeroFirst(ProjectData projectData, ServiceData serviceData)
@@ -58,7 +58,7 @@ namespace AutoGTP2Tests
             SelectTargetLanguage();
             SelectQuantityTypeManual();
             EnterQuantity(serviceData);
-            ServiceSaveButtonClick();
+            SaveServiceButtonClick();
             return this;
         }
 
@@ -70,7 +70,7 @@ namespace AutoGTP2Tests
             SelectTargetLanguage();
             SelectQuantityTypeManual();
             EnterQuantity(serviceData);
-            ServiceSaveButtonClick();
+            SaveServiceButtonClick();
             return this;
         }
 
@@ -100,9 +100,11 @@ namespace AutoGTP2Tests
             SelectTargetLanguage();
             SelectQuantityTypeAuto();
             SourceFileAttach();
-            ServiceSaveButtonClick();            
+            SaveServiceButtonClick();
+            SourceFileClick();
             return this;
         }
+
 
         public ServiceHelper ServiceAutoCountRequestQuote(ProjectData projectData)
         {
@@ -112,7 +114,7 @@ namespace AutoGTP2Tests
             SelectTargetLanguage();
             SelectQuantityTypeAuto();
             SourceFileAttach();
-            ServiceSaveButtonClick();
+            SaveServiceButtonClick();
             RequestQuoteButtonClick();
             return this;
         }
@@ -126,7 +128,7 @@ namespace AutoGTP2Tests
             SelectQuantityTypeCATLog();
             SelectCATToolMemoQ();
             UploadCATFile();
-            ServiceSaveButtonClick();
+            SaveServiceButtonClick();
             return this;
         }
 
@@ -139,7 +141,7 @@ namespace AutoGTP2Tests
             SelectQuantityTypeAuto();
             SourceFileAttach();
             Thread.Sleep(200);
-            ServiceSaveButtonClick();
+            SaveServiceButtonClick();
             EditButtonClick();
             SourceFileInServiceEditPageDownloadButtonClick();            
             return this;
@@ -154,7 +156,7 @@ namespace AutoGTP2Tests
             SelectQuantityTypeAuto();
             SourceFileAttach();
             Thread.Sleep(200);
-            ServiceSaveButtonClick();            
+            SaveServiceButtonClick();            
             SourceFileInServiceListDownloadButtonClick();            
             return this;
         }
@@ -168,7 +170,7 @@ namespace AutoGTP2Tests
             SelectQuantityTypeCATLog();
             SelectCATToolMemoQ();
             UploadCATFile();
-            ServiceSaveButtonClick();
+            SaveServiceButtonClick();
             EditButtonClick();
             CATFileDownloadButtonClick();
             return this;
@@ -183,7 +185,7 @@ namespace AutoGTP2Tests
             SelectQuantityTypeAuto();
             SourceFileAttach();
             Thread.Sleep(200);
-            ServiceSaveButtonClick();
+            SaveServiceButtonClick();
             EditButtonClick();            
             SourceFileRemoveButtonClick();
             return this;
@@ -197,7 +199,7 @@ namespace AutoGTP2Tests
             SelectTargetLanguage();
             SelectQuantityTypeCATLog();
             SelectCATToolMemoQ();            
-            ServiceSaveButtonClick();
+            SaveServiceButtonClick();
             return this;
         }
 
@@ -209,10 +211,10 @@ namespace AutoGTP2Tests
             SelectTargetLanguage();
             SelectQuantityTypeCATLog();
             SelectCATToolMemoQ();
-            ServiceSaveButtonClick();
+            SaveServiceButtonClick();
             WarningContinueButtonClick();
             return this;
-        }
+        }        
 
         public ServiceHelper ServiceCATLogWithOutCATFileCancelButton(ProjectData projectData)
         {
@@ -222,10 +224,10 @@ namespace AutoGTP2Tests
             SelectTargetLanguage();
             SelectQuantityTypeCATLog();
             SelectCATToolMemoQ();
-            ServiceSaveButtonClick();
+            SaveServiceButtonClick();
             WarningCancelButtonClick();
             return this;
-        }
+        }        
 
         public ServiceHelper UploadInvalidSourceFile(ProjectData projectData)
         {
@@ -242,7 +244,40 @@ namespace AutoGTP2Tests
             return this;
         }
 
+        
 
+        public ServiceHelper ServiceCreateManualQuantitySymbols(ProjectData projectData, ServiceData serviceData)
+        {
+            OpenNewProject(projectData);
+            CreateServiceButtonClick();
+            SelectSourceLanguage();
+            SelectTargetLanguage();
+            SelectQuantityTypeManual();
+            EnterQuantity(serviceData);
+            SaveServiceButtonClick();
+            return this;
+        }
+
+        public ServiceHelper OpenStatisticInCATService(ProjectData projectData)
+        {
+            OpenNewProject(projectData);
+            CreateServiceButtonClick();
+            SelectSourceLanguage();
+            SelectTargetLanguage();
+            SelectQuantityTypeCATLog();
+            SelectCATToolMemoQ();
+            UploadCATFile();
+            SaveServiceButtonClick();
+            StatisticButtonClick();
+            return this;
+        }
+
+        public ServiceHelper StatisticButtonClick()
+        {
+            driver.FindElement(By.Id("SERVICE_CAT_STATISTIC")).Click();
+            Thread.Sleep(200);
+            return this;
+        }
 
 
 
@@ -274,7 +309,50 @@ namespace AutoGTP2Tests
             return exist;
         }
 
+
+
+
+
+
+
+
         // Низкоуровневые методы
+
+        public bool StatisticIsOpen()
+        {
+            return IsElementPresent(By.XPath("//div[@class = 'styles_modal__gNwvD styles_modalCenter__L9F2w Rg7DxUmIwnJe0nOb6KZC']"));
+        }
+
+        public bool TargetLanguageCanChoose()
+        {
+            OpenTargetLanguage();
+            return IsElementPresent(By.XPath("//p[@class = 'CKkqQTXqlkqO2CTJTb3k']"));
+        }
+
+        public ServiceHelper OpenTargetLanguage()
+        {
+            driver.FindElement(By.XPath("//input[@name= 'CATSTATISTICS_TARGETLANGUAGE_DROP']")).Click();
+            WaitUntilFindElement(4, By.XPath("//p[@class = 'CKkqQTXqlkqO2CTJTb3k']"));
+            return this;
+        }
+
+        public bool StatisticTableIsPresent()
+        {
+            return driver.FindElements(By.XPath("//div[@class= 'DqOrlCG2LP930OmpmjQT']")).Count == 7;
+        }
+
+        public string SourceFileName()
+        {
+            string text = driver.FindElement(By.XPath("//div[@class = 'row one']//p[@class = 'title']")).Text.Trim();
+            return text;
+        }
+
+        public ServiceHelper SourceFileClick()
+        {
+            driver.FindElement(By.Id("SHOW_SOURCE_FILES")).Click();
+            Thread.Sleep(200);
+            return this;
+        }
 
         public ServiceHelper ReferenceTabClick()
         {
@@ -553,7 +631,7 @@ namespace AutoGTP2Tests
             return this;
         }
         
-        public ServiceHelper ServiceSaveButtonClick()
+        public ServiceHelper SaveServiceButtonClick()
         {
             driver.FindElement(By.Id("SERVICE_SAVE")).Click();
             if (!WarningPopupIsPresent())

@@ -7,6 +7,7 @@ namespace AutoGTP2Tests
     [TestFixture]
     public class ServiceCreateTests : AuthTestBase
     {
+        // GTP2-R-05-19
         [Test]
         public void ServiceCancelButtonTest()
         {
@@ -74,6 +75,7 @@ namespace AutoGTP2Tests
             Assert.IsTrue(app.Services.ServiceIsCalculated());
         }
 
+        // GTP2-R-05-33
         [Test]
         public void ServiceManualQuantityMinusTest()
         {
@@ -89,20 +91,22 @@ namespace AutoGTP2Tests
             Assert.IsTrue(app.Services.ServiceIsCalculated());
         }
 
+        // GTP2-R-05-05
         [Test]
         public void ServiceCreateAutoCountTest()
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
+                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"                
             };
 
             app.Services.ServiceCreateAutoCount(projectData);
 
             Assert.IsTrue(app.Services.ServiceIsNotCalculated());
+            Assert.AreEqual(app.Services.SourceFileName(), "SourceTest.txt");
         }
 
-        
+        // GTP2-R-05-34
         [Test]
         public void ServiceAutoCountRequestQuoteTest()
         {
@@ -186,6 +190,36 @@ namespace AutoGTP2Tests
             Assert.IsTrue(app.Services.PlugItemIsPresent());
         }
 
+        // GTP2-R-05-03
+        [Test]
+        public void ServiceManualQuantitySymbolsTest()
+        {
+            ProjectData projectData = new ProjectData()
+            {
+                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
+            };
+            ServiceData serviceData = new ServiceData(@"!@#$%^&*(){}][-_+=|\/");
 
+            app.Services.ServiceCreateManualQuantitySymbols(projectData, serviceData);
+
+            Assert.AreEqual(app.Services.QuantityTextValue(), "0.00");
+            Assert.IsTrue(app.Services.ServiceIsNotCalculated());
+        }
+
+        // GTP2-R-05-09
+        [Test]
+        public void ServiceCATStatisticButtonTest()
+        {
+            ProjectData projectData = new ProjectData()
+            {
+                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
+            };
+
+            app.Services.OpenStatisticInCATService(projectData);
+
+            Assert.IsTrue(app.Services.StatisticIsOpen());
+            Assert.IsTrue(app.Services.TargetLanguageCanChoose());
+            Assert.IsTrue(app.Services.StatisticTableIsPresent());
+        }
     }
 }
