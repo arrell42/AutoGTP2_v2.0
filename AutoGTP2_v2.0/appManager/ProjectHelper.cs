@@ -214,6 +214,21 @@ namespace AutoGTP2Tests
             return this;
         }
 
+        public ProjectHelper AddDescriptionToRefFile(ProjectData projectData)
+        {
+            OpenNewPendingProject(projectData, 3, "00:30");
+            OpenRefTab();
+            RefFileAttach(1);
+            DescriptionButtonClick();
+            AddDescriptionText("Test description");
+            SaveDescriptionButtonClick();
+            SaveProjectButtonClick();
+            OpenThisProject();
+            OpenRefTab();
+            return this;
+        }
+        
+
 
 
 
@@ -311,7 +326,37 @@ namespace AutoGTP2Tests
 
 
 
+
+
+
+
         // Низкоуровневые методы
+
+        public string TextInDescription()
+        {
+            string text = driver.FindElement(By.XPath("//div[@class = 'PK78jLTzjFjnFAeVs5iA']")).Text.Trim();
+            return text;
+        }
+
+        public ProjectHelper DescriptionButtonClick()
+        {
+            driver.FindElement(By.Id("FILE_COMMENT")).Click();
+            WaitUntilFindElement(4, By.Id("FILE_COMMENT_SAVE"));
+            return this;
+        }
+
+        public ProjectHelper AddDescriptionText(string text)
+        {
+            driver.FindElement(By.Id("FILE_COMMENT_TEXTAREA")).SendKeys(text);
+            Thread.Sleep(200);
+            return this;
+        }
+
+        public ProjectHelper SaveDescriptionButtonClick()
+        {
+            driver.FindElement(By.Id("FILE_COMMENT_SAVE")).Click();
+            return this;
+        }
 
         public bool AllFilesIsCorrect(string fileName)
         {

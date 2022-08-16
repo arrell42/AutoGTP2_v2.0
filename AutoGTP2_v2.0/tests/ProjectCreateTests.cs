@@ -296,8 +296,7 @@ namespace AutoGTP2Tests
             ProjectData projectData = new ProjectData()
             {
                 ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"                
-            };
-            
+            };            
 
             app.Projects.DownloadAllRefFiles(projectData);
 
@@ -306,9 +305,21 @@ namespace AutoGTP2Tests
             Assert.IsTrue(app.Projects.AllFilesIsCorrect("RefTest"));
         }
 
+        // GTP2-R-02-23
+        [Test]
+        public void RefFileDescriptionTest()
+        {
+            ProjectData projectData = new ProjectData()
+            {
+                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
+            };
+
+            app.Projects.AddDescriptionToRefFile(projectData);
+
+            Assert.AreEqual(app.Projects.TextInDescription(), "Test description");
+        }
 
 
 
-        
     }
 }
