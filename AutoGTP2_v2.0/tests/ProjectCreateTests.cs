@@ -288,5 +288,27 @@ namespace AutoGTP2Tests
             Assert.IsTrue(app.Projects.MessageIsPresent());
             Assert.IsTrue(app.Projects.MessageDateIsCorrect());
         }
+
+        // GTP2-R-02-22
+        [Test]
+        public void RefFilesDownloadAllButtonTest()
+        {
+            ProjectData projectData = new ProjectData()
+            {
+                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"                
+            };
+            
+
+            app.Projects.DownloadAllRefFiles(projectData);
+
+            Assert.IsTrue(app.Projects.FilesAttached(5));
+            Assert.AreEqual(app.Projects.DownloadAllFiles("RefTest"), 5);
+            Assert.IsTrue(app.Projects.AllFilesIsCorrect("RefTest"));
+        }
+
+
+
+
+        
     }
 }

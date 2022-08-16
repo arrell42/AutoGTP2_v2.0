@@ -39,6 +39,7 @@ namespace AutoGTP2Tests
         {
             ChromeOptions options = new ChromeOptions();
             options.AddArguments("start-maximized");
+            options.AddUserProfilePreference("profile.default_content_setting_values.automatic_downloads", 1);
             driver = new ChromeDriver(options);            
                         
 

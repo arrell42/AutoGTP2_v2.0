@@ -3,13 +3,15 @@ using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Text;
 using System.Threading;
 
 namespace AutoGTP2Tests
 {
     public class ProjectHelper : BaseHelper
-    {        
+    {
         public ProjectHelper(ApplicationManager manager) : base(manager)
         {
         }
@@ -17,8 +19,8 @@ namespace AutoGTP2Tests
         //Высокоуровневые методы
         public ProjectHelper CreatePendingProject(ProjectData projectData)
         {
-            OpenNewPendingProject(projectData, 3, "00:30");            
-            SaveProjectButtonClick();            
+            OpenNewPendingProject(projectData, 3, "00:30");
+            SaveProjectButtonClick();
             return this;
         }
 
@@ -50,7 +52,7 @@ namespace AutoGTP2Tests
 
         public ProjectHelper RemoveProjectDecline()
         {
-            manager.Navigator.GoToProjectPage();            
+            manager.Navigator.GoToProjectPage();
             ClickProjectBurger();
             ProjectDeleteButtonClick();
             ProjectDeleteDeclineButtonClick();
@@ -59,7 +61,7 @@ namespace AutoGTP2Tests
 
         public ProjectHelper RemoveProjectConfirm()
         {
-            manager.Navigator.GoToProjectPage();            
+            manager.Navigator.GoToProjectPage();
             ClickProjectBurger();
             ProjectDeleteButtonClick();
             ProjectDeleteConfirmButtonClick();
@@ -71,7 +73,7 @@ namespace AutoGTP2Tests
             OpenNewExpressProject(projectData);
             SaveProjectButtonClick();
             return this;
-        }        
+        }
 
         public ProjectHelper ExpressProjectExclamationPopup(ProjectData projectData)
         {
@@ -99,7 +101,7 @@ namespace AutoGTP2Tests
         public ProjectHelper ExpressProjectTextAttach(ProjectData projectData, string filePath)
         {
             OpenNewExpressProject(projectData);
-            FillTextAreaFromFile(filePath);            
+            FillTextAreaFromFile(filePath);
             return this;
         }
 
@@ -117,7 +119,7 @@ namespace AutoGTP2Tests
             OpenNewExpressProject(projectData);
             FillTextAreaFromFile(filePath);
             MouseClickImitation(By.XPath("//p[@class = 'RjSxBXvO6oCmh2PBtYg9']"));
-            LimitPopupSwitchButtonClick();            
+            LimitPopupSwitchButtonClick();
             return this;
         }
         public ProjectHelper AddAndDeleteBudgetInProject(ProjectData projectData)
@@ -200,7 +202,21 @@ namespace AutoGTP2Tests
             return this;
         }
 
-        
+        public ProjectHelper DownloadAllRefFiles(ProjectData projectData)
+        {
+            OpenNewPendingProject(projectData, 3, "00:30");
+            OpenRefTab();
+            RefFileAttach(5);
+            SaveProjectButtonClick();
+            OpenThisProject();
+            OpenRefTab();
+            DownloadAllFilesButtonClick("Ref");
+            return this;
+        }
+
+
+
+
 
 
 
@@ -221,7 +237,7 @@ namespace AutoGTP2Tests
             List<ProjectData> projects = new List<ProjectData>();
             manager.Navigator.GoToProjectPage();
             ICollection<IWebElement> elements = driver.FindElements(By.XPath("//div[@class = 'Y60VrDynu5B8vFAVkO5A']"));
-            foreach(var element in elements)
+            foreach (var element in elements)
             {
                 for (int i = 0; i < elements.Count; i++)
                 {
@@ -268,7 +284,7 @@ namespace AutoGTP2Tests
             return new List<ProjectData>(projects);
         }
 
-        
+
         public ProjectData GetDatesFromProjectList()
         {
             manager.Navigator.GoToProjectPage();
@@ -289,23 +305,6 @@ namespace AutoGTP2Tests
             };
         }
 
-        
-        public ProjectData GetDatesFromProject()
-        {
-            manager.Navigator.GoToProjectPage();
-
-            string start = driver.FindElement(By.XPath("//input[@name= 'start_date']")).GetAttribute("value").Trim();
-            string end = driver.FindElement(By.XPath("//input[@name= 'end_date']")).GetAttribute("value").Trim();
-            string time = driver.FindElement(By.XPath(
-                "//input[@name= 'PROJECT_CARD_END_TIME_DROP']")).GetAttribute("value").Trim();
-
-            return new ProjectData()
-            {
-                StartDate = start,
-                EndDate = end,
-                //Time = time
-            };
-        }
 
 
 
@@ -313,6 +312,55 @@ namespace AutoGTP2Tests
 
 
         // Низкоуровневые методы
+
+        public bool AllFilesIsCorrect(string fileName)
+        {
+            bool exist = false;
+            string downloadPath = Path.Combine(Syroot.Windows.IO.KnownFolders.Downloads.Path);
+            string[] filePaths = Directory.GetFiles(downloadPath);
+            foreach (string f in filePaths)
+            {
+                if (f.Contains(fileName))
+                {
+                    FileInfo thisFile = new FileInfo(f);
+                    //Check the file that are downloaded in the last 3 minutes
+                    if (thisFile.LastWriteTime.ToShortTimeString() == DateTime.Now.ToShortTimeString() ||
+                    thisFile.LastWriteTime.AddMinutes(1).ToShortTimeString() == DateTime.Now.ToShortTimeString() ||
+                    thisFile.LastWriteTime.AddMinutes(2).ToShortTimeString() == DateTime.Now.ToShortTimeString() ||
+                    thisFile.LastWriteTime.AddMinutes(3).ToShortTimeString() == DateTime.Now.ToShortTimeString())
+                        exist = true;
+                    File.Delete(f); //удаление файла после проверки                   
+                }                
+            }
+            return exist;
+        }
+
+        public int DownloadAllFiles(string fileName)
+        {            
+            string downloadPath = Path.Combine(Syroot.Windows.IO.KnownFolders.Downloads.Path);
+            int fCount = Directory.GetFiles(downloadPath, fileName + "*", SearchOption.TopDirectoryOnly).Length;
+            return fCount;
+        }
+
+        public ProjectHelper DownloadAllFilesButtonClick(string fileName)
+        {
+            string downloadPath = Path.Combine(Syroot.Windows.IO.KnownFolders.Downloads.Path);
+            string[] filePaths = Directory.GetFiles(downloadPath);
+            var directoryFiles = Directory.EnumerateFiles(downloadPath).ToList();
+            foreach (string f in filePaths)
+            {
+                if (f.Contains(fileName))
+                {
+                    File.Delete(f); //удаление файла                   
+                }
+            }
+
+            driver.FindElement(By.XPath("//button[@class = 'btn primary-btn ']")).Click();
+
+            Thread.Sleep(10000); // доработать метод ожидания загрузки файлов
+            
+            return this;
+        }
 
         public ProjectHelper OpenMessageTab()
         {

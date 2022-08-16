@@ -20,7 +20,7 @@ namespace AutoGTP2Tests
         public string CreationDate { get; set; }
         public string BudgetCost { get;  set; }
         public string BudgetPO { get;  set; }
-        public string BudgetTotal { get;  set; }
+        public string BudgetTotal { get;  set; }        
 
 
 
