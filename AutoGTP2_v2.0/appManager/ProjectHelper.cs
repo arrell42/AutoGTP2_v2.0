@@ -227,8 +227,22 @@ namespace AutoGTP2Tests
             OpenRefTab();
             return this;
         }
-        
 
+        public ProjectHelper DownloadRefFile(ProjectData projectData)
+        {
+            OpenNewPendingProject(projectData, 3, "00:30");
+            OpenRefTab();
+            RefFileAttach(1);
+            DownloadFileButtonClick();
+            return this;
+        }
+
+        public ProjectHelper DownloadFileButtonClick()
+        {
+            driver.FindElement(By.Id("FILE_DOWNLOAD")).Click();
+            Thread.Sleep(4000);
+            return this;
+        }
 
 
 
@@ -300,25 +314,32 @@ namespace AutoGTP2Tests
         }
 
 
-        public ProjectData GetDatesFromProjectList()
+        // проверка на скачанный файл
+        public bool CheckFileDownloaded(ProjectData filename)
         {
-            manager.Navigator.GoToProjectPage();
-            driver.FindElement(By.XPath("//div[@id= 'PROJECT_0']//div[@id= 'PROJECTS_PROJECT_NAME']")).Click();
-            WaitUntilFindElement(10, By.XPath(
-                "//div[@class= 'styles_modal__gNwvD styles_modalCenter__L9F2w project-card-modal']"));
-
-            string start = driver.FindElement(By.XPath(
-                "//div[@id= 'PROJECT_0']//div[@class= 'cKVdbe5ncl_hH94NrcVk']/div[2]")).Text;
-            string end = driver.FindElement(By.XPath(
-                "//div[@id= 'PROJECT_0']//div[@class= 'dXd7OzCXmiZiomDAUNh1']/div[2]")).Text;
-
-
-            return new ProjectData()
+            bool exist = false;
+            string downloadPath = Path.Combine(Syroot.Windows.IO.KnownFolders.Downloads.Path);
+            string[] filePaths = Directory.GetFiles(downloadPath);
+            foreach (string p in filePaths)
             {
-                StartDate = start,
-                EndDate = end
-            };
+                if (p.Contains(filename.FileName))
+                {
+                    FileInfo thisFile = new FileInfo(p);
+                    //Check the file that are downloaded in the last 3 minutes
+                    if (thisFile.LastWriteTime.ToShortTimeString() == DateTime.Now.ToShortTimeString() ||
+                    thisFile.LastWriteTime.AddMinutes(1).ToShortTimeString() == DateTime.Now.ToShortTimeString() ||
+                    thisFile.LastWriteTime.AddMinutes(2).ToShortTimeString() == DateTime.Now.ToShortTimeString() ||
+                    thisFile.LastWriteTime.AddMinutes(3).ToShortTimeString() == DateTime.Now.ToShortTimeString())
+                        exist = true;
+                    File.Delete(p); //удаление файла после проверки
+                    break;
+                }
+            }
+            return exist;
         }
+
+
+
 
 
 

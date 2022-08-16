@@ -2,7 +2,7 @@
 using System;
 using System.Threading;
 using System.Globalization;
-
+using System.IO;
 
 namespace AutoGTP2Tests
 {
@@ -250,7 +250,29 @@ namespace AutoGTP2Tests
 
 
 
-
+        // проверка на скачанный файл
+        public bool CheckFileDownloaded(ServiceData filename)
+        {
+            bool exist = false;
+            string downloadPath = Path.Combine(Syroot.Windows.IO.KnownFolders.Downloads.Path);
+            string[] filePaths = Directory.GetFiles(downloadPath);
+            foreach (string p in filePaths)
+            {
+                if (p.Contains(filename.FileName))
+                {
+                    FileInfo thisFile = new FileInfo(p);
+                    //Check the file that are downloaded in the last 3 minutes
+                    if (thisFile.LastWriteTime.ToShortTimeString() == DateTime.Now.ToShortTimeString() ||
+                    thisFile.LastWriteTime.AddMinutes(1).ToShortTimeString() == DateTime.Now.ToShortTimeString() ||
+                    thisFile.LastWriteTime.AddMinutes(2).ToShortTimeString() == DateTime.Now.ToShortTimeString() ||
+                    thisFile.LastWriteTime.AddMinutes(3).ToShortTimeString() == DateTime.Now.ToShortTimeString())
+                        exist = true;
+                    File.Delete(p); //удаление файла после проверки
+                    break;
+                }
+            }
+            return exist;
+        }
 
         // Низкоуровневые методы
 
