@@ -310,5 +310,19 @@ namespace AutoGTP2Tests
             Assert.IsFalse(app.Services.SaveServiceButtonIsDisabled());
             Assert.IsTrue(app.Services.LanguagePairSelectIsDisabled(1));
         }
+
+        // GTP2-R-05-23
+        [Test]
+        public void SubjectAreaInServiceTest()
+        {
+            ProjectData projectData = new ProjectData()
+            {
+                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
+            };
+
+            app.Services.SecondSelectSubjectAreaInService(projectData);
+
+            Assert.IsTrue(app.Services.LanguagesFieldsAreEmpty());
+        }
     }
 }

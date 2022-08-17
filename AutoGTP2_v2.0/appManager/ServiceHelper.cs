@@ -358,7 +358,41 @@ namespace AutoGTP2Tests
             return this;
         }
 
-        
+        public ServiceHelper SecondSelectSubjectAreaInService(ProjectData projectData)
+        {
+            OpenNewProject(projectData);
+            CreateServiceButtonClick();
+            SelectSubjectArea(1);
+            SelectSourceLanguage();
+            SelectTargetLanguage();
+            SelectSubjectArea(2);
+            return this;
+        }
+
+        public ServiceHelper SelectSubjectArea(int i)
+        {
+            driver.FindElement(By.XPath("//div[@id = 'SERVICE_SUBJECT_AREA']//div")).Click();
+            WaitUntilFindElement(4, By.Id("SERVICE_SUBJECT_AREA_OPTION_" + i + ""));
+            driver.FindElement(By.Id("SERVICE_SUBJECT_AREA_OPTION_" + i + "")).Click();
+            return this;
+        }
+
+        public bool LanguagesFieldsAreEmpty()
+        {
+            string text1 = driver.FindElement(By.XPath(
+                "//input[@class = 'react-dropdown-select-input css-ipe0e3-InputComponent e11wid6y0']")).
+                    GetAttribute("placeholder").Trim();
+            string text2 = driver.FindElement(By.XPath("//span[contains(text(), 'Choose language')]")).Text.Trim();
+
+            if (text1 == "Choose language"
+                && text2 == "Choose language")
+            {
+                return true;
+            }
+            return false;
+        }
+
+
 
 
 
