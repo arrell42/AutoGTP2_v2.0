@@ -268,7 +268,7 @@ namespace AutoGTP2Tests
             SaveServiceButtonClick();
             StatisticButtonClick();
             return this;
-        }               
+        }
 
         public ServiceHelper AddAndDeleteCATFile(ProjectData projectData)
         {
@@ -302,7 +302,25 @@ namespace AutoGTP2Tests
             return this;
         }
 
-        
+        public ServiceHelper NewServiceWithCATCreate(ProjectData projectData)
+        {
+            OpenNewProject(projectData);
+            CreateServiceButtonClick();
+            SelectSourceLanguage();
+            SelectTargetLanguage();
+            SelectQuantityTypeCATLog();
+            SelectCATToolMemoQ();
+            UploadCATFile();
+            SaveServiceButtonClick();
+            CreateServiceButtonClick();
+            SelectSourceLanguage();
+            SelectTargetLanguage();
+            SelectQuantityTypeCATLog();
+            MouseClickAndHoldImitation(By.XPath(
+                "//div[@class = 'react-dropdown-select cat-tool-dropdown css-1jmlu6t-ReactDropdownSelect e1gzf2xs0']"));
+            Thread.Sleep(200);
+            return this;
+        }
 
 
 
@@ -344,6 +362,17 @@ namespace AutoGTP2Tests
 
 
         // Низкоуровневые методы
+
+
+        public bool CATToolPopupIsPresentAndHaveCorrectText()
+        {
+            string text = driver.FindElement(By.XPath("//div[@class = 'popup-content ']")).Text;
+            if (text == "Only one CAT tool can be used per project")
+            {
+                return true;
+            }
+            return false;
+        }
 
         public bool WarningTextIsCorrect()
         {
@@ -531,7 +560,7 @@ namespace AutoGTP2Tests
         {
             driver.FindElement(By.Name("SERVICE_CAT_DROP")).Click();
             WaitUntilFindElement(10, By.Id("SERVICE_CAT_DROP_2"));
-            driver.FindElement(By.Id("SERVICE_CAT_DROP_2")).Click();
+            driver.FindElement(By.Id("SERVICE_CAT_DROP_2")).Click();                  
             return this;
         }
 

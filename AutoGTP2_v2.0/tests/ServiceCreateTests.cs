@@ -246,8 +246,24 @@ namespace AutoGTP2Tests
             };
 
             app.Services.CATFileDeleteAndSaveService(projectData);
+
             Assert.IsTrue(app.Services.WarningPopupIsPresent());
             Assert.IsTrue(app.Services.WarningTextIsCorrect());
+        }
+
+        // GTP2-R-05-10
+        [Test]
+        public void CATToolFieldInSecondServiceTest()
+        {
+            ProjectData projectData = new ProjectData()
+            {
+                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
+            };
+
+            app.Services.NewServiceWithCATCreate(projectData);
+
+            Assert.IsTrue(app.Services.CATToolPopupIsPresentAndHaveCorrectText());
+            
         }
     }
 }
