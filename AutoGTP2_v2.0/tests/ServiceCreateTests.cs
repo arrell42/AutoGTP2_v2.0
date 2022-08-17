@@ -280,5 +280,20 @@ namespace AutoGTP2Tests
             Assert.IsFalse(app.Services.LanguagePairIsEmpty());
             Assert.AreEqual(app.Services.QuantityTextValue(), "Auto");
         }
+
+        // GTP2-R-05-20
+        [Test]
+        public void TypeOfServiceSelectTest()
+        {
+            ProjectData projectData = new ProjectData()
+            {
+                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
+            };
+
+            app.Services.ChangeDefaultTypeOfSerice(projectData);
+
+            Assert.IsTrue(app.Services.SaveServiceButtonIsDisabled());
+            Assert.IsTrue(app.Services.LanguagePairSelectIsDisabled());
+        }
     }
 }

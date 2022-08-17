@@ -299,7 +299,7 @@ namespace AutoGTP2Tests
             CATFileDeleteButtonClick();
             SaveServiceButtonClick();
             return this;
-        }        
+        }
 
         public ServiceHelper NewServiceWithCATCreate(ProjectData projectData)
         {
@@ -341,7 +341,22 @@ namespace AutoGTP2Tests
             return this;
         }
 
-        
+        public ServiceHelper ChangeDefaultTypeOfSerice(ProjectData projectData)
+        {
+            OpenNewProject(projectData);
+            CreateServiceButtonClick();
+            SelectTypeOfService();            
+            return this;
+        }
+
+        public ServiceHelper SelectTypeOfService()
+        {
+            driver.FindElement(By.XPath("//div[@class = 'type-of-service']//following-sibling::div")).Click();
+            WaitUntilFindElement(4, By.Id("SERVICE_TYPE_OF_SERVICE_OPTION_0"));
+            driver.FindElement(By.Id("SERVICE_TYPE_OF_SERVICE_OPTION_0")).Click();
+            return this;
+        }
+
 
 
 
@@ -382,6 +397,26 @@ namespace AutoGTP2Tests
 
 
         // Низкоуровневые методы
+
+
+        public bool SaveServiceButtonIsDisabled()
+        {
+            if (driver.FindElement(By.Id("SERVICE_SAVE")).Enabled)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public bool LanguagePairSelectIsDisabled()
+        {
+            if(IsElementPresent(By.XPath(
+                "//div[@class = 'react-dropdown-select dropdown css-1jmlu6t-ReactDropdownSelect e1gzf2xs0']")))
+            {
+                return true;
+            }
+            return false;
+        }
 
         public ServiceHelper TargetLanguageDelete()
         {
