@@ -268,7 +268,7 @@ namespace AutoGTP2Tests
             SaveServiceButtonClick();
             StatisticButtonClick();
             return this;
-        }
+        }               
 
         public ServiceHelper AddAndDeleteCATFile(ProjectData projectData)
         {
@@ -285,11 +285,24 @@ namespace AutoGTP2Tests
             return this;
         }
 
-        public ServiceHelper CATFileDeleteButtonClick()
+
+        public ServiceHelper CATFileDeleteAndSaveService(ProjectData projectData)
         {
-            driver.FindElement(By.Id("SERVICE_CAT_FILE_REMOVE")).Click();
+            OpenNewProject(projectData);
+            CreateServiceButtonClick();
+            SelectSourceLanguage();
+            SelectTargetLanguage();
+            SelectQuantityTypeCATLog();
+            SelectCATToolMemoQ();
+            UploadCATFile();
+            SaveServiceButtonClick();
+            OpenAndEditButtonClick();
+            CATFileDeleteButtonClick();
+            SaveServiceButtonClick();
             return this;
         }
+
+        
 
 
 
@@ -331,6 +344,23 @@ namespace AutoGTP2Tests
 
 
         // Низкоуровневые методы
+
+        public bool WarningTextIsCorrect()
+        {
+            string text1 = driver.FindElement(By.XPath("//p[@class = 'bYs_kMWmvVuZpJVhZfH4'][1]")).Text;
+            string text2 = driver.FindElement(By.XPath("//p[@class = 'bYs_kMWmvVuZpJVhZfH4'][2]")).Text;
+            if (text1 == "Please, upload cat log file" && text2 == "Are you sure you want to interrupt the service creating process?")
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public ServiceHelper CATFileDeleteButtonClick()
+        {
+            driver.FindElement(By.Id("SERVICE_CAT_FILE_REMOVE")).Click();
+            return this;
+        }
 
         public ServiceHelper StatisticButtonClick()
         {

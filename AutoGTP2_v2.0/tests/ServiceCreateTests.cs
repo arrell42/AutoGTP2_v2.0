@@ -235,5 +235,19 @@ namespace AutoGTP2Tests
 
             Assert.IsTrue(app.Services.UploadFileButtonIsPresent());
         }
+
+        // GTP2-R-05-13
+        [Test]
+        public void WarningCATFileUploadTest()
+        {
+            ProjectData projectData = new ProjectData()
+            {
+                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
+            };
+
+            app.Services.CATFileDeleteAndSaveService(projectData);
+            Assert.IsTrue(app.Services.WarningPopupIsPresent());
+            Assert.IsTrue(app.Services.WarningTextIsCorrect());
+        }
     }
 }
