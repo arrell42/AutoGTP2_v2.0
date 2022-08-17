@@ -221,5 +221,19 @@ namespace AutoGTP2Tests
             Assert.IsTrue(app.Services.TargetLanguageCanChoose());
             Assert.IsTrue(app.Services.StatisticTableIsPresent());
         }
+
+        // GTP2-R-05-12
+        [Test]
+        public void ServiceCATStatisticUploadButtonTest()
+        {
+            ProjectData projectData = new ProjectData()
+            {
+                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
+            };
+
+            app.Services.AddAndDeleteCATFile(projectData);
+
+            Assert.IsTrue(app.Services.UploadFileButtonIsPresent());
+        }
     }
 }
