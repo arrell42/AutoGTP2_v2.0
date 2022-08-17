@@ -285,7 +285,6 @@ namespace AutoGTP2Tests
             return this;
         }
 
-
         public ServiceHelper CATFileDeleteAndSaveService(ProjectData projectData)
         {
             OpenNewProject(projectData);
@@ -300,7 +299,7 @@ namespace AutoGTP2Tests
             CATFileDeleteButtonClick();
             SaveServiceButtonClick();
             return this;
-        }
+        }        
 
         public ServiceHelper NewServiceWithCATCreate(ProjectData projectData)
         {
@@ -322,6 +321,27 @@ namespace AutoGTP2Tests
             return this;
         }
 
+        public ServiceHelper ServiceWithoutLanguagePairCreate(ProjectData projectData)
+        {
+            OpenNewProject(projectData);
+            CreateServiceButtonClick();
+            SelectSourceLanguage();
+            SelectTargetLanguage();
+            SelectQuantityTypeCATLog();
+            SelectCATToolMemoQ();
+            UploadCATFile();
+            SaveServiceButtonClick();
+            OpenAndEditButtonClick();
+            CATFileDeleteButtonClick();
+            SaveServiceButtonClick();
+            WarningContinueButtonClick();
+            TargetLanguageDelete();
+            SelectQuantityTypeAuto();
+            SaveServiceButtonClick();
+            return this;
+        }
+
+        
 
 
 
@@ -363,6 +383,18 @@ namespace AutoGTP2Tests
 
         // Низкоуровневые методы
 
+        public ServiceHelper TargetLanguageDelete()
+        {
+            driver.FindElement(By.Name("SERVICE_SOURCE_LANG")).Click();
+            WaitUntilFindElement(4, By.Id("SERVICE_SOURCE_LANG_0"));
+            driver.FindElement(By.Id("SERVICE_SOURCE_LANG_0")).Click();
+            return this;
+        }
+
+        public bool LanguagePairIsEmpty()
+        {
+            return IsElementPresent(By.Id("SHOW_LANGUAGE_PAIRS"));
+        }
 
         public bool CATToolPopupIsPresentAndHaveCorrectText()
         {

@@ -262,8 +262,23 @@ namespace AutoGTP2Tests
 
             app.Services.NewServiceWithCATCreate(projectData);
 
-            Assert.IsTrue(app.Services.CATToolPopupIsPresentAndHaveCorrectText());
-            
+            Assert.IsTrue(app.Services.CATToolPopupIsPresentAndHaveCorrectText());            
+        }
+
+        // GTP2-R-05-16
+        [Test]
+        public void QuantityTypeAutoServiceSaveTest()
+        {
+            ProjectData projectData = new ProjectData()
+            {
+                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
+            };
+
+            app.Services.ServiceWithoutLanguagePairCreate(projectData);
+
+            Assert.IsTrue(app.Services.ServiceIsNotCalculated());
+            Assert.IsFalse(app.Services.LanguagePairIsEmpty());
+            Assert.AreEqual(app.Services.QuantityTextValue(), "Auto");
         }
     }
 }
