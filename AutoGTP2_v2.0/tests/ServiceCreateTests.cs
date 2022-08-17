@@ -283,7 +283,7 @@ namespace AutoGTP2Tests
 
         // GTP2-R-05-20
         [Test]
-        public void TypeOfServiceSelectTest()
+        public void TypeOfServiceWithoutUnitTest()
         {
             ProjectData projectData = new ProjectData()
             {
@@ -293,7 +293,22 @@ namespace AutoGTP2Tests
             app.Services.ChangeDefaultTypeOfSerice(projectData);
 
             Assert.IsTrue(app.Services.SaveServiceButtonIsDisabled());
-            Assert.IsTrue(app.Services.LanguagePairSelectIsDisabled());
+            Assert.IsTrue(app.Services.LanguagePairSelectIsDisabled(2));
+        }
+
+        // GTP2-R-05-21
+        [Test]
+        public void TypeOfServiceSelectWithUnitTest()
+        {
+            ProjectData projectData = new ProjectData()
+            {
+                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
+            };
+
+            app.Services.ChangeDefaultTypeOfSericeAndSelectUnit(projectData);
+
+            Assert.IsFalse(app.Services.SaveServiceButtonIsDisabled());
+            Assert.IsTrue(app.Services.LanguagePairSelectIsDisabled(1));
         }
     }
 }

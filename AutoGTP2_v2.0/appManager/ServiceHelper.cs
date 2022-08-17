@@ -349,13 +349,19 @@ namespace AutoGTP2Tests
             return this;
         }
 
-        public ServiceHelper SelectTypeOfService()
+        public ServiceHelper ChangeDefaultTypeOfSericeAndSelectUnit(ProjectData projectData)
         {
-            driver.FindElement(By.XPath("//div[@class = 'type-of-service']//following-sibling::div")).Click();
-            WaitUntilFindElement(4, By.Id("SERVICE_TYPE_OF_SERVICE_OPTION_0"));
-            driver.FindElement(By.Id("SERVICE_TYPE_OF_SERVICE_OPTION_0")).Click();
+            OpenNewProject(projectData);
+            CreateServiceButtonClick();
+            SelectTypeOfService();
+            SelectUnit();
             return this;
         }
+
+        
+
+
+
 
 
 
@@ -398,6 +404,21 @@ namespace AutoGTP2Tests
 
         // Низкоуровневые методы
 
+        public ServiceHelper SelectUnit()
+        {
+            driver.FindElement(By.XPath("//div[@class = 'unit-of-measure']//div")).Click();
+            WaitUntilFindElement(4, By.Id("SERVICE_UNIT_OPTION_0"));
+            driver.FindElement(By.Id("SERVICE_UNIT_OPTION_0")).Click();
+            return this;
+        }
+
+        public ServiceHelper SelectTypeOfService()
+        {
+            driver.FindElement(By.XPath("//div[@class = 'type-of-service']//following-sibling::div")).Click();
+            WaitUntilFindElement(4, By.Id("SERVICE_TYPE_OF_SERVICE_OPTION_0"));
+            driver.FindElement(By.Id("SERVICE_TYPE_OF_SERVICE_OPTION_0")).Click();
+            return this;
+        }
 
         public bool SaveServiceButtonIsDisabled()
         {
@@ -408,10 +429,10 @@ namespace AutoGTP2Tests
             return true;
         }
 
-        public bool LanguagePairSelectIsDisabled()
+        public bool LanguagePairSelectIsDisabled(int i)
         {
-            if(IsElementPresent(By.XPath(
-                "//div[@class = 'react-dropdown-select dropdown css-1jmlu6t-ReactDropdownSelect e1gzf2xs0']")))
+            if(driver.FindElements(By.XPath(
+                "//div[@class = 'react-dropdown-select dropdown css-1jmlu6t-ReactDropdownSelect e1gzf2xs0']")).Count == i)
             {
                 return true;
             }

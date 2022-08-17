@@ -37,11 +37,13 @@ namespace AutoGTP2Tests
         // Начало теста - открыть браузер, перейти на нужную страницу, инициализация хелперов
         private ApplicationManager()
         {
-            ChromeOptions options = new ChromeOptions();
-            options.AddArguments("start-maximized");
+            ChromeOptions options = new ChromeOptions();            
+            
+            options.AddArguments("start-maximized");            
             options.AddUserProfilePreference("profile.default_content_setting_values.automatic_downloads", 1);
-            driver = new ChromeDriver(options);            
-                        
+
+            driver = new ChromeDriver(options);
+
 
             baseURL = "https://gtp-test.janusww.com:9999";
             //baseURL = "https://gtp2.janusww.com";
