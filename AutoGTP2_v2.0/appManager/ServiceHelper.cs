@@ -382,8 +382,18 @@ namespace AutoGTP2Tests
             return this;
         }
 
+        public ServiceHelper CreateServiceWithAllPairsCheckBoxClick(ProjectData projectData)
+        {
+            CreateServiceWithTwoLanguagePairs(projectData);
+            AssignAllLanguagePairsButtonClick();
+            LanguagePairDropdownClick();
+            AllPairsCheckBoxClick();
+            return this;
+        }
 
-        
+
+
+
 
 
 
@@ -430,6 +440,38 @@ namespace AutoGTP2Tests
 
 
         // Низкоуровневые методы
+
+
+        public bool FirstLanguagePairCheckBoxIsEnabled()
+        {
+            return IsElementPresent(By.XPath(
+                "//div[@class = 'pHF9uuOVtyK_inrEuqvC wqfeLiuQFm60wq9lxwtf hMeFKmz2mTZuVvN1nMCf']"));
+        }
+
+        public bool DropdownHaveOneLanguagePairText()
+        {
+            return driver.FindElements(By.XPath("//div[@id = 'LANGUAGE_PAIRS_DROPDOWN']//span")).Count == 3;
+        }
+
+        public ServiceHelper AssignAllLanguagePairsButtonClick()
+        {
+            driver.FindElement(By.XPath("//span[@class = 'btn secondary-btn']")).Click();
+            Thread.Sleep(200);
+            return this;
+        }
+
+        public ServiceHelper LanguagePairDropdownClick()
+        {
+            driver.FindElement(By.Id("LANGUAGE_PAIRS_DROPDOWN")).Click();
+            Thread.Sleep(300);
+            return this;
+        }
+
+        public ServiceHelper AllPairsCheckBoxClick()
+        {
+            driver.FindElement(By.Id("ALL_PAIRS_option")).Click();
+            return this;
+        }
 
 
         public bool SourceFileTableIsPresent()
