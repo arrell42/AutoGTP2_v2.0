@@ -20,7 +20,7 @@ namespace AutoGTP2Tests
             OpenNewProject(projectData);
             CreateServiceButtonClick();
             SelectSourceLanguage();
-            SelectTargetLanguage();
+            SelectTargetLanguage(1);
             SelectQuantityTypeManual();
             EnterQuantity(serviceData);
             SaveServiceButtonClick();            
@@ -32,7 +32,7 @@ namespace AutoGTP2Tests
             OpenNewProject(projectData);
             CreateServiceButtonClick();
             SelectSourceLanguage();
-            SelectTargetLanguage();
+            SelectTargetLanguage(1);
             SelectQuantityTypeManual();
             EnterQuantity(serviceData);
             ServiceCancelButtonClick();            
@@ -44,7 +44,7 @@ namespace AutoGTP2Tests
             OpenNewProject(projectData);
             CreateServiceButtonClick();
             SelectSourceLanguage();
-            SelectTargetLanguage();
+            SelectTargetLanguage(1);
             SelectQuantityTypeManual();
             EnterQuantity(serviceData);
             SaveServiceButtonClick();
@@ -55,7 +55,7 @@ namespace AutoGTP2Tests
             OpenNewProject(projectData);
             CreateServiceButtonClick();
             SelectSourceLanguage();
-            SelectTargetLanguage();
+            SelectTargetLanguage(1);
             SelectQuantityTypeManual();
             EnterQuantity(serviceData);
             SaveServiceButtonClick();
@@ -67,7 +67,7 @@ namespace AutoGTP2Tests
             OpenNewProject(projectData);
             CreateServiceButtonClick();
             SelectSourceLanguage();
-            SelectTargetLanguage();
+            SelectTargetLanguage(1);
             SelectQuantityTypeManual();
             EnterQuantity(serviceData);
             SaveServiceButtonClick();
@@ -97,7 +97,7 @@ namespace AutoGTP2Tests
             OpenNewProject(projectData);
             CreateServiceButtonClick();
             SelectSourceLanguage();
-            SelectTargetLanguage();
+            SelectTargetLanguage(1);
             SelectQuantityTypeAuto();
             SourceFileAttach();
             SaveServiceButtonClick();
@@ -111,7 +111,7 @@ namespace AutoGTP2Tests
             OpenNewProject(projectData);
             CreateServiceButtonClick();
             SelectSourceLanguage();
-            SelectTargetLanguage();
+            SelectTargetLanguage(1);
             SelectQuantityTypeAuto();
             SourceFileAttach();
             SaveServiceButtonClick();
@@ -124,7 +124,7 @@ namespace AutoGTP2Tests
             OpenNewProject(projectData);
             CreateServiceButtonClick();
             SelectSourceLanguage();
-            SelectTargetLanguage();
+            SelectTargetLanguage(1);
             SelectQuantityTypeCATLog();
             SelectCATToolMemoQ();
             UploadCATFile();
@@ -137,7 +137,7 @@ namespace AutoGTP2Tests
             OpenNewProject(projectData);
             CreateServiceButtonClick();
             SelectSourceLanguage();
-            SelectTargetLanguage();
+            SelectTargetLanguage(1);
             SelectQuantityTypeAuto();
             SourceFileAttach();
             Thread.Sleep(200);
@@ -152,7 +152,7 @@ namespace AutoGTP2Tests
             OpenNewProject(projectData);
             CreateServiceButtonClick();
             SelectSourceLanguage();
-            SelectTargetLanguage();
+            SelectTargetLanguage(1);
             SelectQuantityTypeAuto();
             SourceFileAttach();
             Thread.Sleep(200);
@@ -166,7 +166,7 @@ namespace AutoGTP2Tests
             OpenNewProject(projectData);
             CreateServiceButtonClick();
             SelectSourceLanguage();
-            SelectTargetLanguage();
+            SelectTargetLanguage(1);
             SelectQuantityTypeCATLog();
             SelectCATToolMemoQ();
             UploadCATFile();
@@ -181,7 +181,7 @@ namespace AutoGTP2Tests
             OpenNewProject(projectData);
             CreateServiceButtonClick();
             SelectSourceLanguage();
-            SelectTargetLanguage();
+            SelectTargetLanguage(1);
             SelectQuantityTypeAuto();
             SourceFileAttach();
             Thread.Sleep(200);
@@ -196,7 +196,7 @@ namespace AutoGTP2Tests
             OpenNewProject(projectData);
             CreateServiceButtonClick();
             SelectSourceLanguage();
-            SelectTargetLanguage();
+            SelectTargetLanguage(1);
             SelectQuantityTypeCATLog();
             SelectCATToolMemoQ();            
             SaveServiceButtonClick();
@@ -208,7 +208,7 @@ namespace AutoGTP2Tests
             OpenNewProject(projectData);
             CreateServiceButtonClick();
             SelectSourceLanguage();
-            SelectTargetLanguage();
+            SelectTargetLanguage(1);
             SelectQuantityTypeCATLog();
             SelectCATToolMemoQ();
             SaveServiceButtonClick();
@@ -221,7 +221,7 @@ namespace AutoGTP2Tests
             OpenNewProject(projectData);
             CreateServiceButtonClick();
             SelectSourceLanguage();
-            SelectTargetLanguage();
+            SelectTargetLanguage(1);
             SelectQuantityTypeCATLog();
             SelectCATToolMemoQ();
             SaveServiceButtonClick();
@@ -234,7 +234,7 @@ namespace AutoGTP2Tests
             OpenNewProject(projectData);
             CreateServiceButtonClick();
             SelectSourceLanguage();
-            SelectTargetLanguage();
+            SelectTargetLanguage(1);
             SelectQuantityTypeAuto();
             InvalidSourceFileAttach();
             BackToProjectButtonClick();
@@ -249,7 +249,7 @@ namespace AutoGTP2Tests
             OpenNewProject(projectData);
             CreateServiceButtonClick();
             SelectSourceLanguage();
-            SelectTargetLanguage();
+            SelectTargetLanguage(1);
             SelectQuantityTypeManual();
             EnterQuantity(serviceData);
             SaveServiceButtonClick();
@@ -261,7 +261,7 @@ namespace AutoGTP2Tests
             OpenNewProject(projectData);
             CreateServiceButtonClick();
             SelectSourceLanguage();
-            SelectTargetLanguage();
+            SelectTargetLanguage(1);
             SelectQuantityTypeCATLog();
             SelectCATToolMemoQ();
             UploadCATFile();
@@ -275,7 +275,7 @@ namespace AutoGTP2Tests
             OpenNewProject(projectData);
             CreateServiceButtonClick();
             SelectSourceLanguage();
-            SelectTargetLanguage();
+            SelectTargetLanguage(1);
             SelectQuantityTypeCATLog();
             SelectCATToolMemoQ();
             UploadCATFile();
@@ -290,7 +290,7 @@ namespace AutoGTP2Tests
             OpenNewProject(projectData);
             CreateServiceButtonClick();
             SelectSourceLanguage();
-            SelectTargetLanguage();
+            SelectTargetLanguage(1);
             SelectQuantityTypeCATLog();
             SelectCATToolMemoQ();
             UploadCATFile();
@@ -306,14 +306,14 @@ namespace AutoGTP2Tests
             OpenNewProject(projectData);
             CreateServiceButtonClick();
             SelectSourceLanguage();
-            SelectTargetLanguage();
+            SelectTargetLanguage(1);
             SelectQuantityTypeCATLog();
             SelectCATToolMemoQ();
             UploadCATFile();
             SaveServiceButtonClick();
             CreateServiceButtonClick();
             SelectSourceLanguage();
-            SelectTargetLanguage();
+            SelectTargetLanguage(1);
             SelectQuantityTypeCATLog();
             MouseClickAndHoldImitation(By.XPath(
                 "//div[@class = 'react-dropdown-select cat-tool-dropdown css-1jmlu6t-ReactDropdownSelect e1gzf2xs0']"));
@@ -326,7 +326,7 @@ namespace AutoGTP2Tests
             OpenNewProject(projectData);
             CreateServiceButtonClick();
             SelectSourceLanguage();
-            SelectTargetLanguage();
+            SelectTargetLanguage(1);
             SelectQuantityTypeCATLog();
             SelectCATToolMemoQ();
             UploadCATFile();
@@ -364,33 +364,26 @@ namespace AutoGTP2Tests
             CreateServiceButtonClick();
             SelectSubjectArea(1);
             SelectSourceLanguage();
-            SelectTargetLanguage();
+            SelectTargetLanguage(1);
             SelectSubjectArea(2);
             return this;
         }
 
-        public ServiceHelper SelectSubjectArea(int i)
+        public ServiceHelper CreateServiceWithTwoLanguagePairs(ProjectData projectData)
         {
-            driver.FindElement(By.XPath("//div[@id = 'SERVICE_SUBJECT_AREA']//div")).Click();
-            WaitUntilFindElement(4, By.Id("SERVICE_SUBJECT_AREA_OPTION_" + i + ""));
-            driver.FindElement(By.Id("SERVICE_SUBJECT_AREA_OPTION_" + i + "")).Click();
+            OpenNewProject(projectData);
+            CreateServiceButtonClick();
+            SelectSubjectArea(1);
+            SelectSourceLanguage();
+            SelectTargetLanguage(1);            
+            SelectTargetLanguage(2);
+            MouseClickImitation(By.XPath("//p[@class = 'RWdtSGyL9LH9qs2LKXGO']"));
+            SourceFileAttach();
             return this;
         }
 
-        public bool LanguagesFieldsAreEmpty()
-        {
-            string text1 = driver.FindElement(By.XPath(
-                "//input[@class = 'react-dropdown-select-input css-ipe0e3-InputComponent e11wid6y0']")).
-                    GetAttribute("placeholder").Trim();
-            string text2 = driver.FindElement(By.XPath("//span[contains(text(), 'Choose language')]")).Text.Trim();
 
-            if (text1 == "Choose language"
-                && text2 == "Choose language")
-            {
-                return true;
-            }
-            return false;
-        }
+        
 
 
 
@@ -438,6 +431,62 @@ namespace AutoGTP2Tests
 
         // Низкоуровневые методы
 
+
+        public bool SourceFileTableIsPresent()
+        {
+            return IsElementPresent(By.XPath("//div[@class = 'glPRJNnEF2QbMnC0ZqIX  ']"));
+        }
+
+        public bool FileNameIsPresentAndCorrect()
+        {
+            string text = driver.FindElement(By.XPath(
+                "//div[@class = 'FnH8t9fP06da_3Fkcw7A obJCzZBibf9su26s0UsA ']//div[@class = 'CjLCnWG2I76az0SPKDXC'][1]")).Text;
+            if (text.Contains("SourceTest"))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool LanguagePairsFieldIsEmpty()
+        {
+            string text = driver.FindElement(By.Id("LANGUAGE_PAIRS_DROPDOWN")).Text;
+            if (text.Contains("Select 1 or more language pairs for this source file"))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool ActionColumnHaveButtons()
+        {
+            return driver.FindElements(By.XPath("//div[@class = 'gTsUe9gPzJ3OctS7grJU']")).Count == 3;
+        }
+
+
+        public ServiceHelper SelectSubjectArea(int i)
+        {
+            driver.FindElement(By.XPath("//div[@id = 'SERVICE_SUBJECT_AREA']//div")).Click();
+            WaitUntilFindElement(4, By.Id("SERVICE_SUBJECT_AREA_OPTION_" + i + ""));
+            driver.FindElement(By.Id("SERVICE_SUBJECT_AREA_OPTION_" + i + "")).Click();
+            return this;
+        }
+
+        public bool LanguagesFieldsAreEmpty()
+        {
+            string text1 = driver.FindElement(By.XPath(
+                "//input[@class = 'react-dropdown-select-input css-ipe0e3-InputComponent e11wid6y0']")).
+                    GetAttribute("placeholder").Trim();
+            string text2 = driver.FindElement(By.XPath("//span[contains(text(), 'Choose language')]")).Text.Trim();
+
+            if (text1 == "Choose language" &&
+                text2 == "Choose language")
+            {
+                return true;
+            }
+            return false;
+        }
+
         public ServiceHelper SelectUnit()
         {
             driver.FindElement(By.XPath("//div[@class = 'unit-of-measure']//div")).Click();
@@ -450,8 +499,26 @@ namespace AutoGTP2Tests
         {
             driver.FindElement(By.XPath("//div[@class = 'type-of-service']//following-sibling::div")).Click();
             WaitUntilFindElement(4, By.Id("SERVICE_TYPE_OF_SERVICE_OPTION_0"));
-            driver.FindElement(By.Id("SERVICE_TYPE_OF_SERVICE_OPTION_0")).Click();
+
+            int c = driver.FindElements(By.XPath("//div[@class= 'YxhDSz1flbKA8yowp3RE  ']")).Count;
+            for (int i = 0; i < c; i++)
+            {
+                driver.FindElement(By.XPath("//div[@class = 'type-of-service']//following-sibling::div")).Click();
+                WaitUntilFindElement(4, By.Id("SERVICE_TYPE_OF_SERVICE_OPTION_0"));
+                driver.FindElement(By.XPath("//div[@class= 'YxhDSz1flbKA8yowp3RE  '][" + (i + 1) + "]")).Click();
+                if(UnitIsNotEmpty() == true)
+                {
+                    break;
+                }
+            }
+
             return this;
+        }
+
+        public bool UnitIsNotEmpty()
+        {
+            string text = driver.FindElement(By.XPath("//input[@name = 'SERVICE_UNIT']//preceding-sibling::div//span")).Text;
+            if(text == "Character") { return true; } return false;
         }
 
         public bool SaveServiceButtonIsDisabled()
@@ -717,7 +784,11 @@ namespace AutoGTP2Tests
 
         public ServiceHelper SourceFileAttach()
         {
-            driver.FindElement(By.Id("FILE_LOADER")).SendKeys(manager.sourceFile);
+            driver.FindElement(By.Id("FILE_LOADER")).SendKeys(manager.sourceFile);            
+            if (IsElementPresent(By.XPath("//div[@class = 'glPRJNnEF2QbMnC0ZqIX  ']")))
+            {                
+                WaitUntilElementIsHide(10, By.XPath("//p[@class = 'CjLCnWG2I76az0SPKDXC ZqX4aBORRQ0nnzF9Y5P5']"));
+            }
             WaitUntilFindElement(10, By.Id("FILE_DOWNLOAD"));
             return this;
         }
@@ -811,11 +882,11 @@ namespace AutoGTP2Tests
             return this;
         }        
 
-        public ServiceHelper SelectTargetLanguage()
+        public ServiceHelper SelectTargetLanguage(int i)
         {
             driver.FindElement(By.XPath("//input[@name = 'SERVICE_TARGET_LANG']")).Click();            
-            Thread.Sleep(300);
-            driver.FindElement(By.Id("SERVICE_TARGET_LANG_1")).Click();
+            Thread.Sleep(500);
+            driver.FindElement(By.XPath("//div[@class = 'YxhDSz1flbKA8yowp3RE  ']["+i+"]")).Click();
             return this;
         }
 

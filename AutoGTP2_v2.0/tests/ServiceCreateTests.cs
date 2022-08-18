@@ -324,5 +324,23 @@ namespace AutoGTP2Tests
 
             Assert.IsTrue(app.Services.LanguagesFieldsAreEmpty());
         }
+
+        // GTP2-R-05-25
+        [Test]
+        public void ServiceWithTwoLanguagePairsTest()
+        {
+            ProjectData projectData = new ProjectData()
+            {
+                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
+            };
+
+            app.Services.CreateServiceWithTwoLanguagePairs(projectData);
+
+            Assert.IsTrue(app.Services.SourceFileTableIsPresent());
+            Assert.IsTrue(app.Services.FileNameIsPresentAndCorrect());
+            Assert.IsTrue(app.Services.LanguagePairsFieldIsEmpty());
+            Assert.IsTrue(app.Services.ActionColumnHaveButtons());
+
+        }
     }
 }

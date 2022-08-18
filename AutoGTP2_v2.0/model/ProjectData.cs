@@ -21,7 +21,7 @@ namespace AutoGTP2Tests
         public string BudgetCost { get;  set; }
         public string BudgetPO { get;  set; }
         public string BudgetTotal { get;  set; }
-        public string FileName { get; internal set; }
+        public string FileName { get; set; }
 
 
 

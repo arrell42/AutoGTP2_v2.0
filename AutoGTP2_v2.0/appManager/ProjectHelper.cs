@@ -816,7 +816,7 @@ namespace AutoGTP2Tests
         {
             manager.Navigator.GoToProjectPage();
             SortByPending();            
-            DeleteAllProjects(40);
+            DeleteAllProjects(30);
             return this;
         }
 
