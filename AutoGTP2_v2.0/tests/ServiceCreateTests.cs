@@ -345,7 +345,7 @@ namespace AutoGTP2Tests
 
         // GTP2-R-05-26
         [Test]
-        public void LanguagePairsTableInServiceTest()
+        public void LanguagePairsTableInService_SourceFileTest()
         {
             ProjectData projectData = new ProjectData()
             {
@@ -402,6 +402,22 @@ namespace AutoGTP2Tests
             app.Services.DeleteFileFromLanguagePairsTable(projectData);
 
             Assert.IsFalse(app.Services.LanguagePairsTableIsHide());
+        }
+
+        // GTP2-R-05-31
+        [Test]
+        public void TwoLanguagePairs_CATFileTest()
+        {
+            ProjectData projectData = new ProjectData()
+            {
+                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
+            };
+
+            app.Services.CreateServiceWithTwoLanguagePairsAndCATFile(projectData);
+
+            Assert.IsFalse(app.Services.LanguagePairsTableIsHide());
+            Assert.IsTrue(app.Services.CATTableIsPresent());
+            Assert.AreEqual(app.Services.TableLinesCount(), 2);
         }
     }
 }

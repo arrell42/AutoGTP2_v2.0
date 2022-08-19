@@ -424,6 +424,20 @@ namespace AutoGTP2Tests
             return this;
         }
 
+        public ServiceHelper CreateServiceWithTwoLanguagePairsAndCATFile(ProjectData projectData)
+        {
+            OpenNewProject(projectData);
+            CreateServiceButtonClick();
+            SelectSubjectArea(1);
+            SelectSourceLanguage();
+            SelectTargetLanguage(1);
+            SelectTargetLanguage(2);
+            MouseClickImitation(By.XPath("//p[@class = 'RWdtSGyL9LH9qs2LKXGO']"));
+            SelectQuantityTypeCATLog();
+            SelectCATToolMemoQ();
+            return this;
+        }
+
 
 
 
@@ -475,6 +489,17 @@ namespace AutoGTP2Tests
 
 
         // Низкоуровневые методы
+
+
+        public bool CATTableIsPresent()
+        {
+            return IsElementPresent(By.XPath("//div[@class = 'PQWj5HvkRQVPbN73AHAi']"));
+        }
+
+        public int TableLinesCount()
+        {
+            return driver.FindElements(By.XPath("//div[@class = 'sOaJP79Plkw6_vRu93Fs']")).Count;
+        }
 
         public bool LanguagePairsTableIsHide()
         {
