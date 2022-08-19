@@ -355,7 +355,7 @@ namespace AutoGTP2Tests
             app.Services.CreateServiceWithAllPairsCheckBoxClick(projectData);
 
             Assert.IsTrue(app.Services.FirstLanguagePairCheckBoxIsEnabled()); 
-            Assert.IsTrue(app.Services.DropdownHaveOneLanguagePairText()); 
+            Assert.AreEqual(app.Services.DropdownLanguagePairsCount(), 1); 
         }
 
         // GTP2-R-05-27
@@ -418,6 +418,22 @@ namespace AutoGTP2Tests
             Assert.IsFalse(app.Services.LanguagePairsTableIsHide());
             Assert.IsTrue(app.Services.CATTableIsPresent());
             Assert.AreEqual(app.Services.TableLinesCount(), 2);
+        }
+
+        // GTP2-R-05-35
+        [Test]
+        public void AssignAllLanguagePairsButtonTest()
+        {
+            ProjectData projectData = new ProjectData()
+            {
+                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
+            };
+
+            app.Services.AssignAllLanguagePairsButtonInServiceClick(projectData);
+
+            Assert.AreEqual(app.Services.DropdownLanguagePairsCount(), 2);
+            Assert.IsTrue(app.Services.AllPairsCheckboxIsEnabled());
+            Assert.AreEqual(app.Services.LanguageCheckboxIsEnabledCount(), 2);
         }
     }
 }

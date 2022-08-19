@@ -438,6 +438,14 @@ namespace AutoGTP2Tests
             return this;
         }
 
+        public ServiceHelper AssignAllLanguagePairsButtonInServiceClick(ProjectData projectData)
+        {
+            CreateServiceWithTwoLanguagePairs(projectData);
+            AssignAllLanguagePairsButtonClick();
+            LanguagePairDropdownClick();
+            return this;
+        }
+
 
 
 
@@ -491,6 +499,16 @@ namespace AutoGTP2Tests
         // Низкоуровневые методы
 
 
+        public bool AllPairsCheckboxIsEnabled()
+        {
+            return IsElementPresent(By.XPath("//div[@class = 'pHF9uuOVtyK_inrEuqvC DyVZBhGWrDyaDMFihnAL wqfeLiuQFm60wq9lxwtf ']"));
+        }
+
+        public int LanguageCheckboxIsEnabledCount()
+        {
+            return driver.FindElements(By.XPath("//div[@class = 'pHF9uuOVtyK_inrEuqvC wqfeLiuQFm60wq9lxwtf ']")).Count;
+        }
+
         public bool CATTableIsPresent()
         {
             return IsElementPresent(By.XPath("//div[@class = 'PQWj5HvkRQVPbN73AHAi']"));
@@ -518,9 +536,14 @@ namespace AutoGTP2Tests
                 "//div[@class = 'pHF9uuOVtyK_inrEuqvC wqfeLiuQFm60wq9lxwtf hMeFKmz2mTZuVvN1nMCf']"));
         }
 
-        public bool DropdownHaveOneLanguagePairText()
+        public int DropdownLanguagePairsCount()
         {
-            return driver.FindElements(By.XPath("//div[@id = 'LANGUAGE_PAIRS_DROPDOWN']//span")).Count == 3;
+            int count = driver.FindElements(By.XPath("//div[@id = 'LANGUAGE_PAIRS_DROPDOWN']//span")).Count;
+            if (count == 0)
+            {
+                return 0;
+            }
+            return count/3;
         }
 
         public ServiceHelper AssignAllLanguagePairsButtonClick()
