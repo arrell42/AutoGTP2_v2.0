@@ -27,7 +27,7 @@ namespace AutoGTP2Tests
         public static IEnumerable<LoginData> IncorrectLoginDataFromFile()
         {
             List<LoginData> loginData = new List<LoginData>();
-            var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"dataFiles\incorrectLoginData.csv");
+            var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"dataFiles\invalidLoginData.csv");
             string[] lines = File.ReadAllLines(path);
             foreach (string l in lines)
             {
@@ -49,10 +49,10 @@ namespace AutoGTP2Tests
 
         //[Test, TestCaseSource("IncorrectLoginDataFromFile")]
                         
-        public void IncorrectLoginTests(LoginData loginData)
+        public void InvalidLoginTests(LoginData loginData)
         {
             app.Auth.Logout();            
-            app.Auth.IncorrectLogin(loginData);
+            app.Auth.InvalidLogin(loginData);
             Assert.IsFalse(app.Auth.IsLoggedIn());
         }
     }

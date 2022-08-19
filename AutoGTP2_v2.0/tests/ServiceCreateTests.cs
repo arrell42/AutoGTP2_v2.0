@@ -371,5 +371,23 @@ namespace AutoGTP2Tests
 
             Assert.AreEqual(app.Services.TextInDescription(), "Test description");
         }
+
+        // GTP2-R-05-28
+        [Test]
+        public void DownloadFileFromLanguagePairsTableTest()
+        {
+            ProjectData projectData = new ProjectData()
+            {
+                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
+            };
+            ServiceData filename = new ServiceData("")
+            {
+                FileName = "SourceTest"
+            };
+
+            app.Services.DownloadFileFromLanguagePairsTable(projectData);
+
+            Assert.IsTrue(app.Services.CheckFileDownloaded(filename));
+        }
     }
 }

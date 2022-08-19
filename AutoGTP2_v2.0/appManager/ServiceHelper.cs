@@ -400,6 +400,19 @@ namespace AutoGTP2Tests
             return this;
         }
 
+        public ServiceHelper DownloadFileFromLanguagePairsTable(ProjectData projectData)
+        {
+            CreateServiceWithTwoLanguagePairs(projectData);
+            AssignAllLanguagePairsButtonClick();
+            SaveServiceButtonClick();
+            manager.Projects.SaveProjectButtonClick();
+            manager.Projects.OpenThisProject();
+            OpenAndEditButtonClick();
+            manager.Projects.DownloadFileButtonClick();
+            return this;
+        }
+
+
 
 
 

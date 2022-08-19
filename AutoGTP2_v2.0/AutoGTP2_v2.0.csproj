@@ -121,7 +121,7 @@
     <None Include="dataFiles\correctLoginData.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="dataFiles\incorrectLoginData.csv">
+    <None Include="dataFiles\invalidLoginData.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="dataFiles\InvaildSourceFileTest.dwg">

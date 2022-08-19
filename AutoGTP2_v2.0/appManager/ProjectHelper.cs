@@ -379,7 +379,7 @@ namespace AutoGTP2Tests
         public ProjectHelper DownloadFileButtonClick()
         {
             driver.FindElement(By.Id("FILE_DOWNLOAD")).Click();
-            Thread.Sleep(4000);
+            Thread.Sleep(4000); //нужно продумать ожидание
             return this;
         }
 
@@ -812,11 +812,11 @@ namespace AutoGTP2Tests
 
         // методы для удаления всех проектов
 
-        public ProjectHelper RemoveProject()
+        public ProjectHelper RemoveProject(int i)
         {
             manager.Navigator.GoToProjectPage();
             SortByPending();            
-            DeleteAllProjects(30);
+            DeleteAllProjects(i);
             return this;
         }
 

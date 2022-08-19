@@ -68,7 +68,7 @@ namespace AutoGTP2Tests
         //[Test]
         public void RemoveAllPendingProjects()
         {              
-            app.Projects.RemoveProject();
+            app.Projects.RemoveProject(10);
         }
 
     }

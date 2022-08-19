@@ -33,7 +33,7 @@ namespace AutoGTP2Tests
             WaitUntilFindElement(10, By.Id("MENU_LOGOUT"));
         }
         
-        public void IncorrectLogin(LoginData account)
+        public void InvalidLogin(LoginData account)
         {
             LogoutIfLoginIn();
             EnterUsername(account);

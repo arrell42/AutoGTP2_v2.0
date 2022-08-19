@@ -29,6 +29,7 @@ namespace AutoGTP2Tests
             }
             oldProjects.Sort(); // сортировка старого списка
             newProjects.Sort(); // сортировка нового списка
+            
             Assert.AreEqual(oldProjects, newProjects); // сравнение списков 
         }
 

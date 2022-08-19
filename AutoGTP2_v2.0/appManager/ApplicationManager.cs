@@ -11,8 +11,8 @@ namespace AutoGTP2Tests
 {
     public class ApplicationManager
     {        
-        protected IWebDriver driver;                
-        protected string baseURL;
+        protected IWebDriver driver;
+        public string baseURL;
         public string sourceFile;
         public string CATLogFilePath;
         public string invalidSourceFilePath;
@@ -44,9 +44,8 @@ namespace AutoGTP2Tests
 
             driver = new ChromeDriver(options);
 
-
-            //baseURL = "https://gtp-test.janusww.com:9999";
-            baseURL = "https://gtp2.janusww.com";
+            baseURL = "https://gtp-test.janusww.com:9999";
+            //baseURL = "https://gtp2.janusww.com";
             sourceFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"dataFiles\SourceTest.txt");
             CATLogFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"dataFiles\memoQ.csv");
             invalidSourceFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"dataFiles\InvaildSourceFileTest.dwg");
