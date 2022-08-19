@@ -412,6 +412,18 @@ namespace AutoGTP2Tests
             return this;
         }
 
+        public ServiceHelper DeleteFileFromLanguagePairsTable(ProjectData projectData)
+        {
+            CreateServiceWithTwoLanguagePairs(projectData);
+            AssignAllLanguagePairsButtonClick();
+            SaveServiceButtonClick();
+            manager.Projects.SaveProjectButtonClick();
+            manager.Projects.OpenThisProject();
+            OpenAndEditButtonClick();
+            manager.Projects.DeleteFileButtonClick();
+            return this;
+        }
+
 
 
 
@@ -463,6 +475,11 @@ namespace AutoGTP2Tests
 
 
         // Низкоуровневые методы
+
+        public bool LanguagePairsTableIsHide()
+        {
+            return IsElementPresent(By.XPath("//div[@class = 'FnH8t9fP06da_3Fkcw7A obJCzZBibf9su26s0UsA ']"));
+        }
 
         public string TextInDescription()
         {

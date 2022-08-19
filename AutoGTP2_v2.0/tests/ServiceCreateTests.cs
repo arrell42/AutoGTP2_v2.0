@@ -389,5 +389,19 @@ namespace AutoGTP2Tests
 
             Assert.IsTrue(app.Services.CheckFileDownloaded(filename));
         }
+
+        // GTP2-R-05-29
+        [Test]
+        public void DeleteFileFromLanguagePairsTableTest()
+        {
+            ProjectData projectData = new ProjectData()
+            {
+                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
+            };            
+
+            app.Services.DeleteFileFromLanguagePairsTable(projectData);
+
+            Assert.IsFalse(app.Services.LanguagePairsTableIsHide());
+        }
     }
 }
