@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using NUnit.Framework;
 
 
@@ -434,6 +435,40 @@ namespace AutoGTP2Tests
             Assert.AreEqual(app.Services.DropdownLanguagePairsCount(), 2);
             Assert.IsTrue(app.Services.AllPairsCheckboxIsEnabled());
             Assert.AreEqual(app.Services.LanguageCheckboxIsEnabledCount(), 2);
+        }
+
+        //GTP2-R-05-32
+        [Test]
+        public void BigProjectE2ETest()
+        {
+            ProjectData projectData = new ProjectData()
+            {
+                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest",
+                Status = "Manual evaluation",
+                BudgetCost = app.TextGenerator(1, 3),
+                BudgetPO = app.TextGenerator(1, 5),
+                BudgetTotal = "100000"
+            };
+            ServiceData serviceData500 = new ServiceData("500");
+            ServiceData serviceData15000 = new ServiceData("15000");
+            ServiceData serviceData2000 = new ServiceData("2000");
+
+            List<ProjectData> oldProjects = app.Projects.GetProjectList();
+            
+            app.Services.ProjectE2ECreate(projectData, serviceData500, serviceData15000, serviceData2000);
+
+            List<ProjectData> newProjects = app.Projects.GetProjectList();
+
+            oldProjects.Add(projectData); //добавляет данные в старый список
+            if (oldProjects.Count > 20)
+            {
+                oldProjects.RemoveAt(oldProjects.Count - 2);
+            }
+            oldProjects.Sort(); // сортировка старого списка
+            newProjects.Sort(); // сортировка нового списка
+            Assert.AreEqual(oldProjects, newProjects); // сравнение списков 
+
+
         }
     }
 }

@@ -17,7 +17,7 @@ namespace AutoGTP2Tests
         // Основные методы
         public ServiceHelper ServiceManualCorrectQuantity(ProjectData projectData, ServiceData serviceData)
         {
-            OpenNewProject(projectData);
+            manager.Projects.OpenNewPendingProject(projectData, 3, "00:30");
             CreateServiceButtonClick();
             SelectSourceLanguage();
             SelectTargetLanguage(1);
@@ -29,7 +29,7 @@ namespace AutoGTP2Tests
 
         public ServiceHelper ServiceCancelButton(ProjectData projectData, ServiceData serviceData)
         {
-            OpenNewProject(projectData);
+            manager.Projects.OpenNewPendingProject(projectData, 3, "00:30");
             CreateServiceButtonClick();
             SelectSourceLanguage();
             SelectTargetLanguage(1);
@@ -41,7 +41,7 @@ namespace AutoGTP2Tests
 
         public ServiceHelper ServiceCreateManualQuantityWord(ProjectData projectData, ServiceData serviceData)
         {
-            OpenNewProject(projectData);
+            manager.Projects.OpenNewPendingProject(projectData, 3, "00:30");
             CreateServiceButtonClick();
             SelectSourceLanguage();
             SelectTargetLanguage(1);
@@ -52,7 +52,7 @@ namespace AutoGTP2Tests
         }
         public ServiceHelper ServiceCreateManualQuantityZeroFirst(ProjectData projectData, ServiceData serviceData)
         {
-            OpenNewProject(projectData);
+            manager.Projects.OpenNewPendingProject(projectData, 3, "00:30");
             CreateServiceButtonClick();
             SelectSourceLanguage();
             SelectTargetLanguage(1);
@@ -64,7 +64,7 @@ namespace AutoGTP2Tests
 
         public ServiceHelper ServiceCreateManualQuantityMinus(ProjectData projectData, ServiceData serviceData)
         {
-            OpenNewProject(projectData);
+            manager.Projects.OpenNewPendingProject(projectData, 3, "00:30");
             CreateServiceButtonClick();
             SelectSourceLanguage();
             SelectTargetLanguage(1);
@@ -94,7 +94,7 @@ namespace AutoGTP2Tests
 
         public ServiceHelper ServiceCreateAutoCount(ProjectData projectData)
         {
-            OpenNewProject(projectData);
+            manager.Projects.OpenNewPendingProject(projectData, 3, "00:30");
             CreateServiceButtonClick();
             SelectSourceLanguage();
             SelectTargetLanguage(1);
@@ -108,7 +108,7 @@ namespace AutoGTP2Tests
 
         public ServiceHelper ServiceAutoCountRequestQuote(ProjectData projectData)
         {
-            OpenNewProject(projectData);
+            manager.Projects.OpenNewPendingProject(projectData, 3, "00:30");
             CreateServiceButtonClick();
             SelectSourceLanguage();
             SelectTargetLanguage(1);
@@ -121,7 +121,7 @@ namespace AutoGTP2Tests
 
         public ServiceHelper ServiceCreateCATLog(ProjectData projectData)
         {
-            OpenNewProject(projectData);
+            manager.Projects.OpenNewPendingProject(projectData, 3, "00:30");
             CreateServiceButtonClick();
             SelectSourceLanguage();
             SelectTargetLanguage(1);
@@ -134,7 +134,7 @@ namespace AutoGTP2Tests
 
         public ServiceHelper DownloadSourceFileFromEditPage(ProjectData projectData)
         {
-            OpenNewProject(projectData);
+            manager.Projects.OpenNewPendingProject(projectData, 3, "00:30");
             CreateServiceButtonClick();
             SelectSourceLanguage();
             SelectTargetLanguage(1);
@@ -149,7 +149,7 @@ namespace AutoGTP2Tests
 
         public ServiceHelper DownloadSourceFileFromServiceList(ProjectData projectData)
         {
-            OpenNewProject(projectData);
+            manager.Projects.OpenNewPendingProject(projectData, 3, "00:30");
             CreateServiceButtonClick();
             SelectSourceLanguage();
             SelectTargetLanguage(1);
@@ -163,7 +163,7 @@ namespace AutoGTP2Tests
 
         public ServiceHelper DownloadCATLogFile(ProjectData projectData)
         {
-            OpenNewProject(projectData);
+            manager.Projects.OpenNewPendingProject(projectData, 3, "00:30");
             CreateServiceButtonClick();
             SelectSourceLanguage();
             SelectTargetLanguage(1);
@@ -178,7 +178,7 @@ namespace AutoGTP2Tests
 
         public ServiceHelper SourceFileRemove(ProjectData projectData)
         {
-            OpenNewProject(projectData);
+            manager.Projects.OpenNewPendingProject(projectData, 3, "00:30");
             CreateServiceButtonClick();
             SelectSourceLanguage();
             SelectTargetLanguage(1);
@@ -193,7 +193,7 @@ namespace AutoGTP2Tests
 
         public ServiceHelper ServiceCATLogWithOutCATFile(ProjectData projectData)
         {
-            OpenNewProject(projectData);
+            manager.Projects.OpenNewPendingProject(projectData, 3, "00:30");
             CreateServiceButtonClick();
             SelectSourceLanguage();
             SelectTargetLanguage(1);
@@ -205,7 +205,7 @@ namespace AutoGTP2Tests
 
         public ServiceHelper ServiceCATLogWithOutCATFileContinueButton(ProjectData projectData)
         {
-            OpenNewProject(projectData);
+            manager.Projects.OpenNewPendingProject(projectData, 3, "00:30");
             CreateServiceButtonClick();
             SelectSourceLanguage();
             SelectTargetLanguage(1);
@@ -218,7 +218,7 @@ namespace AutoGTP2Tests
 
         public ServiceHelper ServiceCATLogWithOutCATFileCancelButton(ProjectData projectData)
         {
-            OpenNewProject(projectData);
+            manager.Projects.OpenNewPendingProject(projectData, 3, "00:30");
             CreateServiceButtonClick();
             SelectSourceLanguage();
             SelectTargetLanguage(1);
@@ -231,7 +231,7 @@ namespace AutoGTP2Tests
 
         public ServiceHelper UploadInvalidSourceFile(ProjectData projectData)
         {
-            OpenNewProject(projectData);
+            manager.Projects.OpenNewPendingProject(projectData, 3, "00:30");
             CreateServiceButtonClick();
             SelectSourceLanguage();
             SelectTargetLanguage(1);
@@ -246,7 +246,7 @@ namespace AutoGTP2Tests
 
         public ServiceHelper ServiceCreateManualQuantitySymbols(ProjectData projectData, ServiceData serviceData)
         {
-            OpenNewProject(projectData);
+            manager.Projects.OpenNewPendingProject(projectData, 3, "00:30");
             CreateServiceButtonClick();
             SelectSourceLanguage();
             SelectTargetLanguage(1);
@@ -258,7 +258,7 @@ namespace AutoGTP2Tests
 
         public ServiceHelper OpenStatisticInCATService(ProjectData projectData)
         {
-            OpenNewProject(projectData);
+            manager.Projects.OpenNewPendingProject(projectData, 3, "00:30");
             CreateServiceButtonClick();
             SelectSourceLanguage();
             SelectTargetLanguage(1);
@@ -272,7 +272,7 @@ namespace AutoGTP2Tests
 
         public ServiceHelper AddAndDeleteCATFile(ProjectData projectData)
         {
-            OpenNewProject(projectData);
+            manager.Projects.OpenNewPendingProject(projectData, 3, "00:30");
             CreateServiceButtonClick();
             SelectSourceLanguage();
             SelectTargetLanguage(1);
@@ -287,7 +287,7 @@ namespace AutoGTP2Tests
 
         public ServiceHelper CATFileDeleteAndSaveService(ProjectData projectData)
         {
-            OpenNewProject(projectData);
+            manager.Projects.OpenNewPendingProject(projectData, 3, "00:30");
             CreateServiceButtonClick();
             SelectSourceLanguage();
             SelectTargetLanguage(1);
@@ -303,7 +303,7 @@ namespace AutoGTP2Tests
 
         public ServiceHelper NewServiceWithCATCreate(ProjectData projectData)
         {
-            OpenNewProject(projectData);
+            manager.Projects.OpenNewPendingProject(projectData, 3, "00:30");
             CreateServiceButtonClick();
             SelectSourceLanguage();
             SelectTargetLanguage(1);
@@ -323,7 +323,7 @@ namespace AutoGTP2Tests
 
         public ServiceHelper ServiceWithoutLanguagePairCreate(ProjectData projectData)
         {
-            OpenNewProject(projectData);
+            manager.Projects.OpenNewPendingProject(projectData, 3, "00:30");
             CreateServiceButtonClick();
             SelectSourceLanguage();
             SelectTargetLanguage(1);
@@ -343,7 +343,7 @@ namespace AutoGTP2Tests
 
         public ServiceHelper ChangeDefaultTypeOfSerice(ProjectData projectData)
         {
-            OpenNewProject(projectData);
+            manager.Projects.OpenNewPendingProject(projectData, 3, "00:30");
             CreateServiceButtonClick();
             SelectTypeOfService();            
             return this;
@@ -351,7 +351,7 @@ namespace AutoGTP2Tests
 
         public ServiceHelper ChangeDefaultTypeOfSericeAndSelectUnit(ProjectData projectData)
         {
-            OpenNewProject(projectData);
+            manager.Projects.OpenNewPendingProject(projectData, 3, "00:30");
             CreateServiceButtonClick();
             SelectTypeOfService();
             SelectUnit();
@@ -360,7 +360,7 @@ namespace AutoGTP2Tests
 
         public ServiceHelper SecondSelectSubjectAreaInService(ProjectData projectData)
         {
-            OpenNewProject(projectData);
+            manager.Projects.OpenNewPendingProject(projectData, 3, "00:30");
             CreateServiceButtonClick();
             SelectSubjectArea(1);
             SelectSourceLanguage();
@@ -371,7 +371,7 @@ namespace AutoGTP2Tests
 
         public ServiceHelper CreateServiceWithTwoLanguagePairs(ProjectData projectData)
         {
-            OpenNewProject(projectData);
+            manager.Projects.OpenNewPendingProject(projectData, 3, "00:30");
             CreateServiceButtonClick();
             SelectSubjectArea(1);
             SelectSourceLanguage();
@@ -426,7 +426,7 @@ namespace AutoGTP2Tests
 
         public ServiceHelper CreateServiceWithTwoLanguagePairsAndCATFile(ProjectData projectData)
         {
-            OpenNewProject(projectData);
+            manager.Projects.OpenNewPendingProject(projectData, 3, "00:30");
             CreateServiceButtonClick();
             SelectSubjectArea(1);
             SelectSourceLanguage();
@@ -443,6 +443,58 @@ namespace AutoGTP2Tests
             CreateServiceWithTwoLanguagePairs(projectData);
             AssignAllLanguagePairsButtonClick();
             LanguagePairDropdownClick();
+            return this;
+        }
+
+        public ServiceHelper ProjectE2ECreate(ProjectData projectData, ServiceData serviceData500, ServiceData serviceData15000, ServiceData serviceData2000)
+        {
+            manager.Projects.OpenNewPendingProject(projectData, 3, "00:30");
+            CreateBudgetInBigProject(projectData);
+            ManualServiceForBigProject(serviceData500);
+            ManualServiceForBigProject(serviceData15000);
+            ManualServiceForBigProject(serviceData2000);
+            AutoServiceForBigProject();
+            AutoServiceForBigProject();
+            AutoServiceForBigProject();
+            manager.Projects.OpenRefTab();
+            manager.Projects.RefFileAttach(1);
+            manager.Projects.OpenMessageTab();
+            manager.Projects.SendMessage("Test");            
+            RequestQuoteButtonClick();
+            return this;
+        }
+
+        public ServiceHelper CreateBudgetInBigProject(ProjectData projectData)
+        {
+            manager.Projects.CreateNewBudgetButtonClick();
+            manager.Projects.EnterPOnumber(projectData);
+            manager.Projects.EnterBudgetName(projectData);
+            manager.Budgets.SelectUSDCurrency();
+            manager.Projects.EnterTotal(projectData);
+            manager.Budgets.BudgetCreateButtonClick();
+            Thread.Sleep(200);
+            return this;
+        }
+
+        public ServiceHelper AutoServiceForBigProject()
+        {
+            CreateServiceButtonClick();
+            SelectSourceLanguage();
+            SelectTargetLanguage(1);
+            SelectQuantityTypeAuto();
+            SourceFileAttach();
+            SaveServiceButtonClick();
+            return this;
+        }
+
+        public ServiceHelper ManualServiceForBigProject(ServiceData p)
+        {            
+            CreateServiceButtonClick();
+            SelectSourceLanguage();
+            SelectTargetLanguage(1);
+            SelectQuantityTypeManual();
+            EnterQuantity(p);
+            SaveServiceButtonClick();
             return this;
         }
 
@@ -931,6 +983,7 @@ namespace AutoGTP2Tests
         {
             driver.FindElement(By.Id("requestQuote")).Click();
             WaitUntilFindElement(10, By.XPath("//span[@class = 'oSlLzqSfaLdSFEWpZxdw']"));
+            Thread.Sleep(500);
             WaitUntilElementIsHide(40, By.XPath("//span[@class = 'oSlLzqSfaLdSFEWpZxdw']"));
             return this;
         }
@@ -984,6 +1037,7 @@ namespace AutoGTP2Tests
             return driver.FindElement(By.XPath("//p[contains(text(), 'Quantity')]/following-sibling::p")).Text;
         }
 
+        /*
         public ServiceHelper OpenNewProject(ProjectData projectData)
         {
             manager.Navigator.GoToProjectPage();
@@ -991,6 +1045,7 @@ namespace AutoGTP2Tests
             manager.Projects.EnterProjectName(projectData);
             return this;
         }
+        */
 
         public bool PlugItemIsPresent()
         {

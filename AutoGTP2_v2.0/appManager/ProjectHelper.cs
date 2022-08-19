@@ -498,9 +498,9 @@ namespace AutoGTP2Tests
             return this;
         }
 
-        public ProjectHelper RefFileAttach(int f)
+        public ProjectHelper RefFileAttach(int numberOfFiles)
         {
-            for (int i = 0; i < f; i++)
+            for (int i = 0; i < numberOfFiles; i++)
             {
                 driver.FindElement(By.Id("FILE_LOADER")).SendKeys(manager.refFile);
                 WaitUntilFindElement(5, By.XPath("//div[@class= ' abj3PIbZlVZEaANnTgWi']"));
