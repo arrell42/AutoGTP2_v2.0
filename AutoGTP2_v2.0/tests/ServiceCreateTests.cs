@@ -357,5 +357,19 @@ namespace AutoGTP2Tests
             Assert.IsTrue(app.Services.FirstLanguagePairCheckBoxIsEnabled()); 
             Assert.IsTrue(app.Services.DropdownHaveOneLanguagePairText()); 
         }
+
+        // GTP2-R-05-27
+        [Test]
+        public void DescriptionInLanguagePairsTableTest()
+        {
+            ProjectData projectData = new ProjectData()
+            {
+                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
+            };
+
+            app.Services.AddDescriptionInLanguagePairsTable(projectData);
+
+            Assert.AreEqual(app.Services.TextInDescription(), "Test description");
+        }
     }
 }

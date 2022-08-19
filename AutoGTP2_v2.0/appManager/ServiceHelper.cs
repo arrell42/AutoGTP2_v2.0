@@ -391,6 +391,16 @@ namespace AutoGTP2Tests
             return this;
         }
 
+        public ServiceHelper AddDescriptionInLanguagePairsTable(ProjectData projectData)
+        {
+            CreateServiceWithTwoLanguagePairs(projectData);
+            manager.Projects.DescriptionButtonClick();
+            manager.Projects.AddDescriptionText("Test description");
+            manager.Projects.SaveDescriptionButtonClick();
+            return this;
+        }
+
+
 
 
 
@@ -441,6 +451,11 @@ namespace AutoGTP2Tests
 
         // Низкоуровневые методы
 
+        public string TextInDescription()
+        {
+            string text = driver.FindElement(By.XPath("//div[@class = 'GSnD0iJfqENA1cP8LQTz']")).Text.Trim();
+            return text;
+        }
 
         public bool FirstLanguagePairCheckBoxIsEnabled()
         {
@@ -504,7 +519,6 @@ namespace AutoGTP2Tests
         {
             return driver.FindElements(By.XPath("//div[@class = 'gTsUe9gPzJ3OctS7grJU']")).Count == 3;
         }
-
 
         public ServiceHelper SelectSubjectArea(int i)
         {
