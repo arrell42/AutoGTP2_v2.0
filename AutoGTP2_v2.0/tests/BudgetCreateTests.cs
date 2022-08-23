@@ -25,14 +25,14 @@ namespace AutoGTP2Tests
             List<BudgetData> newBudgets = app.Budgets.GetBudgetList();
 
             //проверка количества бюджетов в списках
-            Assert.AreEqual(oldBudgets.Count + 1, newBudgets.Count);
+            //Assert.AreEqual(oldBudgets.Count + 1, newBudgets.Count);
 
-             //добавляет данные в старый список
-            if(oldBudgets.Count > 20)
+            //добавляет данные в старый список
+            oldBudgets.Add(budgetData);
+            if (oldBudgets.Count > 20)
             {
                 oldBudgets.RemoveAt(oldBudgets.Count - 2); // удаляем предпоследний элемент из списка, в котором 21 элемент
-            }
-            oldBudgets.Add(budgetData);
+            }            
             oldBudgets.Sort(); // сортировка старого списка
             newBudgets.Sort(); // сортировка нового списка
             Assert.AreEqual(newBudgets, oldBudgets);

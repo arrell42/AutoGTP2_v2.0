@@ -17,11 +17,7 @@ namespace AutoGTP2Tests
             {
                 return 1;
             }
-            if(BudgetCost == other.BudgetCost)
-            {
-                return 0;
-            }            
-            return BudgetPO.CompareTo(other.BudgetPO);
+            return BudgetCost.CompareTo(other.BudgetCost);
         }
 
         //сравнение по наличию имени

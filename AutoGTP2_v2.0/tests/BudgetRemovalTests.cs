@@ -56,9 +56,15 @@ namespace AutoGTP2Tests
             app.Budgets.BudgetRemoval();
 
             List<BudgetData> newBudgets = app.Budgets.GetBudgetList();
-            Assert.AreEqual(oldBudgets.Count - 1, newBudgets.Count);
+            //Assert.AreEqual(oldBudgets.Count - 1, newBudgets.Count);
 
-            oldBudgets.RemoveAt(0);
+            if (oldBudgets.Count > 20)
+            {
+                oldBudgets.RemoveAt(oldBudgets.Count - 2);
+            }
+            oldBudgets.RemoveAt(0); // удаляем первый в старом списке
+            newBudgets.RemoveAt(19); // удаляем последний в новом списке
+            
             oldBudgets.Sort(); // сортировка старого списка
             newBudgets.Sort(); // сортировка нового списка
             Assert.AreEqual(newBudgets, oldBudgets);
