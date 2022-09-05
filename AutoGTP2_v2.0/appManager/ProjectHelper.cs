@@ -27,7 +27,7 @@ namespace AutoGTP2Tests
         public ProjectHelper ProjectCancel(ProjectData projectData)
         {
             OpenNewPendingProject(projectData, 3, "00:30");
-            CancelProjectButtonClick();
+            CancelButtonInProjectCardClick();
             return this;
         }
 
@@ -252,8 +252,70 @@ namespace AutoGTP2Tests
             return this;
         }
 
-        
+        public ProjectHelper DeclineCancellationProject(ProjectData projectData)
+        {            
+            FindOrderedProject(projectData);
+            CancelProjectButtonClick();
+            CancelProjectDeclineButtonClick();
+            return this;
+        }
 
+        public ProjectHelper FindOrderedProject(ProjectData projectData)
+        {
+            manager.Navigator.GoToProjectPage();            
+            SortProjectsByStatus("Ordered");
+            FirstProjectClick();
+            if (OrderedStatusNotFounded())
+            {
+                CreateOrderedProject(projectData);
+            }
+            return this;
+        }
+
+        public ProjectHelper FirstProjectClick()
+        {
+            driver.FindElement(By.Id("PROJECTS_PROJECT_NAME")).Click();
+            WaitUntilFindElement(4, By.XPath("//div[@class = 'CXwQMpaC5HQszu_q1TIp']"));
+            return this;
+        }
+
+        public ProjectHelper CreateOrderedProject(ProjectData projectData)
+        {
+            manager.Navigator.GoToProjectPage();
+            OpenNewPendingProject(projectData, 3, "00:30");
+            PlaceOrderButtonClick();
+            OpenThisProject();
+            return this;
+        }
+
+        public bool OrderedStatusNotFounded()
+        {
+            int c = driver.FindElements(By.XPath("//span[contains(text(), 'Ordered')]")).Count();
+            if(c > 0) { return false; } return true;
+        }
+
+        public ProjectHelper CancelProjectButtonClick()
+        {
+            driver.FindElement(By.XPath("//div[@class = 'Ls81UsGuOEperZX7nWiw i6vQQjoEWNY1KRkGn5rQ']")).Click();
+            WaitUntilFindElement(4, By.XPath("//h2[@class = 'ZBTthD9j0xnNi75qvGTX']"));
+            return this;
+        }
+
+        public ProjectHelper CancelProjectDeclineButtonClick()
+        {
+            driver.FindElement(By.XPath("//button[contains(text(), 'No')]"));            
+            return this;
+        }
+
+        public bool ProjectStatusIsOrdered()
+        {
+            string text = driver.FindElement(By.Id("PROJECT_STATUS")).Text;
+            if(text == "Ordered")
+            {
+                return true;
+            }
+            return false;
+        }
 
 
 
@@ -345,6 +407,10 @@ namespace AutoGTP2Tests
             }
             return exist;
         }
+
+        
+
+
 
 
 
@@ -605,7 +671,7 @@ namespace AutoGTP2Tests
                 "//div[@class= 'styles_modal__gNwvD styles_modalCenter__L9F2w project-card-modal']"));
         }
 
-        public ProjectHelper CancelProjectButtonClick()
+        public ProjectHelper CancelButtonInProjectCardClick()
         {
             driver.FindElement(By.Id("PROJECT_CARD_CANCEL")).Click();
             WaitUntilElementIsHide(10, By.XPath(
@@ -815,12 +881,10 @@ namespace AutoGTP2Tests
         public ProjectHelper RemoveProject(int i)
         {
             manager.Navigator.GoToProjectPage();
-            SortByPending();            
+            SortProjectsByStatus("Pending");            
             DeleteAllProjects(i);
             return this;
         }
-
-
 
         public void DeleteAllProjects(int f)
         {
@@ -835,12 +899,12 @@ namespace AutoGTP2Tests
 
         }
 
-        public ProjectHelper SortByPending()
+        public ProjectHelper SortProjectsByStatus(string t)
         {
             FiltersButtonClick();
-            ChoosePendingStatus();
+            SelectProjectStatusInFilter(t);
             FilterApplyButtonClick();
-            WaitUntilFindElement(5, By.XPath("//span[contains(text(), 'Pending')]"));
+            WaitUntilFindElement(5, By.XPath("//span[contains(text(), '"+t+"')]"));
             return this;
         }
 
@@ -850,11 +914,11 @@ namespace AutoGTP2Tests
             return this;
         }
 
-        public ProjectHelper ChoosePendingStatus()
+        public ProjectHelper SelectProjectStatusInFilter(string t)
         {
             driver.FindElement(By.XPath("//span[contains(text(), 'Choose status')]")).Click();
             driver.FindElement(By.XPath(
-                "//span[@class='react-dropdown-select-item    css-148o527-ItemComponent evc32pp0' and contains(text(), 'Pending')]")).Click();
+                "//span[@class='react-dropdown-select-item    css-148o527-ItemComponent evc32pp0' and contains(text(), '"+t+"')]")).Click();
             return this;
         }
 

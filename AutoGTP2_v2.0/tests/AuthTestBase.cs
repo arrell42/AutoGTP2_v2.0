@@ -15,8 +15,8 @@ namespace AutoGTP2Tests
             }
             if (app.baseURL.Contains("https://gtp2.janusww.com"))
             {
-                //app.Auth.Login(new LoginData("Denis Inozemtsev CR", "xe3q7z-"));
-                app.Auth.Login(new LoginData("Sergey Zezyulinsky CR", "irhj-d/"));
+                app.Auth.Login(new LoginData("Denis Inozemtsev CR", "xe3q7z-"));
+                //app.Auth.Login(new LoginData("Sergey Zezyulinsky CR", "irhj-d/"));
             }
         }
     }
