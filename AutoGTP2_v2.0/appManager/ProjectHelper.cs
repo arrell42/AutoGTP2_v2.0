@@ -254,69 +254,31 @@ namespace AutoGTP2Tests
 
         public ProjectHelper DeclineCancellationProject(ProjectData projectData)
         {            
-            FindOrderedProject(projectData);
+            FindOrderedProject(projectData); //если проектов в статусе Ordered не найдено - этот метод такой проект создает
             CancelProjectButtonClick();
             CancelProjectDeclineButtonClick();
             return this;
         }
 
-        public ProjectHelper FindOrderedProject(ProjectData projectData)
+        public ProjectHelper ConfirmCancellationProject(ProjectData projectData)
         {
-            manager.Navigator.GoToProjectPage();            
-            SortProjectsByStatus("Ordered");
-            FirstProjectClick();
-            if (OrderedStatusNotFounded())
-            {
-                CreateOrderedProject(projectData);
-            }
+            FindOrderedProject(projectData);
+            CancelProjectButtonClick();
+            CancelProjectConfirmButtonClick();
             return this;
         }
 
-        public ProjectHelper FirstProjectClick()
+        public ProjectHelper CancelProjectConfirmButtonClick()
         {
-            driver.FindElement(By.Id("PROJECTS_PROJECT_NAME")).Click();
-            WaitUntilFindElement(4, By.XPath("//div[@class = 'CXwQMpaC5HQszu_q1TIp']"));
+            driver.FindElement(By.XPath("//button[contains(text(), 'Yes')]")).Click();
+            WaitUntilElementIsHide(4, By.XPath("//div[@class= 'styles_modal__gNwvD styles_modalCenter__L9F2w project-card-modal']"));
             return this;
         }
 
-        public ProjectHelper CreateOrderedProject(ProjectData projectData)
+        public bool FirstProjectStatusIsCancelled()
         {
-            manager.Navigator.GoToProjectPage();
-            OpenNewPendingProject(projectData, 3, "00:30");
-            PlaceOrderButtonClick();
-            OpenThisProject();
-            return this;
+            return IsElementPresent(By.XPath("//div[@id= 'PROJECT_STATUS']//span[contains(text(), 'Cancelled')]"));
         }
-
-        public bool OrderedStatusNotFounded()
-        {
-            int c = driver.FindElements(By.XPath("//span[contains(text(), 'Ordered')]")).Count();
-            if(c > 0) { return false; } return true;
-        }
-
-        public ProjectHelper CancelProjectButtonClick()
-        {
-            driver.FindElement(By.XPath("//div[@class = 'Ls81UsGuOEperZX7nWiw i6vQQjoEWNY1KRkGn5rQ']")).Click();
-            WaitUntilFindElement(4, By.XPath("//h2[@class = 'ZBTthD9j0xnNi75qvGTX']"));
-            return this;
-        }
-
-        public ProjectHelper CancelProjectDeclineButtonClick()
-        {
-            driver.FindElement(By.XPath("//button[contains(text(), 'No')]"));            
-            return this;
-        }
-
-        public bool ProjectStatusIsOrdered()
-        {
-            string text = driver.FindElement(By.Id("PROJECT_STATUS")).Text;
-            if(text == "Ordered")
-            {
-                return true;
-            }
-            return false;
-        }
-
 
 
 
@@ -429,7 +391,69 @@ namespace AutoGTP2Tests
 
 
 
+
+
+
+
         // Низкоуровневые методы
+
+        public ProjectHelper FindOrderedProject(ProjectData projectData)
+        {
+            manager.Navigator.GoToProjectPage();
+            SortProjectsByStatus("Ordered");
+            FirstProjectClick();
+            if (OrderedStatusNotFounded())
+            {
+                CreateOrderedProject(projectData);
+            }
+            return this;
+        }
+
+        public ProjectHelper FirstProjectClick()
+        {
+            driver.FindElement(By.Id("PROJECTS_PROJECT_NAME")).Click();
+            WaitUntilFindElement(4, By.XPath("//div[@class = 'CXwQMpaC5HQszu_q1TIp']"));
+            return this;
+        }
+
+        public ProjectHelper CreateOrderedProject(ProjectData projectData)
+        {
+            manager.Navigator.GoToProjectPage();
+            OpenNewPendingProject(projectData, 3, "00:30");
+            PlaceOrderButtonClick();
+            OpenThisProject();
+            return this;
+        }
+
+        public bool OrderedStatusNotFounded()
+        {
+            int c = driver.FindElements(By.XPath("//span[contains(text(), 'Ordered')]")).Count();
+            if (c > 0) { return false; }
+            return true;
+        }
+
+        public ProjectHelper CancelProjectButtonClick()
+        {
+            driver.FindElement(By.XPath("//div[@class = 'Ls81UsGuOEperZX7nWiw i6vQQjoEWNY1KRkGn5rQ']")).Click();
+            WaitUntilFindElement(4, By.XPath("//h2[@class = 'ZBTthD9j0xnNi75qvGTX']"));
+            return this;
+        }
+
+        public ProjectHelper CancelProjectDeclineButtonClick()
+        {
+            driver.FindElement(By.XPath("//button[contains(text(), 'No')]"));
+            return this;
+        }
+
+        public bool ProjectStatusIsOrdered()
+        {
+            string text = driver.FindElement(By.Id("PROJECT_STATUS")).Text;
+            if (text == "Ordered")
+            {
+                return true;
+            }
+            return false;
+        }
 
         public ProjectHelper DeleteFileButtonClick()
         {

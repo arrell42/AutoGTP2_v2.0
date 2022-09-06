@@ -364,5 +364,19 @@ namespace AutoGTP2Tests
             Assert.IsTrue(app.Projects.ProjectCardIsOpen());
             Assert.IsTrue(app.Projects.ProjectStatusIsOrdered());
         }
+
+        // GTP2-R-02-27
+        [Test]
+        public void CancelPendingProjectConfirmTest()
+        {
+            ProjectData projectData = new ProjectData()
+            {
+                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest",
+            };
+
+            app.Projects.ConfirmCancellationProject(projectData);
+
+            Assert.IsTrue(app.Projects.FirstProjectStatusIsCancelled());
+        }
     }
 }
