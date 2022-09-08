@@ -6,6 +6,34 @@ namespace AutoGTP2Tests
     [TestFixture]
     public class ExpressProjectTests : AuthTestBase
     {
+        // GTP2-R-03-01
+        [Test]
+        public void ExpressProjectToggleOnTest()
+        {
+            ProjectData projectData = new ProjectData()
+            {
+                ProjectName = "Express " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
+            };
+
+            app.Projects.ExpressProjectToggleOn(projectData);
+
+            Assert.IsTrue(app.Projects.ExpressProjectTextAreaIsPresent());
+        }
+
+        // GTP2-R-03-02
+        [Test]
+        public void ExpressProjectToggleOnAndOffTest()
+        {
+            ProjectData projectData = new ProjectData()
+            {
+                ProjectName = "Express " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
+            };
+
+            app.Projects.ExpressProjectToggleOnAndOff(projectData);
+
+            Assert.IsFalse(app.Projects.ExpressProjectTextAreaIsPresent());
+        }
+
         // GTP2-R-03-03
         [Test]
         public void ExpressProjectExclamationPopupTest()
@@ -20,6 +48,21 @@ namespace AutoGTP2Tests
             Assert.IsTrue(app.Projects.ExpressProjectExclamationPopupIsPresent());
             Assert.IsTrue(app.Projects.ExpressProjectExclamationPopupIsFilled());
         }
+
+        // GTP2-R-03-05
+        [Test]
+        public void ExpressProjectTextAttach7999Test()
+        {
+            ProjectData projectData = new ProjectData()
+            {
+                ProjectName = "Express " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
+            };
+
+            app.Projects.ExpressProjectTextAttach(projectData, app.expressFile7999);
+
+            Assert.AreEqual(app.Projects.ExpressWordCount(), "1 out of 8,000 left");
+        }
+
 
         [Test]
         public void ExpressProjectFileAttachTest()
@@ -60,18 +103,7 @@ namespace AutoGTP2Tests
             Assert.AreEqual(app.Projects.ExpressWordCount(), "-1 out of 8,000 left");
         }
 
-        [Test]
-        public void ExpressProjectTextAttach7999Test()
-        {
-            ProjectData projectData = new ProjectData()
-            {
-                ProjectName = "Express " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
-            };
-
-            app.Projects.ExpressProjectTextAttach(projectData, app.expressFile7999);
-
-            Assert.AreEqual(app.Projects.ExpressWordCount(), "1 out of 8,000 left");
-        }
+        
 
         [Test]
         public void ExpressProjectLimitPopupCancelButtonTest()

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 namespace AutoGTP2Tests
 {
     [TestFixture]
+    
     public class BudgetCreateTests : AuthTestBase
     {   
         [Test]
@@ -20,12 +21,8 @@ namespace AutoGTP2Tests
             List<BudgetData> oldBudgets = app.Budgets.GetBudgetList();            
 
             app.Budgets.CreateBudget(budgetData);
-
             
-            List<BudgetData> newBudgets = app.Budgets.GetBudgetList();
-
-            //проверка количества бюджетов в списках
-            //Assert.AreEqual(oldBudgets.Count + 1, newBudgets.Count);
+            List<BudgetData> newBudgets = app.Budgets.GetBudgetList();            
 
             //добавляет данные в старый список
             oldBudgets.Add(budgetData);

@@ -24,6 +24,7 @@ namespace AutoGTP2Tests
             return this;
         }
 
+
         public ProjectHelper ProjectCancel(ProjectData projectData)
         {
             OpenNewPendingProject(projectData, 3, "00:30");
@@ -102,6 +103,7 @@ namespace AutoGTP2Tests
         {
             OpenNewExpressProject(projectData);
             FillTextAreaFromFile(filePath);
+
             return this;
         }
 
@@ -268,17 +270,25 @@ namespace AutoGTP2Tests
             return this;
         }
 
-        public ProjectHelper CancelProjectConfirmButtonClick()
+        public ProjectHelper ExpressProjectToggleOn(ProjectData projectData)
         {
-            driver.FindElement(By.XPath("//button[contains(text(), 'Yes')]")).Click();
-            WaitUntilElementIsHide(4, By.XPath("//div[@class= 'styles_modal__gNwvD styles_modalCenter__L9F2w project-card-modal']"));
+            OpenNewPendingProject(projectData, 3, "00:30");
+            ExpressProjectToggleClick();
             return this;
         }
 
-        public bool FirstProjectStatusIsCancelled()
+        public ProjectHelper ExpressProjectToggleOnAndOff(ProjectData projectData)
         {
-            return IsElementPresent(By.XPath("//div[@id= 'PROJECT_STATUS']//span[contains(text(), 'Cancelled')]"));
+            OpenNewPendingProject(projectData, 3, "00:30");
+            ExpressProjectToggleClick();
+            Thread.Sleep(200);
+            ExpressProjectToggleClick();
+            return this;
         }
+
+
+
+
 
 
 
@@ -370,7 +380,7 @@ namespace AutoGTP2Tests
             return exist;
         }
 
-        
+
 
 
 
@@ -396,6 +406,25 @@ namespace AutoGTP2Tests
 
 
         // Низкоуровневые методы
+
+
+        public ProjectHelper ExpressProjectToggleClick()
+        {
+            driver.FindElement(By.XPath("//div[@class = 'USxIMGQdXNMaIPLJs7fT']")).Click();
+            return this;
+        }
+
+        public ProjectHelper CancelProjectConfirmButtonClick()
+        {
+            driver.FindElement(By.XPath("//button[contains(text(), 'Yes')]")).Click();
+            WaitUntilElementIsHide(4, By.XPath("//div[@class= 'styles_modal__gNwvD styles_modalCenter__L9F2w project-card-modal']"));
+            return this;
+        }
+
+        public bool FirstProjectStatusIsCancelled()
+        {
+            return IsElementPresent(By.XPath("//div[@id= 'PROJECT_STATUS']//span[contains(text(), 'Cancelled')]"));
+        }
 
         public ProjectHelper FindOrderedProject(ProjectData projectData)
         {

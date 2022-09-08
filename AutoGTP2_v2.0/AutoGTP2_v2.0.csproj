@@ -42,12 +42,21 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AspectInjector.Broker, Version=2.6.0.0, Culture=neutral, PublicKeyToken=a29e12442a3d3609, processorArchitecture=MSIL">
+      <HintPath>..\packages\AspectInjector.2.6.0\lib\netstandard2.0\AspectInjector.Broker.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\MSTest.TestFramework.2.2.7\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\MSTest.TestFramework.2.2.7\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="MimeTypesMap, Version=1.0.8.0, Culture=neutral, PublicKeyToken=1b320cc08ad5aa89, processorArchitecture=MSIL">
+      <HintPath>..\packages\MimeTypesMap.1.0.8\lib\net452\MimeTypesMap.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="nunit.core, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnitTestAdapter.WithFramework.2.0.0\lib\nunit.core.dll</HintPath>
@@ -117,6 +126,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="ClassDiagram1.cd" />
     <None Include="dataFiles\correctLoginData.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -149,6 +159,16 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\AspectInjector.2.6.0\analyzers\dotnet\cs\AspectInjector.Analyzer.dll" />
+    <Analyzer Include="..\packages\AspectInjector.2.6.0\analyzers\dotnet\cs\AspectInjector.Broker.dll" />
+    <Analyzer Include="..\packages\AspectInjector.2.6.0\analyzers\dotnet\cs\AspectInjector.Rules.dll" />
+    <Analyzer Include="..\packages\AspectInjector.2.6.0\analyzers\dotnet\cs\FluentIL.Common.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Allure-Report\" />
+    <Folder Include="Allure-Resuls\" />
+  </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
@@ -161,7 +181,9 @@
     <Error Condition="!Exists('..\packages\NUnit3TestAdapter.4.2.1\build\net35\NUnit3TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit3TestAdapter.4.2.1\build\net35\NUnit3TestAdapter.props'))" />
     <Error Condition="!Exists('..\packages\NUnitTestAdapter.2.3.0\build\NUnitTestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnitTestAdapter.2.3.0\build\NUnitTestAdapter.props'))" />
     <Error Condition="!Exists('..\packages\Selenium.WebDriver.ChromeDriver.104.0.5112.7900\build\Selenium.WebDriver.ChromeDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Selenium.WebDriver.ChromeDriver.104.0.5112.7900\build\Selenium.WebDriver.ChromeDriver.targets'))" />
+    <Error Condition="!Exists('..\packages\AspectInjector.2.6.0\build\netstandard2.0\AspectInjector.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\AspectInjector.2.6.0\build\netstandard2.0\AspectInjector.targets'))" />
   </Target>
   <Import Project="..\packages\MSTest.TestAdapter.2.2.7\build\net45\MSTest.TestAdapter.targets" Condition="Exists('..\packages\MSTest.TestAdapter.2.2.7\build\net45\MSTest.TestAdapter.targets')" />
   <Import Project="..\packages\Selenium.WebDriver.ChromeDriver.104.0.5112.7900\build\Selenium.WebDriver.ChromeDriver.targets" Condition="Exists('..\packages\Selenium.WebDriver.ChromeDriver.104.0.5112.7900\build\Selenium.WebDriver.ChromeDriver.targets')" />
+  <Import Project="..\packages\AspectInjector.2.6.0\build\netstandard2.0\AspectInjector.targets" Condition="Exists('..\packages\AspectInjector.2.6.0\build\netstandard2.0\AspectInjector.targets')" />
 </Project>
