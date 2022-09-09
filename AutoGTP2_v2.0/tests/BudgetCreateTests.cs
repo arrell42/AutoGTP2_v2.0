@@ -1,14 +1,19 @@
 ﻿using NUnit.Framework;
 using System.Collections.Generic;
-
+using NUnit.Allure.Attributes;
+using NUnit.Allure.Core;
+using System;
 
 namespace AutoGTP2Tests
 {
-    [TestFixture]
+    [TestFixture]    
     
     public class BudgetCreateTests : AuthTestBase
-    {   
+    {        
         [Test]
+        //[Description("Создание бюджета")]
+        
+
         public void CreateBudgetTest()
         {
             BudgetData budgetData = new BudgetData("", "")
@@ -36,4 +41,6 @@ namespace AutoGTP2Tests
         }
 
     }
+
+    
 }

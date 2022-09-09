@@ -1,0 +1,76 @@
+{
+  "uuid": "b133a46b-3781-4f3e-9569-fdfa3a06d380-tr-0-1084",
+  "historyId": "AutoGTP2Tests.BudgetCreateTests.CreateBudgetTest",
+  "fullName": "AutoGTP2Tests.BudgetCreateTests.CreateBudgetTest",
+  "labels": [
+    {
+      "name": "thread",
+      "value": "NonParallelWorker"
+    },
+    {
+      "name": "host",
+      "value": "WS036-T"
+    },
+    {
+      "name": "package",
+      "value": "AutoGTP2Tests"
+    },
+    {
+      "name": "testMethod",
+      "value": "CreateBudgetTest"
+    },
+    {
+      "name": "testClass",
+      "value": "BudgetCreateTests"
+    },
+    {
+      "name": "tag",
+      "value": "NUnit"
+    },
+    {
+      "name": "tag",
+      "value": "Debug"
+    },
+    {
+      "name": "feature",
+      "value": "Core"
+    }
+  ],
+  "links": [],
+  "name": "CreateBudgetTest",
+  "status": "passed",
+  "statusDetails": {
+    "known": false,
+    "muted": false,
+    "flaky": false,
+    "message": "CreateBudgetTest"
+  },
+  "stage": "finished",
+  "steps": [
+    {
+      "name": "CreateBudgetTest",
+      "status": "passed",
+      "statusDetails": {
+        "known": false,
+        "muted": false,
+        "flaky": false
+      },
+      "stage": "finished",
+      "steps": [],
+      "attachments": [
+        {
+          "name": "Console Output",
+          "source": "537af9bd5fb548aca4b0a6b97d95a766-attachment.txt",
+          "type": "text/plain"
+        }
+      ],
+      "parameters": [],
+      "start": 1662618058891,
+      "stop": 1662618090943
+    }
+  ],
+  "attachments": [],
+  "parameters": [],
+  "start": 1662618058889,
+  "stop": 1662618090947
+}

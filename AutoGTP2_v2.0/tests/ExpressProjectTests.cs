@@ -51,16 +51,17 @@ namespace AutoGTP2Tests
 
         // GTP2-R-03-05
         [Test]
-        public void ExpressProjectTextAttach7999Test()
+        public void ExpressProjectPlaceOrderTest()
         {
             ProjectData projectData = new ProjectData()
             {
                 ProjectName = "Express " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
             };
 
-            app.Projects.ExpressProjectTextAttach(projectData, app.expressFile7999);
+            app.Projects.ExpressProjectTextAttachAndPlaceOrder(projectData, app.expressFile7999);
 
-            Assert.AreEqual(app.Projects.ExpressWordCount(), "1 out of 8,000 left");
+            Assert.AreEqual(app.Projects.ExpressTextAreaWordCount(), "1 out of 8,000 left");
+            Assert.AreEqual(app.Projects.ExpressWordsCount(), "7999.000");
         }
 
 
@@ -85,9 +86,9 @@ namespace AutoGTP2Tests
                 ProjectName = "Express " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"                
             };            
             
-            app.Projects.ExpressProjectTextAttach(projectData, app.expressFile8000);
+            app.Projects.ExpressProjectTextAttachAndPlaceOrder(projectData, app.expressFile8000);
 
-            Assert.AreEqual(app.Projects.ExpressWordCount(), "0 out of 8,000 left");
+            Assert.AreEqual(app.Projects.ExpressTextAreaWordCount(), "0 out of 8,000 left");
         }
 
         [Test]
@@ -98,9 +99,9 @@ namespace AutoGTP2Tests
                 ProjectName = "Express " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
             };
 
-            app.Projects.ExpressProjectTextAttach(projectData, app.expressFile8001);
+            app.Projects.ExpressProjectTextAttachAndPlaceOrder(projectData, app.expressFile8001);
 
-            Assert.AreEqual(app.Projects.ExpressWordCount(), "-1 out of 8,000 left");
+            Assert.AreEqual(app.Projects.ExpressTextAreaWordCount(), "-1 out of 8,000 left");
         }
 
         
@@ -116,7 +117,7 @@ namespace AutoGTP2Tests
             app.Projects.ExpressProjectLimitPopupCancelButton(projectData, app.expressFile8001);
 
             Assert.IsTrue(app.Projects.ExpressProjectTextAreaIsPresent());
-            Assert.AreEqual(app.Projects.ExpressWordCount(), "-1 out of 8,000 left");
+            Assert.AreEqual(app.Projects.ExpressTextAreaWordCount(), "-1 out of 8,000 left");
         }
 
         [Test]

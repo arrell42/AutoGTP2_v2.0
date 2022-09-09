@@ -984,7 +984,7 @@ namespace AutoGTP2Tests
             driver.FindElement(By.Id("requestQuote")).Click();
             WaitUntilFindElement(10, By.XPath("//span[@class = 'oSlLzqSfaLdSFEWpZxdw']"));
             Thread.Sleep(500);
-            WaitUntilElementIsHide(40, By.XPath("//span[@class = 'oSlLzqSfaLdSFEWpZxdw']"));
+            WaitUntilElementIsHide(200, By.XPath("//span[@class = 'oSlLzqSfaLdSFEWpZxdw']"));
             return this;
         }
         public ServiceHelper SelectQuantityTypeAuto()
@@ -1037,16 +1037,6 @@ namespace AutoGTP2Tests
             return driver.FindElement(By.XPath("//p[contains(text(), 'Quantity')]/following-sibling::p")).Text;
         }
 
-        /*
-        public ServiceHelper OpenNewProject(ProjectData projectData)
-        {
-            manager.Navigator.GoToProjectPage();
-            manager.Projects.NewProjectButtonClick();
-            manager.Projects.EnterProjectName(projectData);
-            return this;
-        }
-        */
-
         public bool PlugItemIsPresent()
         {
             return IsElementPresent(By.XPath("//div[@class = 'plug-item']"));
@@ -1065,6 +1055,10 @@ namespace AutoGTP2Tests
 
         public ServiceHelper SelectSourceLanguage()
         {
+            if (UnitIsNotEmpty() == true)
+            {
+                SelectUnit();
+            }
             driver.FindElement(By.Name("SERVICE_SOURCE_LANG")).Click();            
             Thread.Sleep(500);
             driver.FindElement(By.Id("SERVICE_SOURCE_LANG_2")).Click();

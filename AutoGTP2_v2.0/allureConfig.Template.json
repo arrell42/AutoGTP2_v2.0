@@ -1,0 +1,9 @@
+﻿{
+  "allure": {
+    "directory": "C:\\Users\\d_inozemtsev\\source\\repos\\AutoGTP2_v2.0\\AutoGTP2_v2.0\\Allure-Resuls",
+    "links": [
+      "https://example.org/{issue}",
+      "https://example.org/{tms}"
+    ]
+  }
+}

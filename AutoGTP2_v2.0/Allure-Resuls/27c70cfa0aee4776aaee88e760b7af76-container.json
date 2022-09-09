@@ -1,0 +1,43 @@
+{
+  "uuid": "41aeba06-1f08-4a47-93aa-e62945a1dfec-tc-0-1083",
+  "name": "AutoGTP2Tests.BudgetCreateTests.CreateBudgetTest",
+  "children": [
+    "b133a46b-3781-4f3e-9569-fdfa3a06d380-tr-0-1084"
+  ],
+  "befores": [
+    {
+      "name": "SetupApplicationManager",
+      "status": "passed",
+      "statusDetails": {
+        "known": false,
+        "muted": false,
+        "flaky": false
+      },
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1662618090939,
+      "stop": 1662618090939
+    },
+    {
+      "name": "SetupLogin",
+      "status": "passed",
+      "statusDetails": {
+        "known": false,
+        "muted": false,
+        "flaky": false
+      },
+      "stage": "finished",
+      "steps": [],
+      "attachments": [],
+      "parameters": [],
+      "start": 1662618090939,
+      "stop": 1662618090939
+    }
+  ],
+  "afters": [],
+  "links": [],
+  "start": 1662618058884,
+  "stop": 1662618091006
+}

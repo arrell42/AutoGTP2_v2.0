@@ -48,24 +48,29 @@ namespace AutoGTP2Tests
         
         // Создаем список бюджетов
         public List<BudgetData> GetBudgetList()
-        {
+        {            
             List<BudgetData> budgets = new List<BudgetData>();
             manager.Navigator.GoToBudgetPage();
-            ICollection<IWebElement> elements = driver.FindElements(By.XPath("//div[@class = 'ySclMvBg4360NoWcNOG5']"));            
+            ICollection<IWebElement> elements = driver.FindElements(By.XPath("//div[contains(@id, 'BUDGETS') and not(contains(@id, 'BURGER'))]"));            
             foreach(var element in elements)
             {                
                 for (int i = 0; i < elements.Count; i++)
-                {                       
+                {
                     string cost = driver.FindElement(By.XPath(
-                        "//div[@class = 'ySclMvBg4360NoWcNOG5'][" + (i+1) + "]//div[@class = 'kyuJpfa35LDUXSJH2FJS']")).Text;
+                        "//div[contains(@id, 'BUDGETS') and not(contains(@id, 'BURGER'))][" + (i + 1) + "]" +
+                        "//div[contains(text(), 'Cost')]//following-sibling::div")).Text;
                     string po = driver.FindElement(By.XPath(
-                        "//div[@class = 'ySclMvBg4360NoWcNOG5'][" + (i+1) + "]//div[contains(text(), 'PO number')]//following-sibling::div")).Text;
+                        "//div[contains(@id, 'BUDGETS') and not(contains(@id, 'BURGER'))][" + (i + 1) + "]" +
+                        "//div[contains(text(), 'PO')]//following-sibling::div")).Text;
                     string total = driver.FindElement(By.XPath(
-                        "//div[@class = 'ySclMvBg4360NoWcNOG5'][1]//div[contains(text(),  'Amount total')]//following-sibling::div")).Text;
+                        "//div[contains(@id, 'BUDGETS') and not(contains(@id, 'BURGER'))][" + (i + 1) + "]" +
+                        "//div[contains(text(), 'total')]//following-sibling::div")).Text;
                     string remaining = driver.FindElement(By.XPath(
-                        "//div[@class = 'ySclMvBg4360NoWcNOG5'][" + (i + 1) + "]//div[contains(text(),  'Amount remaining')]//following-sibling::div")).Text;
+                        "//div[contains(@id, 'BUDGETS') and not(contains(@id, 'BURGER'))][" + (i + 1) + "]" +
+                        "//div[contains(text(), 'remaining')]//following-sibling::div")).Text;
                     string date = driver.FindElement(By.XPath(
-                        "//div[@class = 'ySclMvBg4360NoWcNOG5'][1]//div[contains(text(),  'Date of creation')]//following-sibling::div")).Text;
+                        "//div[contains(@id, 'BUDGETS') and not(contains(@id, 'BURGER'))][" + (i + 1) + "]" +
+                        "//div[contains(text(), 'Date')]//following-sibling::div")).Text;
 
                     budgets.Add(new BudgetData(cost, po)
                     {
@@ -120,9 +125,13 @@ namespace AutoGTP2Tests
 
         public BudgetHelper SelectUSDCurrency()
         {
-            driver.FindElement(By.XPath(
+            var currencyField = By.XPath("//input[@name = 'NEW_BUDGET_CURRENCY']");
+            if (IsElementPresent(currencyField))
+            {
+                driver.FindElement(By.XPath(
                 "//input[@class= 'react-dropdown-select-input css-o79eln-InputComponent e11wid6y0']")).Click();
-            driver.FindElement(By.XPath("//p[@title='USD']")).Click();
+                driver.FindElement(By.XPath("//p[@title='USD']")).Click();
+            }
             return this;
         }
         public BudgetHelper EnterBudgetName(BudgetData budgetData)

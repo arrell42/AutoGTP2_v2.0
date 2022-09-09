@@ -25,12 +25,26 @@ namespace AutoGTP2Tests
 
             List<ProjectData> newProjects = app.Projects.GetProjectList();            
             
+            /*
             if (oldProjects.Count > 20)
             {
                 oldProjects.RemoveAt(oldProjects.Count - 2);
             }
+
             oldProjects.RemoveAt(0); // удаляем первый в старом списке
-            newProjects.RemoveAt(19); // удаляем последний в новом списке
+
+            if (newProjects.Count > 20)
+            {
+                newProjects.RemoveAt(19); // удаляем последний в новом списке
+            }
+            */
+
+            oldProjects.RemoveAt(0); // удаляем первый в старом списке
+            if (newProjects.Count == 20)
+            {
+                newProjects.RemoveAt(19); // удаляем последний в новом списке
+            }
+
             oldProjects.Sort((x, y) => x.ProjectName.CompareTo(y.ProjectName)); // сортировка старого списка
             newProjects.Sort((x, y) => x.ProjectName.CompareTo(y.ProjectName)); // сортировка нового списка
             Assert.AreEqual(oldProjects, newProjects); // сравнение списков            

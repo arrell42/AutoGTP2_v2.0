@@ -26,7 +26,7 @@ namespace AutoGTP2Tests
                 manager.Auth.Login(account);
             }
             driver.FindElement(By.Id("MENU_BUDGETS")).Click();
-            WaitUntilFindElement(10, By.XPath("//div[@class = 'vKOuKRPiTZr_i_RoPDcw']"));
+            WaitUntilElementIsHide(5, By.XPath("//div[@class = 'uAVm9bKcbGvOpCLx2Whj']"));
         }
 
         public void GoToProjectPage()
@@ -38,8 +38,8 @@ namespace AutoGTP2Tests
                 LoginData account = new LoginData("Main_test", "123456");
                 manager.Auth.Login(account);
             }
-            driver.FindElement(By.Id("MENU_PROJECTS")).Click();            
-            WaitUntilFindElement(10, By.XPath("//div[@class = 'fPooHDtNQyVHMCf4O9mn']"));
+            driver.FindElement(By.Id("MENU_PROJECTS")).Click();
+            WaitUntilElementIsHide(5, By.XPath("//div[@class = 'uAVm9bKcbGvOpCLx2Whj']"));
         }
 
         public void GoToDashportPage()

@@ -75,7 +75,7 @@ namespace AutoGTP2Tests
             SaveProjectButtonClick();
             return this;
         }
-
+        
         public ProjectHelper ExpressProjectExclamationPopup(ProjectData projectData)
         {
             OpenNewExpressProject(projectData);
@@ -99,11 +99,14 @@ namespace AutoGTP2Tests
             return this;
         }
 
-        public ProjectHelper ExpressProjectTextAttach(ProjectData projectData, string filePath)
+        public ProjectHelper ExpressProjectTextAttachAndPlaceOrder(ProjectData projectData, string filePath)
         {
             OpenNewExpressProject(projectData);
             FillTextAreaFromFile(filePath);
-
+            manager.Services.RequestQuoteButtonClick();
+            PlaceOrderButtonClick();
+            OpenThisProject();
+            manager.Services.OpenAndEditButtonClick();
             return this;
         }
 
@@ -149,7 +152,7 @@ namespace AutoGTP2Tests
             manager.Budgets.SelectUSDCurrency();
             EnterTotal(projectData);
             manager.Budgets.BudgetCreateButtonClick();
-            WaitUntilFindElement(4, By.XPath("//p[@class = 'i9matKNoUHudiZkMT8BL']"));
+            WaitPopupInBudgetField();            
             return this;
         }
 
@@ -317,9 +320,7 @@ namespace AutoGTP2Tests
                     string budget = driver.FindElement(By.XPath(
                         "//div[@id= 'PROJECT_" + i + "']//div[contains(text(), 'Budget')]//following-sibling::div//div")).Text.Trim();
                     string subjectArea = driver.FindElement(By.XPath(
-                        "//div[@id= 'PROJECT_" + i + "']//div[contains(text(), 'Subject area')]//following-sibling::div")).Text.Trim();
-                    string vendor = driver.FindElement(By.XPath(
-                        "//div[@id= 'PROJECT_" + i + "']//div[contains(text(), 'Vendor')]//following-sibling::div")).Text.Trim();
+                        "//div[@id= 'PROJECT_" + i + "']//div[contains(text(), 'Subject area')]//following-sibling::div")).Text.Trim();                    
                     string pm = driver.FindElement(By.XPath(
                         "//div[@id= 'PROJECT_" + i + "']//div[contains(text(), 'Responsible PM')]//following-sibling::div")).Text.Trim();
                     string representative = driver.FindElement(By.XPath(
@@ -339,8 +340,7 @@ namespace AutoGTP2Tests
                     {
                         ProjectName = name,
                         BudgetCost = budget,
-                        SubjectArea = subjectArea,
-                        Vendor = vendor,
+                        SubjectArea = subjectArea,                        
                         ResponsiblePM = pm,
                         ClientRepresentative = representative,
                         StartDate = startDate,
@@ -407,6 +407,17 @@ namespace AutoGTP2Tests
 
         // Низкоуровневые методы
 
+        public string ExpressWordsCount()
+        {
+            return driver.FindElement(By.XPath("//p[contains(text(), 'Word')]" +
+                 "//following-sibling::p[@class = 'JYY3cyt6ivHCSM8aXGfg']")).Text;            
+        }
+
+        public ProjectHelper WaitPopupInBudgetField()
+        {
+            WaitUntilFindElement(4, By.XPath("//p[@class = 'i9matKNoUHudiZkMT8BL']"));
+            return this;
+        }
 
         public ProjectHelper ExpressProjectToggleClick()
         {
@@ -429,12 +440,12 @@ namespace AutoGTP2Tests
         public ProjectHelper FindOrderedProject(ProjectData projectData)
         {
             manager.Navigator.GoToProjectPage();
-            SortProjectsByStatus("Ordered");
-            FirstProjectClick();
+            SortProjectsByStatus("Ordered");            
             if (OrderedStatusNotFounded())
             {
                 CreateOrderedProject(projectData);
             }
+            FirstProjectClick();
             return this;
         }
 
@@ -803,7 +814,7 @@ namespace AutoGTP2Tests
             return this;
         }                
 
-        public string ExpressWordCount()
+        public string ExpressTextAreaWordCount()
         {   
             return driver.FindElement(By.XPath("//textarea[@id = 'PROJECTS_EXPRESS_TEXT']//following-sibling::p")).Text;            
         }

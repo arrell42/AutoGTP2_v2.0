@@ -4,10 +4,11 @@ using System.Collections.Generic;
 
 namespace AutoGTP2Tests
 {
-    [TestFixture]
+    [TestFixture]    
     public class BudgetRemovalTests : AuthTestBase
     {
         [Test]
+        
         public void BudgetRemovalCancelTest()
         {
             if (app.Budgets.BudgetDeleteButtonIsDisabled())
@@ -56,18 +57,17 @@ namespace AutoGTP2Tests
             app.Budgets.BudgetRemoval();
 
             List<BudgetData> newBudgets = app.Budgets.GetBudgetList();
-            //Assert.AreEqual(oldBudgets.Count - 1, newBudgets.Count);
 
-            if (oldBudgets.Count > 20)
-            {
-                oldBudgets.RemoveAt(oldBudgets.Count - 2);
-            }
             oldBudgets.RemoveAt(0); // удаляем первый в старом списке
-            newBudgets.RemoveAt(19); // удаляем последний в новом списке
+            if (newBudgets.Count == 20)
+            {                
+                newBudgets.RemoveAt(19); // удаляем последний в новом списке
+            }
             
+
             oldBudgets.Sort(); // сортировка старого списка
             newBudgets.Sort(); // сортировка нового списка
-            Assert.AreEqual(newBudgets, oldBudgets);
+            Assert.AreEqual(oldBudgets, newBudgets);
         }
         
     }
