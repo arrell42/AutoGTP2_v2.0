@@ -83,7 +83,7 @@ namespace AutoGTP2Tests
             return this;
         }
 
-        public ProjectHelper ExpressProjectFileAttach(ProjectData projectData)
+        public ProjectHelper ExpressProjectRequestQuote(ProjectData projectData)
         {
             OpenNewExpressProject(projectData);
             manager.Services.SourceFileAttach();
@@ -288,7 +288,9 @@ namespace AutoGTP2Tests
             ExpressProjectToggleClick();
             return this;
         }
+        
 
+        
 
 
 
@@ -406,6 +408,19 @@ namespace AutoGTP2Tests
 
 
         // Низкоуровневые методы
+
+        public bool ExpressDeadlineIsCorrect()
+        {
+            string dateText = driver.FindElement(By.XPath("//p[contains(text(), 'Deadline')]//following-sibling::p")).Text;
+            int hour = Int32.Parse(DateTime.Now.ToString("HH")) + 4;
+            string correctTime = hour.ToString();
+            if (dateText.Contains(DateTime.Now.ToString("dd")) && dateText.Contains(correctTime))
+            {
+                return true;
+            }
+
+            return false;
+        }
 
         public string ExpressWordsCount()
         {
