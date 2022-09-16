@@ -11,16 +11,47 @@ namespace AutoGTP2Tests
         {
         }
         //Высокоуровневые методы
-        public BudgetHelper CreateBudget(BudgetData budgetData)
+
+        public BudgetHelper NewBudgetModalOpen()
         {
             manager.Navigator.GoToBudgetPage();
             NewBudgetButtonClick();
+            return this;
+        }        
+
+        public BudgetHelper CreateBudget(BudgetData budgetData)
+        {
+            NewBudgetModalOpen();
             EnterPOnumber(budgetData);
-            EnterBudgetName(budgetData);
+            EnterBudgetCost(budgetData);
             SelectUSDCurrency();
             EnterTotal(budgetData);
             BudgetCreateButtonClick();
             Thread.Sleep(500);
+            return this;
+        }
+        public BudgetHelper FillNewBudgetPOField(BudgetData budgetData)
+        {
+            NewBudgetModalOpen();
+            EnterPOnumber(budgetData);            
+            BudgetCreateButtonClick();
+            return this;
+        }
+        public BudgetHelper FillNewBudgetPOFAndCostield(BudgetData budgetData)
+        {
+            NewBudgetModalOpen();
+            EnterPOnumber(budgetData);
+            EnterBudgetCost(budgetData);
+            BudgetCreateButtonClick();
+            return this;
+        }
+        public BudgetHelper FillNewBudgetPOAndCostFieldAndSelectCurrency(BudgetData budgetData)
+        {
+            NewBudgetModalOpen();
+            EnterPOnumber(budgetData);
+            EnterBudgetCost(budgetData);
+            SelectUSDCurrency();
+            BudgetCreateButtonClick();
             return this;
         }
 
@@ -40,12 +71,14 @@ namespace AutoGTP2Tests
             BudgetDeleteDecline();            
             return this;
         }
-
-
-
-
-
         
+
+
+
+
+
+
+
         // Создаем список бюджетов
         public List<BudgetData> GetBudgetList()
         {            
@@ -84,6 +117,15 @@ namespace AutoGTP2Tests
             return new List<BudgetData>(budgets);
         }
 
+        
+
+
+
+
+
+
+
+
 
 
 
@@ -91,6 +133,15 @@ namespace AutoGTP2Tests
 
 
         // Низкоуровневые методы
+
+        public bool NewBudgetModalIsOpen()
+        {
+            return IsElementPresent(By.XPath("//div[@class= 'newBudget-modal']"));
+        }
+        public bool CreateBudgetButtonIsEnabled()
+        {
+            return driver.FindElement(By.Id("NEW_BUDGET_CREATE")).Enabled;
+        }
 
         public bool BudgetTooltipIsPresent()
         {
@@ -134,7 +185,7 @@ namespace AutoGTP2Tests
             }
             return this;
         }
-        public BudgetHelper EnterBudgetName(BudgetData budgetData)
+        public BudgetHelper EnterBudgetCost(BudgetData budgetData)
         {
             driver.FindElement(By.Id("NEW_BUDGET_COST")).Click();
             driver.FindElement(By.Id("NEW_BUDGET_COST")).Clear();

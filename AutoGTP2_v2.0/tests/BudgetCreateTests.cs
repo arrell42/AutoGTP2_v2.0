@@ -40,7 +40,63 @@ namespace AutoGTP2Tests
             Assert.AreEqual(newBudgets, oldBudgets);
         }
 
+        // GTP2-R-06-02
+        [Test]
+        public void NewBudgetModalOpenTest()
+        {
+            app.Budgets.NewBudgetModalOpen();
+
+            Assert.IsTrue(app.Budgets.NewBudgetModalIsOpen());
+            Assert.IsFalse(app.Budgets.CreateBudgetButtonIsEnabled());
+        }
+
+        // GTP2-R-06-03
+        [Test]
+        public void FillNewBudgetPOFieldTest()
+        {
+            BudgetData budgetData = new BudgetData("", "")
+            {
+                BudgetPO = app.TextGenerator(1, 5)
+            };
+
+            app.Budgets.FillNewBudgetPOField(budgetData);
+
+            Assert.IsTrue(app.Budgets.NewBudgetModalIsOpen());
+            Assert.IsFalse(app.Budgets.CreateBudgetButtonIsEnabled());
+        }
+
+        // GTP2-R-06-04
+        [Test]
+        public void FillNewBudgetPOAndCostFieldTest()
+        {
+            BudgetData budgetData = new BudgetData("", "")
+            {
+                BudgetPO = app.TextGenerator(1, 5),
+                BudgetCost = app.TextGenerator(1, 3)
+            };
+
+            app.Budgets.FillNewBudgetPOFAndCostield(budgetData);
+
+            Assert.IsTrue(app.Budgets.NewBudgetModalIsOpen());
+            Assert.IsFalse(app.Budgets.CreateBudgetButtonIsEnabled());
+        }
+
+        // GTP2-R-06-05
+        [Test]
+        public void FillNewBudgetPOAndCostFieldAndSelectCurrencyTest()
+        {
+            BudgetData budgetData = new BudgetData("", "")
+            {
+                BudgetPO = app.TextGenerator(1, 5),
+                BudgetCost = app.TextGenerator(1, 3)
+            };
+
+            app.Budgets.FillNewBudgetPOAndCostFieldAndSelectCurrency(budgetData);
+
+            Assert.IsTrue(app.Budgets.NewBudgetModalIsOpen());
+            Assert.IsFalse(app.Budgets.CreateBudgetButtonIsEnabled());
+        }
     }
 
-    
+
 }

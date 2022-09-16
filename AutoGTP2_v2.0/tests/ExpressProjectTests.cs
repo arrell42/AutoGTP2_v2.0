@@ -79,6 +79,21 @@ namespace AutoGTP2Tests
             Assert.AreEqual(app.Projects.ExpressWordsCount(), "100.000");
         }
 
+        // GTP2-R-03-07
+        [Test]
+        public void ExpressProjectFileAndTextAttachTest()
+        {
+            ProjectData projectData = new ProjectData()
+            {
+                ProjectName = "Express " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
+            };
+
+            app.Projects.ExpressProjectFileAndTextAttach(projectData, app.sourceFile);
+
+            Assert.IsTrue(app.Projects.ExpressDeadlineIsCorrect());
+            Assert.AreEqual(app.Projects.ExpressWordsCount(), "200.000");
+        }
+
 
         [Test]
         public void ExpressProjectTextAttach8000Test()
@@ -93,7 +108,7 @@ namespace AutoGTP2Tests
             Assert.AreEqual(app.Projects.ExpressTextAreaWordCount(), "0 out of 8,000 left");
         }
 
-        [Test]
+        //[Test]
         public void ExpressProjectTextAttach8001Test()
         {
             ProjectData projectData = new ProjectData()

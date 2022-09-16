@@ -109,7 +109,7 @@ namespace AutoGTP2Tests
             manager.Services.OpenAndEditButtonClick();
             return this;
         }
-
+                
         public ProjectHelper ExpressProjectLimitPopupCancelButton(ProjectData projectData, string filePath)
         {
             OpenNewExpressProject(projectData);
@@ -288,9 +288,16 @@ namespace AutoGTP2Tests
             ExpressProjectToggleClick();
             return this;
         }
-        
+        public ProjectHelper ExpressProjectFileAndTextAttach(ProjectData projectData, string filePath)
+        {
+            OpenNewExpressProject(projectData);
+            manager.Services.SourceFileAttach();
+            FillTextAreaFromFile(filePath);
+            manager.Services.RequestQuoteButtonClick();
+            return this;
+        }
 
-        
+
 
 
 
@@ -412,13 +419,12 @@ namespace AutoGTP2Tests
         public bool ExpressDeadlineIsCorrect()
         {
             string dateText = driver.FindElement(By.XPath("//p[contains(text(), 'Deadline')]//following-sibling::p")).Text;
-            int hour = Int32.Parse(DateTime.Now.ToString("HH")) + 4;
+            int hour = Int32.Parse(DateTime.Now.ToString("HH")) + 4; //int hour = Int32.Parse(DateTime.Now.AddHours(4))
             string correctTime = hour.ToString();
             if (dateText.Contains(DateTime.Now.ToString("dd")) && dateText.Contains(correctTime))
             {
                 return true;
             }
-
             return false;
         }
 
