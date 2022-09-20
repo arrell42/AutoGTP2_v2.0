@@ -99,7 +99,7 @@ namespace AutoGTP2Tests
 
         // GTP2-R-06-09
         [Test]
-        public void OpenBudgeWithoutProjectsTest()
+        public void OpenBudgetWithoutProjectsTest()
         {
             BudgetData budgetData = new BudgetData("", "")
             {
@@ -114,5 +114,22 @@ namespace AutoGTP2Tests
             Assert.IsTrue(app.Budgets.BudgetUpdateButtonIsPresent());
         }
 
+        // GTP2-R-06-10
+        [Test]
+        public void OpenBudgetWithProjectsTest()
+        {
+            BudgetData budgetData = new BudgetData("", "")
+            {
+                BudgetPO = app.TextGenerator(1, 5),
+                BudgetCost = app.TextGenerator(1, 3),
+                BudgetTotal = "1000"
+            };
+
+            app.Budgets.OpenBudgetWithProjects(budgetData);
+
+            Assert.IsTrue(app.Budgets.NewBudgetModalIsOpen());
+            Assert.IsFalse(app.Budgets.BudgetUpdateButtonIsPresent());
+            Assert.IsTrue(app.Budgets.QuestionMarkPopupIsPresentAndHaveCorrectText());
+        }
     }
 }

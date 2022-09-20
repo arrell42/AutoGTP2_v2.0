@@ -82,8 +82,16 @@ namespace AutoGTP2Tests
             OpenButtonInBurgerClick();
             return this;
         }
-        
 
+        public BudgetHelper OpenBudgetWithProjects(BudgetData budgetData)
+        {
+            FindBudgetWithProjectsAndOpenBurger(budgetData);            
+            OpenButtonInBurgerClick();
+            ReadonlyQuestionMarkClick();
+            return this;
+        }
+
+        
 
 
 
@@ -147,11 +155,48 @@ namespace AutoGTP2Tests
 
 
 
+
+
+
+
         // Низкоуровневые методы
+
+        public BudgetHelper ReadonlyQuestionMarkClick()
+        {
+            driver.FindElement(By.XPath("//div[@class= 'newBudget-modal-read']//span")).Click();
+            Thread.Sleep(200);
+            return this;
+        }
+
+        public bool QuestionMarkPopupIsPresentAndHaveCorrectText()
+        {
+            string text = driver.FindElement(By.XPath("//p[@class= 'tooltip-content']")).Text;
+            if (text.Contains("This budget has already been used in projects.")) { return true; }
+            return false;
+        }
+
+        public BudgetHelper FindBudgetWithProjectsAndOpenBurger(BudgetData budgetData)
+        {
+            manager.Navigator.GoToBudgetPage();
+            Thread.Sleep(200);
+            if (driver.FindElements(By.XPath("//div[@class= 'wF4f8z1gZkBosC4Dy4j7' and not(contains(., 'None'))]//following-sibling::div[contains(@id, 'BUDGETS_BURGER')]")).Count == 0)
+            {
+                CreateNewBudget(budgetData);
+                manager.Navigator.GoToBudgetPage();
+                driver.FindElement(By.XPath("//div[@class= 'wF4f8z1gZkBosC4Dy4j7' and not(contains(., 'None'))]//following-sibling::div[contains(@id, 'BUDGETS_BURGER')]")).Click();
+            }
+            else
+            {
+                driver.FindElement(By.XPath("//div[@class= 'wF4f8z1gZkBosC4Dy4j7' and not(contains(., 'None'))]//following-sibling::div[contains(@id, 'BUDGETS_BURGER')]")).Click();
+            }
+
+            return this;
+        }
 
         public BudgetHelper OpenButtonInBurgerClick()
         {
             driver.FindElement(By.XPath("//div[@class= 'hamburger-open-content']")).Click();
+            Thread.Sleep(200);
             return this;
         }
 
