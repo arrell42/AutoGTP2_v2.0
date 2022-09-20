@@ -149,7 +149,7 @@ namespace AutoGTP2Tests
 
         // GTP2-R-05-13
         [Test]
-        public void ServiceCATLogWithOutCATFileTest()
+        public void ServiceCATLogWithoutCATFileTest()
         {
             ProjectData projectData = new ProjectData()
             {

@@ -19,7 +19,7 @@ namespace AutoGTP2Tests
                     BudgetCost = app.TextGenerator(1, 3),
                     BudgetTotal = "1000"
                 };
-                app.Budgets.CreateBudget(budget);
+                app.Budgets.CreateNewBudget(budget);
                 app.Budgets.WaitUntilFindElement(5, By.CssSelector("#BUDGETS_BURGER_0 > svg > path"));
                 app.Budgets.BudgetBurgerClick();                
             }
@@ -47,7 +47,7 @@ namespace AutoGTP2Tests
                     BudgetCost = app.TextGenerator(1, 3),
                     BudgetTotal = "1000"
                 };  
-                app.Budgets.CreateBudget(budget);
+                app.Budgets.CreateNewBudget(budget);
                 app.Budgets.WaitUntilFindElement(5, By.CssSelector("#BUDGETS_BURGER_0 > svg > path"));
                 app.Budgets.BudgetBurgerClick();                
             }

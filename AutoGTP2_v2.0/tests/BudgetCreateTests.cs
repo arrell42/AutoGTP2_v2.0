@@ -25,7 +25,7 @@ namespace AutoGTP2Tests
 
             List<BudgetData> oldBudgets = app.Budgets.GetBudgetList();            
 
-            app.Budgets.CreateBudget(budgetData);
+            app.Budgets.CreateNewBudget(budgetData);
             
             List<BudgetData> newBudgets = app.Budgets.GetBudgetList();            
 
@@ -96,7 +96,23 @@ namespace AutoGTP2Tests
             Assert.IsTrue(app.Budgets.NewBudgetModalIsOpen());
             Assert.IsFalse(app.Budgets.CreateBudgetButtonIsEnabled());
         }
+
+        // GTP2-R-06-09
+        [Test]
+        public void OpenBudgeWithoutProjectsTest()
+        {
+            BudgetData budgetData = new BudgetData("", "")
+            {
+                BudgetPO = app.TextGenerator(1, 5),
+                BudgetCost = app.TextGenerator(1, 3),
+                BudgetTotal = "1000"
+            };
+
+            app.Budgets.OpenBudgetWithoutProjects(budgetData);
+
+            Assert.IsTrue(app.Budgets.NewBudgetModalIsOpen());
+            Assert.IsTrue(app.Budgets.BudgetUpdateButtonIsPresent());
+        }
+
     }
-
-
 }

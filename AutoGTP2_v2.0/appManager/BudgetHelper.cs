@@ -17,9 +17,9 @@ namespace AutoGTP2Tests
             manager.Navigator.GoToBudgetPage();
             NewBudgetButtonClick();
             return this;
-        }        
+        }       
 
-        public BudgetHelper CreateBudget(BudgetData budgetData)
+        public BudgetHelper CreateNewBudget(BudgetData budgetData)
         {
             NewBudgetModalOpen();
             EnterPOnumber(budgetData);
@@ -30,6 +30,7 @@ namespace AutoGTP2Tests
             Thread.Sleep(500);
             return this;
         }
+
         public BudgetHelper FillNewBudgetPOField(BudgetData budgetData)
         {
             NewBudgetModalOpen();
@@ -37,6 +38,7 @@ namespace AutoGTP2Tests
             BudgetCreateButtonClick();
             return this;
         }
+
         public BudgetHelper FillNewBudgetPOFAndCostield(BudgetData budgetData)
         {
             NewBudgetModalOpen();
@@ -45,6 +47,7 @@ namespace AutoGTP2Tests
             BudgetCreateButtonClick();
             return this;
         }
+
         public BudgetHelper FillNewBudgetPOAndCostFieldAndSelectCurrency(BudgetData budgetData)
         {
             NewBudgetModalOpen();
@@ -63,6 +66,7 @@ namespace AutoGTP2Tests
             BudgetDeleteConfirm();
             return this;
         }
+
         public BudgetHelper BudgetRemovalCancel()
         {
             manager.Navigator.GoToBudgetPage();                        
@@ -71,7 +75,15 @@ namespace AutoGTP2Tests
             BudgetDeleteDecline();            
             return this;
         }
+
+        public BudgetHelper OpenBudgetWithoutProjects(BudgetData budgetData)
+        {            
+            FindBudgetWithoutProjectsAndOpenBurger(budgetData);
+            OpenButtonInBurgerClick();
+            return this;
+        }
         
+
 
 
 
@@ -84,7 +96,8 @@ namespace AutoGTP2Tests
         {            
             List<BudgetData> budgets = new List<BudgetData>();
             manager.Navigator.GoToBudgetPage();
-            ICollection<IWebElement> elements = driver.FindElements(By.XPath("//div[contains(@id, 'BUDGETS') and not(contains(@id, 'BURGER'))]"));            
+            ICollection<IWebElement> elements = driver.FindElements
+                (By.XPath("//div[contains(@id, 'BUDGETS') and not(contains(@id, 'BURGER'))]"));            
             foreach(var element in elements)
             {                
                 for (int i = 0; i < elements.Count; i++)
@@ -117,7 +130,9 @@ namespace AutoGTP2Tests
             return new List<BudgetData>(budgets);
         }
 
-        
+
+
+
 
 
 
@@ -133,6 +148,40 @@ namespace AutoGTP2Tests
 
 
         // Низкоуровневые методы
+
+        public BudgetHelper OpenButtonInBurgerClick()
+        {
+            driver.FindElement(By.XPath("//div[@class= 'hamburger-open-content']")).Click();
+            return this;
+        }
+
+        public BudgetHelper FindBudgetWithoutProjectsAndOpenBurger(BudgetData budgetData)
+        {
+            manager.Navigator.GoToBudgetPage();
+            if (driver.FindElements(By.XPath(
+                "//div[@class= 'wF4f8z1gZkBosC4Dy4j7' and contains(., 'None')]" +
+                "//following-sibling::div[contains(@id, 'BUDGETS_BURGER')]")).Count == 0)
+            {
+                CreateNewBudget(budgetData);
+                manager.Navigator.GoToBudgetPage();
+                driver.FindElement(By.XPath(
+                "//div[@class= 'wF4f8z1gZkBosC4Dy4j7' and contains(., 'None')]" +
+                "//following-sibling::div[contains(@id, 'BUDGETS_BURGER')]")).Click();
+            }
+            else
+            {
+                driver.FindElement(By.XPath(
+                "//div[@class= 'wF4f8z1gZkBosC4Dy4j7' and contains(., 'None')]" +
+                "//following-sibling::div[contains(@id, 'BUDGETS_BURGER')]")).Click();
+            }
+
+            return this;
+        }
+
+        public bool BudgetUpdateButtonIsPresent()
+        {
+            return IsElementPresent(By.Id("BUDGET_EDIT_UPDATE"));
+        }
 
         public bool NewBudgetModalIsOpen()
         {
