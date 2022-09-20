@@ -131,5 +131,14 @@ namespace AutoGTP2Tests
             Assert.IsFalse(app.Budgets.BudgetUpdateButtonIsPresent());
             Assert.IsTrue(app.Budgets.QuestionMarkPopupIsPresentAndHaveCorrectText());
         }
+
+        // GTP2-R-06-14
+        [Test]
+        public void DeleteTextFromSearchBarTest()
+        {            
+            app.Budgets.AddThenDeleteTextFromSearchBar();
+
+            Assert.IsTrue(app.Budgets.BudgetSearchFieldIsEmpty());            
+        }
     }
 }

@@ -91,8 +91,15 @@ namespace AutoGTP2Tests
             return this;
         }
 
-        
+        public BudgetHelper AddThenDeleteTextFromSearchBar()
+        {
+            manager.Navigator.GoToBudgetPage();
+            EnterTextInSearchBar();
+            DeleteTextButtonInSearchBarClick();
+            return this;
+        }
 
+        
 
 
 
@@ -159,7 +166,31 @@ namespace AutoGTP2Tests
 
 
 
+
+
+
+
         // Низкоуровневые методы
+        public BudgetHelper DeleteTextButtonInSearchBarClick()
+        {
+            driver.FindElement(By.Id("BUDGETS_SEARCH_FIELD")).Click();
+            driver.FindElement(By.XPath("//p[@class= 'search-delete']")).Click();
+            return this;
+        }
+
+        public BudgetHelper EnterTextInSearchBar()
+        {
+            IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+            js.ExecuteScript("document.getElementById('BUDGETS_SEARCH_FIELD').value='test'");
+            return this;
+        }
+
+        public bool BudgetSearchFieldIsEmpty()
+        {
+            string text = driver.FindElement(By.Id("BUDGETS_SEARCH_FIELD")).GetAttribute("placeholder");
+            if (text.Contains("Search budgets by name")) { return true; }
+            return false;
+        }
 
         public BudgetHelper ReadonlyQuestionMarkClick()
         {
