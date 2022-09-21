@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 
 namespace AutoGTP2Tests
 {
@@ -94,13 +95,20 @@ namespace AutoGTP2Tests
         public BudgetHelper AddThenDeleteTextFromSearchBar()
         {
             manager.Navigator.GoToBudgetPage();
-            EnterTextInSearchBar();
+            EnterTextInSearchBar("test");
             DeleteTextButtonInSearchBarClick();
             return this;
         }
 
-        
+        public BudgetHelper EnterExistingBudgetName()
+        {
+            manager.Navigator.GoToBudgetPage();            
+            TakeBudgetNameAndEnterItToSearchBar();
+            MagnifyingGlassClick();
+            return this;
+        }
 
+        
 
 
 
@@ -170,25 +178,62 @@ namespace AutoGTP2Tests
 
 
 
+
+
+
+
+
+
         // Низкоуровневые методы
-        public BudgetHelper DeleteTextButtonInSearchBarClick()
+
+        public BudgetHelper TakeBudgetNameAndEnterItToSearchBar()
         {
-            driver.FindElement(By.Id("BUDGETS_SEARCH_FIELD")).Click();
-            driver.FindElement(By.XPath("//p[@class= 'search-delete']")).Click();
+            string bname = driver.FindElement(By.XPath("//div[@class= 'kyuJpfa35LDUXSJH2FJS']")).Text;
+            driver.FindElement(By.Id("BUDGETS_SEARCH_FIELD")).SendKeys(bname);
             return this;
         }
 
-        public BudgetHelper EnterTextInSearchBar()
+        public BudgetHelper MagnifyingGlassClick()
         {
             IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
-            js.ExecuteScript("document.getElementById('BUDGETS_SEARCH_FIELD').value='test'");
+            js.ExecuteScript("document.getElementById('BUDGETS_SEARCH_FIELD_BUTTON').click()");
+            return this;
+        }
+
+
+        public bool SearchingIsCorrect()
+        {
+            bool result = false;
+            ICollection<IWebElement> elements = driver.FindElements(By.XPath("//div[@class= 'kyuJpfa35LDUXSJH2FJS']"));
+            foreach (var element in elements)
+            {
+                string bnameInSearchBar = driver.FindElement(By.Id("BUDGETS_SEARCH_FIELD")).GetAttribute("value");
+                for (int i = 0; i < elements.Count; i++)
+                {
+                    string bnameInBudget = driver.FindElement(By.XPath(
+                        "//div[contains(@id, 'BUDGETS') and not(contains(@id, 'BURGER'))][" + (i + 1) + "]//div[contains(text(), 'Cost')]//following-sibling::div//div")).Text;
+                    if (bnameInBudget.Contains(bnameInSearchBar)) { return result = true; }
+                }
+            }
+            return result;
+        }
+        public BudgetHelper DeleteTextButtonInSearchBarClick()
+        {
+            IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+            js.ExecuteScript("document.getElementsByClassName('search-delete')[0].click()");
+            return this;
+        }
+
+        public BudgetHelper EnterTextInSearchBar(string text)
+        {
+            driver.FindElement(By.Id("BUDGETS_SEARCH_FIELD")).SendKeys(text);
             return this;
         }
 
         public bool BudgetSearchFieldIsEmpty()
         {
-            string text = driver.FindElement(By.Id("BUDGETS_SEARCH_FIELD")).GetAttribute("placeholder");
-            if (text.Contains("Search budgets by name")) { return true; }
+            string text = driver.FindElement(By.Id("BUDGETS_SEARCH_FIELD")).GetAttribute("value");
+            if (text.Contains("")) { return true; }
             return false;
         }
 

@@ -140,5 +140,14 @@ namespace AutoGTP2Tests
 
             Assert.IsTrue(app.Budgets.BudgetSearchFieldIsEmpty());            
         }
+
+        //GTP2-R-06-15
+        [Test]
+        public void SearchExistingBudgetTest()
+        {            
+            app.Budgets.EnterExistingBudgetName();
+
+            Assert.IsTrue(app.Budgets.SearchingIsCorrect());
+        }
     }
 }
