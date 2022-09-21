@@ -100,7 +100,7 @@ namespace AutoGTP2Tests
             return this;
         }
 
-        public BudgetHelper EnterExistingBudgetName()
+        public BudgetHelper EnterExistingBudgetNameAndClickMagnifyingGlass()
         {
             manager.Navigator.GoToBudgetPage();            
             TakeBudgetNameAndEnterItToSearchBar();
@@ -108,7 +108,28 @@ namespace AutoGTP2Tests
             return this;
         }
 
-        
+        public BudgetHelper EnterExistingBudgetNameAndPushEnter()
+        {
+            manager.Navigator.GoToBudgetPage();
+            TakeBudgetNameAndEnterItToSearchBar();
+            PushEnter();
+            return this;
+        }
+
+        public BudgetHelper EnterNotExistingBudgetName()
+        {
+            manager.Navigator.GoToBudgetPage();
+            EnterRandomBudgetName();            
+            PushEnter();
+            return this;
+        }
+
+        public BudgetHelper EnterRandomBudgetName()
+        {
+            string text = manager.TextGenerator(1, 8);
+            driver.FindElement(By.Id("BUDGETS_SEARCH_FIELD")).SendKeys(text);
+            return this;
+        }
 
 
 
@@ -184,7 +205,24 @@ namespace AutoGTP2Tests
 
 
 
+
+
+
+
+
+
         // Низкоуровневые методы
+        public bool BudgetsNotFound()
+        {
+            if (IsElementPresent(By.XPath("//div[@class= 'u8jP831aiskq6Oe6mMlo' and contains(., 'No data')]"))) { return true; }
+            return false;
+        }
+
+        public BudgetHelper PushEnter()
+        {
+            driver.FindElement(By.Id("BUDGETS_SEARCH_FIELD")).SendKeys(Keys.Enter);
+            return this;
+        }
 
         public BudgetHelper TakeBudgetNameAndEnterItToSearchBar()
         {

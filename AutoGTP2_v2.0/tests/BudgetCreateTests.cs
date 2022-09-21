@@ -141,13 +141,31 @@ namespace AutoGTP2Tests
             Assert.IsTrue(app.Budgets.BudgetSearchFieldIsEmpty());            
         }
 
-        //GTP2-R-06-15
+        // GTP2-R-06-15
         [Test]
-        public void SearchExistingBudgetTest()
+        public void SearchExistingBudgetWithMagnifyingGlassClickTest()
         {            
-            app.Budgets.EnterExistingBudgetName();
+            app.Budgets.EnterExistingBudgetNameAndClickMagnifyingGlass();
 
             Assert.IsTrue(app.Budgets.SearchingIsCorrect());
+        }
+
+        // GTP2-R-06-16
+        [Test]
+        public void SearchExistingBudgetWithEnterTest()
+        {
+            app.Budgets.EnterExistingBudgetNameAndPushEnter();
+
+            Assert.IsTrue(app.Budgets.SearchingIsCorrect());
+        }
+
+        // GTP2-R-06-17
+        [Test]
+        public void SearchNotExistingBudgetTest()
+        {
+            app.Budgets.EnterNotExistingBudgetName();
+
+            Assert.IsTrue(app.Budgets.BudgetsNotFound());
         }
     }
 }
