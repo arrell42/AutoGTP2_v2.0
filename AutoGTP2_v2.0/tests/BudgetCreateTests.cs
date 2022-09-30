@@ -167,5 +167,58 @@ namespace AutoGTP2Tests
 
             Assert.IsTrue(app.Budgets.BudgetsNotFound());
         }
+
+        // GTP2-R-06-18
+        [Test]
+        public void BudgetColumnsButtonTest()
+        {
+            app.Budgets.OpenColumnsList();
+
+            Assert.IsTrue(app.Budgets.ColumnsListIsOpen());
+            Assert.IsTrue(app.Budgets.ColumnsListHaveColumnsName());
+            Assert.IsTrue(app.Budgets.ColumnsIsTurnOn(6));            
+        }
+
+        // GTP2-R-06-19
+        [Test]
+        public void BudgetColumnsTurnOffTest()
+        {
+            BudgetColumnsData budgetColumnsData = new BudgetColumnsData()
+            {                
+                ColumnRemaining = "Amount remaining",
+                ColumnPO = "PO number"                
+            };
+
+            app.Budgets.ColumnsTurnOnIfItTurnOff();
+            List<BudgetColumnsData> oldColumns = app.Budgets.GetBudgetColumnsList();
+
+            app.Budgets.BudgetColumnsTurnOff(budgetColumnsData);
+
+            List<BudgetColumnsData> newColumns = app.Budgets.GetBudgetColumnsList();
+
+            oldColumns.Remove(budgetColumnsData);
+            oldColumns.Sort();
+            newColumns.Sort();
+
+            Assert.AreEqual(oldColumns, newColumns);
+        }
+
+        // GTP2-R-06-20
+        [Test]
+        public void TurnOffAllBudgetColumnsTest()
+        {
+            BudgetColumnsData budgetColumnsData = new BudgetColumnsData()
+            {
+                ColumnName = "Budget name",
+                ColumnRemaining = "Amount remaining",
+                ColumnPO = "PO number",
+                ColumnProjects = "Projects",
+                ColumnTotal = "Total amount"
+            }; 
+
+            app.Budgets.BudgetColumnsTurnOff(budgetColumnsData);
+
+            Assert.AreEqual(app.Budgets.CheckBoxIsDisabled(), 1);
+        }
     }
 }

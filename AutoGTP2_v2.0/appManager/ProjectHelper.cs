@@ -165,8 +165,9 @@ namespace AutoGTP2Tests
             manager.Budgets.SelectUSDCurrency();
             EnterTotal(projectData);
             manager.Budgets.BudgetCreateButtonClick();
-            Thread.Sleep(200);
+            Thread.Sleep(500);
             SaveProjectButtonClick();
+            Thread.Sleep(200);
             return this;
         }
 
@@ -269,6 +270,7 @@ namespace AutoGTP2Tests
         {
             FindOrderedProject(projectData);
             CancelProjectButtonClick();
+            Thread.Sleep(200);
             CancelProjectConfirmButtonClick();
             return this;
         }
