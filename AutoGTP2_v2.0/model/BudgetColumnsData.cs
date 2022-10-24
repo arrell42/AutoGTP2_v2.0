@@ -5,7 +5,7 @@ namespace AutoGTP2Tests
     public class BudgetColumnsData : IEquatable<BudgetColumnsData>, IComparable<BudgetColumnsData>
     {
         public BudgetColumnsData()
-        {            
+        {                 
         }
 
         //вспомогательный метод для сортировки
@@ -31,11 +31,11 @@ namespace AutoGTP2Tests
             }
             return ColumnName == other.ColumnName;
         }
-                
-        //возвращаем строковое представление объектов типа projectdata
+
+        //возвращаем строковое представление объектов типа BudgetColumnsData
         public override string ToString()
         {
-            return "cost= " + ColumnName;
+            return "colName= " + ColumnName;
         }
 
         public string ColumnName { get; set; }

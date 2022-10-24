@@ -51,7 +51,7 @@ namespace AutoGTP2Tests
 
         // GTP2-R-03-05
         [Test]
-        public void ExpressProjectPlaceOrderTest()
+        public void ExpressProject7999Test()
         {
             ProjectData projectData = new ProjectData()
             {
@@ -61,7 +61,7 @@ namespace AutoGTP2Tests
             app.Projects.ExpressProjectTextAttachAndPlaceOrder(projectData, app.expressFile7999);
 
             Assert.AreEqual(app.Projects.ExpressTextAreaWordCount(), "1 out of 8,000 left");
-            Assert.AreEqual(app.Projects.ExpressWordsCount(), "7999.000");
+            Assert.That(app.Projects.ExpressWordsCount().Contains("7999"));
         }
 
         // GTP2-R-03-06
@@ -76,7 +76,7 @@ namespace AutoGTP2Tests
             app.Projects.ExpressProjectRequestQuote(projectData);
                         
             Assert.IsTrue(app.Projects.ExpressDeadlineIsCorrect());
-            Assert.AreEqual(app.Projects.ExpressWordsCount(), "100.000");
+            Assert.That(app.Projects.ExpressWordsCount().Contains("100"));
         }
 
         // GTP2-R-03-07
@@ -91,9 +91,38 @@ namespace AutoGTP2Tests
             app.Projects.ExpressProjectFileAndTextAttach(projectData, app.sourceFile);
 
             Assert.IsTrue(app.Projects.ExpressDeadlineIsCorrect());
-            Assert.AreEqual(app.Projects.ExpressWordsCount(), "200.000");
+            Assert.That(app.Projects.ExpressWordsCount().Contains("200"));
         }
 
+        // GTP2-R-03-08
+        [Test]
+        public void ExpressProject8001RequestQuoteTest()
+        {
+            ProjectData projectData = new ProjectData()
+            {
+                ProjectName = "Express " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
+            };
+
+            app.Projects.ExpressProject8001WordsAttachAndRequestQuote(projectData, app.expressFile8001);
+
+            Assert.AreEqual(app.Projects.ExpressTextAreaWordCount(), "-1 out of 8,000 left");
+            Assert.IsTrue(app.Projects.WordLimitModalIsOpen());
+        }
+
+        // GTP2-R-03-09
+        [Test]
+        public void ExpressProject8001PlaceOrderTest()
+        {
+            ProjectData projectData = new ProjectData()
+            {
+                ProjectName = "Express " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
+            };
+
+            app.Projects.ExpressProject8001WordsAttachAndPlaceOrder(projectData, app.expressFile8001);
+
+            Assert.AreEqual(app.Projects.ExpressTextAreaWordCount(), "-1 out of 8,000 left");
+            Assert.IsTrue(app.Projects.WordLimitModalIsOpen());
+        }
 
         //[Test]
         public void ExpressProjectTextAttach8000Test()
@@ -108,18 +137,7 @@ namespace AutoGTP2Tests
             Assert.AreEqual(app.Projects.ExpressTextAreaWordCount(), "0 out of 8,000 left");
         }
 
-        //[Test]
-        public void ExpressProjectTextAttach8001Test()
-        {
-            ProjectData projectData = new ProjectData()
-            {
-                ProjectName = "Express " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
-            };
-
-            app.Projects.ExpressProjectTextAttachAndPlaceOrder(projectData, app.expressFile8001);
-
-            Assert.AreEqual(app.Projects.ExpressTextAreaWordCount(), "-1 out of 8,000 left");
-        }
+        
 
         
 

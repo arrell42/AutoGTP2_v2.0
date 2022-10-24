@@ -379,6 +379,7 @@ namespace AutoGTP2Tests
             SelectTargetLanguage(2);
             MouseClickImitation(By.XPath("//p[@class = 'RWdtSGyL9LH9qs2LKXGO']"));
             SourceFileAttach();
+            Thread.Sleep(500);
             return this;
         }
 
@@ -404,6 +405,7 @@ namespace AutoGTP2Tests
         {
             CreateServiceWithTwoLanguagePairs(projectData);
             AssignAllLanguagePairsButtonClick();
+            Thread.Sleep(1000);
             SaveServiceButtonClick();
             manager.Projects.SaveProjectButtonClick();
             manager.Projects.OpenThisProject();
@@ -550,6 +552,13 @@ namespace AutoGTP2Tests
 
         // Низкоуровневые методы
 
+
+        public ServiceHelper WordLimitModalButtonClick()
+        {
+            driver.FindElement(
+                By.XPath("//div[@class = 'lnENMnXk_1d8K8Gsv0Wm']//button[@class= 'btn bordered-btn']")).Click();
+            return this;
+        }
 
         public bool AllPairsCheckboxIsEnabled()
         {
@@ -982,9 +991,12 @@ namespace AutoGTP2Tests
         public ServiceHelper RequestQuoteButtonClick()
         {
             driver.FindElement(By.Id("requestQuote")).Click();
-            WaitUntilFindElement(10, By.XPath("//span[@class = 'oSlLzqSfaLdSFEWpZxdw']"));
-            Thread.Sleep(500);
-            WaitUntilElementIsHide(200, By.XPath("//span[@class = 'oSlLzqSfaLdSFEWpZxdw']"));
+            //если модальное окно с лимитом слов отсутствует - включить ожидание
+            if (!IsElementPresent(By.XPath("//div[@class = 'styles_modal__gNwvD styles_modalCenter__L9F2w CPIy0UxHVarTASaZXBRS']"))){
+                WaitUntilFindElement(10, By.XPath("//span[@class = 'oSlLzqSfaLdSFEWpZxdw']"));
+                Thread.Sleep(500);
+                WaitUntilElementIsHide(200, By.XPath("//span[@class = 'oSlLzqSfaLdSFEWpZxdw']"));
+            }            
             return this;
         }
         public ServiceHelper SelectQuantityTypeAuto()

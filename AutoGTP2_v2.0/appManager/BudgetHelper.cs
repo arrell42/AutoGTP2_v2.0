@@ -194,30 +194,30 @@ namespace AutoGTP2Tests
 
         // Создаем список колонок бюджетов
         public List<BudgetColumnsData> GetBudgetColumnsList()
-        {            
+        {          
+            List<BudgetColumnsData> columns = new List<BudgetColumnsData>();
             manager.Navigator.GoToBudgetPage();
             
-            List<BudgetColumnsData> result = new List<BudgetColumnsData>();
-            //IList<IWebElement> columns = driver.FindElements(By.XPath(
+            //ICollection<IWebElement> columns = driver.FindElements(By.XPath(
             //    "//div[contains(@id, 'BUDGETS') and not(contains(@id, 'BURGER'))][1]//div[@class= 'eQ5lQ_D0FC26twfwcmhy' or @class= 'wF4f8z1gZkBosC4Dy4j7']"));
-            
-            if(IsElementPresent(By.XPath(
+
+            if (IsElementPresent(By.XPath(
                 "//div[@class= 'HmZHR9aWxu9QsxsKBvP_' and contains(text(), 'Cost account/Budget name')]")))
             {
                 string name = driver.FindElement(By.XPath(
                 "//div[@class= 'HmZHR9aWxu9QsxsKBvP_' and contains(text(), 'Cost account/Budget name')]")).Text;
-                result.Add(new BudgetColumnsData()
+                columns.Add(new BudgetColumnsData()
                 {
-                    ColumnName = name
+                    ColumnName = name                    
                 });
-            }            
-            
+            }
+
             if (IsElementPresent(By.XPath(
                 "//div[@class= 'HmZHR9aWxu9QsxsKBvP_' and contains(text(), 'Amount remaining')]")))
             {
                 string remaining = driver.FindElement(By.XPath(
                 "//div[@class= 'HmZHR9aWxu9QsxsKBvP_' and contains(text(), 'Amount remaining')]")).Text;
-                result.Add(new BudgetColumnsData()
+                columns.Add(new BudgetColumnsData()
                 {
                     ColumnName = remaining
                 });
@@ -228,7 +228,7 @@ namespace AutoGTP2Tests
             {
                 string po = driver.FindElement(By.XPath(
                 "//div[@class= 'HmZHR9aWxu9QsxsKBvP_' and contains(text(), 'PO number')]")).Text;
-                result.Add(new BudgetColumnsData()
+                columns.Add(new BudgetColumnsData()
                 {
                     ColumnName = po
                 });
@@ -239,7 +239,7 @@ namespace AutoGTP2Tests
             {
                 string projects = driver.FindElement(By.XPath(
                 "//p[@class= 'JS5QDNbVwPTSQkGOFVx8' and contains(text(), 'Projects')]")).Text;
-                result.Add(new BudgetColumnsData()
+                columns.Add(new BudgetColumnsData()
                 {
                     ColumnName = projects
                 });
@@ -250,7 +250,7 @@ namespace AutoGTP2Tests
             {
                 string total = driver.FindElement(By.XPath(
                 "//div[@class= 'HmZHR9aWxu9QsxsKBvP_' and contains(text(), 'Amount total')]")).Text;
-                result.Add(new BudgetColumnsData()
+                columns.Add(new BudgetColumnsData()
                 {
                     ColumnName = total
                 });
@@ -261,12 +261,13 @@ namespace AutoGTP2Tests
             {
                 string date = driver.FindElement(By.XPath(
                 "//div[@class= 'HmZHR9aWxu9QsxsKBvP_' and contains(text(), 'Date of creation')]")).Text;
-                result.Add(new BudgetColumnsData()
+                columns.Add(new BudgetColumnsData()
                 {
                     ColumnName = date
                 });
             }
-            return result;
+
+            return columns;
         }
 
 

@@ -106,6 +106,7 @@ namespace AutoGTP2Tests
             manager.Services.RequestQuoteButtonClick();
             PlaceOrderButtonClick();
             OpenThisProject();
+            Thread.Sleep(1000);
             manager.Services.OpenAndEditButtonClick();
             return this;
         }
@@ -119,6 +120,7 @@ namespace AutoGTP2Tests
             return this;
         }
 
+
         public ProjectHelper ExpressProjectLimitPopupSwitchButton(ProjectData projectData, string filePath)
         {
             OpenNewExpressProject(projectData);
@@ -127,6 +129,7 @@ namespace AutoGTP2Tests
             LimitPopupSwitchButtonClick();
             return this;
         }
+        
         public ProjectHelper AddAndDeleteBudgetInProject(ProjectData projectData)
         {
             OpenNewPendingProject(projectData, 3, "00:30");
@@ -165,7 +168,7 @@ namespace AutoGTP2Tests
             manager.Budgets.SelectUSDCurrency();
             EnterTotal(projectData);
             manager.Budgets.BudgetCreateButtonClick();
-            Thread.Sleep(500);
+            Thread.Sleep(1000);
             SaveProjectButtonClick();
             Thread.Sleep(200);
             return this;
@@ -270,7 +273,7 @@ namespace AutoGTP2Tests
         {
             FindOrderedProject(projectData);
             CancelProjectButtonClick();
-            Thread.Sleep(200);
+            Thread.Sleep(500);
             CancelProjectConfirmButtonClick();
             return this;
         }
@@ -299,8 +302,23 @@ namespace AutoGTP2Tests
             return this;
         }
 
+        public ProjectHelper ExpressProject8001WordsAttachAndRequestQuote(ProjectData projectData, string filePath)
+        {
+            OpenNewExpressProject(projectData);
+            FillTextAreaFromFile(filePath);
+            manager.Services.RequestQuoteButtonClick();
+            return this;
+        }
 
-
+        public ProjectHelper ExpressProject8001WordsAttachAndPlaceOrder(ProjectData projectData, string filePath)
+        {
+            OpenNewExpressProject(projectData);
+            FillTextAreaFromFile(filePath);
+            manager.Services.RequestQuoteButtonClick();
+            manager.Services.WordLimitModalButtonClick();            
+            PlaceOrderButtonClick();
+            return this;
+        }
 
 
 
@@ -418,6 +436,15 @@ namespace AutoGTP2Tests
 
         // Низкоуровневые методы
 
+
+
+        public bool? WordLimitModalIsOpen()
+        {
+            //modal window
+            return IsElementPresent(By.XPath(
+                "//div[@class = 'styles_modal__gNwvD styles_modalCenter__L9F2w CPIy0UxHVarTASaZXBRS']"));
+        }
+
         public bool ExpressDeadlineIsCorrect()
         {
             string dateText = driver.FindElement(By.XPath("//p[contains(text(), 'Deadline')]//following-sibling::p")).Text;
@@ -433,7 +460,7 @@ namespace AutoGTP2Tests
         public string ExpressWordsCount()
         {
             return driver.FindElement(By.XPath("//p[contains(text(), 'Word')]" +
-                 "//following-sibling::p[@class = 'JYY3cyt6ivHCSM8aXGfg']")).Text;            
+                 "//following-sibling::p[@class = 'JYY3cyt6ivHCSM8aXGfg']")).Text;
         }
 
         public ProjectHelper WaitPopupInBudgetField()

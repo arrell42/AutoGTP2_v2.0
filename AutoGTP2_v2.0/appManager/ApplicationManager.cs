@@ -44,8 +44,8 @@ namespace AutoGTP2Tests
 
             driver = new ChromeDriver(options);
 
-            baseURL = "https://gtp-test.janusww.com:9999";
-            //baseURL = "https://gtp2.janusww.com";
+            //baseURL = "https://gtp-test.janusww.com:9999";
+            baseURL = "https://gtp2.janusww.com";
             //baseURL = "https://gtp-test.janusww.com:9998";
             sourceFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"dataFiles\SourceTest.txt");
             CATLogFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"dataFiles\memoQ.csv");
@@ -109,6 +109,8 @@ namespace AutoGTP2Tests
             }
             return result.Trim();
         }
+
+        
 
         // генерация набора случайных символов
         public string GetRandomString(int length)

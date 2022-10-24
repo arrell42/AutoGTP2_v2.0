@@ -13,6 +13,7 @@ namespace AutoGTP2Tests
             if(app.baseURL.Contains("https://gtp-test.janusww.com:9999"))
             {
                 app.Auth.Login(new LoginData("Main_test", "123456"));
+                //app.Auth.Login(new LoginData("dtestClient191022Contact_1", "123456"));                
             }
             
             if (app.baseURL.Contains("https://gtp2.janusww.com"))
@@ -24,8 +25,8 @@ namespace AutoGTP2Tests
             if (app.baseURL.Contains("https://gtp-test.janusww.com:9998"))
             {
                 app.Auth.Login(new LoginData("dtestBoxClient2User", "123456"));
-            }
-        
+            }        
         }
+
     }
 }
