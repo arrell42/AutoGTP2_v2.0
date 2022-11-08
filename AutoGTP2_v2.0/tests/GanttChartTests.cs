@@ -52,7 +52,7 @@ namespace AutoGTP2Tests
         {
             app.Dashport.OrderedProjectStatusesFilter();             
 
-            Assert.IsTrue(app.Dashport.ProjectsStatusesInListIsOrdered());
+            Assert.IsTrue(app.Dashport.ProjectsStatusesInListIsCorrect(10, "Ordered"));
         }
 
         [Test]
@@ -60,7 +60,7 @@ namespace AutoGTP2Tests
         {
             app.Dashport.InProgressProjectStatusesFilter();
 
-            Assert.IsTrue(app.Dashport.ProjectsStatusesInListInProgress());
+            Assert.IsTrue(app.Dashport.ProjectsStatusesInListIsCorrect(10, "In progress"));
         }
 
         [Test]

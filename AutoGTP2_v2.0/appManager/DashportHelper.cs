@@ -170,34 +170,7 @@ namespace AutoGTP2Tests
             return this;
         }
 
-        public bool ProjectsStatusesInListInProgress()
-        {
-            bool status = false;
-            var projects = driver.FindElements(By.XPath("//div[@class= 'item ']"));
-            if(projects.Count() > 0)
-            {
-                foreach (var item in projects)
-                {
-                    var index = projects.Count;
-                    for (int i = 0; i < index; i++)
-                    {
-                        driver.FindElement(By.XPath("//div[@class= 'line-container '][" + (i + 1) + "]")).Click();
-                        WaitUntilFindElement(10, By.Id("PROJECT_STATUS"));
-                        string text = driver.FindElement(By.Id("PROJECT_STATUS")).Text;
-                        if (text.Contains("In progress"))
-                        {
-                            driver.FindElement(By.Id("PROJECT_CARD_CANCEL")).Click();
-                            status = true;
-                        }
-                    }
-                    break;
-                }                
-            }
-            return status;
-
-        }
-
-        public bool ProjectsStatusesInListIsOrdered()
+        public bool ProjectsStatusesInListIsCorrect(int projCountForCheck, string statusName)
         {
             bool status = false;
             var projects = driver.FindElements(By.XPath("//div[@class= 'item ']"));
@@ -205,13 +178,13 @@ namespace AutoGTP2Tests
             {
                 foreach (var item in projects)
                 {
-                    var index = projects.Count;
-                    for (int i = 0; i < index; i++)
+                    //var index = projects.Count;
+                    for (int i = 0; i < projCountForCheck; i++)
                     {
                         driver.FindElement(By.XPath("//div[@class= 'line-container '][" + (i + 1) + "]")).Click();
                         WaitUntilFindElement(10, By.Id("PROJECT_STATUS"));
                         string text = driver.FindElement(By.Id("PROJECT_STATUS")).Text;
-                        if (text.Contains("Ordered"))
+                        if (text.Contains(statusName))
                         {
                             driver.FindElement(By.Id("PROJECT_CARD_CANCEL")).Click();
                             status = true;

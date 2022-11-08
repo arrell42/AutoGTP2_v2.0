@@ -188,8 +188,7 @@ namespace AutoGTP2Tests
                 ColumnRemaining = "Amount remaining",
                 ColumnPO = "PO number"                
             };
-
-            app.Budgets.ColumnsTurnOnIfItTurnOff();
+            
             List<BudgetColumnsData> oldColumns = app.Budgets.GetBudgetColumnsList();            
 
             app.Budgets.BudgetColumnsTurnOff(budgetColumnsData);
@@ -202,7 +201,7 @@ namespace AutoGTP2Tests
         }
 
         // GTP2-R-06-20
-        //[Test]
+        [Test]
         public void TurnOffAllBudgetColumnsTest()
         {
             BudgetColumnsData budgetColumnsData = new BudgetColumnsData()

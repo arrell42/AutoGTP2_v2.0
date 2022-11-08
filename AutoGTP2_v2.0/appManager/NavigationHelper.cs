@@ -18,21 +18,20 @@ namespace AutoGTP2Tests
 
         public void GoToBudgetPage()
         {
-            if (driver.Url != "https://gtp-test.janusww.com:9999/dashport" 
-                /*driver.Url != "https://gtp2.janusww.com/dashport"*/ )
+            if (driver.Url != "" + baseURL + "/dashport")
             {
-                GoToLoginPage();                                
+                GoToLoginPage();
                 LoginData account = new LoginData("Main_test", "123456");
                 manager.Auth.Login(account);
             }
             driver.FindElement(By.Id("MENU_BUDGETS")).Click();
             WaitUntilElementIsHide(5, By.XPath("//div[@class = 'uAVm9bKcbGvOpCLx2Whj']"));
+            manager.Budgets.ColumnsTurnOnIfItTurnOff();
         }
 
         public void GoToProjectPage()
         {
-            if (driver.Url != "https://gtp-test.janusww.com:9999/dashport" 
-                /*driver.Url != "https://gtp2.janusww.com/dashport")*/ )
+            if (driver.Url != ""+ baseURL + "/dashport")
             {
                 GoToLoginPage();                
                 LoginData account = new LoginData("Main_test", "123456");
@@ -44,8 +43,7 @@ namespace AutoGTP2Tests
 
         public void GoToDashportPage()
         {
-            if (driver.Url != "https://gtp-test.janusww.com:9999/dashport"
-                /*driver.Url != "https://gtp2.janusww.com/dashport")*/ )
+            if (driver.Url != "" + baseURL + "/dashport")
             {
                 GoToLoginPage();
                 LoginData account = new LoginData("Main_test", "123456");

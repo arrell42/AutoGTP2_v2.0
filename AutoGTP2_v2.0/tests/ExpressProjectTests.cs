@@ -111,6 +111,68 @@ namespace AutoGTP2Tests
 
         // GTP2-R-03-09
         [Test]
+        public void ExpressProjectRequestQuoteThenPlaceOrderTest()
+        {
+            ProjectData projectData = new ProjectData()
+            {
+                ProjectName = "Express " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
+            };
+
+            app.Projects.ExpressProject8001WordsAttachAndRequestQuoteThenPlaceOrder(projectData, app.expressFile8001);
+
+            Assert.AreEqual(app.Projects.ExpressTextAreaWordCount(), "-1 out of 8,000 left");
+            Assert.IsTrue(app.Projects.WordLimitModalIsOpen());
+        }
+
+        // GTP2-R-03-10
+        [Test]
+        public void ExpressProjectTextAndFileAttachTest()
+        {
+            ProjectData projectData = new ProjectData()
+            {
+                ProjectName = "Express " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
+            };
+
+            app.Projects.ExpressProjectTextAndFileAttachAndRequestQuote(projectData, app.expressFile8000);
+            
+            Assert.IsTrue(app.Projects.WordLimitModalIsOpen());
+        }
+
+        // GTP2-R-03-11
+        [Test]
+        public void ExpressProjectFileAttachAndPlaceOrderTest()
+        {
+            ProjectData projectData = new ProjectData()
+            {
+                ProjectName = "Express " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
+            };
+
+            app.Projects.ExpressProjectFileAttachAndPlaceOrder(projectData);
+
+            Assert.That(app.Projects.ExpressWordsCount().Contains("100"));
+            Assert.IsTrue(app.Projects.ExpressDeadlineIsCorrect());
+        }
+
+        // GTP2-R-03-12
+        [Test]
+        public void ExpressProjectFileAttachThanFillTextareaTest()
+        {
+            ProjectData projectData = new ProjectData()
+            {
+                ProjectName = "Express " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
+            };
+
+            app.Projects.ExpressProjectFileAttachThanFillTextarea(projectData, app.sourceFile);
+
+            Assert.That(app.Projects.ExpressWordsCount().Contains("200"));
+            Assert.IsTrue(app.Projects.ExpressDeadlineIsCorrect());
+        }
+
+
+
+
+        // GTP2-R-03-15
+        [Test]
         public void ExpressProject8001PlaceOrderTest()
         {
             ProjectData projectData = new ProjectData()
@@ -118,7 +180,7 @@ namespace AutoGTP2Tests
                 ProjectName = "Express " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
             };
 
-            app.Projects.ExpressProject8001WordsAttachAndPlaceOrder(projectData, app.expressFile8001);
+            app.Projects.ExpressProject8001WordsAttachAndPlaceOrder(projectData, app.expressFile8001);            
 
             Assert.AreEqual(app.Projects.ExpressTextAreaWordCount(), "-1 out of 8,000 left");
             Assert.IsTrue(app.Projects.WordLimitModalIsOpen());

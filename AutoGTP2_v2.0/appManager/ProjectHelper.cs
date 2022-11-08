@@ -168,9 +168,8 @@ namespace AutoGTP2Tests
             manager.Budgets.SelectUSDCurrency();
             EnterTotal(projectData);
             manager.Budgets.BudgetCreateButtonClick();
-            Thread.Sleep(1000);
-            SaveProjectButtonClick();
-            Thread.Sleep(200);
+            Thread.Sleep(2000);
+            SaveProjectButtonClick();            
             return this;
         }
 
@@ -272,8 +271,7 @@ namespace AutoGTP2Tests
         public ProjectHelper ConfirmCancellationProject(ProjectData projectData)
         {
             FindOrderedProject(projectData);
-            CancelProjectButtonClick();
-            Thread.Sleep(500);
+            CancelProjectButtonClick();            
             CancelProjectConfirmButtonClick();
             return this;
         }
@@ -313,14 +311,52 @@ namespace AutoGTP2Tests
         public ProjectHelper ExpressProject8001WordsAttachAndPlaceOrder(ProjectData projectData, string filePath)
         {
             OpenNewExpressProject(projectData);
-            FillTextAreaFromFile(filePath);
-            manager.Services.RequestQuoteButtonClick();
-            manager.Services.WordLimitModalButtonClick();            
+            FillTextAreaFromFile(filePath); 
+            PlaceOrderButtonClick();
+            manager.Services.WordLimitModalCancelButtonClick();
             PlaceOrderButtonClick();
             return this;
         }
 
+        public ProjectHelper ExpressProject8001WordsAttachAndRequestQuoteThenPlaceOrder(ProjectData projectData, string filePath)
+        {
+            OpenNewExpressProject(projectData);
+            FillTextAreaFromFile(filePath);
+            manager.Services.RequestQuoteButtonClick();
+            manager.Services.WordLimitModalCancelButtonClick();
+            PlaceOrderButtonClick();
+            return this;
+        }
 
+        public ProjectHelper ExpressProjectTextAndFileAttachAndRequestQuote(ProjectData projectData, string filePath)
+        {
+            OpenNewExpressProject(projectData);
+            FillTextAreaFromFile(filePath);
+            manager.Services.SourceFileAttach();
+            manager.Services.RequestQuoteButtonClick();
+            PlaceOrderButtonClick();
+            return this;
+        }
+
+        public ProjectHelper ExpressProjectFileAttachAndPlaceOrder(ProjectData projectData)
+        {
+            OpenNewExpressProject(projectData);
+            manager.Services.SourceFileAttach();
+            PlaceOrderButtonClick();
+            OpenThisProject();
+            WaitUntilProjectIsCalculated();
+            return this;
+        }
+
+        public ProjectHelper ExpressProjectFileAttachThanFillTextarea(ProjectData projectData, string filePath)
+        {
+            OpenNewExpressProject(projectData);
+            manager.Services.SourceFileAttach();
+            manager.Services.RequestQuoteButtonClick();
+            FillTextAreaFromFile(filePath);
+            manager.Services.RequestQuoteButtonClick();
+            return this;
+        }
 
 
 
@@ -436,7 +472,11 @@ namespace AutoGTP2Tests
 
         // Низкоуровневые методы
 
-
+        public ProjectHelper WaitUntilProjectIsCalculated()
+        {
+            WaitUntilElementIsHide(100, By.XPath("//span[@class = 'oSlLzqSfaLdSFEWpZxdw']"));
+            return this;
+        }
 
         public bool? WordLimitModalIsOpen()
         {
@@ -525,7 +565,7 @@ namespace AutoGTP2Tests
         public ProjectHelper CancelProjectButtonClick()
         {
             driver.FindElement(By.XPath("//div[@class = 'Ls81UsGuOEperZX7nWiw i6vQQjoEWNY1KRkGn5rQ']")).Click();
-            WaitUntilFindElement(4, By.XPath("//h2[@class = 'ZBTthD9j0xnNi75qvGTX']"));
+            WaitUntilFindElement(4, By.XPath("//button[@class = 'btn bordered-btn p12' and contains(text(), 'Yes')]"));
             return this;
         }
 
@@ -770,8 +810,11 @@ namespace AutoGTP2Tests
         public ProjectHelper PlaceOrderButtonClick()
         {
             driver.FindElement(By.Id("PROJECT_CARD_PLACE_ORDER")).Click();
-            WaitUntilElementIsHide(10, By.XPath(
+            if(!IsElementPresent(By.XPath("//div[@class = 'lnENMnXk_1d8K8Gsv0Wm']//button[@class= 'btn bordered-btn']")))
+            {
+                WaitUntilElementIsHide(10, By.XPath(
                 "//div[@class= 'styles_modal__gNwvD styles_modalCenter__L9F2w project-card-modal']"));
+            }            
             return this;
         }
         public bool PlaceOrderMessageIsOpen()

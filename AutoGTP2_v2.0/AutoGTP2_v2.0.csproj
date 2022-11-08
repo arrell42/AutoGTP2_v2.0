@@ -111,6 +111,8 @@
     <Compile Include="model\BudgetColumnsData.cs" />
     <Compile Include="model\ProjectData.cs" />
     <Compile Include="model\ServiceData.cs" />
+    <Compile Include="tests\BudgetColumnsTest.cs" />
+    <Compile Include="tests\BudgetColumnsTestBase.cs" />
     <Compile Include="tests\ExpressProjectTests.cs" />
     <Compile Include="tests\FilesTests.cs" />
     <Compile Include="tests\GanttChartTests.cs" />

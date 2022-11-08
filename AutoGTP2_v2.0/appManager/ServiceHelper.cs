@@ -553,7 +553,7 @@ namespace AutoGTP2Tests
         // Низкоуровневые методы
 
 
-        public ServiceHelper WordLimitModalButtonClick()
+        public ServiceHelper WordLimitModalCancelButtonClick()
         {
             driver.FindElement(
                 By.XPath("//div[@class = 'lnENMnXk_1d8K8Gsv0Wm']//button[@class= 'btn bordered-btn']")).Click();

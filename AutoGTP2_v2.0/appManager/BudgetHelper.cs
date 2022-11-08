@@ -127,14 +127,14 @@ namespace AutoGTP2Tests
         public BudgetHelper OpenColumnsList()
         {
             manager.Navigator.GoToBudgetPage();            
-            ColumnsTurnOnIfItTurnOff();
+            BudgetColumnsButtonClick();
             return this;
         }
 
         public BudgetHelper BudgetColumnsTurnOff(BudgetColumnsData budgetColumnsData)
         {
-            manager.Navigator.GoToBudgetPage();            
-            ColumnsTurnOnIfItTurnOff();
+            manager.Navigator.GoToBudgetPage();
+            BudgetColumnsButtonClick();
             ColumnsSwitchOff(budgetColumnsData);
             return this;
         }
@@ -219,7 +219,7 @@ namespace AutoGTP2Tests
                 "//div[@class= 'HmZHR9aWxu9QsxsKBvP_' and contains(text(), 'Amount remaining')]")).Text;
                 columns.Add(new BudgetColumnsData()
                 {
-                    ColumnName = remaining
+                    ColumnRemaining = remaining
                 });
             }
 
@@ -230,7 +230,7 @@ namespace AutoGTP2Tests
                 "//div[@class= 'HmZHR9aWxu9QsxsKBvP_' and contains(text(), 'PO number')]")).Text;
                 columns.Add(new BudgetColumnsData()
                 {
-                    ColumnName = po
+                    ColumnPO = po
                 });
             }
 
@@ -241,7 +241,7 @@ namespace AutoGTP2Tests
                 "//p[@class= 'JS5QDNbVwPTSQkGOFVx8' and contains(text(), 'Projects')]")).Text;
                 columns.Add(new BudgetColumnsData()
                 {
-                    ColumnName = projects
+                    ColumnProjects = projects
                 });
             }
 
@@ -252,7 +252,7 @@ namespace AutoGTP2Tests
                 "//div[@class= 'HmZHR9aWxu9QsxsKBvP_' and contains(text(), 'Amount total')]")).Text;
                 columns.Add(new BudgetColumnsData()
                 {
-                    ColumnName = total
+                    ColumnTotal = total
                 });
             }
 
@@ -263,7 +263,7 @@ namespace AutoGTP2Tests
                 "//div[@class= 'HmZHR9aWxu9QsxsKBvP_' and contains(text(), 'Date of creation')]")).Text;
                 columns.Add(new BudgetColumnsData()
                 {
-                    ColumnName = date
+                    ColumnDate = date
                 });
             }
 
@@ -331,7 +331,7 @@ namespace AutoGTP2Tests
 
             ICollection<IWebElement> elementsCount = driver.FindElements(By.XPath(
                     "//div[@id= 'settings-columns']//div[@class= 'UVPAJnHrDOYjcYvCJvHC zQlqaPTsRxDizaEB2uBM jfNvdXFx_TRHu6VpHYEB' and " +
-                    "contains(text(), '"+ budgetColumnsData.ColumnName + "') or " +
+                    "contains(text(), '" + budgetColumnsData.ColumnName + "') or " +
                     "contains(text(), '" + budgetColumnsData.ColumnRemaining + "') or " +
                     "contains(text(), '" + budgetColumnsData.ColumnPO + "') or " +
                     "contains(text(), '" + budgetColumnsData.ColumnProjects + "') or " +
@@ -398,9 +398,19 @@ namespace AutoGTP2Tests
 
             if (ColumnsAreOff())
             {
-                ColumnsTurnOn();
+                ColumnsTurnOn();                
+            }
+
+            if (ColumnsAreOn())
+            {
+                BudgetColumnsButtonClick();
             }
             return this;
+        }
+
+        public bool ColumnsAreOn()
+        {
+            return driver.FindElements(By.XPath("//div[@class= 'r6y6jrWnmWzm1eEt9OwN']")).Count == 0;
         }
 
         public bool ColumnsAreOff()
@@ -585,7 +595,7 @@ namespace AutoGTP2Tests
 
         public BudgetHelper BudgetCreateButtonClick()
         {
-            driver.FindElement(By.Id("NEW_BUDGET_CREATE")).Click();
+            driver.FindElement(By.Id("NEW_BUDGET_CREATE")).Click();            
             return this;
         }
 
