@@ -497,6 +497,63 @@ namespace AutoGTP2Tests
 
         // Низкоуровневые методы
 
+
+        public bool? ProjectStatusIs(string statusName)
+        {
+            var completeStatus = By.XPath
+                ("//div[@class= 'CXwQMpaC5HQszu_q1TIp']//div[@id= 'PROJECT_STATUS']//span[contains(text(), '" + statusName + "')]");
+            return IsElementPresent(completeStatus);
+        }
+
+        public bool? ProjectOnlyForReading()
+        {
+            if(ProjectNameIsDisabled()
+               && VendorFieldIsDisabled()
+               && SAFieldIsDisabled()
+               && DateFieldsIsDisabled())
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool ProjectNameIsDisabled()
+        {
+            var projectName = By.XPath("//span[@id= 'PROJECT_CARD_NAME_TEXT']");
+            return IsElementPresent(projectName);
+        }
+
+        public bool VendorFieldIsDisabled()
+        {
+            var vendorField = By.XPath("//div[@class= 'dxZIY3HKw2lMKexSt1x1'][1]//p[@class= 'PPxwmtZdEfz_pGWOwkSk']");
+            return IsElementPresent(vendorField);
+        }
+
+        public bool SAFieldIsDisabled()
+        {
+            var saField = By.XPath("//div[@class= 'dxZIY3HKw2lMKexSt1x1'][2]//p[@class= 'PPxwmtZdEfz_pGWOwkSk']");
+            return IsElementPresent(saField);
+        }
+
+        public bool DateFieldsIsDisabled()
+        {
+            var dateFields = By.XPath("//p[@class= 'f0wVc_ZyhjxA78gme7rk']");
+            return IsElementPresent(dateFields);
+        }
+
+        public ProjectHelper EditButtonInBurgerClick()
+        {
+            IWebElement openButton = driver.FindElement(By.Id("PROJECT_SUB_EDIT"));
+            openButton.Click();
+            WaitUntilProjectModalIsOpened();
+            return this;
+        }
+
+        public void WaitUntilProjectModalIsOpened()
+        {
+            WaitUntilFindElement(5, By.XPath("//div[@class= 'styles_modal__gNwvD styles_modalCenter__L9F2w project-card-modal']"));
+        }
+
         public void WaitUntilFindProjectList()
         {
             WaitUntilFindElement(5, By.XPath("//div[@class= 'fPooHDtNQyVHMCf4O9mn']"));

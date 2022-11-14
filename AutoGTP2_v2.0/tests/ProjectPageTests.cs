@@ -28,5 +28,40 @@ namespace AutoGTP2Tests
 
             Assert.AreEqual(oldProjects, newProjects);
         }
+
+
+
+
+
+
+        //GTP2-R-04-63
+        [Test]
+        public void CompleteFileChangeTest()
+        {
+            app.ProjectPage.OpenProjectWithStatus("Complete");
+
+            Assert.IsTrue(app.Projects.ProjectStatusIs("Complete"));
+            Assert.IsTrue(app.Projects.ProjectOnlyForReading());
+        }
+
+        //GTP2-R-04-64
+        [Test]
+        public void DefferedFileChangeTest()
+        {
+            app.ProjectPage.OpenProjectWithStatus("Deferred");
+
+            Assert.IsTrue(app.Projects.ProjectStatusIs("Deferred"));
+            Assert.IsTrue(app.Projects.ProjectOnlyForReading());
+        }
+
+        //GTP2-R-04-65
+        [Test]
+        public void CancelledFileChangeTest()
+        {
+            app.ProjectPage.OpenProjectWithStatus("Cancelled");
+
+            Assert.IsTrue(app.Projects.ProjectStatusIs("Cancelled"));
+            Assert.IsTrue(app.Projects.ProjectOnlyForReading());
+        }
     }
 }

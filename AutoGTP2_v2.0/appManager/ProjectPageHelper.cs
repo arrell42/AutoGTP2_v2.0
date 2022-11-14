@@ -43,17 +43,40 @@ namespace AutoGTP2Tests
             return this;
         }
 
+        public ProjectPageHelper OpenProjectWithStatus(string status)
+        {
+            manager.Navigator.GoToProjectPage();
+            manager.Projects.SortProjectsByStatus(status);
+            manager.Projects.ClickProjectBurger();
+            manager.Projects.EditButtonInBurgerClick();
+            return this;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // Низкоуровневые методы
         public ProjectPageHelper SelectProjectTypeInFilters(int i)
-        {            
+        {
             IWebElement type = driver.FindElement(By.XPath("//label[@class= 'filter-check'][" + i + "]"));
-            type.Click();            
+            type.Click();
             return this;
         }
 
         public ProjectPageHelper SelectDateInFilters(string dateTypeName, string startDate, string endDate)
         {
             IWebElement dateTypeButton = driver.FindElement(
-                By.XPath("//div[@class= 'react-dropdown-select filter-type-list css-12zlm52-ReactDropdownSelect e1gzf2xs0']//div"));                        
+                By.XPath("//div[@class= 'react-dropdown-select filter-type-list css-12zlm52-ReactDropdownSelect e1gzf2xs0']//div"));
             dateTypeButton.Click();
 
             IWebElement dateType = driver.FindElement(
@@ -67,7 +90,7 @@ namespace AutoGTP2Tests
 
         public ProjectPageHelper SetStartDateInFilter(string startDate)
         {
-            IWebElement startDateField = driver.FindElement(By.Id("PROJECTS_FILTERSFROM"));            
+            IWebElement startDateField = driver.FindElement(By.Id("PROJECTS_FILTERSFROM"));
             startDateField.Click();
             startDateField.SendKeys(startDate);
             return this;
@@ -113,12 +136,12 @@ namespace AutoGTP2Tests
         public ProjectPageHelper SelectRepresentativeInFilters(string repName)
         {
             IWebElement representativeField = driver.FindElement(
-                By.XPath("//p[contains(text(), 'representative')]//following-sibling::div//div[@class= 'react-dropdown-select-content react-dropdown-select-type-single css-v1jrxw-ContentComponent e1gn6jc30']"));            
+                By.XPath("//p[contains(text(), 'representative')]//following-sibling::div//div[@class= 'react-dropdown-select-content react-dropdown-select-type-single css-v1jrxw-ContentComponent e1gn6jc30']"));
             representativeField.Click();
 
             IWebElement representative = driver.FindElement(
                 By.XPath("//p[@class= 'CKkqQTXqlkqO2CTJTb3k' and contains(text(), '" + repName + "')]"));
-            representative.Click();            
+            representative.Click();
             return this;
         }
 
@@ -164,12 +187,12 @@ namespace AutoGTP2Tests
             currencyField.Click();
 
             IWebElement currency = driver.FindElement(
-                By.XPath("//p[@class= 'CKkqQTXqlkqO2CTJTb3k' and contains(text(), '" + currencyName + "')]"));            
+                By.XPath("//p[@class= 'CKkqQTXqlkqO2CTJTb3k' and contains(text(), '" + currencyName + "')]"));
             currency.Click();
 
             IWebElement startRange = driver.FindElement(By.XPath("//output[@id= 'output']//input[1]"));
             IWebElement endRange = driver.FindElement(By.XPath("//output[@id= 'output']//input[2]"));
-                        
+
             startRange.SendKeys(Keys.Control + "a");
             startRange.SendKeys(start);
 
@@ -193,14 +216,6 @@ namespace AutoGTP2Tests
             Thread.Sleep(1000);
             return this;
         }
-
-
-
-
-
-
-
-        // Низкоуровневые методы
         public ProjectPageHelper ColumnsButtonClick()
         {
             driver.FindElement(By.Id("PROJECTS_COLUMNS_BUTTON")).Click();
