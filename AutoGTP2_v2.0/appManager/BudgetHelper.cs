@@ -136,6 +136,8 @@ namespace AutoGTP2Tests
             manager.Navigator.GoToBudgetPage();
             BudgetColumnsButtonClick();
             ColumnsSwitchOff(budgetColumnsData);
+            driver.Navigate().Refresh();
+            Thread.Sleep(500);
             return this;
         }
 
@@ -192,11 +194,49 @@ namespace AutoGTP2Tests
 
 
 
+
+
+
+
         // Создаем список колонок бюджетов
+
+        
+        public List<BudgetColumnsData> GetBudgetColumnsList()
+        {
+            List<BudgetColumnsData> columns = new List<BudgetColumnsData>();
+            manager.Navigator.GoToBudgetPage();
+            ICollection<IWebElement> elements = driver.FindElements(By.XPath(
+               "//div[@id='BUDGETS_0']//div[@class='HmZHR9aWxu9QsxsKBvP_' or p[contains(text(), 'Projects') ]]"));
+
+            foreach (IWebElement element in elements)
+            {
+                string name = driver.FindElement(By.XPath("//div[contains(@id, 'BUDGETS_0')]//div[@class= 'HmZHR9aWxu9QsxsKBvP_' and contains(text(), 'Cost')]")).Text;
+                string remaining = driver.FindElement(By.XPath("//div[contains(@id, 'BUDGETS_0')]//div[@class= 'HmZHR9aWxu9QsxsKBvP_' and contains(text(), 'remaining')]")).Text;
+                string po = driver.FindElement(By.XPath("//div[contains(@id, 'BUDGETS_0')]//div[@class= 'HmZHR9aWxu9QsxsKBvP_' and contains(text(), 'PO')]")).Text;
+                string projects = driver.FindElement(By.XPath("//div[contains(@id, 'BUDGETS_0')]//p[contains(text(), 'Projects')]")).Text;
+                string total = driver.FindElement(By.XPath("//div[contains(@id, 'BUDGETS_0')]//div[@class= 'HmZHR9aWxu9QsxsKBvP_' and contains(text(), 'total')]")).Text;
+                string date = driver.FindElement(By.XPath("//div[contains(@id, 'BUDGETS_0')]//div[@class= 'HmZHR9aWxu9QsxsKBvP_' and contains(text(), 'Date')]")).Text;
+
+                columns.Add(new BudgetColumnsData()
+                {
+                    ColumnName = name,
+                    ColumnRemaining = remaining,
+                    ColumnPO = po,
+                    ColumnProjects = projects,
+                    ColumnTotal = total,
+                    ColumnDate = date
+                });
+            }
+            
+            return columns;
+        }
+        
+        
+        /*
         public List<BudgetColumnsData> GetBudgetColumnsList()
         {          
             List<BudgetColumnsData> columns = new List<BudgetColumnsData>();
-            manager.Navigator.GoToBudgetPage();
+            
             
             //ICollection<IWebElement> columns = driver.FindElements(By.XPath(
             //    "//div[contains(@id, 'BUDGETS') and not(contains(@id, 'BURGER'))][1]//div[@class= 'eQ5lQ_D0FC26twfwcmhy' or @class= 'wF4f8z1gZkBosC4Dy4j7']"));
@@ -269,7 +309,7 @@ namespace AutoGTP2Tests
 
             return columns;
         }
-
+        */
 
 
 
@@ -314,8 +354,14 @@ namespace AutoGTP2Tests
 
         // Низкоуровневые методы
 
+        
+
         public int CheckBoxIsDisabled()
         {
+            if (!IsElementPresent(By.Id("settings-columns")))
+            {
+                BudgetColumnsButtonClick();
+            }
             return driver.FindElements(By.XPath(
                 "//div[@class= 'UVPAJnHrDOYjcYvCJvHC zQlqaPTsRxDizaEB2uBM jfNvdXFx_TRHu6VpHYEB _fGfxt_KTPxUyHmi7HXe']")).Count;
         }
@@ -396,7 +442,7 @@ namespace AutoGTP2Tests
                 BudgetColumnsButtonClick();
             }
 
-            if (ColumnsAreOff())
+            if (ColumnsInColumnsListAreOff())
             {
                 ColumnsTurnOn();                
             }
@@ -413,7 +459,7 @@ namespace AutoGTP2Tests
             return driver.FindElements(By.XPath("//div[@class= 'r6y6jrWnmWzm1eEt9OwN']")).Count == 0;
         }
 
-        public bool ColumnsAreOff()
+        public bool ColumnsInColumnsListAreOff()
         {
             return driver.FindElements(By.XPath("//div[@class= 'r6y6jrWnmWzm1eEt9OwN']")).Count >= 1;
         }

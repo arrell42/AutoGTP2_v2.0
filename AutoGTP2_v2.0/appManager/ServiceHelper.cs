@@ -463,6 +463,7 @@ namespace AutoGTP2Tests
             manager.Projects.OpenMessageTab();
             manager.Projects.SendMessage("Test");            
             RequestQuoteButtonClick();
+            manager.Projects.SaveProjectButtonClick();
             return this;
         }
 

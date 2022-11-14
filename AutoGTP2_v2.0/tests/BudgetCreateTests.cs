@@ -188,16 +188,15 @@ namespace AutoGTP2Tests
                 ColumnRemaining = "Amount remaining",
                 ColumnPO = "PO number"                
             };
-            
-            List<BudgetColumnsData> oldColumns = app.Budgets.GetBudgetColumnsList();            
+
+            List<BudgetColumnsData> columns = app.Budgets.GetBudgetColumnsList();
 
             app.Budgets.BudgetColumnsTurnOff(budgetColumnsData);
 
-            List<BudgetColumnsData> newColumns = app.Budgets.GetBudgetColumnsList();
+            List<BudgetColumnsData> columns1 = app.Budgets.GetBudgetColumnsList();
+            columns1.Add(budgetColumnsData);
 
-            oldColumns.Remove(budgetColumnsData);
-
-            Assert.AreEqual(oldColumns, newColumns);            
+            Assert.AreEqual(columns, columns1);
         }
 
         // GTP2-R-06-20

@@ -28,6 +28,7 @@ namespace AutoGTP2Tests
         protected ProjectHelper projectHelper;
         protected ServiceHelper serviceHelper;
         protected DashportHelper dashportHelper;
+        protected ProjectPageHelper projectPageHelper;
 
         private static readonly ThreadLocal<ApplicationManager> app = new ThreadLocal<ApplicationManager>();
 
@@ -43,7 +44,7 @@ namespace AutoGTP2Tests
             options.AddUserProfilePreference("profile.default_content_setting_values.automatic_downloads", 1);
 
             driver = new ChromeDriver(options);
-
+                        
             baseURL = "https://gtp-test.janusww.com:9999";
             //baseURL = "https://gtp2.janusww.com";
             //baseURL = "https://192.168.7.217:9999";
@@ -62,6 +63,7 @@ namespace AutoGTP2Tests
             projectHelper = new ProjectHelper(this);
             serviceHelper = new ServiceHelper(this);
             dashportHelper = new DashportHelper(this);
+            projectPageHelper = new ProjectPageHelper(this);
     }
 
         //Завершение теста - закрыть браузер
@@ -147,5 +149,9 @@ namespace AutoGTP2Tests
             get { return dashportHelper; }
         }
 
+        public ProjectPageHelper ProjectPage
+        {
+            get { return projectPageHelper; }
+        }
     }
 }

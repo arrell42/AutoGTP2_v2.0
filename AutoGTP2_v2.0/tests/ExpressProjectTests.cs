@@ -168,41 +168,7 @@ namespace AutoGTP2Tests
             Assert.IsTrue(app.Projects.ExpressDeadlineIsCorrect());
         }
 
-
-
-
-        // GTP2-R-03-15
-        [Test]
-        public void ExpressProject8001PlaceOrderTest()
-        {
-            ProjectData projectData = new ProjectData()
-            {
-                ProjectName = "Express " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
-            };
-
-            app.Projects.ExpressProject8001WordsAttachAndPlaceOrder(projectData, app.expressFile8001);            
-
-            Assert.AreEqual(app.Projects.ExpressTextAreaWordCount(), "-1 out of 8,000 left");
-            Assert.IsTrue(app.Projects.WordLimitModalIsOpen());
-        }
-
-        //[Test]
-        public void ExpressProjectTextAttach8000Test()
-        {
-            ProjectData projectData = new ProjectData()
-            {
-                ProjectName = "Express " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"                
-            };            
-            
-            app.Projects.ExpressProjectTextAttachAndPlaceOrder(projectData, app.expressFile8000);
-
-            Assert.AreEqual(app.Projects.ExpressTextAreaWordCount(), "0 out of 8,000 left");
-        }
-
-        
-
-        
-
+        // GTP2-R-03-13
         [Test]
         public void ExpressProjectLimitPopupCancelButtonTest()
         {
@@ -217,6 +183,7 @@ namespace AutoGTP2Tests
             Assert.AreEqual(app.Projects.ExpressTextAreaWordCount(), "-1 out of 8,000 left");
         }
 
+        // GTP2-R-03-14
         [Test]
         public void ExpressProjectLimitPopupSwitchButtonTest()
         {
@@ -231,5 +198,19 @@ namespace AutoGTP2Tests
             Assert.IsTrue(app.Services.ServiceIsNotCalculated());
         }
 
+        // GTP2-R-03-15
+        [Test]
+        public void ExpressProject8001PlaceOrderTest()
+        {
+            ProjectData projectData = new ProjectData()
+            {
+                ProjectName = "Express " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
+            };
+
+            app.Projects.ExpressProject8001WordsAttachAndPlaceOrder(projectData, app.expressFile8001);            
+
+            Assert.AreEqual(app.Projects.ExpressTextAreaWordCount(), "-1 out of 8,000 left");
+            Assert.IsTrue(app.Projects.WordLimitModalIsOpen());
+        }          
     }
 }

@@ -18,6 +18,7 @@ namespace AutoGTP2Tests
             return ColumnName.CompareTo(other.ColumnName);
         }
 
+
         //сравнение по наличию имени
         public bool Equals(BudgetColumnsData other)
         {
@@ -29,7 +30,13 @@ namespace AutoGTP2Tests
             {
                 return true;
             }
-            return ColumnName == other.ColumnName;
+            return 
+                ColumnName == other.ColumnName &&
+                ColumnRemaining == other.ColumnRemaining &&
+                ColumnPO == other.ColumnPO &&
+                ColumnProjects == other.ColumnProjects &&
+                ColumnTotal == other.ColumnTotal &&
+                ColumnDate == other.ColumnDate;
         }
 
         //возвращаем строковое представление объектов типа BudgetColumnsData

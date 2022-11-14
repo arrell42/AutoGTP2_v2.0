@@ -4,10 +4,11 @@ using NUnit.Framework;
 
 
 namespace AutoGTP2Tests
-{
-    // GTP2-R-02-6, GTP2-R-02-8, GTP2-R-02-15
+{    
     public class ProjectCreateTests : AuthTestBase
     {
+        // GTP2-R-02-6, GTP2-R-02-8, GTP2-R-02-15
+
         [Test]
         public void CreatePendingProjectTest()
         {
@@ -352,7 +353,7 @@ namespace AutoGTP2Tests
 
         // GTP2-R-02-26
         [Test]
-        public void CancelPendingProjectDeclineTest()
+        public void CancelOrderedProjectDeclineTest()
         {
             ProjectData projectData = new ProjectData()
             {
@@ -367,7 +368,7 @@ namespace AutoGTP2Tests
 
         // GTP2-R-02-27
         [Test]
-        public void CancelPendingProjectConfirmTest()
+        public void CancelOrderedProjectConfirmTest()
         {
             ProjectData projectData = new ProjectData()
             {

@@ -10,11 +10,13 @@ namespace AutoGTP2Tests
         [Test]
         public void RemoveProjectConfirmTest()
         {
-            if (app.Projects.ProjectDeleteButtonIsDisabled())
+            if (app.Projects.DeleteButtonIsDisable())
             {
                 ProjectData projectData = new ProjectData()
                 {
-                    ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
+                    ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest",
+                    Status = "Pending",
+                    BudgetCost = "Unknown"
                 };
                 app.Projects.CreatePendingProject(projectData);
             }
@@ -23,21 +25,7 @@ namespace AutoGTP2Tests
 
             app.Projects.RemoveProjectConfirm();
 
-            List<ProjectData> newProjects = app.Projects.GetProjectList();            
-            
-            /*
-            if (oldProjects.Count > 20)
-            {
-                oldProjects.RemoveAt(oldProjects.Count - 2);
-            }
-
-            oldProjects.RemoveAt(0); // удаляем первый в старом списке
-
-            if (newProjects.Count > 20)
-            {
-                newProjects.RemoveAt(19); // удаляем последний в новом списке
-            }
-            */
+            List<ProjectData> newProjects = app.Projects.GetProjectList();
 
             oldProjects.RemoveAt(0); // удаляем первый в старом списке
             if (newProjects.Count == 20)
@@ -53,11 +41,13 @@ namespace AutoGTP2Tests
         [Test]
         public void RemoveProjectDeclineTest()
         {
-            if (app.Projects.ProjectDeleteButtonIsDisabled())
+            if (app.Projects.DeleteButtonIsDisable())
             {
                 ProjectData projectData = new ProjectData()
                 {
-                    ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
+                    ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest",
+                    Status = "Pending",
+                    BudgetCost = "Unknown"
                 };
                 app.Projects.CreatePendingProject(projectData);
             }
@@ -78,7 +68,7 @@ namespace AutoGTP2Tests
         }
 
 
-        // Метод для удаления не нужных проектов
+        // Метод для удаления ненужных проектов
         //[Test]
         public void RemoveAllPendingProjects()
         {              

@@ -38,7 +38,9 @@ namespace AutoGTP2Tests
                 manager.Auth.Login(account);
             }
             driver.FindElement(By.Id("MENU_PROJECTS")).Click();
-            WaitUntilElementIsHide(5, By.XPath("//div[@class = 'uAVm9bKcbGvOpCLx2Whj']"));
+
+            var loadingCircle = By.XPath("//div[@class = 'uAVm9bKcbGvOpCLx2Whj']");
+            WaitUntilElementIsHide(5, loadingCircle);
         }
 
         public void GoToDashportPage()
@@ -51,8 +53,6 @@ namespace AutoGTP2Tests
             }
             driver.FindElement(By.Id("MENU_DASHPORT")).Click();
             WaitUntilFindElement(10, By.Id("DASHPORT_GANTT_0_PROJECT_IN_LIST"));
-
-
         }
     }
 }

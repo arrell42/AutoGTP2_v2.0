@@ -21,6 +21,8 @@ namespace AutoGTP2Tests
         {
             OpenNewPendingProject(projectData, 3, "00:30");
             SaveProjectButtonClick();
+            driver.Navigate().Refresh();
+            WaitUntilFindProjectList();
             return this;
         }
 
@@ -73,6 +75,8 @@ namespace AutoGTP2Tests
         {
             OpenNewExpressProject(projectData);
             SaveProjectButtonClick();
+            driver.Navigate().Refresh();
+            WaitUntilFindProjectList();
             return this;
         }
         
@@ -96,6 +100,8 @@ namespace AutoGTP2Tests
             OpenNewPendingProject(projectData, 3, "00:30");
             PlaceOrderButtonClick();
             PlaceOrderMessageOKClick();
+            driver.Navigate().Refresh();
+            WaitUntilFindProjectList();
             return this;
         }
 
@@ -136,6 +142,8 @@ namespace AutoGTP2Tests
             AddBudget();
             DeleteBudget();
             SaveProjectButtonClick();
+            driver.Navigate().Refresh();
+            WaitUntilFindProjectList();
             return this;
         }
 
@@ -169,7 +177,9 @@ namespace AutoGTP2Tests
             EnterTotal(projectData);
             manager.Budgets.BudgetCreateButtonClick();
             Thread.Sleep(2000);
-            SaveProjectButtonClick();            
+            SaveProjectButtonClick();
+            driver.Navigate().Refresh();
+            WaitUntilFindProjectList();
             return this;
         }
 
@@ -358,6 +368,14 @@ namespace AutoGTP2Tests
             return this;
         }
 
+        public ProjectHelper ExpressProjectSwitchProjectCancel(ProjectData projectData, string filePath)
+        {
+            OpenNewExpressProject(projectData);
+            FillTextAreaFromFile(filePath);
+            manager.Services.RequestQuoteButtonClick();
+            manager.Services.WordLimitModalCancelButtonClick();            
+            return this;
+        }
 
 
 
@@ -372,9 +390,16 @@ namespace AutoGTP2Tests
         //Получение списка проектов                
 
         public List<ProjectData> GetProjectList()
-        {
+        {            
             List<ProjectData> projects = new List<ProjectData>();
-            manager.Navigator.GoToProjectPage();
+
+            if(driver.Url != "" + manager.baseURL + "/projects")
+            {
+                manager.Navigator.GoToProjectPage();
+            }
+            WaitUntilFindProjectList();
+
+
             ICollection<IWebElement> elements = driver.FindElements(By.XPath("//div[@class = 'Y60VrDynu5B8vFAVkO5A']"));
             foreach (var element in elements)
             {
@@ -472,8 +497,14 @@ namespace AutoGTP2Tests
 
         // Низкоуровневые методы
 
+        public void WaitUntilFindProjectList()
+        {
+            WaitUntilFindElement(5, By.XPath("//div[@class= 'fPooHDtNQyVHMCf4O9mn']"));
+        }
+
         public ProjectHelper WaitUntilProjectIsCalculated()
         {
+            Thread.Sleep(1000);
             WaitUntilElementIsHide(100, By.XPath("//span[@class = 'oSlLzqSfaLdSFEWpZxdw']"));
             return this;
         }
@@ -530,11 +561,11 @@ namespace AutoGTP2Tests
         public ProjectHelper FindOrderedProject(ProjectData projectData)
         {
             manager.Navigator.GoToProjectPage();
-            SortProjectsByStatus("Ordered");            
+            SortProjectsByStatus("Ordered");
             if (OrderedStatusNotFounded())
             {
                 CreateOrderedProject(projectData);
-            }
+            }            
             FirstProjectClick();
             return this;
         }
@@ -542,7 +573,9 @@ namespace AutoGTP2Tests
         public ProjectHelper FirstProjectClick()
         {
             driver.FindElement(By.Id("PROJECTS_PROJECT_NAME")).Click();
-            WaitUntilFindElement(4, By.XPath("//div[@class = 'CXwQMpaC5HQszu_q1TIp']"));
+
+            var projectCard = By.XPath("//div[@class = 'CXwQMpaC5HQszu_q1TIp']");
+            WaitUntilFindElement(10, projectCard);
             return this;
         }
 
@@ -565,13 +598,15 @@ namespace AutoGTP2Tests
         public ProjectHelper CancelProjectButtonClick()
         {
             driver.FindElement(By.XPath("//div[@class = 'Ls81UsGuOEperZX7nWiw i6vQQjoEWNY1KRkGn5rQ']")).Click();
-            WaitUntilFindElement(4, By.XPath("//button[@class = 'btn bordered-btn p12' and contains(text(), 'Yes')]"));
+            WaitUntilFindElement(4, By.XPath("//button[@class = 'btn bordered-btn p12' and contains(text(), 'Yes')]"));            
             return this;
         }
 
         public ProjectHelper CancelProjectDeclineButtonClick()
         {
-            driver.FindElement(By.XPath("//button[contains(text(), 'No')]"));
+            driver.FindElement(By.XPath("//button[contains(text(), 'No')]")).Click();
+            var modal = By.XPath("//div[@class= 'styles_modal__gNwvD styles_modalCenter__L9F2w']");
+            WaitUntilElementIsHide(4, modal);
             return this;
         }
 
@@ -969,34 +1004,50 @@ namespace AutoGTP2Tests
         public ProjectHelper ProjectDeleteConfirmButtonClick()
         {
             driver.FindElement(By.Id("PROJECTS_DELETE_CONFIRMATION")).Click();
+            Thread.Sleep(1500);
             return this;
         }
 
         public ProjectHelper ProjectDeleteButtonClick()
         {
-            driver.FindElement(By.Id("PROJECT_SUB_DELETE")).Click();            
+            IWebElement deleteButton = driver.FindElement(By.Id("PROJECT_SUB_DELETE"));
+            deleteButton.Click();
             return this;
         }
 
+        public bool DeleteButtonIsDisable()
+        {
+            manager.Navigator.GoToProjectPage();
+            Thread.Sleep(500);
+            ClickProjectBurger(); 
+            var enabledDeleteButton = By.XPath("//p[@class= 'delete-project-btn disabled']");
+            return IsElementPresent(enabledDeleteButton);
+        }
+
         public ProjectHelper ClickProjectBurger()
-        {            
-            driver.FindElement(By.XPath("//div[@class = 'project-selection-menu']")).Click();
+        {  
+            IWebElement projectBurger = driver.FindElement(By.XPath("//div[@class = 'project-selection-menu']"));
+            projectBurger.Click();
             return this;
         }
 
         public ProjectHelper ProjectDeleteDeclineButtonClick()
         {
-            driver.FindElement(By.XPath("//button[@class = 'btn primary-btn']")).Click();            
+            driver.FindElement(By.XPath("//button[@class = 'btn primary-btn']")).Click();
+            Thread.Sleep(1000);
             return this;
         }
 
         public ProjectHelper SaveProjectButtonClick()
         {
+
             driver.FindElement(By.Id("PROJECT_CARD_SAVE_AND_EXIT")).Click();
             //ждем пока исчезнет всплывающее окно с проектом
             if (!WarningPopupIsPresent())
             {
-                WaitUntilFindElements(15, By.Id("PROJECT_CARD_SAVE_AND_EXIT"), 0);
+                //WaitUntilFindElements(15, By.Id("PROJECT_CARD_SAVE_AND_EXIT"), 0);
+                var projectModal = By.XPath("//div[@class= 'styles_modal__gNwvD styles_modalCenter__L9F2w project-card-modal']");
+                WaitUntilElementIsHide(5, projectModal);
             }
             
             return this;
@@ -1061,7 +1112,7 @@ namespace AutoGTP2Tests
             FiltersButtonClick();
             SelectProjectStatusInFilter(t);
             FilterApplyButtonClick();
-            WaitUntilFindElement(5, By.XPath("//span[contains(text(), '"+t+"')]"));
+            Thread.Sleep(2000);            
             return this;
         }
 
