@@ -22,9 +22,9 @@ namespace AutoGTP2Tests
                 //app.Auth.Login(new LoginData("Sergey Zezyulinsky CR", "irhj-d/"));
             }
 
-            if (app.baseURL.Contains("https://192.168.7.217:9999"))
+            if (app.baseURL.Contains("https://81.90.180.117:9999"))
             {
-                app.Auth.Login(new LoginData("dtestBoxClient211022User_1", "123456"));
+                app.Auth.Login(new LoginData("dtestHostingClient_11.17AdminUser", "123456"));
             }        
         }
 

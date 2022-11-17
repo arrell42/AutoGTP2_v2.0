@@ -498,6 +498,50 @@ namespace AutoGTP2Tests
         // Низкоуровневые методы
 
 
+        public bool? ProjectCanBeChanged()
+        {
+            if(ProjectNameIsEnabled()
+               && VendorFieldIsEnabled()
+               && SAFieldIsEnabled()
+               && DateFieldsIsEnabled())
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool ProjectNameIsEnabled()
+        {
+            var projectName = By.Id("PROJECT_CARD_NAME");
+            return driver.FindElement(projectName).Enabled;
+        }
+
+        public bool VendorFieldIsEnabled()
+        {
+            var vendorField = driver.FindElement(
+                By.XPath("//div[@id= 'project-vendor-dropdown']" +
+                "//div[@class= 'react-dropdown-select undefined css-12zlm52-ReactDropdownSelect e1gzf2xs0']"));
+            return vendorField.Enabled;
+        }
+
+        public bool SAFieldIsEnabled()
+        {
+            var saField = By.XPath("//input[@name= 'SUBJECT_AREA']");
+            return driver.FindElement(saField).Enabled;
+        }
+
+        public bool DateFieldsIsEnabled()
+        {
+            var dateField = By.XPath("//input[@name= 'start_date']");
+            return driver.FindElement(dateField).Enabled;
+        }
+
+        public bool? PlaceOrderButtonIsPresent()
+        {
+            var placeOrderButton = By.Id("PROJECT_CARD_PLACE_ORDER");
+            return IsElementPresent(placeOrderButton);
+        }
+
         public bool? ProjectStatusIs(string statusName)
         {
             var completeStatus = By.XPath
@@ -507,10 +551,7 @@ namespace AutoGTP2Tests
 
         public bool? ProjectOnlyForReading()
         {
-            if(ProjectNameIsDisabled()
-               && VendorFieldIsDisabled()
-               && SAFieldIsDisabled()
-               && DateFieldsIsDisabled())
+            if(ProjectNameIsDisabled() && VendorFieldIsDisabled() && SAFieldIsDisabled() && DateFieldsIsDisabled())
             {
                 return true;
             }
@@ -519,25 +560,48 @@ namespace AutoGTP2Tests
 
         public bool ProjectNameIsDisabled()
         {
-            var projectName = By.XPath("//span[@id= 'PROJECT_CARD_NAME_TEXT']");
+            var projectName = By.Id("PROJECT_CARD_NAME_TEXT");
+            if(!IsElementPresent(projectName))
+            {
+                var projectNameDisabled = driver.FindElement(By.Id("PROJECT_CARD_NAME"));
+                if (projectNameDisabled.Enabled) { return false; } return true; 
+            }
             return IsElementPresent(projectName);
         }
 
         public bool VendorFieldIsDisabled()
         {
             var vendorField = By.XPath("//div[@class= 'dxZIY3HKw2lMKexSt1x1'][1]//p[@class= 'PPxwmtZdEfz_pGWOwkSk']");
+            if (!IsElementPresent(vendorField))
+            {
+                var vendorFieldDisabled = driver.FindElement(By.Name("VENDOR_DROPDOWN"));
+                if (vendorFieldDisabled.Enabled) { return false; }
+                return true;
+            }
             return IsElementPresent(vendorField);
         }
 
         public bool SAFieldIsDisabled()
         {
             var saField = By.XPath("//div[@class= 'dxZIY3HKw2lMKexSt1x1'][2]//p[@class= 'PPxwmtZdEfz_pGWOwkSk']");
+            if (!IsElementPresent(saField))
+            {
+                var saFieldDisabled = driver.FindElement(By.Name("SUBJECT_AREA"));
+                if (saFieldDisabled.Enabled) { return false; }
+                return true;
+            }
             return IsElementPresent(saField);
         }
 
         public bool DateFieldsIsDisabled()
         {
             var dateFields = By.XPath("//p[@class= 'f0wVc_ZyhjxA78gme7rk']");
+            if (!IsElementPresent(dateFields))
+            {
+                var dateFieldDisabled = driver.FindElement(By.Name("start_date"));
+                if (dateFieldDisabled.Enabled) { return false; }
+                return true;
+            }
             return IsElementPresent(dateFields);
         }
 

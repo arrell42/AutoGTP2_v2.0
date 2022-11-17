@@ -1,7 +1,5 @@
 ﻿using NUnit.Framework;
 using System.Collections.Generic;
-using NUnit.Allure.Attributes;
-using NUnit.Allure.Core;
 using System;
 
 namespace AutoGTP2Tests
@@ -10,10 +8,7 @@ namespace AutoGTP2Tests
     
     public class BudgetCreateTests : AuthTestBase
     {        
-        [Test]
-        //[Description("Создание бюджета")]
-        
-
+        [Test]        
         public void CreateBudgetTest()
         {
             BudgetData budgetData = new BudgetData("", "")
