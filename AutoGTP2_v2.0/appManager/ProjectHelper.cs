@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 
 namespace AutoGTP2Tests
@@ -111,8 +112,8 @@ namespace AutoGTP2Tests
             FillTextAreaFromFile(filePath);
             manager.Services.RequestQuoteButtonClick();
             PlaceOrderButtonClick();
-            OpenThisProject();
-            Thread.Sleep(1000);
+            Thread.Sleep(1500);
+            OpenThisProject(projectData);            
             manager.Services.OpenAndEditButtonClick();
             return this;
         }
@@ -196,7 +197,7 @@ namespace AutoGTP2Tests
             OpenRefTab();
             RefFileAttach(1);
             SaveProjectButtonClick();
-            OpenThisProject();
+            OpenThisProject(projectData);
             OpenRefTab();
             return this;
         }
@@ -207,7 +208,7 @@ namespace AutoGTP2Tests
             OpenRefTab();
             RefFileAttach(5);
             SaveProjectButtonClick();
-            OpenThisProject();
+            OpenThisProject(projectData);
             OpenRefTab();
             return this;
         }
@@ -226,7 +227,7 @@ namespace AutoGTP2Tests
             OpenRefTab();
             RefFileAttach(5);
             SaveProjectButtonClick();
-            OpenThisProject();
+            OpenThisProject(projectData);
             OpenRefTab();
             DownloadAllFilesButtonClick("Ref");
             return this;
@@ -241,7 +242,7 @@ namespace AutoGTP2Tests
             AddDescriptionText("Test description");
             SaveDescriptionButtonClick();
             SaveProjectButtonClick();
-            OpenThisProject();
+            OpenThisProject(projectData);
             OpenRefTab();
             return this;
         }
@@ -252,7 +253,7 @@ namespace AutoGTP2Tests
             OpenRefTab();
             RefFileAttach(1);
             SaveProjectButtonClick();
-            OpenThisProject();
+            OpenThisProject(projectData);
             OpenRefTab();
             DownloadFileButtonClick();            
             return this;
@@ -264,9 +265,9 @@ namespace AutoGTP2Tests
             OpenRefTab();
             RefFileAttach(1);
             SaveProjectButtonClick();
-            OpenThisProject();
+            OpenThisProject(projectData);
             OpenRefTab();
-            DeleteFileButtonClick();
+            DeleteFileButtonClick();            
             return this;
         }
 
@@ -353,7 +354,7 @@ namespace AutoGTP2Tests
             OpenNewExpressProject(projectData);
             manager.Services.SourceFileAttach();
             PlaceOrderButtonClick();
-            OpenThisProject();
+            OpenThisProject(projectData);
             WaitUntilProjectIsCalculated();
             return this;
         }
@@ -393,10 +394,8 @@ namespace AutoGTP2Tests
         {            
             List<ProjectData> projects = new List<ProjectData>();
 
-            if(driver.Url != "" + manager.baseURL + "/projects")
-            {
-                manager.Navigator.GoToProjectPage();
-            }
+            manager.Navigator.GoToProjectPage();
+            driver.Navigate().Refresh();
             WaitUntilFindProjectList();
 
 
@@ -705,7 +704,7 @@ namespace AutoGTP2Tests
             manager.Navigator.GoToProjectPage();
             OpenNewPendingProject(projectData, 3, "00:30");
             PlaceOrderButtonClick();
-            OpenThisProject();
+            OpenThisProject(projectData);
             return this;
         }
 
@@ -743,7 +742,9 @@ namespace AutoGTP2Tests
 
         public ProjectHelper DeleteFileButtonClick()
         {
-            driver.FindElement(By.Id("FILE_DELETE"));
+            IWebElement deleteFileButton = driver.FindElement(By.Id("FILE_DELETE"));
+            deleteFileButton.Click();
+            WaitUntilElementIsHide(10, By.XPath("//div[@class= 'abj3PIbZlVZEaANnTgWi ']"));
             return this;
         }
 
@@ -864,12 +865,18 @@ namespace AutoGTP2Tests
             return IsElementPresent(By.XPath("//div[@class = 'RhjoYcpGysnqEhJIMQeo']"));
         }
 
-        public ProjectHelper OpenThisProject()
+        public ProjectHelper OpenThisProject(ProjectData projectData)
         {
             manager.Navigator.GoToProjectPage();
             MouseClickImitation(By.XPath("//div[@class= 'WL6eEVs3cgv5l5JGCHtM']"));
             Thread.Sleep(200);
-            driver.FindElement(By.XPath("//div[@id= 'PROJECT_0']//div[@id= 'PROJECTS_PROJECT_NAME']")).Click();
+
+            string t = projectData.ToString();            
+            Regex regexTemp = new Regex(@"\[.*\]");
+            string pd = regexTemp.Match(t).Value;
+
+            WaitUntilFindElement(10, By.XPath("//div[contains(text(), '" + pd + "')]"));
+            driver.FindElement(By.XPath("//div[contains(text(), '"+ pd + "')]")).Click();            
             WaitUntilFindElement(10, By.Id("ProjectCardReferenceMaterials"));
             return this;
         }

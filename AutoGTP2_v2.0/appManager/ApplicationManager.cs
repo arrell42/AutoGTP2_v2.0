@@ -149,7 +149,6 @@ namespace AutoGTP2Tests
         {
             get { return dashportHelper; }
         }
-
         public ProjectPageHelper ProjectPage
         {
             get { return projectPageHelper; }

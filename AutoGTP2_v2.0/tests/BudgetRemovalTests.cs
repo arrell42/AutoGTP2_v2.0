@@ -19,9 +19,7 @@ namespace AutoGTP2Tests
                     BudgetCost = app.TextGenerator(1, 3),
                     BudgetTotal = "1000"
                 };
-                app.Budgets.CreateNewBudget(budget);
-                app.Budgets.WaitUntilFindElement(5, By.CssSelector("#BUDGETS_BURGER_0 > svg > path"));
-                app.Budgets.BudgetBurgerClick();                
+                app.Budgets.CreateNewBudget(budget);                                
             }
 
             List<BudgetData> oldBudgets = app.Budgets.GetBudgetList();
@@ -47,9 +45,7 @@ namespace AutoGTP2Tests
                     BudgetCost = app.TextGenerator(1, 3),
                     BudgetTotal = "1000"
                 };  
-                app.Budgets.CreateNewBudget(budget);
-                app.Budgets.WaitUntilFindElement(5, By.CssSelector("#BUDGETS_BURGER_0 > svg > path"));
-                app.Budgets.BudgetBurgerClick();                
+                app.Budgets.CreateNewBudget(budget);                
             }
 
             List<BudgetData> oldBudgets = app.Budgets.GetBudgetList();
@@ -62,8 +58,7 @@ namespace AutoGTP2Tests
             if (newBudgets.Count == 20)
             {                
                 newBudgets.RemoveAt(19); // удаляем последний в новом списке
-            }
-            
+            }            
 
             oldBudgets.Sort(); // сортировка старого списка
             newBudgets.Sort(); // сортировка нового списка

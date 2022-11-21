@@ -408,7 +408,7 @@ namespace AutoGTP2Tests
             Thread.Sleep(1000);
             SaveServiceButtonClick();
             manager.Projects.SaveProjectButtonClick();
-            manager.Projects.OpenThisProject();
+            manager.Projects.OpenThisProject(projectData);
             OpenAndEditButtonClick();
             manager.Projects.DownloadFileButtonClick();
             return this;
@@ -420,7 +420,7 @@ namespace AutoGTP2Tests
             AssignAllLanguagePairsButtonClick();
             SaveServiceButtonClick();
             manager.Projects.SaveProjectButtonClick();
-            manager.Projects.OpenThisProject();
+            manager.Projects.OpenThisProject(projectData);
             OpenAndEditButtonClick();
             manager.Projects.DeleteFileButtonClick();
             return this;
@@ -1025,6 +1025,7 @@ namespace AutoGTP2Tests
 
         public ServiceHelper OpenAndEditButtonClick()
         {
+            WaitUntilFindElement(10, By.Id("SERVICE_OPEN_AND_EDIT"));
             driver.FindElement(By.Id("SERVICE_OPEN_AND_EDIT")).Click();
             return this;
         }

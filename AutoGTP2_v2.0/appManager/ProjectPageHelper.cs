@@ -30,11 +30,11 @@ namespace AutoGTP2Tests
             SelectProjectTypeInFilters(2); // 1 - All, 2 - Regular, 3 - Express, 4 - Multiproject
             SelectDateInFilters("start date", "01 Nov 2022", "10 Nov 2022"); // Types: start date, end date, date of creation / Date format - 10 Nov 2022
             SelectVendorInFilters(1); // Multiple vendors - index 0
-            SelectSubjectAreaInFilters("Arts"); // Имя тематики
-            SelectRepresentativeInFilters("Main_test"); //Имя представителя
-            SelectPMInFilters("Mogilevsky Igor"); // Имя ПМа
-            SelectDepartmentInFilters("dtestDepartament 1"); // Имя отдела
-            SelectTeamInFilters(""); // Имя команды
+            //SelectSubjectAreaInFilters("Arts"); // Имя тематики
+            //SelectRepresentativeInFilters("Main_test"); //Имя представителя
+            //SelectPMInFilters("Mogilevsky Igor"); // Имя ПМа
+            //SelectDepartmentInFilters("dtestDepartament 1"); // Имя отдела
+            //SelectTeamInFilters(""); // Имя команды
             SelectAmountRangeInFilters("USD", "100", "10000"); // Название валюты, начальная сумма, конечная сумма
             manager.Projects.SelectProjectStatusInFilter("Ordered"); //Название статуса            
             manager.Projects.FilterApplyButtonClick();

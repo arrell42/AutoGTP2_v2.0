@@ -54,7 +54,7 @@ namespace AutoGTP2Tests
         public bool IsLoggedIn()
         {
             driver.Navigate().Refresh();
-            return IsElementPresent(By.Id("MENU_LOGOUT"));
+            return IsElementPresent(By.Id("MENU_LOGOUT"));            
         }
         public void Logout()
         {
