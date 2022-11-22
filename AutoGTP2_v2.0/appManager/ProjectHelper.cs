@@ -58,7 +58,7 @@ namespace AutoGTP2Tests
         {
             manager.Navigator.GoToProjectPage();
             ClickProjectBurger();
-            ProjectDeleteButtonClick();
+            ProjectDeleteButtonInBurgerClick();
             ProjectDeleteDeclineButtonClick();
             return this;
         }
@@ -67,7 +67,7 @@ namespace AutoGTP2Tests
         {
             manager.Navigator.GoToProjectPage();
             ClickProjectBurger();
-            ProjectDeleteButtonClick();
+            ProjectDeleteButtonInBurgerClick();
             ProjectDeleteConfirmButtonClick();
             return this;
         }
@@ -110,9 +110,9 @@ namespace AutoGTP2Tests
         {
             OpenNewExpressProject(projectData);
             FillTextAreaFromFile(filePath);
-            manager.Services.RequestQuoteButtonClick();
+            manager.Services.RequestQuoteButtonClick();            
             PlaceOrderButtonClick();
-            Thread.Sleep(1500);
+            driver.Navigate().Refresh();
             OpenThisProject(projectData);            
             manager.Services.OpenAndEditButtonClick();
             return this;
@@ -177,7 +177,7 @@ namespace AutoGTP2Tests
             manager.Budgets.SelectUSDCurrency();
             EnterTotal(projectData);
             manager.Budgets.BudgetCreateButtonClick();
-            Thread.Sleep(2000);
+            Thread.Sleep(4000);
             SaveProjectButtonClick();
             driver.Navigate().Refresh();
             WaitUntilFindProjectList();
@@ -496,6 +496,30 @@ namespace AutoGTP2Tests
 
         // Низкоуровневые методы
 
+        public bool? SourceDataTabIsOpened()
+        {
+            var selectedSourceDataTab = By.XPath("//li[@class = 'react-tabs__tab react-tabs__tab--selected']//span[@id= 'ProjectCardSourceMap']");
+            return IsElementPresent(selectedSourceDataTab);
+        }
+
+        public bool? MessageTabIsOpened()
+        {
+            var selectedMessageTab = By.XPath("//li[@class = 'react-tabs__tab react-tabs__tab--selected']//span[@id= 'ProjectCardMessages']");
+            return IsElementPresent(selectedMessageTab);
+        }
+
+        public ProjectHelper OpenMessagesButtonClick()
+        {
+            IWebElement messagesButton = driver.FindElement(By.Id("PROJECT_SUB_OPEN_MESSAGES"));
+            messagesButton.Click();
+            WaitUntilFindElement(10, By.Id("PROJECT_CARD_MESSAGES_INPUT"));
+            return this;
+        }
+
+        public bool? WarningPopupWhenDeleteProjectIsPresent()
+        {
+            return IsElementPresent(By.XPath("//div[@class = 'styles_modal__gNwvD styles_modalCenter__L9F2w nste4vhOguERm01e2UNw']"));
+        }
 
         public bool? ProjectCanBeChanged()
         {
@@ -605,7 +629,7 @@ namespace AutoGTP2Tests
         }
 
         public ProjectHelper EditButtonInBurgerClick()
-        {
+        {            
             IWebElement openButton = driver.FindElement(By.Id("PROJECT_SUB_EDIT"));
             openButton.Click();
             WaitUntilProjectModalIsOpened();
@@ -1017,7 +1041,7 @@ namespace AutoGTP2Tests
             return IsElementPresent(By.XPath("//div[@class = 'fPooHDtNQyVHMCf4O9mn']"));
         }
 
-        public bool WarningPopupIsPresent()
+        public bool WarningPopupIsPresentInProject()
         {
             return IsElementPresent(By.XPath
                 ("//div[@class = 'styles_modal__gNwvD styles_modalCenter__L9F2w ewdjRZof9VeUtsLdyqQf']"));
@@ -1136,7 +1160,7 @@ namespace AutoGTP2Tests
             return this;
         }
 
-        public ProjectHelper ProjectDeleteButtonClick()
+        public ProjectHelper ProjectDeleteButtonInBurgerClick()
         {
             IWebElement deleteButton = driver.FindElement(By.Id("PROJECT_SUB_DELETE"));
             deleteButton.Click();
@@ -1153,7 +1177,8 @@ namespace AutoGTP2Tests
         }
 
         public ProjectHelper ClickProjectBurger()
-        {  
+        {
+            WaitUntilFindElement(10, By.XPath("//div[@class = 'project-selection-menu']"));
             IWebElement projectBurger = driver.FindElement(By.XPath("//div[@class = 'project-selection-menu']"));
             projectBurger.Click();
             return this;
@@ -1171,9 +1196,8 @@ namespace AutoGTP2Tests
 
             driver.FindElement(By.Id("PROJECT_CARD_SAVE_AND_EXIT")).Click();
             //ждем пока исчезнет всплывающее окно с проектом
-            if (!WarningPopupIsPresent())
-            {
-                //WaitUntilFindElements(15, By.Id("PROJECT_CARD_SAVE_AND_EXIT"), 0);
+            if (!WarningPopupIsPresentInProject())
+            {                
                 var projectModal = By.XPath("//div[@class= 'styles_modal__gNwvD styles_modalCenter__L9F2w project-card-modal']");
                 WaitUntilElementIsHide(5, projectModal);
             }
@@ -1228,7 +1252,7 @@ namespace AutoGTP2Tests
             {                
                 //driver.SwitchTo().Alert().Accept();
                 ClickProjectBurger();
-                ProjectDeleteButtonClick();
+                ProjectDeleteButtonInBurgerClick();
                 ProjectDeleteConfirmButtonClick();
                 Thread.Sleep(3000);
             }

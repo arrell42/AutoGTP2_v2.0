@@ -68,7 +68,7 @@ namespace AutoGTP2Tests
         {
             app.Projects.CreateEmptyProject();
 
-            Assert.IsTrue(app.Projects.WarningPopupIsPresent());
+            Assert.IsTrue(app.Projects.WarningPopupIsPresentInProject());
         }
 
         // GTP2-R-02-4, GTP2-R-02-5

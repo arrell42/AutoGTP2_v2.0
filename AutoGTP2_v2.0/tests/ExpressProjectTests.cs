@@ -110,7 +110,7 @@ namespace AutoGTP2Tests
         }
 
         // GTP2-R-03-09
-        [Test]
+        //[Test]
         public void ExpressProjectRequestQuoteThenPlaceOrderTest()
         {
             ProjectData projectData = new ProjectData()
@@ -125,7 +125,7 @@ namespace AutoGTP2Tests
         }
 
         // GTP2-R-03-10
-        [Test]
+        //[Test]
         public void ExpressProjectTextAndFileAttachTest()
         {
             ProjectData projectData = new ProjectData()
@@ -199,7 +199,7 @@ namespace AutoGTP2Tests
         }
 
         // GTP2-R-03-15
-        [Test]
+        //[Test]
         public void ExpressProject8001PlaceOrderTest()
         {
             ProjectData projectData = new ProjectData()

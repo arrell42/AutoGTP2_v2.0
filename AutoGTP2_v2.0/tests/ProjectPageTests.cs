@@ -32,9 +32,59 @@ namespace AutoGTP2Tests
 
 
 
+        //GTP2-R-04-40
+        [Test]
+        public void ShownOnPage50Test()
+        {
+            app.ProjectPage.SelectProjectCountOnPage("50");
 
+            Assert.IsTrue(app.ProjectPage.ProjectCountOnPage(50));
+        }
 
+        //GTP2-R-04-41
+        [Test]
+        public void ShownOnPage100Test()
+        {
+            app.ProjectPage.SelectProjectCountOnPage("100");
 
+            Assert.IsTrue(app.ProjectPage.ProjectCountOnPage(100));
+        }
+
+        //GTP2-R-04-42
+        [Test]
+        public void ShownOnPage20Test()
+        {
+            app.ProjectPage.SelectProjectCountOnPage("20");
+
+            Assert.IsTrue(app.ProjectPage.ProjectCountOnPage(20));
+        }
+
+        //GTP2-R-04-44
+        [Test]
+        public void EditButtonInProjectBurgerTest()
+        {
+            app.ProjectPage.EditButtonInBurgerClick();
+
+            Assert.IsTrue(app.Projects.SourceDataTabIsOpened());
+        }
+
+        //GTP2-R-04-45
+        [Test]
+        public void MessageButtonInProjectBurgerTest()
+        {
+            app.ProjectPage.OpenMessagesFromProjectBurger();
+
+            Assert.IsTrue(app.Projects.MessageTabIsOpened());
+        }
+
+        //GTP2-R-04-47
+        [Test]
+        public void QuotationCompletedStatusDeleteTest()
+        {
+            app.ProjectPage.OpenBurgerForQuotationCompletedStatusProject("Quotation completed");
+
+            Assert.IsTrue(app.Projects.WarningPopupWhenDeleteProjectIsPresent());
+        }
 
         //GTP2-R-04-58
         [Test]

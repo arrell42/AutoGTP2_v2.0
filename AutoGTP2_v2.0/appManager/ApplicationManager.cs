@@ -38,11 +38,12 @@ namespace AutoGTP2Tests
         // Начало теста - открыть браузер, перейти на нужную страницу, инициализация хелперов
         private ApplicationManager()
         {
-            ChromeOptions options = new ChromeOptions();            
-            
+            ChromeOptions options = new ChromeOptions();
+
+            options.Proxy = null;
             options.AddArguments("start-maximized");            
             options.AddUserProfilePreference("profile.default_content_setting_values.automatic_downloads", 1);
-            options.AddArguments("ignore-certificate-errors");
+            options.AddArguments("ignore-certificate-errors");            
 
             driver = new ChromeDriver(options);
                         

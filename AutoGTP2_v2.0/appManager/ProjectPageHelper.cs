@@ -51,10 +51,62 @@ namespace AutoGTP2Tests
             manager.Projects.EditButtonInBurgerClick();
             return this;
         }
+        public ProjectPageHelper OpenBurgerForQuotationCompletedStatusProject(string status)
+        {
+            manager.Navigator.GoToProjectPage();
+            manager.Projects.SortProjectsByStatus(status);
+            manager.Projects.ClickProjectBurger();
+            manager.Projects.ProjectDeleteButtonInBurgerClick();
+            return this;
+        }
 
+        public ProjectPageHelper OpenMessagesFromProjectBurger()
+        {
+            manager.Navigator.GoToProjectPage();            
+            manager.Projects.ClickProjectBurger();
+            manager.Projects.OpenMessagesButtonClick();
+            return this;
+        }
 
+        public ProjectPageHelper EditButtonInBurgerClick()
+        {
+            manager.Navigator.GoToProjectPage();
+            driver.Navigate().Refresh();
+            manager.Projects.ClickProjectBurger();
+            manager.Projects.EditButtonInBurgerClick();
+            return this;
+        }
+        public ProjectPageHelper SelectProjectCountOnPage(string i)
+        {
+            manager.Navigator.GoToProjectPage();
+            ShowOnPageClick();
+            SelectCountOnPage(i);
+            return this;
+        }
 
+        public bool ProjectCountOnPage(int i)
+        {
+            return driver.FindElements(By.XPath("//div[@class='ySclMvBg4360NoWcNOG5']")).Count == i;
+        }
 
+        public ProjectPageHelper ShowOnPageClick()
+        {
+            IWebElement showOnPage = 
+                driver.FindElement(By.XPath(
+                    "//div[@class= 'react-dropdown-select t9s7tcO8gRvMaCSP8RY6 css-12zlm52-ReactDropdownSelect e1gzf2xs0']"));
+            showOnPage.Click();
+            WaitUntilFindElement(10, By.XPath("//div[@class= 'react-dropdown-select-dropdown react-dropdown-select-dropdown-position-top css-1emopdu-DropDown e1qjn9k90']"));
+            return this;
+        }
+
+        public ProjectPageHelper SelectCountOnPage(string i)
+        {
+            driver.FindElement(By.XPath("//p[@title='"+i+"']")).Click();
+            driver.Navigate().Refresh();
+            manager.Projects.WaitUntilFindProjectList();
+            Thread.Sleep(2000);
+            return this;
+        }
 
 
 
