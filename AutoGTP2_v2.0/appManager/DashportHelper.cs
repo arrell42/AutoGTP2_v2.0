@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AutoGTP2Tests
 {
-    public class DashportHelper :BaseHelper
+    public class DashportHelper : BaseHelper
     {
         public DashportHelper(ApplicationManager manager) : base(manager)
         {

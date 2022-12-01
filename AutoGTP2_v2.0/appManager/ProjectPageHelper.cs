@@ -84,29 +84,16 @@ namespace AutoGTP2Tests
             return this;
         }
 
-        public bool ProjectCountOnPage(int i)
+        public ProjectPageHelper SelectStatusInFilter()
         {
-            return driver.FindElements(By.XPath("//div[@class='ySclMvBg4360NoWcNOG5']")).Count == i;
-        }
+            manager.Navigator.GoToProjectPage();
+            FiltersButtonClick();
 
-        public ProjectPageHelper ShowOnPageClick()
-        {
-            IWebElement showOnPage = 
-                driver.FindElement(By.XPath(
-                    "//div[@class= 'react-dropdown-select t9s7tcO8gRvMaCSP8RY6 css-12zlm52-ReactDropdownSelect e1gzf2xs0']"));
-            showOnPage.Click();
-            WaitUntilFindElement(10, By.XPath("//div[@class= 'react-dropdown-select-dropdown react-dropdown-select-dropdown-position-top css-1emopdu-DropDown e1qjn9k90']"));
             return this;
         }
 
-        public ProjectPageHelper SelectCountOnPage(string i)
-        {
-            driver.FindElement(By.XPath("//p[@title='"+i+"']")).Click();
-            driver.Navigate().Refresh();
-            manager.Projects.WaitUntilFindProjectList();
-            Thread.Sleep(2000);
-            return this;
-        }
+
+
 
 
 
@@ -118,7 +105,31 @@ namespace AutoGTP2Tests
 
 
         // Низкоуровневые методы
-        public ProjectPageHelper SelectProjectTypeInFilters(int i)
+
+        public bool ProjectCountOnPage(int i)
+        {
+            return driver.FindElements(By.XPath("//div[@class='ySclMvBg4360NoWcNOG5']")).Count == i;
+        }
+
+        public ProjectPageHelper ShowOnPageClick()
+        {
+            IWebElement showOnPage =
+                driver.FindElement(By.XPath(
+                    "//div[@class= 'react-dropdown-select t9s7tcO8gRvMaCSP8RY6 css-12zlm52-ReactDropdownSelect e1gzf2xs0']"));
+            showOnPage.Click();
+            WaitUntilFindElement(10, By.XPath("//div[@class= 'react-dropdown-select-dropdown react-dropdown-select-dropdown-position-top css-1emopdu-DropDown e1qjn9k90']"));
+            return this;
+        }
+
+        public ProjectPageHelper SelectCountOnPage(string i)
+        {
+            driver.FindElement(By.XPath("//p[@title='" + i + "']")).Click();
+            driver.Navigate().Refresh();
+            manager.Projects.WaitUntilFindProjectList();
+            Thread.Sleep(2000);
+            return this;
+        }
+        public ProjectPageHelper SelectProjectTypeInFilters(int i) // 1 - All, 2 - Regular, 3 - Express, 4 - Multiproject
         {
             IWebElement type = driver.FindElement(By.XPath("//label[@class= 'filter-check'][" + i + "]"));
             type.Click();

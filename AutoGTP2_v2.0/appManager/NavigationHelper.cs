@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
-
+using System;
+using System.Threading;
 
 namespace AutoGTP2Tests
 {
@@ -26,9 +27,21 @@ namespace AutoGTP2Tests
             }
             driver.FindElement(By.Id("MENU_BUDGETS")).Click();
             WaitUntilElementIsHide(5, By.XPath("//div[@class = 'uAVm9bKcbGvOpCLx2Whj']"));
+            if (NoBudgetsForDisplay())
+            {
+                BudgetData budgetData = new BudgetData("", "")
+                {
+                    BudgetPO = manager.TextGenerator(1, 5),
+                    BudgetCost = manager.TextGenerator(1, 3),
+                    BudgetTotal = "1000"
+                };
+                CreateNewBudget(budgetData);
+                driver.Navigate().Refresh();
+            }
             WaitUntilFindElement(10, By.XPath("//div[@class= 'vKOuKRPiTZr_i_RoPDcw']"));
             manager.Budgets.ColumnsTurnOnIfItTurnOff();
         }
+        
 
         public void GoToProjectPage()
         {
@@ -52,6 +65,27 @@ namespace AutoGTP2Tests
             }
             driver.FindElement(By.Id("MENU_DASHPORT")).Click();
             WaitUntilFindElement(10, By.Id("DASHPORT_GANTT_0_PROJECT_IN_LIST"));
+        }
+
+
+
+
+
+
+        private bool NoBudgetsForDisplay()
+        {
+            var noData = By.XPath("//div[@class= 'u8jP831aiskq6Oe6mMlo']");
+            return IsElementPresent(noData);
+        }
+        private void CreateNewBudget(BudgetData budgetData)
+        {
+            manager.Budgets.NewBudgetButtonClick();
+            manager.Budgets.EnterPOnumber(budgetData);
+            manager.Budgets.EnterBudgetCost(budgetData);
+            manager.Budgets.SelectUSDCurrency();
+            manager.Budgets.EnterTotal(budgetData);
+            manager.Budgets.BudgetCreateButtonClick();
+            Thread.Sleep(1000);
         }
     }
 }

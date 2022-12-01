@@ -111,8 +111,7 @@ namespace AutoGTP2Tests
             OpenNewExpressProject(projectData);
             FillTextAreaFromFile(filePath);
             manager.Services.RequestQuoteButtonClick();            
-            PlaceOrderButtonClick();
-            driver.Navigate().Refresh();
+            PlaceOrderButtonClick();            
             OpenThisProject(projectData);            
             manager.Services.OpenAndEditButtonClick();
             return this;
@@ -498,7 +497,7 @@ namespace AutoGTP2Tests
 
         public bool? SourceDataTabIsOpened()
         {
-            var selectedSourceDataTab = By.XPath("//li[@class = 'react-tabs__tab react-tabs__tab--selected']//span[@id= 'ProjectCardSourceMap']");
+            var selectedSourceDataTab = By.XPath("//li[@class = 'react-tabs__tab react-tabs__tab--selected']");
             return IsElementPresent(selectedSourceDataTab);
         }
 
@@ -633,6 +632,7 @@ namespace AutoGTP2Tests
             IWebElement openButton = driver.FindElement(By.Id("PROJECT_SUB_EDIT"));
             openButton.Click();
             WaitUntilProjectModalIsOpened();
+            Thread.Sleep(1000);
             return this;
         }
 
@@ -902,6 +902,22 @@ namespace AutoGTP2Tests
             WaitUntilFindElement(10, By.XPath("//div[contains(text(), '" + pd + "')]"));
             driver.FindElement(By.XPath("//div[contains(text(), '"+ pd + "')]")).Click();            
             WaitUntilFindElement(10, By.Id("ProjectCardReferenceMaterials"));
+            if (IsElementPresent(By.XPath("//span[@class = 'oSlLzqSfaLdSFEWpZxdw']")))
+            {
+                WaitUntilElementIsHide(10, By.XPath("//span[@class = 'oSlLzqSfaLdSFEWpZxdw']"));                
+            }
+            Thread.Sleep(3000);
+            if (IsElementPresent(By.Id("PROJECTS_EXPRESS_TEXT")))
+            {
+                CloseProjectCardAndOpenAgain(projectData);
+            }
+            return this;
+        }
+
+        public ProjectHelper CloseProjectCardAndOpenAgain(ProjectData projectData)
+        {
+            CancelButtonInProjectCardClick();
+            OpenThisProject(projectData);
             return this;
         }
 
@@ -1262,6 +1278,7 @@ namespace AutoGTP2Tests
         public ProjectHelper SortProjectsByStatus(string t)
         {
             FiltersButtonClick();
+            manager.ProjectPage.SelectProjectTypeInFilters(2);
             SelectProjectStatusInFilter(t);
             FilterApplyButtonClick();
             Thread.Sleep(2000);            

@@ -29,6 +29,14 @@ namespace AutoGTP2Tests
             Assert.AreEqual(oldProjects, newProjects);
         }
 
+        //GTP2-R-04-14
+        //[Test]
+        public void FilterExpressProjectTest()
+        {
+            app.ProjectPage.SelectStatusInFilter();            
+
+            
+        }
 
 
 
