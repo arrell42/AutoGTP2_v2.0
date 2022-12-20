@@ -14,7 +14,7 @@ namespace AutoGTP2Tests
             {
                 ProjectData projectData = new ProjectData()
                 {
-                    ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest",
+                    ProjectName = "RemoveProjectConfirm " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest",
                     Status = "Pending",
                     BudgetCost = "Unknown"
                 };
@@ -45,7 +45,7 @@ namespace AutoGTP2Tests
             {
                 ProjectData projectData = new ProjectData()
                 {
-                    ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest",
+                    ProjectName = "RemoveProjectDecline " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest",
                     Status = "Pending",
                     BudgetCost = "Unknown"
                 };

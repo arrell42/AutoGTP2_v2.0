@@ -830,12 +830,30 @@ namespace AutoGTP2Tests
             if (ServiceLanguagePairsTableIsHidden())
             {
                 OpenServiceLanguagePairsTable();
-            }            
-            string a = driver.FindElement(By.XPath("//div[@class = 'row']/div/p[@class = 'GxpMAeiU_LKN4yZsTEhL']")).Text;
-            string b = driver.FindElement(By.XPath("//div[@class = 'row']/div/p[@class = 'zEEPIQ2axxHqUkIhoCtb']")).Text;
+            }
 
-            double i = Convert.ToDouble(a.Replace(".", ",").Trim()) * Convert.ToDouble(b.Replace(".", ",").Trim());
-            return (int)i;
+            string quantityColumnText = driver.FindElement(By.XPath("//div[@class = 'row']/div/p[@class = 'GxpMAeiU_LKN4yZsTEhL']")).Text;
+            string priceColumnText = driver.FindElement(By.XPath("//div[@class = 'row']/div/p[@class = 'zEEPIQ2axxHqUkIhoCtb']")).Text;
+
+            double quantity = Convert.ToDouble(quantityColumnText.Replace(".", ",").Trim());
+            double price = Convert.ToDouble(priceColumnText.Replace(".", ",").Trim());
+
+            if (DiscountColumnPresent())
+            {                
+                string discountColumnText = driver.FindElement(By.XPath("//div[@class = 'row']/div/p[@class = 'MBLyNFMI1V92WMkzs9Aw']")).Text;
+                double discount = Convert.ToDouble(discountColumnText.Replace(".", ",").Trim()) * (-1);
+
+                double costWithDiscount = (quantity * price) - (quantity * price * discount / 100);
+                return (int)costWithDiscount;
+            }
+
+            double cost = quantity * price;
+            return (int)cost;
+        }
+
+        public bool DiscountColumnPresent()
+        {
+            return IsElementPresent(By.XPath("//p[@class= 'MBLyNFMI1V92WMkzs9Aw' and contains(text(), 'Discount')]"));
         }
 
         public bool ServiceLanguagePairsTableIsHidden()

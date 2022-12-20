@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
@@ -11,6 +12,19 @@ namespace AutoGTP2Tests
         public BudgetHelper(ApplicationManager manager) : base(manager)
         {
         }
+
+        //LOCATORS
+        public readonly By firstBudgetRemainingColumnTitle = By.XPath("//div[@id= 'BUDGETS_0']//div[contains(text(), 'Amount remaining')]");
+        public readonly By firstBudgetPOTitle = By.XPath("//div[@id= 'BUDGETS_0']//div[contains(text(), 'PO number')]");
+        public readonly By firstBudgetNameTitle = By.XPath("//div[@id= 'BUDGETS_0']//div[contains(text(), 'Cost account/Budget name')]");
+        public readonly By allBudgetColumnsTitles = By.XPath("//div[@id='BUDGETS_0']//div[@class='HmZHR9aWxu9QsxsKBvP_' or p[contains(text(), 'Projects') ]]");
+        public readonly By budgetList = By.XPath("//div[@class= 'vKOuKRPiTZr_i_RoPDcw']");
+        public readonly By budgetCard = By.XPath("//div[contains(@id, 'BUDGETS') and not(contains(@id, 'BURGER'))]");
+        public readonly By columnsSettingsPopup = By.Id("settings-columns");
+        public readonly By disabledCheckboxInColumsSettingsPopup = By.XPath("//div[@class= 'UVPAJnHrDOYjcYvCJvHC zQlqaPTsRxDizaEB2uBM jfNvdXFx_TRHu6VpHYEB _fGfxt_KTPxUyHmi7HXe']");
+        
+
+
         //Высокоуровневые методы
 
         public BudgetHelper NewBudgetModalOpen()
@@ -144,15 +158,7 @@ namespace AutoGTP2Tests
             Thread.Sleep(500);
             return this;
         }
-
-        
-
-
-
-
-
-
-
+                
 
 
         // Создаем список бюджетов
@@ -163,8 +169,7 @@ namespace AutoGTP2Tests
             driver.Navigate().Refresh();
             WaitUntilFindBudgetList();
 
-            ICollection<IWebElement> elements = driver.FindElements
-                (By.XPath("//div[contains(@id, 'BUDGETS') and not(contains(@id, 'BURGER'))]"));            
+            ICollection<IWebElement> elements = driver.FindElements(budgetCard);            
             foreach(var element in elements)
             {                
                 for (int i = 0; i < elements.Count; i++)
@@ -197,187 +202,29 @@ namespace AutoGTP2Tests
             return new List<BudgetData>(budgets);
         }
 
-        
-
-
-
-
-
-
-
-
-
         // Создаем список колонок бюджетов
+        public List<string> AllBudgetColumns() => driver.FindElements(allBudgetColumnsTitles).Select(x => x.Text).ToList();
 
-
-        public List<BudgetColumnsData> GetBudgetColumnsList()
-        {
-            List<BudgetColumnsData> columns = new List<BudgetColumnsData>();
-            manager.Navigator.GoToBudgetPage();
-            ICollection<IWebElement> elements = driver.FindElements(By.XPath(
-               "//div[@id='BUDGETS_0']//div[@class='HmZHR9aWxu9QsxsKBvP_' or p[contains(text(), 'Projects') ]]"));
-
-            foreach (IWebElement element in elements)
-            {
-                string name = driver.FindElement(By.XPath("//div[contains(@id, 'BUDGETS_0')]//div[@class= 'HmZHR9aWxu9QsxsKBvP_' and contains(text(), 'Cost')]")).Text;
-                string remaining = driver.FindElement(By.XPath("//div[contains(@id, 'BUDGETS_0')]//div[@class= 'HmZHR9aWxu9QsxsKBvP_' and contains(text(), 'remaining')]")).Text;
-                string po = driver.FindElement(By.XPath("//div[contains(@id, 'BUDGETS_0')]//div[@class= 'HmZHR9aWxu9QsxsKBvP_' and contains(text(), 'PO')]")).Text;
-                string projects = driver.FindElement(By.XPath("//div[contains(@id, 'BUDGETS_0')]//p[contains(text(), 'Projects')]")).Text;
-                string total = driver.FindElement(By.XPath("//div[contains(@id, 'BUDGETS_0')]//div[@class= 'HmZHR9aWxu9QsxsKBvP_' and contains(text(), 'total')]")).Text;
-                string date = driver.FindElement(By.XPath("//div[contains(@id, 'BUDGETS_0')]//div[@class= 'HmZHR9aWxu9QsxsKBvP_' and contains(text(), 'Date')]")).Text;
-
-                columns.Add(new BudgetColumnsData()
-                {
-                    ColumnName = name,
-                    ColumnRemaining = remaining,
-                    ColumnPO = po,
-                    ColumnProjects = projects,
-                    ColumnTotal = total,
-                    ColumnDate = date
-                });
-            }
-            
-            return columns;
-        }
-
-
-        /*
-        public List<BudgetColumnsData> GetBudgetColumnsList()
-        {          
-            List<BudgetColumnsData> columns = new List<BudgetColumnsData>();
-            
-            
-            //ICollection<IWebElement> columns = driver.FindElements(By.XPath(
-            //    "//div[contains(@id, 'BUDGETS') and not(contains(@id, 'BURGER'))][1]//div[@class= 'eQ5lQ_D0FC26twfwcmhy' or @class= 'wF4f8z1gZkBosC4Dy4j7']"));
-
-            if (IsElementPresent(By.XPath(
-                "//div[@class= 'HmZHR9aWxu9QsxsKBvP_' and contains(text(), 'Cost account/Budget name')]")))
-            {
-                string name = driver.FindElement(By.XPath(
-                "//div[@class= 'HmZHR9aWxu9QsxsKBvP_' and contains(text(), 'Cost account/Budget name')]")).Text;
-                columns.Add(new BudgetColumnsData()
-                {
-                    ColumnName = name                    
-                });
-            }
-
-            if (IsElementPresent(By.XPath(
-                "//div[@class= 'HmZHR9aWxu9QsxsKBvP_' and contains(text(), 'Amount remaining')]")))
-            {
-                string remaining = driver.FindElement(By.XPath(
-                "//div[@class= 'HmZHR9aWxu9QsxsKBvP_' and contains(text(), 'Amount remaining')]")).Text;
-                columns.Add(new BudgetColumnsData()
-                {
-                    ColumnRemaining = remaining
-                });
-            }
-
-            if (IsElementPresent(By.XPath(
-                "//div[@class= 'HmZHR9aWxu9QsxsKBvP_' and contains(text(), 'PO number')]")))
-            {
-                string po = driver.FindElement(By.XPath(
-                "//div[@class= 'HmZHR9aWxu9QsxsKBvP_' and contains(text(), 'PO number')]")).Text;
-                columns.Add(new BudgetColumnsData()
-                {
-                    ColumnPO = po
-                });
-            }
-
-            if (IsElementPresent(By.XPath(
-                "//p[@class= 'JS5QDNbVwPTSQkGOFVx8' and contains(text(), 'Projects')]")))
-            {
-                string projects = driver.FindElement(By.XPath(
-                "//p[@class= 'JS5QDNbVwPTSQkGOFVx8' and contains(text(), 'Projects')]")).Text;
-                columns.Add(new BudgetColumnsData()
-                {
-                    ColumnProjects = projects
-                });
-            }
-
-            if (IsElementPresent(By.XPath(
-                "//div[@class= 'HmZHR9aWxu9QsxsKBvP_' and contains(text(), 'Amount total')]")))
-            {
-                string total = driver.FindElement(By.XPath(
-                "//div[@class= 'HmZHR9aWxu9QsxsKBvP_' and contains(text(), 'Amount total')]")).Text;
-                columns.Add(new BudgetColumnsData()
-                {
-                    ColumnTotal = total
-                });
-            }
-
-            if (IsElementPresent(By.XPath(
-                "//div[@class= 'HmZHR9aWxu9QsxsKBvP_' and contains(text(), 'Date of creation')]")))
-            {
-                string date = driver.FindElement(By.XPath(
-                "//div[@class= 'HmZHR9aWxu9QsxsKBvP_' and contains(text(), 'Date of creation')]")).Text;
-                columns.Add(new BudgetColumnsData()
-                {
-                    ColumnDate = date
-                });
-            }
-
-            return columns;
-        }
-        */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        
 
 
 
 
         // Низкоуровневые методы
 
-
         public BudgetHelper WaitUntilFindBudgetList()
         {
-            WaitUntilFindElement(10, By.XPath("//div[@class= 'vKOuKRPiTZr_i_RoPDcw']"));
+            WaitUntilFindElement(10, budgetList);
             return this;
         }
 
         public int CheckBoxIsDisabled()
         {
-            if (!IsElementPresent(By.Id("settings-columns")))
+            if (ColumnsListIsOpen() == false)
             {
                 BudgetColumnsButtonClick();
             }
-            return driver.FindElements(By.XPath(
-                "//div[@class= 'UVPAJnHrDOYjcYvCJvHC zQlqaPTsRxDizaEB2uBM jfNvdXFx_TRHu6VpHYEB _fGfxt_KTPxUyHmi7HXe']")).Count;
+            return driver.FindElements(disabledCheckboxInColumsSettingsPopup).Count;
         }
 
         public BudgetHelper ColumnsSwitchOff(BudgetColumnsData budgetColumnsData)
@@ -408,7 +255,7 @@ namespace AutoGTP2Tests
 
         public bool ColumnsListIsOpen()
         {
-            return IsElementPresent(By.Id("settings-columns"));
+            return IsElementPresent(columnsSettingsPopup);
         }
 
         public bool ColumnsListHaveColumnsName()
@@ -523,7 +370,6 @@ namespace AutoGTP2Tests
             return this;
         }
 
-
         public bool SearchingIsCorrect()
         {
             bool result = false;
@@ -540,6 +386,7 @@ namespace AutoGTP2Tests
             }
             return result;
         }
+
         public BudgetHelper DeleteTextButtonInSearchBarClick()
         {
             IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
@@ -672,6 +519,7 @@ namespace AutoGTP2Tests
             }
             return this;
         }
+
         public BudgetHelper EnterBudgetCost(BudgetData budgetData)
         {
             driver.FindElement(By.Id("NEW_BUDGET_COST")).Click();
@@ -679,6 +527,7 @@ namespace AutoGTP2Tests
             driver.FindElement(By.Id("NEW_BUDGET_COST")).SendKeys(budgetData.BudgetCost);
             return this;
         }
+
         public BudgetHelper EnterPOnumber(BudgetData budgetData)
         {
             driver.FindElement(By.Id("NEW_BUDGET_PO")).Click();
@@ -692,22 +541,26 @@ namespace AutoGTP2Tests
             driver.FindElement(By.Id("BUDGETS_CREATE_NEW_BUDGET")).Click();
             return this;
         }
+
         public BudgetHelper BudgetBurgerClick()
         {
             WaitUntilFindElement(10, By.Id("BUDGETS_BURGER_0"));
             driver.FindElement(By.Id("BUDGETS_BURGER_0")).Click();
             return this;
         }
+
         public BudgetHelper BudgetDeleteButtonClick()
         {
             driver.FindElement(By.Id("BUDGETS_0_BURGER_MENU_DELETE")).Click();
             return this;
         }
+
         public BudgetHelper BudgetDeleteConfirm()
         {
             driver.FindElement(By.Id("BUDGETS_0_BURGER_MENU_DELETE_DELETE")).Click();
             return this;
         }
+
         public BudgetHelper BudgetDeleteDecline()
         {
             driver.FindElement(By.Id("BUDGETS_0_BURGER_MENU_DELETE_DECLINE")).Click();

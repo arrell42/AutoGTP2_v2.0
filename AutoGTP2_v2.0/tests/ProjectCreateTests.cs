@@ -14,7 +14,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest",
+                ProjectName = "CreatePendingProject " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest",
                 Status = "Pending",
                 BudgetCost = "Unknown"
             };
@@ -41,7 +41,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Express " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest",
+                ProjectName = "R-03-01 " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest",
                 Status = "Pending",
                 BudgetCost = "Unknown"
             };
@@ -86,7 +86,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
+                ProjectName = "R-02-2 " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
             };
 
             app.Projects.ProjectCancel(projectData);
@@ -101,7 +101,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest",
+                ProjectName = "R-02-7 " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest",
                 Status = "Ordered",
                 BudgetCost = "Unknown"
             };
@@ -127,7 +127,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest",
+                ProjectName = "R-02-10 " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest",
                 Status = "Pending",
                 BudgetCost = "Unknown"
             };
@@ -153,7 +153,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
+                ProjectName = "R-02-11 " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
             };
             
             app.Projects.OpenBudgetFormInProject(projectData);
@@ -169,7 +169,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest",
+                ProjectName = "R-02-12 " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest",
                 BudgetCost = app.TextGenerator(1, 5),
                 BudgetPO = "Test budget",
                 BudgetTotal = "100"
@@ -188,7 +188,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest",
+                ProjectName = "R-02-13 " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest",
                 BudgetCost = "Test budget",
                 BudgetPO = app.TextGenerator(1, 5),
                 BudgetTotal = "100"
@@ -207,7 +207,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest",
+                ProjectName = "R-02-14 " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest",
                 Status = "Pending",
                 BudgetCost = app.TextGenerator(1, 3),
                 BudgetPO = app.TextGenerator(1, 5),
@@ -237,7 +237,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"                                
+                ProjectName = "R-02-16 " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"                                
             };
 
             app.Projects.OpenRefTabInProject(projectData);
@@ -252,7 +252,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
+                ProjectName = "R-02-17 " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
             };
 
             app.Projects.RefTabInProjectFileAttach(projectData);
@@ -267,7 +267,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
+                ProjectName = "RefTabInProjectMultipleFileAttach " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
             };
 
             app.Projects.RefTabInProjectMultipleFileAttach(projectData);
@@ -282,7 +282,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
+                ProjectName = "R-02-21 " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
             };
 
             app.Projects.OpenMessageTabAndSend(projectData, "test text");
@@ -297,7 +297,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"                
+                ProjectName = "R-02-22 " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"                
             };            
 
             app.Projects.DownloadAllRefFiles(projectData);
@@ -313,7 +313,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
+                ProjectName = "R-02-23 " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
                 
             };
 
@@ -328,7 +328,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest",
+                ProjectName = "R-02-24 " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest",
                 FileName = "RefTest"
             };
             
@@ -343,7 +343,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest",                
+                ProjectName = "R-02-25 " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest",                
             };
 
             app.Projects.DeleteRefFile(projectData);
@@ -357,7 +357,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest",
+                ProjectName = "R-02-26 " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest",
             };
 
             app.Projects.DeclineCancellationProject(projectData);
@@ -372,7 +372,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest",
+                ProjectName = "R-02-27 " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest",
             };
 
             app.Projects.ConfirmCancellationProject(projectData);

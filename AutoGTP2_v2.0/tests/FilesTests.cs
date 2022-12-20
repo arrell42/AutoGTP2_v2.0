@@ -12,7 +12,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
+                ProjectName = "DownloadSourceFileFromEditPage " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
             };
             ServiceData filename = new ServiceData("")
             {
@@ -31,7 +31,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
+                ProjectName = "DownloadSourceFileFromServiceList " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
             };
             ServiceData filename = new ServiceData("")
             {
@@ -50,7 +50,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
+                ProjectName = "DownloadCATLogFile " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
             };
             ServiceData filename = new ServiceData("")
             {
@@ -67,7 +67,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
+                ProjectName = "SourceFileRemove " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
             };
 
             app.Services.SourceFileRemove(projectData);
@@ -82,7 +82,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
+                ProjectName = "R-05-18 " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
             };
 
             app.Services.UploadInvalidSourceFile(projectData);

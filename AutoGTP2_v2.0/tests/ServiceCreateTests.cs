@@ -14,7 +14,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
+                ProjectName = "R-05-19 " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
             };
             ServiceData serviceData = new ServiceData("100");
 
@@ -30,7 +30,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
+                ProjectName = "ServiceManualCorrectQuantity " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
             };
             ServiceData serviceData = new ServiceData("100");
 
@@ -49,7 +49,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
+                ProjectName = "R-05-02 " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
             };
             ServiceData serviceData = new ServiceData("word");
 
@@ -66,7 +66,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
+                ProjectName = "R-05-04 " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
             };
             ServiceData serviceData = new ServiceData("00078");
 
@@ -82,7 +82,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
+                ProjectName = "R-05-33 " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
             };
             ServiceData serviceData = new ServiceData("-190");
 
@@ -98,7 +98,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"                
+                ProjectName = "R-05-05 " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"                
             };
 
             app.Services.ServiceCreateAutoCount(projectData);
@@ -113,7 +113,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
+                ProjectName = "R-05-34 " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
             };
 
             app.Services.ServiceAutoCountRequestQuote(projectData);
@@ -135,7 +135,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
+                ProjectName = "R-05-08 " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
             };
 
             app.Services.ServiceCreateCATLog(projectData);
@@ -153,7 +153,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
+                ProjectName = "R-05-13 " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
             };
 
             app.Services.ServiceCATLogWithOutCATFile(projectData);
@@ -168,7 +168,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
+                ProjectName = "R-05-15 " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
             };
             app.Services.ServiceCATLogWithOutCATFileContinueButton(projectData);
 
@@ -182,7 +182,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
+                ProjectName = "R-05-14 " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
             };
 
             app.Services.ServiceCATLogWithOutCATFileCancelButton(projectData);
@@ -197,7 +197,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
+                ProjectName = "R-05-03 " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
             };
             ServiceData serviceData = new ServiceData(@"!@#$%^&*(){}][-_+=|\/");
 
@@ -213,7 +213,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
+                ProjectName = "R-05-09 " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
             };
 
             app.Services.OpenStatisticInCATService(projectData);
@@ -229,7 +229,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
+                ProjectName = "R-05-12 " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
             };
 
             app.Services.AddAndDeleteCATFile(projectData);
@@ -243,7 +243,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
+                ProjectName = "R-05-13 " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
             };
 
             app.Services.CATFileDeleteAndSaveService(projectData);
@@ -258,7 +258,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
+                ProjectName = "R-05-10 " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
             };
 
             app.Services.NewServiceWithCATCreate(projectData);
@@ -272,7 +272,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
+                ProjectName = "R-05-16 " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
             };
 
             app.Services.ServiceWithoutLanguagePairCreate(projectData);
@@ -288,7 +288,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
+                ProjectName = "R-05-20 " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
             };
 
             app.Services.ChangeDefaultTypeOfSerice(projectData);
@@ -303,7 +303,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
+                ProjectName = "R-05-21 " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
             };
 
             app.Services.ChangeDefaultTypeOfSericeAndSelectUnit(projectData);
@@ -318,7 +318,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
+                ProjectName = "R-05-23 " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
             };
 
             app.Services.SecondSelectSubjectAreaInService(projectData);
@@ -332,7 +332,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
+                ProjectName = "R-05-25 " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
             };
 
             app.Services.CreateServiceWithTwoLanguagePairs(projectData);
@@ -350,7 +350,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
+                ProjectName = "R-05-26 " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
             };
 
             app.Services.CreateServiceWithAllPairsCheckBoxClick(projectData);
@@ -365,7 +365,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
+                ProjectName = "R-05-27 " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
             };
 
             app.Services.AddDescriptionInLanguagePairsTable(projectData);
@@ -379,7 +379,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
+                ProjectName = "R-05-28 " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
             };
             ServiceData filename = new ServiceData("")
             {
@@ -397,7 +397,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
+                ProjectName = "R-05-29 " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
             };            
 
             app.Services.DeleteFileFromLanguagePairsTable(projectData);
@@ -411,7 +411,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
+                ProjectName = "R-05-31 " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
             };
 
             app.Services.CreateServiceWithTwoLanguagePairsAndCATFile(projectData);
@@ -427,7 +427,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
+                ProjectName = "R-05-35 " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest"
             };
 
             app.Services.AssignAllLanguagePairsButtonInServiceClick(projectData);
@@ -443,7 +443,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Project " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest",
+                ProjectName = "BigProjectE2E " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest",
                 Status = "Manual evaluation",
                 BudgetCost = app.TextGenerator(1, 3),
                 BudgetPO = app.TextGenerator(1, 5),

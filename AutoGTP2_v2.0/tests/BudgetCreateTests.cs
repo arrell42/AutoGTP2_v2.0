@@ -175,23 +175,20 @@ namespace AutoGTP2Tests
         }
 
         // GTP2-R-06-19
-        //[Test]
+        [Test]
         public void BudgetColumnsTurnOffTest()
         {
             BudgetColumnsData budgetColumnsData = new BudgetColumnsData()
             {                
                 ColumnRemaining = "Amount remaining",
                 ColumnPO = "PO number"                
-            };
-
-            List<BudgetColumnsData> columns = app.Budgets.GetBudgetColumnsList();
+            };            
 
             app.Budgets.BudgetColumnsTurnOff(budgetColumnsData);
 
-            List<BudgetColumnsData> columns1 = app.Budgets.GetBudgetColumnsList();
-            columns1.Add(budgetColumnsData);
-
-            Assert.AreEqual(columns, columns1);
+            Assert.That(app.Budgets.AllBudgetColumns(), Has.No.Member(budgetColumnsData.ColumnPO));
+            Assert.That(app.Budgets.AllBudgetColumns(), Has.No.Member(budgetColumnsData.ColumnRemaining));
+            Assert.That(app.Budgets.AllBudgetColumns(), Has.Member("Cost account/Budget name"));
         }
 
         // GTP2-R-06-20

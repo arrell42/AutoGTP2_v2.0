@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace AutoGTP2Tests
 {
@@ -42,8 +43,9 @@ namespace AutoGTP2Tests
         //возвращаем строковое представление объектов типа BudgetColumnsData
         public override string ToString()
         {
-            return "colName= " + ColumnName;
+            return ColumnName + ColumnRemaining + ColumnPO + ColumnProjects  + ColumnTotal  + ColumnDate;
         }
+        
 
         public string ColumnName { get; set; }
         public string ColumnRemaining { get; set; }
@@ -51,7 +53,5 @@ namespace AutoGTP2Tests
         public string ColumnProjects { get; set; }
         public string ColumnTotal { get; set; }
         public string ColumnDate { get; set; }
-
-
     }
 }

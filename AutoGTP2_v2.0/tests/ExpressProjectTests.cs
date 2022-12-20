@@ -12,7 +12,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Express " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
+                ProjectName = "R-03-01 " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
             };
 
             app.Projects.ExpressProjectToggleOn(projectData);
@@ -26,7 +26,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Express " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
+                ProjectName = "R-03-02 " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
             };
 
             app.Projects.ExpressProjectToggleOnAndOff(projectData);
@@ -40,7 +40,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Express " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
+                ProjectName = "R-03-03 " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
             };
 
             app.Projects.ExpressProjectExclamationPopup(projectData);
@@ -55,7 +55,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Express " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
+                ProjectName = "R-03-05 " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
             };
 
             app.Projects.ExpressProjectTextAttachAndPlaceOrder(projectData, app.expressFile7999);
@@ -70,7 +70,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Express " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
+                ProjectName = "R-03-06 " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
             };
 
             app.Projects.ExpressProjectRequestQuote(projectData);
@@ -85,7 +85,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Express " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
+                ProjectName = "R-03-07 " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
             };
 
             app.Projects.ExpressProjectFileAndTextAttach(projectData, app.sourceFile);
@@ -100,7 +100,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Express " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
+                ProjectName = "R-03-08 " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
             };
 
             app.Projects.ExpressProject8001WordsAttachAndRequestQuote(projectData, app.expressFile8001);
@@ -115,7 +115,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Express " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
+                ProjectName = "R-03-09 " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
             };
 
             app.Projects.ExpressProject8001WordsAttachAndRequestQuoteThenPlaceOrder(projectData, app.expressFile8001);
@@ -130,7 +130,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Express " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
+                ProjectName = "R-03-10 " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
             };
 
             app.Projects.ExpressProjectTextAndFileAttachAndRequestQuote(projectData, app.expressFile8000);
@@ -144,7 +144,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Express " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
+                ProjectName = "R-03-11 " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
             };
 
             app.Projects.ExpressProjectFileAttachAndPlaceOrder(projectData);
@@ -159,7 +159,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Express " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
+                ProjectName = "R-03-12 " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
             };
 
             app.Projects.ExpressProjectFileAttachThanFillTextarea(projectData, app.sourceFile);
@@ -174,7 +174,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Express " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
+                ProjectName = "R-03-13 " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
             };
 
             app.Projects.ExpressProjectLimitPopupCancelButton(projectData, app.expressFile8001);
@@ -189,7 +189,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Express " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
+                ProjectName = "03-14 " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
             };
 
             app.Projects.ExpressProjectLimitPopupSwitchButton(projectData, app.expressFile8001);
@@ -204,7 +204,7 @@ namespace AutoGTP2Tests
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "Express " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
+                ProjectName = "R-03-15 " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest"
             };
 
             app.Projects.ExpressProject8001WordsAttachAndPlaceOrder(projectData, app.expressFile8001);            

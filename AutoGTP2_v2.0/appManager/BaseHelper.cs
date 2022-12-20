@@ -12,6 +12,7 @@ namespace AutoGTP2Tests
     {
         protected IWebDriver driver;
         protected ApplicationManager manager;
+
         public BaseHelper(ApplicationManager manager)
         {
             this.manager = manager;
