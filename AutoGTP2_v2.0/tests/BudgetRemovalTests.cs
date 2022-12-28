@@ -11,20 +11,16 @@ namespace AutoGTP2Tests
         
         public void BudgetRemovalCancelTest()
         {
-            if (app.Budgets.BudgetDeleteButtonIsDisabled())
+            BudgetData budget = new BudgetData("", "")
             {
-                BudgetData budget = new BudgetData("", "")
-                {
-                    BudgetPO = app.TextGenerator(1, 5),
-                    BudgetCost = app.TextGenerator(1, 3),
-                    BudgetTotal = "1000"
-                };
-                app.Budgets.CreateNewBudget(budget);                                
-            }
+                BudgetPO = app.TextGenerator(1, 5),
+                BudgetCost = app.TextGenerator(1, 3),
+                BudgetTotal = "1000"
+            };            
 
             List<BudgetData> oldBudgets = app.Budgets.GetBudgetList();
 
-            app.Budgets.BudgetRemovalCancel();
+            app.Budgets.BudgetRemovalCancel(budget);
 
             List<BudgetData> newBudgets = app.Budgets.GetBudgetList();
 
@@ -36,21 +32,17 @@ namespace AutoGTP2Tests
 
         [Test]
         public void BudgetRemovalTest()
-        { 
-            if (app.Budgets.BudgetDeleteButtonIsDisabled())
+        {
+            BudgetData budget = new BudgetData("", "")
             {
-                BudgetData budget = new BudgetData("", "")
-                {
-                    BudgetPO = app.TextGenerator(1, 5),
-                    BudgetCost = app.TextGenerator(1, 3),
-                    BudgetTotal = "1000"
-                };  
-                app.Budgets.CreateNewBudget(budget);                
-            }
-
+                BudgetPO = app.TextGenerator(1, 5),
+                BudgetCost = app.TextGenerator(1, 3),
+                BudgetTotal = "1000"
+            };
+            
             List<BudgetData> oldBudgets = app.Budgets.GetBudgetList();
 
-            app.Budgets.BudgetRemoval();
+            app.Budgets.BudgetRemoval(budget);
 
             List<BudgetData> newBudgets = app.Budgets.GetBudgetList();
 

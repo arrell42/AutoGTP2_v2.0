@@ -113,18 +113,11 @@ namespace AutoGTP2Tests
         [Test]
         public void OpenBudgetWithProjectsTest()
         {
-            BudgetData budgetData = new BudgetData("", "")
-            {
-                BudgetPO = app.TextGenerator(1, 5),
-                BudgetCost = app.TextGenerator(1, 3),
-                BudgetTotal = "1000"
-            };
-
-            app.Budgets.OpenBudgetWithProjects(budgetData);
+            app.Budgets.OpenBudgetWithProjects();
 
             Assert.IsTrue(app.Budgets.NewBudgetModalIsOpen());
             Assert.IsFalse(app.Budgets.BudgetUpdateButtonIsPresent());
-            Assert.IsTrue(app.Budgets.QuestionMarkPopupIsPresentAndHaveCorrectText());
+            Assert.IsTrue(app.Budgets.BudgetModalReadOnlyIconPopupText());
         }
 
         // GTP2-R-06-14
@@ -167,11 +160,11 @@ namespace AutoGTP2Tests
         [Test]
         public void BudgetColumnsButtonTest()
         {
-            app.Budgets.OpenColumnsList();
+            app.Budgets.OpenColumnsButtonPopup();
 
-            Assert.IsTrue(app.Budgets.ColumnsListIsOpen());
-            Assert.IsTrue(app.Budgets.ColumnsListHaveColumnsName());
-            Assert.IsTrue(app.Budgets.ColumnsIsTurnOn(6));            
+            Assert.IsTrue(app.Budgets.ColumnsPopupIsOpen());
+            Assert.IsTrue(app.Budgets.ColumnsPopupHaveColumnsName());
+            Assert.IsTrue(app.Budgets.AllColumnsIsTurnOn(6));            
         }
 
         // GTP2-R-06-19

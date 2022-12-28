@@ -22,8 +22,37 @@ namespace AutoGTP2Tests
         public readonly By budgetCard = By.XPath("//div[contains(@id, 'BUDGETS') and not(contains(@id, 'BURGER'))]");
         public readonly By columnsSettingsPopup = By.Id("settings-columns");
         public readonly By disabledCheckboxInColumsSettingsPopup = By.XPath("//div[@class= 'UVPAJnHrDOYjcYvCJvHC zQlqaPTsRxDizaEB2uBM jfNvdXFx_TRHu6VpHYEB _fGfxt_KTPxUyHmi7HXe']");
+        public readonly By columnsPopupNameTitle = By.XPath("//div[@class= 'UVPAJnHrDOYjcYvCJvHC zQlqaPTsRxDizaEB2uBM jfNvdXFx_TRHu6VpHYEB' and contains(., 'Budget name')]");
+        public readonly By columnsPopupRemainingTitle = By.XPath("//div[@class= 'UVPAJnHrDOYjcYvCJvHC zQlqaPTsRxDizaEB2uBM jfNvdXFx_TRHu6VpHYEB' and contains(., 'Amount remaining')]");
+        public readonly By columnsPopupPOTitle = By.XPath("//div[@class= 'UVPAJnHrDOYjcYvCJvHC zQlqaPTsRxDizaEB2uBM jfNvdXFx_TRHu6VpHYEB' and contains(., 'PO')]");
+        public readonly By columnsPopupProjectsTitle = By.XPath("//div[@class= 'UVPAJnHrDOYjcYvCJvHC zQlqaPTsRxDizaEB2uBM jfNvdXFx_TRHu6VpHYEB' and contains(., 'Projects')]");
+        public readonly By columnsPopupTotalTitle = By.XPath("//div[@class= 'UVPAJnHrDOYjcYvCJvHC zQlqaPTsRxDizaEB2uBM jfNvdXFx_TRHu6VpHYEB' and contains(., 'Total amount')]");
+        public readonly By columnsPopupCreatedTitle = By.XPath("//div[@class= 'UVPAJnHrDOYjcYvCJvHC zQlqaPTsRxDizaEB2uBM jfNvdXFx_TRHu6VpHYEB' and contains(., 'Created at')]");
+        public readonly By enabledColumnInColumnsPopup = By.XPath("//div[@class= 'UVPAJnHrDOYjcYvCJvHC zQlqaPTsRxDizaEB2uBM jfNvdXFx_TRHu6VpHYEB']");
+        public readonly By columnsButton = By.Id("PROJECTS_COLUMNS_BUTTON");
+        public readonly By newBudgetButton = By.Id("BUDGETS_CREATE_NEW_BUDGET");
+        public readonly By disabledColumnInColumnsPopup = By.XPath("//div[@class= 'r6y6jrWnmWzm1eEt9OwN']");
+        public readonly By searchField = By.Id("BUDGETS_SEARCH_FIELD");
+        public readonly By noBudgetsToDisplayText = By.XPath("//div[@class= 'u8jP831aiskq6Oe6mMlo' and contains(., 'No data')]");
+        public readonly By budgetNameColumnValue = By.XPath("//div[@class= 'kyuJpfa35LDUXSJH2FJS']");
+        public readonly By budgetModalReadOnlyIcon = By.XPath("//div[@class= 'newBudget-modal-read']//span");
+        public readonly By budgetModalReadOnlyIconPopup = By.XPath("//p[@class= 'tooltip-content']");
+        public readonly By budgetBurgerWithProjects = By.XPath("//div[@class= 'wF4f8z1gZkBosC4Dy4j7' and not(contains(., 'None'))]//following-sibling::div[contains(@id, 'BUDGETS_BURGER')]");
+        public readonly By openButtonInBurger = By.XPath("//div[@class= 'hamburger-open-content']");
+        public readonly By budgetBurgerWithOutProjects = By.XPath("//div[@class= 'wF4f8z1gZkBosC4Dy4j7' and contains(., 'None')]//following-sibling::div[contains(@id, 'BUDGETS_BURGER')]");
+        public readonly By budgetModalEditButton = By.Id("BUDGET_EDIT_UPDATE");
+        public readonly By budgetModal = By.XPath("//div[@class= 'newBudget-modal']");
+        public readonly By budgetModalCreateButton = By.Id("NEW_BUDGET_CREATE");
+        public readonly By budgetModalPOPopup = By.XPath("//p[@class = 'i9matKNoUHudiZkMT8BL']");
+        public readonly By budgetModalTotalField = By.Id("NEW_BUDGET_TOTAL");
+        public readonly By budgetModalCurrencyField = By.XPath("//input[@name = 'NEW_BUDGET_CURRENCY']");
+        public readonly By budgetModalCurrencyUSD = By.XPath("//p[@title='USD']");
+        public readonly By budgetModalCostField = By.Id("NEW_BUDGET_COST");
+        public readonly By budgetModalPOField = By.Id("NEW_BUDGET_PO");
+        public readonly By budgetBurgerDeleteButton = By.XPath("//p[@class = 'delete-project-btn ']");
+        public readonly By budgetDeleteConfirmButton = By.XPath("//button[@class = 'btn bordered-btn']");
+        public readonly By budgetDeleteDeclineButton = By.XPath("//button[@class = 'btn primary-btn']");
         
-
 
         //Высокоуровневые методы
 
@@ -73,19 +102,19 @@ namespace AutoGTP2Tests
             return this;
         }
 
-        public BudgetHelper BudgetRemoval()
+        public BudgetHelper BudgetRemoval(BudgetData budget)
         {
-            manager.Navigator.GoToBudgetPage();                        
-            BudgetBurgerClick();                      
+            manager.Navigator.GoToBudgetPage();
+            FindBudgetWithoutProjectsAndOpenBurger(budget);
             BudgetDeleteButtonClick();
             BudgetDeleteConfirm();
             return this;
         }
 
-        public BudgetHelper BudgetRemovalCancel()
+        public BudgetHelper BudgetRemovalCancel(BudgetData budget)
         {
-            manager.Navigator.GoToBudgetPage();            
-            BudgetBurgerClick();            
+            manager.Navigator.GoToBudgetPage();
+            FindBudgetWithoutProjectsAndOpenBurger(budget);
             BudgetDeleteButtonClick();
             BudgetDeleteDecline();            
             return this;
@@ -99,10 +128,10 @@ namespace AutoGTP2Tests
             return this;
         }
 
-        public BudgetHelper OpenBudgetWithProjects(BudgetData budgetData)
+        public BudgetHelper OpenBudgetWithProjects()
         {
             manager.Navigator.GoToBudgetPage();
-            FindBudgetWithProjectsAndOpenBurger(budgetData);            
+            FindBudgetWithProjectsAndOpenBurger();            
             OpenButtonInBurgerClick();
             ReadonlyQuestionMarkClick();
             return this;
@@ -142,7 +171,7 @@ namespace AutoGTP2Tests
             return this;
         }                
 
-        public BudgetHelper OpenColumnsList()
+        public BudgetHelper OpenColumnsButtonPopup()
         {
             manager.Navigator.GoToBudgetPage();            
             BudgetColumnsButtonClick();
@@ -205,7 +234,6 @@ namespace AutoGTP2Tests
         // Создаем список колонок бюджетов
         public List<string> AllBudgetColumns() => driver.FindElements(allBudgetColumnsTitles).Select(x => x.Text).ToList();
 
-        
 
 
 
@@ -220,7 +248,7 @@ namespace AutoGTP2Tests
 
         public int CheckBoxIsDisabled()
         {
-            if (ColumnsListIsOpen() == false)
+            if (ColumnsPopupIsOpen() == false)
             {
                 BudgetColumnsButtonClick();
             }
@@ -253,33 +281,26 @@ namespace AutoGTP2Tests
             return this;
         }
 
-        public bool ColumnsListIsOpen()
+        public bool ColumnsPopupIsOpen()
         {
             return IsElementPresent(columnsSettingsPopup);
         }
 
-        public bool ColumnsListHaveColumnsName()
+        public bool ColumnsPopupHaveColumnsName()
         {
-            if (IsElementPresent(By.XPath(
-                "//div[@class= 'UVPAJnHrDOYjcYvCJvHC zQlqaPTsRxDizaEB2uBM jfNvdXFx_TRHu6VpHYEB' and contains(., 'PO')]"))
-                && IsElementPresent(By.XPath(
-                    "//div[@class= 'UVPAJnHrDOYjcYvCJvHC zQlqaPTsRxDizaEB2uBM jfNvdXFx_TRHu6VpHYEB' and contains(., 'Budget name')]"))
-                && IsElementPresent(By.XPath(
-                    "//div[@class= 'UVPAJnHrDOYjcYvCJvHC zQlqaPTsRxDizaEB2uBM jfNvdXFx_TRHu6VpHYEB' and contains(., 'Amount remaining')]"))
-                && IsElementPresent(By.XPath(
-                    "//div[@class= 'UVPAJnHrDOYjcYvCJvHC zQlqaPTsRxDizaEB2uBM jfNvdXFx_TRHu6VpHYEB' and contains(., 'Projects')]"))
-                && IsElementPresent(By.XPath(
-                    "//div[@class= 'UVPAJnHrDOYjcYvCJvHC zQlqaPTsRxDizaEB2uBM jfNvdXFx_TRHu6VpHYEB' and contains(., 'Total amount')]"))
-                && IsElementPresent(By.XPath(
-                    "//div[@class= 'UVPAJnHrDOYjcYvCJvHC zQlqaPTsRxDizaEB2uBM jfNvdXFx_TRHu6VpHYEB' and contains(., 'Created at')]"))
+            if (IsElementPresent(columnsPopupNameTitle)
+                && IsElementPresent(columnsPopupRemainingTitle)
+                && IsElementPresent(columnsPopupPOTitle)
+                && IsElementPresent(columnsPopupProjectsTitle)
+                && IsElementPresent(columnsPopupTotalTitle)
+                && IsElementPresent(columnsPopupCreatedTitle)
                 ) { return true; }
             return false;
         }
 
-        public bool ColumnsIsTurnOn(int i)
+        public bool AllColumnsIsTurnOn(int i)
         {
-            if (driver.FindElements(By.XPath(
-                "//div[@class= 'UVPAJnHrDOYjcYvCJvHC zQlqaPTsRxDizaEB2uBM jfNvdXFx_TRHu6VpHYEB']")).Count == i)
+            if (driver.FindElements(enabledColumnInColumnsPopup).Count == i)
             {
                 return true;
             }
@@ -288,18 +309,18 @@ namespace AutoGTP2Tests
 
         public BudgetHelper BudgetColumnsButtonClick()
         {
-            driver.FindElement(By.Id("PROJECTS_COLUMNS_BUTTON")).Click();            
+            driver.FindElement(columnsButton).Click();            
             return this;
         }
 
         public BudgetHelper ColumnsTurnOnIfItTurnOff()
         {
-            if (!IsElementPresent(By.Id("BUDGETS_CREATE_NEW_BUDGET")))
+            if (IsElementPresent(newBudgetButton) == false)
             {
                 manager.Navigator.GoToBudgetPage();
             }
 
-            if (!IsElementPresent(By.XPath("settings-columns")))
+            if (IsElementPresent(columnsSettingsPopup) == false)
             {
                 BudgetColumnsButtonClick();
             }
@@ -318,20 +339,20 @@ namespace AutoGTP2Tests
 
         public bool ColumnsAreOn()
         {
-            return driver.FindElements(By.XPath("//div[@class= 'r6y6jrWnmWzm1eEt9OwN']")).Count == 0;
+            return driver.FindElements(disabledColumnInColumnsPopup).Count == 0;
         }
 
         public bool ColumnsInColumnsListAreOff()
         {
-            return driver.FindElements(By.XPath("//div[@class= 'r6y6jrWnmWzm1eEt9OwN']")).Count >= 1;
+            return driver.FindElements(disabledColumnInColumnsPopup).Count >= 1;
         }
 
         public BudgetHelper ColumnsTurnOn()
         {
-            var elements = driver.FindElements(By.XPath("//div[@class= 'r6y6jrWnmWzm1eEt9OwN']"));
+            var elements = driver.FindElements(disabledColumnInColumnsPopup);
             foreach (var element in elements)
             {
-                driver.FindElement(By.XPath("//div[@class= 'r6y6jrWnmWzm1eEt9OwN']")).Click();
+                element.Click();
             }
             return this;
         }
@@ -339,27 +360,27 @@ namespace AutoGTP2Tests
         public BudgetHelper EnterRandomBudgetName()
         {
             string text = manager.TextGenerator(1, 8);
-            driver.FindElement(By.Id("BUDGETS_SEARCH_FIELD")).SendKeys(text);
+            driver.FindElement(searchField).SendKeys(text);
             return this;
         }
 
         public bool BudgetsNotFound()
         {
-            if (IsElementPresent(By.XPath("//div[@class= 'u8jP831aiskq6Oe6mMlo' and contains(., 'No data')]"))) { return true; }
+            if (IsElementPresent(noBudgetsToDisplayText)) { return true; }
             return false;
         }
 
         public BudgetHelper PushEnter()
         {
-            driver.FindElement(By.Id("BUDGETS_SEARCH_FIELD")).SendKeys(Keys.Enter);            
+            driver.FindElement(searchField).SendKeys(Keys.Enter);            
             return this;
         }
 
         public BudgetHelper TakeBudgetNameAndEnterItToSearchBar()
         {
-            WaitUntilFindElement(10, By.XPath("//div[@class= 'kyuJpfa35LDUXSJH2FJS']"));
-            string bname = driver.FindElement(By.XPath("//div[@class= 'kyuJpfa35LDUXSJH2FJS']")).Text;
-            driver.FindElement(By.Id("BUDGETS_SEARCH_FIELD")).SendKeys(bname);
+            WaitUntilFindElement(10, budgetNameColumnValue);
+            string bname = driver.FindElement(budgetNameColumnValue).Text;
+            driver.FindElement(searchField).SendKeys(bname);
             return this;
         }
 
@@ -369,21 +390,18 @@ namespace AutoGTP2Tests
             js.ExecuteScript("document.getElementById('BUDGETS_SEARCH_FIELD_BUTTON').click()");
             return this;
         }
-
+        
         public bool SearchingIsCorrect()
         {
-            bool result = false;
-            ICollection<IWebElement> elements = driver.FindElements(By.XPath("//div[@class= 'kyuJpfa35LDUXSJH2FJS']"));
-            foreach (var element in elements)
+            bool result = true;
+            ICollection<IWebElement> elements = driver.FindElements(budgetNameColumnValue);
+            foreach (IWebElement element in elements)
             {
-                string bnameInSearchBar = driver.FindElement(By.Id("BUDGETS_SEARCH_FIELD")).GetAttribute("value");
-                for (int i = 0; i < elements.Count; i++)
-                {
-                    string bnameInBudget = driver.FindElement(By.XPath(
-                        "//div[contains(@id, 'BUDGETS') and not(contains(@id, 'BURGER'))][" + (i + 1) + "]//div[contains(text(), 'Cost')]//following-sibling::div//div")).Text;
-                    if (bnameInBudget.Contains(bnameInSearchBar)) { return result = true; }
-                }
-            }
+                string text = element.Text.ToLower();
+                string bnameInSearchBar = driver.FindElement(searchField).GetAttribute("value").ToLower();
+                if (text.Contains(bnameInSearchBar)) { continue; }
+                else { return result = false; }
+            }            
             return result;
         }
 
@@ -396,44 +414,41 @@ namespace AutoGTP2Tests
 
         public BudgetHelper EnterTextInSearchBar(string text)
         {
-            driver.FindElement(By.Id("BUDGETS_SEARCH_FIELD")).SendKeys(text);
+            driver.FindElement(searchField).SendKeys(text);
             return this;
         }
 
         public bool BudgetSearchFieldIsEmpty()
         {
-            string text = driver.FindElement(By.Id("BUDGETS_SEARCH_FIELD")).GetAttribute("value");
+            string text = driver.FindElement(searchField).GetAttribute("value");
             if (text.Contains("")) { return true; }
             return false;
         }
 
         public BudgetHelper ReadonlyQuestionMarkClick()
         {
-            driver.FindElement(By.XPath("//div[@class= 'newBudget-modal-read']//span")).Click();
+            driver.FindElement(budgetModalReadOnlyIcon).Click();
             Thread.Sleep(200);
             return this;
         }
 
-        public bool QuestionMarkPopupIsPresentAndHaveCorrectText()
+        public bool BudgetModalReadOnlyIconPopupText()
         {
-            string text = driver.FindElement(By.XPath("//p[@class= 'tooltip-content']")).Text;
+            string text = driver.FindElement(budgetModalReadOnlyIconPopup).Text;
             if (text.Contains("This budget has already been used in projects.")) { return true; }
             return false;
         }
 
-        public BudgetHelper FindBudgetWithProjectsAndOpenBurger(BudgetData budgetData)
+        public BudgetHelper FindBudgetWithProjectsAndOpenBurger()
         {   
-            driver.FindElement(By.XPath(
-                "//div[@class= 'wF4f8z1gZkBosC4Dy4j7' and not(contains(., 'None'))]" +
-                "//following-sibling::div[contains(@id, 'BUDGETS_BURGER')]")).Click();
+            driver.FindElement(budgetBurgerWithProjects).Click();
             return this;
         }
 
         public BudgetHelper OpenButtonInBurgerClick()
         {
-            WaitUntilFindElement(10, By.XPath("//div[@class= 'hamburger-open-content']"));
-            IWebElement openButtonInBurger = driver.FindElement(By.XPath("//div[@class= 'hamburger-open-content']"));
-            openButtonInBurger.Click();            
+            WaitUntilFindElement(10, openButtonInBurger);
+            driver.FindElement(openButtonInBurger).Click();                        
             Thread.Sleep(200);
             return this;
         }
@@ -442,143 +457,121 @@ namespace AutoGTP2Tests
         {
             driver.Navigate().Refresh();
             WaitUntilFindBudgetList();
-
-            if (driver.FindElements(By.XPath(
-                "//div[@class= 'wF4f8z1gZkBosC4Dy4j7' and contains(., 'None')]" +
-                "//following-sibling::div[contains(@id, 'BUDGETS_BURGER')]")).Count == 0)
+            
+            if (IsElementPresent(budgetBurgerWithOutProjects) == false)
             {
                 CreateNewBudget(budgetData);
                 manager.Navigator.GoToBudgetPage();
-                driver.FindElement(By.XPath(
-                "//div[@class= 'wF4f8z1gZkBosC4Dy4j7' and contains(., 'None')]" +
-                "//following-sibling::div[contains(@id, 'BUDGETS_BURGER')]")).Click();
+                driver.FindElement(budgetBurgerWithOutProjects).Click();
             }
             else
             {
-                driver.FindElement(By.XPath(
-                "//div[@class= 'wF4f8z1gZkBosC4Dy4j7' and contains(., 'None')]" +
-                "//following-sibling::div[contains(@id, 'BUDGETS_BURGER')]")).Click();
+                driver.FindElement(budgetBurgerWithOutProjects).Click();
             }
-
             return this;
         }
 
         public bool BudgetUpdateButtonIsPresent()
         {
-            return IsElementPresent(By.Id("BUDGET_EDIT_UPDATE"));
+            return IsElementPresent(budgetModalEditButton);
         }
 
         public bool NewBudgetModalIsOpen()
         {
-            return IsElementPresent(By.XPath("//div[@class= 'newBudget-modal']"));
+            return IsElementPresent(budgetModal);
         }
+
         public bool CreateBudgetButtonIsEnabled()
         {
-            return driver.FindElement(By.Id("NEW_BUDGET_CREATE")).Enabled;
+            return driver.FindElement(budgetModalCreateButton).Enabled;
         }
 
         public bool BudgetTooltipIsPresent()
         {
-            return IsElementPresent(By.XPath("//p[@class = 'i9matKNoUHudiZkMT8BL']"));
+            return IsElementPresent(budgetModalPOPopup);
         }
 
         public bool POTooltipContainCorrectText()
         {
-            string text = driver.FindElement(By.XPath("//p[@class = 'i9matKNoUHudiZkMT8BL']")).Text;
+            string text = driver.FindElement(budgetModalPOPopup).Text;
             return text.Contains("Budget with such po number is already exists.");
         }
 
         public bool CostTooltipContainCorrectText()
         {
-            string text = driver.FindElement(By.XPath("//p[@class = 'i9matKNoUHudiZkMT8BL']")).Text;
+            string text = driver.FindElement(budgetModalPOPopup).Text;
             return text.Contains("Such budget already defined for the client.");
         }
 
         public BudgetHelper BudgetCreateButtonClick()
         {
-            driver.FindElement(By.Id("NEW_BUDGET_CREATE")).Click();            
+            driver.FindElement(budgetModalCreateButton).Click();            
             return this;
         }
 
         public BudgetHelper EnterTotal(BudgetData budgetData)
         {
-            driver.FindElement(By.Id("NEW_BUDGET_TOTAL")).Click();
-            driver.FindElement(By.Id("NEW_BUDGET_TOTAL")).Clear();
-            driver.FindElement(By.Id("NEW_BUDGET_TOTAL")).SendKeys(budgetData.BudgetTotal);
+            driver.FindElement(budgetModalTotalField).Click();
+            driver.FindElement(budgetModalTotalField).Clear();
+            driver.FindElement(budgetModalTotalField).SendKeys(budgetData.BudgetTotal);
             return this;
         }
 
         public BudgetHelper SelectUSDCurrency()
-        {
-            var currencyField = By.XPath("//input[@name = 'NEW_BUDGET_CURRENCY']");
-            if (IsElementPresent(currencyField))
+        {            
+            if (IsElementPresent(budgetModalCurrencyField))
             {
-                driver.FindElement(By.XPath(
-                "//input[@class= 'react-dropdown-select-input css-o79eln-InputComponent e11wid6y0']")).Click();
-                driver.FindElement(By.XPath("//p[@title='USD']")).Click();
+                driver.FindElement(budgetModalCurrencyField).Click();
+                driver.FindElement(budgetModalCurrencyUSD).Click();
             }
             return this;
         }
 
         public BudgetHelper EnterBudgetCost(BudgetData budgetData)
         {
-            driver.FindElement(By.Id("NEW_BUDGET_COST")).Click();
-            driver.FindElement(By.Id("NEW_BUDGET_COST")).Clear();
-            driver.FindElement(By.Id("NEW_BUDGET_COST")).SendKeys(budgetData.BudgetCost);
+            driver.FindElement(budgetModalCostField).Click();
+            driver.FindElement(budgetModalCostField).Clear();
+            driver.FindElement(budgetModalCostField).SendKeys(budgetData.BudgetCost);
             return this;
         }
 
         public BudgetHelper EnterPOnumber(BudgetData budgetData)
         {
-            driver.FindElement(By.Id("NEW_BUDGET_PO")).Click();
-            driver.FindElement(By.Id("NEW_BUDGET_PO")).Clear();
-            driver.FindElement(By.Id("NEW_BUDGET_PO")).SendKeys(budgetData.BudgetPO);
+            driver.FindElement(budgetModalPOField).Click();
+            driver.FindElement(budgetModalPOField).Clear();
+            driver.FindElement(budgetModalPOField).SendKeys(budgetData.BudgetPO);
             return this;
         }
 
         public BudgetHelper NewBudgetButtonClick()
         {
-            driver.FindElement(By.Id("BUDGETS_CREATE_NEW_BUDGET")).Click();
+            driver.FindElement(newBudgetButton).Click();
             return this;
         }
 
         public BudgetHelper BudgetBurgerClick()
         {
-            WaitUntilFindElement(10, By.Id("BUDGETS_BURGER_0"));
-            driver.FindElement(By.Id("BUDGETS_BURGER_0")).Click();
+            //WaitUntilFindElement(10, budgetBurgerWithOutProjects);
+            driver.FindElement(budgetBurgerWithOutProjects).Click();
             return this;
         }
 
         public BudgetHelper BudgetDeleteButtonClick()
         {
-            driver.FindElement(By.Id("BUDGETS_0_BURGER_MENU_DELETE")).Click();
+            driver.FindElement(budgetBurgerDeleteButton).Click();
             return this;
         }
 
         public BudgetHelper BudgetDeleteConfirm()
         {
-            driver.FindElement(By.Id("BUDGETS_0_BURGER_MENU_DELETE_DELETE")).Click();
+            driver.FindElement(budgetDeleteConfirmButton).Click();
             return this;
         }
 
         public BudgetHelper BudgetDeleteDecline()
         {
-            driver.FindElement(By.Id("BUDGETS_0_BURGER_MENU_DELETE_DECLINE")).Click();
+            driver.FindElement(budgetDeleteDeclineButton).Click();
             return this;
         }
-
-        // ищем неактивную кнопку Delete при удалении бюджета
-        public bool BudgetDeleteButtonIsDisabled()
-        {
-            manager.Navigator.GoToBudgetPage();
-            WaitUntilFindElement(10, By.CssSelector("#BUDGETS_BURGER_0 > svg > path"));
-            BudgetBurgerClick();
-            if (driver.FindElements(By.XPath("//p[@class = 'delete-project-btn disabled']")).Count == 1)
-            {
-                return true;
-            }
-            return false;
-        }
-
     }
 }
