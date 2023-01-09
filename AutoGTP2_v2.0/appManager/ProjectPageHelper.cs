@@ -18,7 +18,14 @@ namespace AutoGTP2Tests
 
         //LOCATORS
         public readonly By applyButtonInFilters = By.Id("PROJECTS_FILTERS_APPLY");
-        public readonly By expressIcon = By.XPath("//div[@class= 'HmZHR9aWxu9QsxsKBvP_' and contains(text(), 'Project') ]//p");
+        public readonly By expressIcon = By.XPath("//*[local-name()='circle' and @fill='#b536e2']");
+        public readonly By headProjectIcon = By.XPath("//*[local-name()='circle' and @fill='url(#paint0_linear)']");
+        public readonly By projectCardOnPage = By.XPath("//div[@class= 'Y60VrDynu5B8vFAVkO5A']");
+        public readonly By dateTypeButton = By.XPath("//div[@class= 'react-dropdown-select filter-type-list css-12zlm52-ReactDropdownSelect e1gzf2xs0']");
+        public readonly By startDateFieldInFilters = By.Id("PROJECTS_FILTERSFROM");
+        public readonly By endDateFieldInFilters = By.Id("PROJECTS_FILTERSTO");
+        public readonly By datePopupInFilters = By.XPath("//p[@class= 'NlYXWAOoJuW3ZB980xxr']");
+
         
 
 
@@ -29,12 +36,12 @@ namespace AutoGTP2Tests
             return this;
         }
 
-        public ProjectPageHelper FillFilterAndClearButtonClick()
+        public ProjectPageHelper FillFilterAndClearButtonClick(int projectType, string dateTypeName, string startDate, string endDate)
         {
             manager.Navigator.GoToProjectPage();
             FiltersButtonClick();
-            SelectProjectTypeInFilters(2); // 1 - All, 2 - Regular, 3 - Express, 4 - Multiproject
-            SelectDateInFilters("start date", "01 Nov 2022", "10 Nov 2022"); // Types: start date, end date, date of creation / Date format - 10 Nov 2022
+            SelectProjectTypeInFilters(projectType); // 1 - All, 2 - Regular, 3 - Express, 4 - Multiproject
+            SelectDateInFilters(dateTypeName, startDate, endDate); // Types: start date, end date, date of creation / Date format - 10 Nov 2022
             SelectVendorInFilters(1); // Multiple vendors - index 0
             //SelectSubjectAreaInFilters("Arts"); // Имя тематики
             //SelectRepresentativeInFilters("Main_test"); //Имя представителя
@@ -47,7 +54,7 @@ namespace AutoGTP2Tests
             FiltersButtonClick();
             ClearButtonClick();
             return this;
-        }                
+        }
 
         public ProjectPageHelper OpenProjectWithStatus(string status)
         {
@@ -90,12 +97,28 @@ namespace AutoGTP2Tests
             return this;
         }
 
-        public ProjectPageHelper SelectProjectTypeInFilter()
+        public ProjectPageHelper SelectProjectTypeInFilter(int projectType)
         {
             manager.Navigator.GoToProjectPage();
             FiltersButtonClick();
-            SelectProjectTypeInFilters(3);
+            SelectProjectTypeInFilters(projectType);
             ApplyButtonInFiltersClick();
+            return this;
+        }
+
+        public ProjectPageHelper SelectDateTypeAndRangeInFilter(string dateTypeName, string startDate, string endDate)
+        {
+            manager.Navigator.GoToProjectPage();
+            FiltersButtonClick();
+            SelectDateInFilters(dateTypeName, startDate, endDate);
+            PushEnter();
+            return this;
+        }
+
+        public ProjectPageHelper PushEnter()
+        {
+            driver.FindElement(endDateFieldInFilters).Click();
+            driver.FindElement(endDateFieldInFilters).SendKeys(Keys.Enter);
             return this;
         }
 
@@ -113,20 +136,34 @@ namespace AutoGTP2Tests
 
 
 
-
-
         // Низкоуровневые методы
+
+        public bool? DatePopupInFiltersContainsCorrectText()
+        {
+            string popupText = driver.FindElement(datePopupInFilters).Text;
+            if(!popupText.Contains("Invalid date. Please enter correct value.")) { return false; }
+            return true;
+        }
+
+        public bool? DatePopupInFiltersIsPresent()
+        {
+            //WaitUntilFindElement(3, datePopupInFilters);
+            return IsElementPresent(datePopupInFilters);
+        }
+
+        public bool? AllProjectsInPageAreRegular()
+        {
+            if (IsElementPresent(expressIcon)
+                && IsElementPresent(headProjectIcon)) { return false; }
+            return true;
+        }
 
         public bool? AllProjectsInPageAreExpress()
         {
-            bool result = true;
-            ICollection<IWebElement> elements = driver.FindElements(expressIcon);
-            foreach(IWebElement element in elements)
-            {
-                if (element.Displayed) { continue; }
-                else { return result = false; }
-            }
-            return result;
+            ICollection<IWebElement> expressIcons = driver.FindElements(expressIcon);
+            ICollection<IWebElement> projectsOnPage = driver.FindElements(projectCardOnPage);
+            if(expressIcons.Count != projectsOnPage.Count) { return false; }
+            return true;            
         }
 
         public ProjectPageHelper ApplyButtonInFiltersClick()
@@ -168,9 +205,7 @@ namespace AutoGTP2Tests
 
         public ProjectPageHelper SelectDateInFilters(string dateTypeName, string startDate, string endDate)
         {
-            IWebElement dateTypeButton = driver.FindElement(
-                By.XPath("//div[@class= 'react-dropdown-select filter-type-list css-12zlm52-ReactDropdownSelect e1gzf2xs0']//div"));
-            dateTypeButton.Click();
+            driver.FindElement(dateTypeButton).Click();            
 
             IWebElement dateType = driver.FindElement(
                 By.XPath("//p[@class= 'CKkqQTXqlkqO2CTJTb3k' and contains(text(), '" + dateTypeName + "')]"));
@@ -183,17 +218,15 @@ namespace AutoGTP2Tests
 
         public ProjectPageHelper SetStartDateInFilter(string startDate)
         {
-            IWebElement startDateField = driver.FindElement(By.Id("PROJECTS_FILTERSFROM"));
-            startDateField.Click();
-            startDateField.SendKeys(startDate);
+            driver.FindElement(startDateFieldInFilters).Click();
+            driver.FindElement(startDateFieldInFilters).SendKeys(startDate);            
             return this;
         }
 
         public ProjectPageHelper SetEndDateInFilter(string endDate)
         {
-            IWebElement endDateField = driver.FindElement(By.Id("PROJECTS_FILTERSTO"));
-            endDateField.Click();
-            endDateField.SendKeys(endDate);
+            driver.FindElement(endDateFieldInFilters).Click();
+            driver.FindElement(endDateFieldInFilters).SendKeys(endDate);            
             return this;
         }
 

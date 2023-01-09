@@ -22,7 +22,7 @@ namespace AutoGTP2Tests
         {
             List<ProjectData> oldProjects = app.Projects.GetProjectList();
 
-            app.ProjectPage.FillFilterAndClearButtonClick();
+            app.ProjectPage.FillFilterAndClearButtonClick(2, "start date", "10 Nov 2022", "01 Nov 2022");
 
             List<ProjectData> newProjects = app.Projects.GetProjectList();
 
@@ -31,12 +31,59 @@ namespace AutoGTP2Tests
 
         //GTP2-R-04-14
         [Test]
-        public void FilterExpressProjectTest()
+        public void ExpressProjectTypeInFiltersTest()
         {
-            app.ProjectPage.SelectProjectTypeInFilter();
+            app.ProjectPage.SelectProjectTypeInFilter(3);
 
             Assert.IsTrue(app.ProjectPage.AllProjectsInPageAreExpress());
         }
+
+        //GTP2-R-04-15
+        [Test]
+        public void RegularProjectTypeInFiltersTest()
+        {
+            app.ProjectPage.SelectProjectTypeInFilter(2);
+
+            Assert.IsTrue(app.ProjectPage.AllProjectsInPageAreRegular());
+        }
+
+        //GTP2-R-04-19.1
+        [Test]
+        public void StartDateInFiltersPopupTest()
+        {
+            app.ProjectPage.SelectDateTypeAndRangeInFilter("start date", "10 Nov 2022", "01 Nov 2022");
+
+            Assert.IsTrue(app.ProjectPage.DatePopupInFiltersIsPresent());
+            Assert.IsTrue(app.ProjectPage.DatePopupInFiltersContainsCorrectText());
+        }
+
+        //GTP2-R-04-19.2
+        [Test]
+        public void EndDateInFiltersPopupTest()
+        {
+            app.ProjectPage.SelectDateTypeAndRangeInFilter("end date", "10 Nov 2022", "01 Nov 2022");
+
+            Assert.IsTrue(app.ProjectPage.DatePopupInFiltersIsPresent());
+            Assert.IsTrue(app.ProjectPage.DatePopupInFiltersContainsCorrectText());
+        }
+
+        //GTP2-R-04-19.3
+        [Test]
+        public void CreationDateInFiltersPopupTest()
+        {
+            app.ProjectPage.SelectDateTypeAndRangeInFilter("date of creation", "10 Nov 2022", "01 Nov 2022");
+
+            Assert.IsTrue(app.ProjectPage.DatePopupInFiltersIsPresent());
+            Assert.IsTrue(app.ProjectPage.DatePopupInFiltersContainsCorrectText());
+        }
+
+
+
+
+
+
+
+
 
 
 
