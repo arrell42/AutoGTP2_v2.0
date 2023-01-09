@@ -16,6 +16,12 @@ namespace AutoGTP2Tests
         {
         }
 
+        //LOCATORS
+        public readonly By applyButtonInFilters = By.Id("PROJECTS_FILTERS_APPLY");
+        public readonly By expressIcon = By.XPath("//div[@class= 'HmZHR9aWxu9QsxsKBvP_' and contains(text(), 'Project') ]//p");
+        
+
+
         public ProjectPageHelper ProjectsColumnButtonClick()
         {
             manager.Navigator.GoToProjectPage();
@@ -41,7 +47,7 @@ namespace AutoGTP2Tests
             FiltersButtonClick();
             ClearButtonClick();
             return this;
-        }
+        }                
 
         public ProjectPageHelper OpenProjectWithStatus(string status)
         {
@@ -84,11 +90,12 @@ namespace AutoGTP2Tests
             return this;
         }
 
-        public ProjectPageHelper SelectStatusInFilter()
+        public ProjectPageHelper SelectProjectTypeInFilter()
         {
             manager.Navigator.GoToProjectPage();
             FiltersButtonClick();
-
+            SelectProjectTypeInFilters(3);
+            ApplyButtonInFiltersClick();
             return this;
         }
 
@@ -104,7 +111,30 @@ namespace AutoGTP2Tests
 
 
 
+
+
+
+
         // Низкоуровневые методы
+
+        public bool? AllProjectsInPageAreExpress()
+        {
+            bool result = true;
+            ICollection<IWebElement> elements = driver.FindElements(expressIcon);
+            foreach(IWebElement element in elements)
+            {
+                if (element.Displayed) { continue; }
+                else { return result = false; }
+            }
+            return result;
+        }
+
+        public ProjectPageHelper ApplyButtonInFiltersClick()
+        {
+            driver.FindElement(applyButtonInFilters).Click();
+            Thread.Sleep(2000);
+            return this;
+        }
 
         public bool ProjectCountOnPage(int i)
         {

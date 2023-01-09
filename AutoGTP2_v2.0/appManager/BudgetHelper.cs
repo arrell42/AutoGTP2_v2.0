@@ -398,8 +398,8 @@ namespace AutoGTP2Tests
             foreach (IWebElement element in elements)
             {
                 string text = element.Text.ToLower();
-                string bnameInSearchBar = driver.FindElement(searchField).GetAttribute("value").ToLower();
-                if (text.Contains(bnameInSearchBar)) { continue; }
+                string budgetNameInSearchBar = driver.FindElement(searchField).GetAttribute("value").ToLower();
+                if (text.Contains(budgetNameInSearchBar)) { continue; }
                 else { return result = false; }
             }            
             return result;

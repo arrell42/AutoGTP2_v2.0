@@ -255,7 +255,7 @@ namespace AutoGTP2Tests
             return this;
         }
 
-        public bool ExpressProjectsNotPresent()
+        public bool ExpressProjectsPresent()
         {
             return IsElementPresent(By.Id("Component_76_488"));
         }

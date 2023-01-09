@@ -30,12 +30,12 @@ namespace AutoGTP2Tests
         }
 
         //GTP2-R-04-14
-        //[Test]
+        [Test]
         public void FilterExpressProjectTest()
         {
-            app.ProjectPage.SelectStatusInFilter();            
+            app.ProjectPage.SelectProjectTypeInFilter();
 
-            
+            Assert.IsTrue(app.ProjectPage.AllProjectsInPageAreExpress());
         }
 
 

@@ -36,7 +36,7 @@ namespace AutoGTP2Tests
         {
             app.Dashport.RegularProjectTypeFilter();
             
-            Assert.IsFalse(app.Dashport.ExpressProjectsNotPresent());            
+            Assert.IsFalse(app.Dashport.ExpressProjectsPresent());            
         }
 
         [Test]
@@ -44,7 +44,7 @@ namespace AutoGTP2Tests
         {
             app.Dashport.ExpressProjectTypeFilter();
             
-            Assert.IsTrue(app.Dashport.ExpressProjectsNotPresent());
+            Assert.IsTrue(app.Dashport.ExpressProjectsPresent());
         }
 
         [Test]
