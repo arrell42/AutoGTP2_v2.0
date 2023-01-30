@@ -24,9 +24,18 @@ namespace AutoGTP2Tests
         public readonly By dateTypeButton = By.XPath("//div[@class= 'react-dropdown-select filter-type-list css-12zlm52-ReactDropdownSelect e1gzf2xs0']");
         public readonly By startDateFieldInFilters = By.Id("PROJECTS_FILTERSFROM");
         public readonly By endDateFieldInFilters = By.Id("PROJECTS_FILTERSTO");
-        public readonly By datePopupInFilters = By.XPath("//p[@class= 'NlYXWAOoJuW3ZB980xxr']");
-
+        public readonly By endDatePopupInFilters = By.XPath("//p[@class= 'NlYXWAOoJuW3ZB980xxr']");
+        public readonly By vendorFieldInFilters = By.XPath("//div[@class= 'filter-vendor filter-section']//div[@class= 'react-dropdown-select undefined css-12zlm52-ReactDropdownSelect e1gzf2xs0']//div[@class= 'react-dropdown-select-content react-dropdown-select-type-single css-v1jrxw-ContentComponent e1gn6jc30']");
+        public readonly By projectCard = By.XPath("//div[@class= 'styles_modal__gNwvD styles_modalCenter__L9F2w project-card-modal']");
+        public readonly By vendorInProjectCardField = By.XPath("//div[@id= 'project-vendor-dropdown']//span");
+        public readonly By searchingField = By.Id("PROJECTS_SEARCH_FIELD");
+        public readonly By noDataMessage = By.XPath("//div[@class= 'u8jP831aiskq6Oe6mMlo']");
+        public readonly By crossButtonInSearchingField = By.XPath("//p[@class= 'search-delete']");
+        public readonly By projectNameColumnValue = By.Id("PROJECTS_PROJECT_NAME");
+        public readonly By startDatePopupInFilters = By.XPath("//p[@class= 'YGwtnExaSDV_RZqBYnPD']");
+        public readonly By projectList = By.XPath("//div[@class= 'fPooHDtNQyVHMCf4O9mn']");
         
+
 
 
         public ProjectPageHelper ProjectsColumnButtonClick()
@@ -41,7 +50,9 @@ namespace AutoGTP2Tests
             manager.Navigator.GoToProjectPage();
             FiltersButtonClick();
             SelectProjectTypeInFilters(projectType); // 1 - All, 2 - Regular, 3 - Express, 4 - Multiproject
-            SelectDateInFilters(dateTypeName, startDate, endDate); // Types: start date, end date, date of creation / Date format - 10 Nov 2022
+            SelectDateTypeInFilters(dateTypeName); // Types: start date, end date, date of creation / Date format - 10 Nov 2022
+            SetStartDateInFilter(startDate);
+            SetEndDateInFilter(endDate);
             SelectVendorInFilters(1); // Multiple vendors - index 0
             //SelectSubjectAreaInFilters("Arts"); // Имя тематики
             //SelectRepresentativeInFilters("Main_test"); //Имя представителя
@@ -64,6 +75,7 @@ namespace AutoGTP2Tests
             manager.Projects.EditButtonInBurgerClick();
             return this;
         }
+
         public ProjectPageHelper OpenBurgerForQuotationCompletedStatusProject(string status)
         {
             manager.Navigator.GoToProjectPage();
@@ -110,17 +122,69 @@ namespace AutoGTP2Tests
         {
             manager.Navigator.GoToProjectPage();
             FiltersButtonClick();
-            SelectDateInFilters(dateTypeName, startDate, endDate);
-            PushEnter();
+            SelectDateTypeInFilters(dateTypeName);
+            SetStartDateInFilter(startDate);
+            SetEndDateInFilter(endDate);
+            PushEnter(endDateFieldInFilters);
+            return this;
+        }       
+
+        public ProjectPageHelper SortByVendorInFilters()
+        {
+            manager.Navigator.GoToProjectPage();
+            FiltersButtonClick();
+            SelectVendorInFilters(1);
+            ApplyButtonInFiltersClick();
             return this;
         }
 
-        public ProjectPageHelper PushEnter()
+        public ProjectPageHelper EnterNotExistingProjectName()
         {
-            driver.FindElement(endDateFieldInFilters).Click();
-            driver.FindElement(endDateFieldInFilters).SendKeys(Keys.Enter);
+            manager.Navigator.GoToProjectPage();
+            EnterRandomTextInSearchingField();
+            PushEnter(searchingField);
+            WaitUntilFindElement(10, noDataMessage);
             return this;
         }
+        public ProjectPageHelper EnterNotExistingProjectNameAndClearSearchingField()
+        {
+            EnterNotExistingProjectName();
+            CrossButtonInSearchingFieldClick();
+            return this;
+        }
+
+        public ProjectPageHelper EnterExistingProjectNameAndPushEnter()
+        {
+            manager.Navigator.GoToProjectPage();
+            TakeProjectNameAndEnterItToSearchBar();
+            PushEnter(searchingField);
+            Thread.Sleep(2000);
+            return this;
+        }
+
+        public ProjectPageHelper EnterExistingProjectNameAndAndClickMagnifyingGlass()
+        {
+            manager.Navigator.GoToProjectPage();
+            TakeProjectNameAndEnterItToSearchBar();
+            MagnifyingGlassClick();
+            Thread.Sleep(2000);
+            return this;
+        }
+
+        public ProjectPageHelper SearchingFieldClick()
+        {
+            manager.Navigator.GoToProjectPage();
+            MagnifyingGlassClick();
+            PushEnter(searchingField);
+            return this;
+        }
+
+
+
+
+
+
+
 
 
 
@@ -138,17 +202,116 @@ namespace AutoGTP2Tests
 
         // Низкоуровневые методы
 
-        public bool? DatePopupInFiltersContainsCorrectText()
+
+        public bool? StartDatePopupInFiltersIsPresent()
         {
-            string popupText = driver.FindElement(datePopupInFilters).Text;
-            if(!popupText.Contains("Invalid date. Please enter correct value.")) { return false; }
+            return IsElementPresent(startDatePopupInFilters);
+        }
+
+        public ProjectPageHelper PushEnter(By element)
+        {
+            if ( ! IsElementPresent(By.XPath("//div[@class= 'popup-overlay ']")))
+            {
+                driver.FindElement(element).Click();
+                driver.FindElement(element).SendKeys(Keys.Enter);
+            }            
+            return this;
+        }
+
+        public bool? SearchingFieldIsEmpty()
+        {
+            string text = driver.FindElement(searchingField).GetAttribute("value");
+            if (text.Contains("")) { return true; }
+            return false;
+        }
+
+        public ProjectPageHelper MagnifyingGlassClick()
+        {
+            IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+            js.ExecuteScript("document.getElementById('PROJECTS_SEARCH_FIELD_BUTTON').click()");
+            Thread.Sleep(1000);
+            return this;
+        }
+
+        public bool? SearchingIsCorrect()
+        {
+            bool result = true;
+            ICollection<IWebElement> elements = driver.FindElements(projectNameColumnValue);
+            foreach (IWebElement element in elements)
+            {
+                string text = element.Text.ToLower();
+                string projectNameInSearchBar = driver.FindElement(searchingField).GetAttribute("value").ToLower();
+                if (text.Contains(projectNameInSearchBar)) { continue; }
+                else { return result = false; }
+            }
+            return result;
+        }
+
+        public ProjectPageHelper TakeProjectNameAndEnterItToSearchBar()
+        {
+            WaitUntilFindElement(10, projectNameColumnValue);
+            string projectName = driver.FindElement(projectNameColumnValue).Text;
+            driver.FindElement(searchingField).SendKeys(projectName);
+            return this;
+        }
+
+        public ProjectPageHelper CrossButtonInSearchingFieldClick()
+        {
+            driver.FindElement(crossButtonInSearchingField).Click();
+            WaitUntilFindElement(10, projectCardOnPage);
+            return this;
+        }
+
+        public bool? ProjectsNotFound()
+        {
+            return driver.FindElements(projectCard).Count() == 0;
+        }
+
+        public ProjectPageHelper EnterRandomTextInSearchingField()
+        {
+            string text = manager.TextGenerator(1, 8);
+            driver.FindElement(searchingField).SendKeys(text);
+            return this;
+        }
+
+        public bool? VendorInProjectIsCorrect()
+        {
+            FiltersButtonClick();
+            bool result = true;
+            string vendorName = driver.FindElement(vendorFieldInFilters).Text;
+            
+            ICollection<IWebElement> elements = driver.FindElements(By.Id("PROJECTS_PROJECT_NAME"));
+            foreach (IWebElement element in elements)
+            {
+                element.Click();
+                WaitUntilFindElement(4, projectCard);
+                string vendorNameInProjectCard = driver.FindElement(vendorInProjectCardField).Text;
+                if (vendorNameInProjectCard.Contains(vendorName))
+                { 
+                    manager.Projects.CancelButtonInProjectCardClick();                    
+                    continue; 
+                } else { return result = false; }
+            }            
+            return result;
+        }
+
+        public bool? StartDatePopupInFiltersContainsCorrectText()
+        {
+            string popupText = driver.FindElement(startDatePopupInFilters).Text;
+            if ( ! popupText.Contains("Invalid date. Please enter correct value.")) { return false; }
             return true;
         }
 
-        public bool? DatePopupInFiltersIsPresent()
+        public bool? EndDatePopupInFiltersContainsCorrectText()
         {
-            //WaitUntilFindElement(3, datePopupInFilters);
-            return IsElementPresent(datePopupInFilters);
+            string popupText = driver.FindElement(endDatePopupInFilters).Text;
+            if( ! popupText.Contains("Invalid date. Please enter correct value.")) { return false; }
+            return true;
+        }
+
+        public bool? EndDatePopupInFiltersIsPresent()
+        {           
+            return IsElementPresent(endDatePopupInFilters);
         }
 
         public bool? AllProjectsInPageAreRegular()
@@ -175,7 +338,7 @@ namespace AutoGTP2Tests
 
         public bool ProjectCountOnPage(int i)
         {
-            return driver.FindElements(By.XPath("//div[@class='ySclMvBg4360NoWcNOG5']")).Count == i;
+            return driver.FindElements(By.XPath("//div[@class='Y60VrDynu5B8vFAVkO5A']")).Count == i;
         }
 
         public ProjectPageHelper ShowOnPageClick()
@@ -203,7 +366,7 @@ namespace AutoGTP2Tests
             return this;
         }
 
-        public ProjectPageHelper SelectDateInFilters(string dateTypeName, string startDate, string endDate)
+        public ProjectPageHelper SelectDateTypeInFilters(string dateTypeName)
         {
             driver.FindElement(dateTypeButton).Click();            
 
@@ -211,8 +374,8 @@ namespace AutoGTP2Tests
                 By.XPath("//p[@class= 'CKkqQTXqlkqO2CTJTb3k' and contains(text(), '" + dateTypeName + "')]"));
             dateType.Click();
 
-            SetStartDateInFilter(startDate);
-            SetEndDateInFilter(endDate);
+            //SetStartDateInFilter(startDate);
+            //SetEndDateInFilter(endDate);
             return this;
         }
 
@@ -225,8 +388,11 @@ namespace AutoGTP2Tests
 
         public ProjectPageHelper SetEndDateInFilter(string endDate)
         {
-            driver.FindElement(endDateFieldInFilters).Click();
-            driver.FindElement(endDateFieldInFilters).SendKeys(endDate);            
+            if( ! IsElementPresent(By.XPath("//div[@class= 'popup-overlay ']")))
+            {
+                driver.FindElement(endDateFieldInFilters).Click();
+                driver.FindElement(endDateFieldInFilters).SendKeys(endDate);
+            }                        
             return this;
         }
 

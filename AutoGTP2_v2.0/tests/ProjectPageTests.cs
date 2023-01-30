@@ -22,7 +22,7 @@ namespace AutoGTP2Tests
         {
             List<ProjectData> oldProjects = app.Projects.GetProjectList();
 
-            app.ProjectPage.FillFilterAndClearButtonClick(2, "start date", "10 Nov 2022", "01 Nov 2022");
+            app.ProjectPage.FillFilterAndClearButtonClick(2, "start date", "01 Nov 2022", "10 Nov 2022");
 
             List<ProjectData> newProjects = app.Projects.GetProjectList();
 
@@ -53,8 +53,8 @@ namespace AutoGTP2Tests
         {
             app.ProjectPage.SelectDateTypeAndRangeInFilter("start date", "10 Nov 2022", "01 Nov 2022");
 
-            Assert.IsTrue(app.ProjectPage.DatePopupInFiltersIsPresent());
-            Assert.IsTrue(app.ProjectPage.DatePopupInFiltersContainsCorrectText());
+            Assert.IsTrue(app.ProjectPage.EndDatePopupInFiltersIsPresent());
+            Assert.IsTrue(app.ProjectPage.EndDatePopupInFiltersContainsCorrectText());
         }
 
         //GTP2-R-04-19.2
@@ -63,8 +63,8 @@ namespace AutoGTP2Tests
         {
             app.ProjectPage.SelectDateTypeAndRangeInFilter("end date", "10 Nov 2022", "01 Nov 2022");
 
-            Assert.IsTrue(app.ProjectPage.DatePopupInFiltersIsPresent());
-            Assert.IsTrue(app.ProjectPage.DatePopupInFiltersContainsCorrectText());
+            Assert.IsTrue(app.ProjectPage.EndDatePopupInFiltersIsPresent());
+            Assert.IsTrue(app.ProjectPage.EndDatePopupInFiltersContainsCorrectText());
         }
 
         //GTP2-R-04-19.3
@@ -73,8 +73,17 @@ namespace AutoGTP2Tests
         {
             app.ProjectPage.SelectDateTypeAndRangeInFilter("date of creation", "10 Nov 2022", "01 Nov 2022");
 
-            Assert.IsTrue(app.ProjectPage.DatePopupInFiltersIsPresent());
-            Assert.IsTrue(app.ProjectPage.DatePopupInFiltersContainsCorrectText());
+            Assert.IsTrue(app.ProjectPage.EndDatePopupInFiltersIsPresent());
+            Assert.IsTrue(app.ProjectPage.EndDatePopupInFiltersContainsCorrectText());
+        }
+
+        //GTP2-R-04-20
+        [Test]
+        public void VendorSortInFiltersPopupTest()
+        {
+            app.ProjectPage.SortByVendorInFilters();
+
+            Assert.IsTrue(app.ProjectPage.VendorInProjectIsCorrect());            
         }
 
 
@@ -86,6 +95,74 @@ namespace AutoGTP2Tests
 
 
 
+        // GTP2-R-04-27
+        [Test]
+        public void StartDateInFiltersWordTest()
+        {
+            app.ProjectPage.SelectDateTypeAndRangeInFilter("end date", "word", "");
+
+            Assert.IsTrue(app.ProjectPage.StartDatePopupInFiltersIsPresent());
+            Assert.IsTrue(app.ProjectPage.StartDatePopupInFiltersContainsCorrectText());
+        }
+
+        // GTP2-R-04-28
+        [Test]
+        public void EndDateInFiltersWordTest()
+        {
+            app.ProjectPage.SelectDateTypeAndRangeInFilter("end date", "10 Nov 2022", "word");
+
+            Assert.IsTrue(app.ProjectPage.EndDatePopupInFiltersIsPresent());
+            Assert.IsTrue(app.ProjectPage.EndDatePopupInFiltersContainsCorrectText());
+        }
+
+        // GTP2-R-04-29
+        [Test]
+        public void MagnifyingGlassClickTest()
+        {
+            app.ProjectPage.SearchingFieldClick();
+
+            Assert.IsTrue(app.Budgets.SearchingFieldHintIsPresent());
+            Assert.IsTrue(app.Budgets.SearchingFieldCrossIsPresent());
+        }
+
+        //GTP2-R-04-31
+        [Test]
+        public void SearchExistingProjectWithEnterTest()
+        {
+            app.ProjectPage.EnterExistingProjectNameAndPushEnter();
+
+            Assert.IsTrue(app.ProjectPage.SearchingIsCorrect());
+        }
+
+        //GTP2-R-04-32
+        [Test]
+        public void SearchExistingProjectWithMagnifyingGlassClickTest()
+        {
+            app.ProjectPage.EnterExistingProjectNameAndAndClickMagnifyingGlass();
+
+            Assert.IsTrue(app.ProjectPage.SearchingIsCorrect());
+        }
+
+        //GTP2-R-04-33
+        [Test]
+        public void SearchNotExistingProjectTest()
+        {
+            app.ProjectPage.EnterNotExistingProjectName();
+
+            Assert.IsTrue(app.ProjectPage.ProjectsNotFound());
+        }
+
+        //GTP2-R-04-34 / GTP2-R-04-30
+        [Test]
+        public void ClearSearchingFieldTest()
+        {
+            List<ProjectData> oldProjects = app.Projects.GetProjectList();
+            app.ProjectPage.EnterNotExistingProjectNameAndClearSearchingField();
+            List<ProjectData> newProjects = app.Projects.GetProjectList();
+
+            Assert.AreEqual(oldProjects, newProjects);
+            Assert.True(app.ProjectPage.SearchingFieldIsEmpty());
+        }
 
         //GTP2-R-04-40
         [Test]

@@ -8,7 +8,6 @@ namespace AutoGTP2Tests
     public class ProjectCreateTests : AuthTestBase
     {
         // GTP2-R-02-6, GTP2-R-02-8, GTP2-R-02-15
-
         [Test]
         public void CreatePendingProjectTest()
         {

@@ -1011,7 +1011,7 @@ namespace AutoGTP2Tests
         {
             driver.FindElement(By.Id("requestQuote")).Click();
             //если модальное окно с лимитом слов отсутствует - включить ожидание
-            if (!IsElementPresent(By.XPath("//div[@class = 'styles_modal__gNwvD styles_modalCenter__L9F2w CPIy0UxHVarTASaZXBRS']"))){
+            if ( ! IsElementPresent(By.XPath("//div[@class = 'styles_modal__gNwvD styles_modalCenter__L9F2w CPIy0UxHVarTASaZXBRS']"))){
                 WaitUntilFindElement(10, By.XPath("//span[@class = 'oSlLzqSfaLdSFEWpZxdw']"));
                 Thread.Sleep(500);
                 WaitUntilElementIsHide(200, By.XPath("//span[@class = 'oSlLzqSfaLdSFEWpZxdw']"));

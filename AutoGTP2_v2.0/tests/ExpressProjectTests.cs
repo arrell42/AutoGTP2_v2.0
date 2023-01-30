@@ -75,7 +75,7 @@ namespace AutoGTP2Tests
 
             app.Projects.ExpressProjectRequestQuote(projectData);
                         
-            Assert.IsTrue(app.Projects.ExpressDeadlineIsCorrect());
+            Assert.IsTrue(app.Projects.ExpressDeadlineIsCorrect(4));
             Assert.That(app.Projects.ExpressWordsCount().Contains("100"));
         }
 
@@ -90,7 +90,7 @@ namespace AutoGTP2Tests
 
             app.Projects.ExpressProjectFileAndTextAttach(projectData, app.sourceFile);
 
-            Assert.IsTrue(app.Projects.ExpressDeadlineIsCorrect());
+            Assert.IsTrue(app.Projects.ExpressDeadlineIsCorrect(4));
             Assert.That(app.Projects.ExpressWordsCount().Contains("200"));
         }
 
@@ -150,7 +150,7 @@ namespace AutoGTP2Tests
             app.Projects.ExpressProjectFileAttachAndPlaceOrder(projectData);
 
             Assert.That(app.Projects.ExpressWordsCount().Contains("100"));
-            Assert.IsTrue(app.Projects.ExpressDeadlineIsCorrect());
+            Assert.IsTrue(app.Projects.ExpressDeadlineIsCorrect(4));
         }
 
         // GTP2-R-03-12
@@ -165,7 +165,7 @@ namespace AutoGTP2Tests
             app.Projects.ExpressProjectFileAttachThanFillTextarea(projectData, app.sourceFile);
 
             Assert.That(app.Projects.ExpressWordsCount().Contains("200"));
-            Assert.IsTrue(app.Projects.ExpressDeadlineIsCorrect());
+            Assert.IsTrue(app.Projects.ExpressDeadlineIsCorrect(4));
         }
 
         // GTP2-R-03-13

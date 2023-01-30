@@ -120,6 +120,16 @@ namespace AutoGTP2Tests
             Assert.IsTrue(app.Budgets.BudgetModalReadOnlyIconPopupText());
         }
 
+        // GTP2-R-06-13
+        [Test]
+        public void MagnifyingGlassClickTest()
+        {
+            app.Budgets.SearchingFieldClick();
+
+            Assert.IsTrue(app.Budgets.SearchingFieldHintIsPresent());
+            Assert.IsTrue(app.Budgets.SearchingFieldCrossIsPresent());
+        }
+
         // GTP2-R-06-14
         [Test]
         public void DeleteTextFromSearchBarTest()

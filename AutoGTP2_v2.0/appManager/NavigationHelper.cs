@@ -12,6 +12,15 @@ namespace AutoGTP2Tests
         {            
             this.baseURL = baseURL;
         }
+
+        //LOCATORS
+        public readonly By projectList = By.XPath("//div[@class= 'fPooHDtNQyVHMCf4O9mn']");
+        public readonly By projectsButtonInNavBar = By.Id("MENU_PROJECTS");
+        public readonly By loadingCircle = By.XPath("//div[@class = 'uAVm9bKcbGvOpCLx2Whj']");
+        public readonly By projectCardOnPage = By.XPath("//div[@class= 'Y60VrDynu5B8vFAVkO5A']");
+        
+
+
         public void GoToLoginPage()
         {
                driver.Navigate().GoToUrl(baseURL);            
@@ -47,13 +56,15 @@ namespace AutoGTP2Tests
         {
             if (driver.Url == "" + baseURL + "/projects")
             {
-                WaitUntilFindElement(10, By.XPath("//div[@class= 'fPooHDtNQyVHMCf4O9mn']"));                
+                WaitUntilFindElement(10, projectList);                
                 return;
             }
-            driver.FindElement(By.Id("MENU_PROJECTS")).Click();
-            var loadingCircle = By.XPath("//div[@class = 'uAVm9bKcbGvOpCLx2Whj']");
+            driver.FindElement(projectsButtonInNavBar).Click();            
             WaitUntilElementIsHide(5, loadingCircle);
-            WaitUntilFindElement(10, By.XPath("//div[@class= 'fPooHDtNQyVHMCf4O9mn']"));
+            WaitUntilFindElement(10, projectList);
+            Thread.Sleep(1000);
+            if(CountOfProjectsOnPage() > 20) { manager.ProjectPage.SelectProjectCountOnPage("20"); }
+            
         }
 
         public void GoToDashportPage()
@@ -70,6 +81,14 @@ namespace AutoGTP2Tests
 
 
 
+
+
+
+
+        public int CountOfProjectsOnPage()
+        {
+            return driver.FindElements(projectCardOnPage).Count;
+        }
 
 
         private bool NoBudgetsForDisplay()

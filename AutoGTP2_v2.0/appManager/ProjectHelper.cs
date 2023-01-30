@@ -14,6 +14,7 @@ namespace AutoGTP2Tests
         public ProjectHelper(ApplicationManager manager) : base(manager)
         {
         }
+        
 
         //Высокоуровневые методы
         public ProjectHelper CreatePendingProject(ProjectData projectData)
@@ -363,6 +364,7 @@ namespace AutoGTP2Tests
             manager.Services.RequestQuoteButtonClick();
             FillTextAreaFromFile(filePath);
             manager.Services.RequestQuoteButtonClick();
+            Thread.Sleep(500);
             return this;
         }
 
@@ -392,7 +394,7 @@ namespace AutoGTP2Tests
             List<ProjectData> projects = new List<ProjectData>();
 
             manager.Navigator.GoToProjectPage();
-            driver.Navigate().Refresh();
+            if (manager.Navigator.CountOfProjectsOnPage() > 20) { manager.ProjectPage.SelectProjectCountOnPage("20"); }
             WaitUntilFindProjectList();
 
 
@@ -564,6 +566,7 @@ namespace AutoGTP2Tests
 
         public bool? ProjectStatusIs(string statusName)
         {
+            WaitUntilFindElement(10, By.Id("PROJECT_STATUS"));
             var completeStatus = By.XPath
                 ("//div[@class= 'CXwQMpaC5HQszu_q1TIp']//div[@id= 'PROJECT_STATUS']//span[contains(text(), '" + statusName + "')]");
             return IsElementPresent(completeStatus);
@@ -658,10 +661,10 @@ namespace AutoGTP2Tests
                 "//div[@class = 'styles_modal__gNwvD styles_modalCenter__L9F2w CPIy0UxHVarTASaZXBRS']"));
         }
 
-        public bool ExpressDeadlineIsCorrect()
+        public bool ExpressDeadlineIsCorrect(int timeToVolume)
         {
             string dateText = driver.FindElement(By.XPath("//p[contains(text(), 'Deadline')]//following-sibling::p")).Text;
-            int hour = Int32.Parse(DateTime.Now.ToString("HH")) + 4; //int hour = Int32.Parse(DateTime.Now.AddHours(4))
+            int hour = Int32.Parse(DateTime.Now.ToString("HH")) + timeToVolume; //int hour = Int32.Parse(DateTime.Now.AddHours(4))
             string correctTime = hour.ToString();
             if (dateText.Contains(DateTime.Now.ToString("dd")) && dateText.Contains(correctTime))
             {
@@ -672,8 +675,7 @@ namespace AutoGTP2Tests
 
         public string ExpressWordsCount()
         {
-            return driver.FindElement(By.XPath("//p[contains(text(), 'Word')]" +
-                 "//following-sibling::p[@class = 'JYY3cyt6ivHCSM8aXGfg']")).Text;
+            return driver.FindElement(By.XPath("//p[contains(text(), 'Word')]//following-sibling::p[@class = 'JYY3cyt6ivHCSM8aXGfg']")).Text;
         }
 
         public ProjectHelper WaitPopupInBudgetField()
@@ -895,16 +897,17 @@ namespace AutoGTP2Tests
 
             string t = projectData.ToString();            
             Regex regexTemp = new Regex(@"\[.*\]");
-            string pd = regexTemp.Match(t).Value;
+            string projectName = regexTemp.Match(t).Value;
 
-            WaitUntilFindElement(10, By.XPath("//div[contains(text(), '" + pd + "')]"));
-            driver.FindElement(By.XPath("//div[contains(text(), '"+ pd + "')]")).Click();            
+            WaitUntilFindElement(10, By.XPath("//div[contains(text(), '" + projectName + "')]"));
+            driver.FindElement(By.XPath("//div[contains(text(), '"+ projectName + "')]")).Click();            
             WaitUntilFindElement(10, By.Id("ProjectCardReferenceMaterials"));
+            Thread.Sleep(500);
             if (IsElementPresent(By.XPath("//span[@class = 'oSlLzqSfaLdSFEWpZxdw']")))
             {
-                WaitUntilElementIsHide(10, By.XPath("//span[@class = 'oSlLzqSfaLdSFEWpZxdw']"));                
+                WaitUntilElementIsHide(100, By.XPath("//span[@class = 'oSlLzqSfaLdSFEWpZxdw']"));
             }
-            Thread.Sleep(3000);
+            Thread.Sleep(2000);
             if (IsElementPresent(By.Id("PROJECTS_EXPRESS_TEXT")))
             {
                 CloseProjectCardAndOpenAgain(projectData);
@@ -1170,6 +1173,7 @@ namespace AutoGTP2Tests
         public ProjectHelper ProjectDeleteConfirmButtonClick()
         {
             driver.FindElement(By.Id("PROJECTS_DELETE_CONFIRMATION")).Click();
+            
             Thread.Sleep(1500);
             return this;
         }
@@ -1194,7 +1198,7 @@ namespace AutoGTP2Tests
         {
             WaitUntilFindElement(10, By.XPath("//div[@class = 'project-selection-menu']"));
             IWebElement projectBurger = driver.FindElement(By.XPath("//div[@class = 'project-selection-menu']"));
-            projectBurger.Click();
+            if( ! IsElementPresent(By.XPath("//div[@class = 'hamburger-open-body']"))) { projectBurger.Click(); }            
             return this;
         }
 

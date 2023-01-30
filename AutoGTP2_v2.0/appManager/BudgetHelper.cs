@@ -44,7 +44,6 @@ namespace AutoGTP2Tests
         public readonly By budgetModal = By.XPath("//div[@class= 'newBudget-modal']");
         public readonly By budgetModalCreateButton = By.Id("NEW_BUDGET_CREATE");
         public readonly By budgetModalPOPopup = By.XPath("//p[@class = 'i9matKNoUHudiZkMT8BL']");
-        public readonly By budgetModalTotalField = By.Id("NEW_BUDGET_TOTAL");
         public readonly By budgetModalCurrencyField = By.XPath("//input[@name = 'NEW_BUDGET_CURRENCY']");
         public readonly By budgetModalCurrencyUSD = By.XPath("//p[@title='USD']");
         public readonly By budgetModalCostField = By.Id("NEW_BUDGET_COST");
@@ -52,7 +51,15 @@ namespace AutoGTP2Tests
         public readonly By budgetBurgerDeleteButton = By.XPath("//p[@class = 'delete-project-btn ']");
         public readonly By budgetDeleteConfirmButton = By.XPath("//button[@class = 'btn bordered-btn']");
         public readonly By budgetDeleteDeclineButton = By.XPath("//button[@class = 'btn primary-btn']");
+        public readonly By budgetModalTotalField = By.Id("NEW_BUDGET_TOTAL");
+        public readonly By searchingFieldHint = By.XPath("//p[@class= 'search-text']");
+        public readonly By searchingFieldCross = By.XPath("//p[@class= 'search-delete']");
+
+
         
+
+
+
 
         //Высокоуровневые методы
 
@@ -150,6 +157,7 @@ namespace AutoGTP2Tests
             manager.Navigator.GoToBudgetPage();            
             TakeBudgetNameAndEnterItToSearchBar();
             MagnifyingGlassClick();
+            Thread.Sleep(1000);
             return this;
         }
 
@@ -165,7 +173,7 @@ namespace AutoGTP2Tests
         public BudgetHelper EnterNotExistingBudgetName()
         {
             manager.Navigator.GoToBudgetPage();
-            EnterRandomBudgetName();            
+            EnterRandomTextInSearchingField();            
             PushEnter();
             WaitUntilFindElement(10, By.XPath("//div[@class= 'u8jP831aiskq6Oe6mMlo']"));
             return this;
@@ -184,10 +192,25 @@ namespace AutoGTP2Tests
             BudgetColumnsButtonClick();
             ColumnsSwitchOff(budgetColumnsData);
             driver.Navigate().Refresh();
-            Thread.Sleep(500);
+            WaitUntilFindBudgetList();
             return this;
         }
-                
+        public BudgetHelper SearchingFieldClick()
+        {
+            manager.Navigator.GoToBudgetPage();
+            MagnifyingGlassClick();
+            PushEnter();
+            return this;
+        }
+
+
+
+
+
+
+
+
+
 
 
         // Создаем список бюджетов
@@ -239,6 +262,17 @@ namespace AutoGTP2Tests
 
 
         // Низкоуровневые методы
+
+
+        public bool? SearchingFieldHintIsPresent()
+        {
+            return driver.FindElement(searchingFieldHint).Displayed;
+        }        
+
+        public bool? SearchingFieldCrossIsPresent()
+        {
+            return driver.FindElement(searchingFieldCross).Displayed;
+        }
 
         public BudgetHelper WaitUntilFindBudgetList()
         {
@@ -357,7 +391,7 @@ namespace AutoGTP2Tests
             return this;
         }
 
-        public BudgetHelper EnterRandomBudgetName()
+        public BudgetHelper EnterRandomTextInSearchingField()
         {
             string text = manager.TextGenerator(1, 8);
             driver.FindElement(searchField).SendKeys(text);
@@ -388,6 +422,7 @@ namespace AutoGTP2Tests
         {
             IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
             js.ExecuteScript("document.getElementById('BUDGETS_SEARCH_FIELD_BUTTON').click()");
+            Thread.Sleep(1000);
             return this;
         }
         
