@@ -34,7 +34,19 @@ namespace AutoGTP2Tests
         public readonly By projectNameColumnValue = By.Id("PROJECTS_PROJECT_NAME");
         public readonly By startDatePopupInFilters = By.XPath("//p[@class= 'YGwtnExaSDV_RZqBYnPD']");
         public readonly By projectList = By.XPath("//div[@class= 'fPooHDtNQyVHMCf4O9mn']");
+        public readonly By representativeFieldInFilters = By.XPath("//div[@class= 'filter-representative']//span");
+        public readonly By representativeNameInProjectList = By.XPath("//div[@class= 'HmZHR9aWxu9QsxsKBvP_ GfQWB6JjS_ecBSmInOZe']//following-sibling::div");
+        public readonly By pmFieldInFilters = By.XPath("//div[@class= 'filter-representative-PM']//span");
+        public readonly By pmNameInProjectList = By.XPath("//div[@class= 'HmZHR9aWxu9QsxsKBvP_' and contains(text(), 'Responsible PM')]//following-sibling::div");
+        public readonly By statusInFilters = By.XPath("//div[@class= 'statuses-dropdown-lock']");
+        public readonly By statusNameInProjectList = By.XPath("//div[@id= 'PROJECT_STATUS']//span");
+        public readonly By deleteStatusCrossInFilters = By.XPath("//*[local-name()='path' and @stroke='#3798F3']");
+        public readonly By disabledCheckboxInColumsSettingsPopup = By.XPath("//div[@class= 'UVPAJnHrDOYjcYvCJvHC zQlqaPTsRxDizaEB2uBM jfNvdXFx_TRHu6VpHYEB _fGfxt_KTPxUyHmi7HXe']");
+        public readonly By columnsPopup = By.Id("settings-columns");
+        public readonly By newProjectButton = By.Id("PROJECTS_NEW_PROJECT_BUTTON");
+        public readonly By disabledColumnInColumnsPopup = By.XPath("//div[@class= 'UVPAJnHrDOYjcYvCJvHC jfNvdXFx_TRHu6VpHYEB']");
         
+
 
 
 
@@ -178,10 +190,70 @@ namespace AutoGTP2Tests
             PushEnter(searchingField);
             return this;
         }
+        public ProjectPageHelper SortByRepresentativeInFilters()
+        {
+            manager.Navigator.GoToProjectPage();
+            FiltersButtonClick();
+            SelectRepresentativeInFilters();
+            ApplyButtonInFiltersClick();
+            return this;
+        }
+        
+        public ProjectPageHelper SortByPMInFilters()
+        {
+            manager.Navigator.GoToProjectPage();
+            FiltersButtonClick();
+            SelectPMInFilters();
+            ApplyButtonInFiltersClick();
+            return this;
+        }
+        public ProjectPageHelper SortByCompletedStatusInFilters()
+        {
+            manager.Navigator.GoToProjectPage();
+            FiltersButtonClick();
+            SelectStatusInFilters("Completed");
+            ApplyButtonInFiltersClick();
+            return this;
+        }
+        public ProjectPageHelper SortByDeferredAndCompletedStatusInFilters()
+        {
+            manager.Navigator.GoToProjectPage();
+            FiltersButtonClick();
+            SelectStatusInFilters("Completed");            
+            SelectStatusInFilters("Deferred");
+            ApplyButtonInFiltersClick();
+            return this;
+        }
+        public ProjectPageHelper SortByThreeStatusesInFilters()
+        {
+            manager.Navigator.GoToProjectPage();
+            FiltersButtonClick();
+            SelectStatusInFilters("Completed");
+            SelectStatusInFilters("Deferred");
+            SelectStatusInFilters("Cancelled");            
+            return this;
+        }
 
+        public ProjectPageHelper DeleteStatusFromStatusesList()
+        {
+            manager.Navigator.GoToProjectPage();
+            FiltersButtonClick();
+            SelectStatusInFilters("Completed");
+            SelectStatusInFilters("Deferred");
+            SelectStatusInFilters("Cancelled");
+            DeleteStatusInFilter();
+            return this;
+        }
 
-
-
+        public ProjectPageHelper TurnOffProjectsColumn(ProjectColumnsData projectColumnsData)
+        {
+            manager.Navigator.GoToProjectPage();
+            ColumnsButtonClick();
+            ColumnsSwitchOff(projectColumnsData);
+            driver.Navigate().Refresh();
+            WaitUntilFindProjectList();
+            return this;
+        }
 
 
 
@@ -202,6 +274,184 @@ namespace AutoGTP2Tests
 
         // Низкоуровневые методы
 
+        public ProjectPageHelper ColumnsTurnOnIfItTurnOff()
+        {
+            if (IsElementPresent(newProjectButton) == false)
+            {
+                manager.Navigator.GoToProjectPage();
+            }
+
+            if (IsElementPresent(columnsPopup) == false)
+            {
+                ColumnsButtonClick();
+            }
+
+            if (ColumnsInColumnsListAreOff())
+            {
+                ColumnsTurnOn();
+            }
+
+            if (ColumnsAreOn())
+            {
+                ColumnsButtonClick();
+            }
+            return this;
+        }
+
+        public bool ColumnsInColumnsListAreOff()
+        {
+            return driver.FindElements(disabledColumnInColumnsPopup).Count >= 1;
+        }
+        public ProjectPageHelper ColumnsTurnOn()
+        {
+            var elements = driver.FindElements(disabledColumnInColumnsPopup);
+            foreach (var element in elements)
+            {
+                element.Click();
+            }
+            return this;
+        }
+
+        public double CheckBoxIsDisabled()
+        {
+            if (ColumnsPopupIsOpen() == false)
+            {
+                ColumnsButtonClick();
+            }
+            return driver.FindElements(disabledCheckboxInColumsSettingsPopup).Count;            
+        }
+
+        public bool ColumnsPopupIsOpen()
+        {
+            return IsElementPresent(columnsPopup);
+        }
+
+        public ProjectPageHelper WaitUntilFindProjectList()
+        {
+            WaitUntilFindElement(10, projectList);
+            return this;
+        }
+        public bool ColumnsAreOn()
+        {
+            return driver.FindElements(disabledColumnInColumnsPopup).Count == 0;
+        }
+
+        public ProjectPageHelper ColumnsSwitchOff(ProjectColumnsData projectColumnsData)
+        {
+            if (projectColumnsData.ProjectName == null) { projectColumnsData.ProjectName = "  "; }
+            if (projectColumnsData.Status == null) { projectColumnsData.Status = "  "; }
+            if (projectColumnsData.LanguagePair == null) { projectColumnsData.LanguagePair = "  "; }
+            if (projectColumnsData.Quantity == null) { projectColumnsData.Quantity = "  "; }
+            if (projectColumnsData.StartDate == null) { projectColumnsData.StartDate = "  "; }
+            if (projectColumnsData.EndDate == null) { projectColumnsData.EndDate = "  "; }
+            if (projectColumnsData.TotalAmount == null) { projectColumnsData.TotalAmount = "  "; }
+            if (projectColumnsData.DateOfCreation == null) { projectColumnsData.DateOfCreation = "  "; }
+            if (projectColumnsData.Representative == null) { projectColumnsData.Representative = "  "; }
+            if (projectColumnsData.ResponsiblePM == null) { projectColumnsData.ResponsiblePM = "  "; }
+            if (projectColumnsData.Budget == null) { projectColumnsData.Budget = "  "; }
+            if (projectColumnsData.Vendor == null) { projectColumnsData.Vendor = "  "; }
+            if (projectColumnsData.SubjectArea == null) { projectColumnsData.SubjectArea = "  "; }
+
+            ICollection<IWebElement> elementsCount = driver.FindElements(By.XPath(
+                    "//div[@id= 'settings-columns']//div[@class= 'UVPAJnHrDOYjcYvCJvHC zQlqaPTsRxDizaEB2uBM jfNvdXFx_TRHu6VpHYEB' and " +
+                    "contains(text(), '" + projectColumnsData.ProjectName + "') or " +
+                    "contains(text(), '" + projectColumnsData.Status + "') or " +
+                    "contains(text(), '" + projectColumnsData.LanguagePair + "') or " +
+                    "contains(text(), '" + projectColumnsData.Quantity + "') or " +
+                    "contains(text(), '" + projectColumnsData.StartDate + "') or " +
+                    "contains(text(), '" + projectColumnsData.EndDate + "') or " +
+                    "contains(text(), '" + projectColumnsData.TotalAmount + "') or " +
+                    "contains(text(), '" + projectColumnsData.DateOfCreation + "') or " +
+                    "contains(text(), '" + projectColumnsData.Representative + "') or " +
+                    "contains(text(), '" + projectColumnsData.ResponsiblePM + "') or " +
+                    "contains(text(), '" + projectColumnsData.Budget + "') or " +
+                    "contains(text(), '" + projectColumnsData.Vendor + "') or " +
+                    "contains(text(), '" + projectColumnsData.SubjectArea + "')]"
+                    ));
+
+            foreach (var element in elementsCount)
+            {
+                element.Click();
+                Thread.Sleep(200);
+            }
+            return this;
+        }
+
+        public ProjectPageHelper DeleteStatusInFilter()
+        {
+            ICollection<IWebElement> elements = driver.FindElements(By.XPath("//div[@class= 'filter-chosen-status']"));
+            foreach (IWebElement element in elements)
+            {
+                driver.FindElement(deleteStatusCrossInFilters).Click();
+            }
+            return this;
+        }
+        public bool? StatusListContainsElements(int i)
+        {
+            return driver.FindElements(By.XPath("//div[@class= 'filter-chosen-status']")).Count == i;
+        }
+        public bool? StatusInProjectIsCorrect()
+        {
+            FiltersButtonClick();
+            bool result = true;
+            string statusName = driver.FindElement(statusNameInProjectList).Text;
+
+            ICollection<IWebElement> elements = driver.FindElements(By.Id("PROJECTS_PROJECT_NAME"));
+            foreach (IWebElement element in elements)
+            {
+                if (statusName == "Completed" || statusName == "Deferred")
+                {
+                    continue;
+                }
+                else { return result = false; }
+            }
+            return result;
+        }
+
+        public ProjectPageHelper SelectStatusInFilters(string status)
+        {
+            driver.FindElement(statusInFilters).Click();
+            driver.FindElement(By.XPath("//span[@aria-label= '" + status + "']")).Click();
+            return this;
+        }
+
+        public bool? PMInProjectIsCorrect()
+        {
+            FiltersButtonClick();
+            bool result = true;
+            string pmName = driver.FindElement(pmFieldInFilters).Text;
+
+            ICollection<IWebElement> elements = driver.FindElements(By.Id("PROJECTS_PROJECT_NAME"));
+            foreach (IWebElement element in elements)
+            {
+                string pmNameInProjectCard = driver.FindElement(pmNameInProjectList).Text;
+                if (pmNameInProjectCard.Contains(pmName))
+                {
+                    continue;
+                }
+                else { return result = false; }
+            }
+            return result;
+        }
+
+        public bool? RepresentativeInProjectIsCorrect()
+        {
+            FiltersButtonClick();
+            bool result = true;
+            string repName = driver.FindElement(representativeFieldInFilters).Text;
+
+            ICollection<IWebElement> elements = driver.FindElements(By.Id("PROJECTS_PROJECT_NAME"));
+            foreach (IWebElement element in elements)
+            {                
+                string representativeNameInProjectCard = driver.FindElement(representativeNameInProjectList).Text;
+                if (representativeNameInProjectCard.Contains(repName))
+                {                    
+                    continue;
+                }
+                else { return result = false; }
+            }
+            return result;
+        }
 
         public bool? StartDatePopupInFiltersIsPresent()
         {
@@ -425,26 +675,23 @@ namespace AutoGTP2Tests
             return this;
         }
 
-        public ProjectPageHelper SelectRepresentativeInFilters(string repName)
+        public ProjectPageHelper SelectRepresentativeInFilters()
         {
-            IWebElement representativeField = driver.FindElement(
-                By.XPath("//p[contains(text(), 'representative')]//following-sibling::div//div[@class= 'react-dropdown-select-content react-dropdown-select-type-single css-v1jrxw-ContentComponent e1gn6jc30']"));
+            IWebElement representativeField = driver.FindElement(By.XPath("//p[contains(text(), 'representative')]//following-sibling::div//div[@class= 'react-dropdown-select-content react-dropdown-select-type-single css-v1jrxw-ContentComponent e1gn6jc30']"));
             representativeField.Click();
 
-            IWebElement representative = driver.FindElement(
-                By.XPath("//p[@class= 'CKkqQTXqlkqO2CTJTb3k' and contains(text(), '" + repName + "')]"));
+            IWebElement representative = driver.FindElement(By.XPath("//div[@class= 'YxhDSz1flbKA8yowp3RE  '][1]"));
             representative.Click();
             return this;
         }
 
-        public ProjectPageHelper SelectPMInFilters(string pmName)
+        public ProjectPageHelper SelectPMInFilters()
         {
             IWebElement pmField = driver.FindElement(
                 By.XPath("//p[contains(text(), 'PM')]//following-sibling::div//div[@class= 'react-dropdown-select-content react-dropdown-select-type-single css-v1jrxw-ContentComponent e1gn6jc30']"));
             pmField.Click();
 
-            IWebElement pm = driver.FindElement(
-                By.XPath("//p[@class= 'CKkqQTXqlkqO2CTJTb3k' and contains(text(), '" + pmName + "')]"));
+            IWebElement pm = driver.FindElement(By.XPath("//div[@class= 'YxhDSz1flbKA8yowp3RE  ']"));
             pm.Click();
             return this;
         }

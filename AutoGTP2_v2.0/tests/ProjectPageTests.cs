@@ -16,6 +16,48 @@ namespace AutoGTP2Tests
             Assert.IsTrue(app.ProjectPage.ColumnsListIsOpen());
         }
 
+        //GTP2-R-04-10
+        [Test]
+        public void TurnOffProjectsColumnTest()
+        {
+            ProjectColumnsData projectColumnsData = new ProjectColumnsData()
+            {
+                LanguagePair = "Language pair",
+                Quantity = "Quantity"
+            };
+
+            app.ProjectPage.TurnOffProjectsColumn(projectColumnsData);
+
+            Assert.That(app.Projects.AllProjectColumns(), Has.No.Member(projectColumnsData.LanguagePair));
+            Assert.That(app.Projects.AllProjectColumns(), Has.No.Member(projectColumnsData.Quantity));
+            Assert.That(app.Projects.AllProjectColumns(), Has.Member("Project name"));
+        }
+
+        //GTP2-R-04-11
+        [Test]
+        public void TurnOffAllProjectsColumnTest()
+        {
+            ProjectColumnsData projectColumnsData = new ProjectColumnsData()
+            {
+                ProjectName = "Project name",
+                Status = "Status",
+                LanguagePair = "Language pair",
+                Quantity = "Quantity",
+                StartDate = "Start date",
+                EndDate = "End date",
+                TotalAmount = "Total amount",
+                DateOfCreation = "Date of creation",
+                Representative = "representative",
+                ResponsiblePM = "Responsible PM",
+                Budget = "Budget",
+                Vendor = "Vendor"                
+            };
+
+            app.ProjectPage.TurnOffProjectsColumn(projectColumnsData);
+
+            Assert.AreEqual(app.ProjectPage.CheckBoxIsDisabled(), 1);
+        }
+
         // GTP2-R-04-13
         [Test]
         public void ClearFilterTest()
@@ -79,21 +121,57 @@ namespace AutoGTP2Tests
 
         //GTP2-R-04-20
         [Test]
-        public void VendorSortInFiltersPopupTest()
+        public void VendorSortInFiltersTest()
         {
             app.ProjectPage.SortByVendorInFilters();
 
             Assert.IsTrue(app.ProjectPage.VendorInProjectIsCorrect());            
         }
 
+        //GTP2-R-04-21
+        [Test]
+        public void RepresentativeSortInFiltersTest()
+        {
+            app.ProjectPage.SortByRepresentativeInFilters();
 
+            Assert.IsTrue(app.ProjectPage.RepresentativeInProjectIsCorrect());
+        }
 
+        //GTP2-R-04-22
+        [Test]
+        public void PMSortInFiltersTest()
+        {
+            app.ProjectPage.SortByPMInFilters();
 
+            Assert.IsTrue(app.ProjectPage.PMInProjectIsCorrect());
+        }
 
+        //GTP2-R-04-24
+        [Test]
+        public void StatusSortInFiltersTest()
+        {            
+            app.ProjectPage.SortByCompletedStatusInFilters();
 
+            Assert.IsTrue(app.ProjectPage.StatusInProjectIsCorrect());
+        }
 
+        //GTP2-R-04-25
+        [Test]
+        public void TwoStatusesSortInFiltersTest()
+        {
+            app.ProjectPage.SortByDeferredAndCompletedStatusInFilters();
 
+            Assert.IsTrue(app.ProjectPage.StatusInProjectIsCorrect());
+        }
 
+        //GTP2-R-04-26
+        [Test]
+        public void DeleteStatusFromStatusesListInFiltersTest()
+        {
+            app.ProjectPage.DeleteStatusFromStatusesList();
+
+            Assert.IsTrue(app.ProjectPage.StatusListContainsElements(0));
+        }
 
         // GTP2-R-04-27
         [Test]
@@ -305,5 +383,8 @@ namespace AutoGTP2Tests
             Assert.IsFalse(app.Projects.PlaceOrderButtonIsPresent());
             Assert.IsTrue(app.Projects.ProjectOnlyForReading());
         }
+
+        //GTP2-R-04-69
+        
     }
 }

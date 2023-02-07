@@ -378,8 +378,13 @@ namespace AutoGTP2Tests
         }
 
 
+        // Создаем список колонок бюджетов
+        public List<string> AllProjectColumns() => driver.FindElements(By.XPath("//div[@id= 'PROJECT_0']//div[contains(@class, 'HmZHR9aWxu9QsxsKBvP_')  or contains(@id, 'PROJECT_STATUS')]"))
+            .Select(x => x.Text).ToList();
 
 
+
+        
 
 
 

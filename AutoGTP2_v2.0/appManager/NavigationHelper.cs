@@ -56,7 +56,8 @@ namespace AutoGTP2Tests
         {
             if (driver.Url == "" + baseURL + "/projects")
             {
-                WaitUntilFindElement(10, projectList);                
+                WaitUntilFindElement(10, projectList);
+                manager.ProjectPage.ColumnsTurnOnIfItTurnOff();
                 return;
             }
             driver.FindElement(projectsButtonInNavBar).Click();            
@@ -64,7 +65,8 @@ namespace AutoGTP2Tests
             WaitUntilFindElement(10, projectList);
             Thread.Sleep(1000);
             if(CountOfProjectsOnPage() > 20) { manager.ProjectPage.SelectProjectCountOnPage("20"); }
-            
+            manager.ProjectPage.ColumnsTurnOnIfItTurnOff();
+
         }
 
         public void GoToDashportPage()

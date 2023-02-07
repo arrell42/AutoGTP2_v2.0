@@ -145,12 +145,15 @@
     <Compile Include="appManager\ServiceHelper.cs" />
     <Compile Include="appManager\DashportHelper.cs" />
     <Compile Include="model\BudgetColumnsData.cs" />
+    <Compile Include="model\ProjectColumnsData.cs" />
     <Compile Include="model\ProjectData.cs" />
     <Compile Include="model\ServiceData.cs" />
+    <Compile Include="tests\DeadlineTests.cs" />
     <Compile Include="tests\ExpressProjectTests.cs" />
     <Compile Include="tests\FilesTests.cs" />
     <Compile Include="tests\GanttChartTests.cs" />
     <Compile Include="tests\MemoQAutoProjectsTests.cs" />
+    <Compile Include="tests\MySpendingTests.cs" />
     <Compile Include="tests\ProjectPageTests.cs" />
     <Compile Include="tests\ServiceCreateTests.cs" />
     <Compile Include="tests\ProjectRemovalTests.cs" />
@@ -164,6 +167,7 @@
     <Compile Include="appManager\LoginHelper.cs" />
     <Compile Include="appManager\NavigationHelper.cs" />
     <Compile Include="tests\ServiceRemovalTests.cs" />
+    <Compile Include="tests\SLAsTests.cs" />
     <Compile Include="tests\TestBase.cs" />
     <Compile Include="model\BudgetData.cs" />
     <Compile Include="tests\BudgetRemovalTests.cs" />

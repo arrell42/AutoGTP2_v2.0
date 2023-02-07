@@ -16,13 +16,36 @@ namespace AutoGTP2Tests
         }
 
 
+
+        //LOCATORS
+        public readonly By slasMoreButton = By.Id("DASHPORT_SLAS_MORE_BUTTON");
+        public readonly By slasQuestionMark = By.XPath("//*[local-name()='circle' and @id='Ellipse_32-2']");
+        public readonly By slasQuestionMarkTooltip = By.XPath("//div[@class= 'ant-tooltip-inner']");
+        public readonly By slasClearButton = By.Id("DASHPORT_SLAS_CLEAR");
+        public readonly By slasProjectList = By.XPath("//div[@class= 'HSStc5BEXsAPQ6gUcSfu']");
+        public readonly By projectInSLAsList = By.XPath("//div[@class= 'uAfEqUrZYfNrNwCCnLdA oKZtZJR8g507Qy4nvITv']");
+        public readonly By statusInProjectCard = By.XPath("//div[@id= 'PROJECT_STATUS']//span");
+        public readonly By openedProjectCard = By.XPath("//div[@class = 'styles_modal__gNwvD styles_modalCenter__L9F2w project-card-modal']");
+        public readonly By deadlineMorebutton = By.Id("DASHPORT_DEADLINE_MORE_BUTTON");
+        public readonly By deadlineQuestionMark = By.XPath("//div[@class= 'XVR3QeVpFL2UBvjzs8du']");
+        public readonly By deadlineQuestionMarkTooltip = By.XPath("//div[@class= 'ant-tooltip-inner']");
+        public readonly By deadlineOverdueButton = By.XPath("//button[contains(text(), 'Overdue')]");
+        public readonly By projectInDeadlineList = By.XPath("//div[@class= 'zSSmn3r4L3KkiQczHqhP V7dJquKUaR_pVbkss6gS']");
+        public readonly By mySpendingMoreButton = By.Id("MYSPENDING_MORE_BUTTON");
+        public readonly By mySpendingQuestionMark = By.XPath("//div[@class= 'aNIhwSI1kcHehZT9A317']");
+        public readonly By mySpendingQuestionMarkTooltip = By.XPath("//div[@class= 'ant-tooltip-inner']");
+
+
+
+
+
         public DashportHelper OpenProjectFromTableName()
         {
             manager.Navigator.GoToDashportPage();
             GanttChartProjectNameClick();
             return this;
         }
-        
+
         public DashportHelper OpenProjectFromTableLine()
         {
             manager.Navigator.GoToDashportPage();
@@ -100,6 +123,55 @@ namespace AutoGTP2Tests
             return this;
         }
 
+        public DashportHelper OpenSLAsAndQuestionMarkClick()
+        {
+            manager.Navigator.GoToDashportPage();
+            SLAsMoreButtonClick();
+            SLAsQuestionMarkClick();
+            return this;
+        }
+
+        public DashportHelper OpenProjectInSLAs()
+        {
+            manager.Navigator.GoToDashportPage();
+            SLAsMoreButtonClick();
+            SLAsClearButtonClick();
+            SLAsProjectClick();
+            return this;
+        }
+
+        public DashportHelper OpenDeadlineAndQuestionMarkClick()
+        {
+            manager.Navigator.GoToDashportPage();
+            DeadlineMoreButtonClick();
+            DeadlineQuestionMarkClick();            
+            return this;
+        }
+
+        public DashportHelper OpenProjectInDeadline()
+        {
+            manager.Navigator.GoToDashportPage();
+            DeadlineMoreButtonClick();
+            OverdueButtonClick();
+            DeadlineProjectClick();
+            return this;
+        }
+
+        public DashportHelper OpenMySpendingAndQuestionMarkClick()
+        {
+            manager.Navigator.GoToDashportPage();
+            MySpendingMoreButtonClick();
+            MySpendingQuestionMarkClick();
+            return this;
+        }
+
+
+
+
+
+
+
+
 
 
 
@@ -114,6 +186,117 @@ namespace AutoGTP2Tests
 
         // низкоуровневые методы
 
+
+        public DashportHelper MySpendingMoreButtonClick()
+        {
+            driver.FindElement(mySpendingMoreButton).Click();
+            WaitUntilFindElement(10, mySpendingQuestionMark);
+            return this;
+        }
+
+        public DashportHelper MySpendingQuestionMarkClick()
+        {
+            driver.FindElement(mySpendingQuestionMark).Click();
+            WaitUntilFindElement(5, mySpendingQuestionMarkTooltip);
+            return this;
+        }
+
+        public bool? MySpendingTooltipIsPresent()
+        {
+            return IsElementPresent(mySpendingQuestionMarkTooltip);
+        }
+
+        public bool? MySpendingTooltipContainsText()
+        {
+            string textInTooltip = driver.FindElement(mySpendingQuestionMarkTooltip).Text;
+            if (textInTooltip.Contains("This section provides information on project expenditure " +
+                "based on Completed and In progress projects in the form of pie charts.")) { return true; }
+            return false;
+        }
+        public DashportHelper OverdueButtonClick()
+        {
+            driver.FindElement(deadlineOverdueButton).Click();
+            Thread.Sleep(500);
+            return this;
+        }
+        public DashportHelper DeadlineProjectClick()
+        {
+            driver.FindElement(projectInDeadlineList).Click();
+            WaitUntilFindElement(5, openedProjectCard);
+            return this;
+        }
+        public DashportHelper DeadlineMoreButtonClick()
+        {
+            driver.FindElement(deadlineMorebutton).Click();
+            WaitUntilFindElement(10, deadlineQuestionMark);
+            return this;
+        }
+
+        public void DeadlineQuestionMarkClick()
+        {            
+            driver.FindElement(deadlineQuestionMark).Click();
+            WaitUntilFindElement(5, deadlineQuestionMarkTooltip);
+        }
+
+        public bool? DeadlineTooltipIsPresent()
+        {
+            return IsElementPresent(deadlineQuestionMarkTooltip);
+        }
+
+        public bool? DeadlineTooltipContainsText()
+        {
+            string textInTooltip = driver.FindElement(deadlineQuestionMarkTooltip).Text;
+            if (textInTooltip.Contains("This section provides information on how many projects are due today or tomorrow.")) { return true; }
+            return false;
+        }
+        public bool? ProjectStatusInProjectCardIsCorrect(string statusName)
+        {
+            string statusText = driver.FindElement(statusInProjectCard).Text;
+            if (statusText == statusName) { return true; }
+            return false;
+        }
+
+        public DashportHelper SLAsClearButtonClick()
+        {
+            WaitUntilFindElement(10, slasClearButton);
+            driver.FindElement(slasClearButton).Click();
+            WaitUntilFindElement(10, slasProjectList);
+            return this;
+        }
+
+        public DashportHelper SLAsProjectClick()
+        {
+            driver.FindElement(projectInSLAsList).Click();
+            WaitUntilFindElement(10, openedProjectCard);
+            return this;
+        }
+
+        public DashportHelper SLAsMoreButtonClick()
+        {
+            driver.FindElement(slasMoreButton).Click();
+            WaitUntilFindElement(10, slasQuestionMark);            
+            return this;
+        }
+
+        public DashportHelper SLAsQuestionMarkClick()
+        {
+            driver.FindElement(slasQuestionMark).Click();
+            WaitUntilFindElement(10, slasQuestionMarkTooltip);
+            return this;
+        }
+
+        public bool? SLAsTooltipIsPresent()
+        {
+            return IsElementPresent(slasQuestionMarkTooltip);
+        }
+
+        public bool? SLAsTooltipContainsText()
+        {
+            string textInTooltip = driver.FindElement(slasQuestionMarkTooltip).Text;
+            if (textInTooltip.Contains("This section provides information on completed projects " +
+                "(status completed with such projects in GTP) in the following subsections:")) { return true; }
+            return false;
+        }
 
         public void GanttQuestionMarkClick()
         {
@@ -177,8 +360,7 @@ namespace AutoGTP2Tests
             if (projects.Count() > 0)
             {
                 foreach (var item in projects)
-                {
-                    //var index = projects.Count;
+                {                    
                     for (int i = 0; i < projCountForCheck; i++)
                     {
                         driver.FindElement(By.XPath("//div[@class= 'line-container '][" + (i + 1) + "]")).Click();
@@ -234,8 +416,7 @@ namespace AutoGTP2Tests
         {
             MouseClickImitation(By.XPath("//div[@class = 'header']"));
             driver.FindElement(By.Id("DASHPORT_GANTT_0_PROJECT_LINE_IN_LIST")).Click();
-            WaitUntilFindElement(10,
-                By.XPath("//div[@class = 'styles_modal__gNwvD styles_modalCenter__L9F2w project-card-modal']"));
+            WaitUntilFindElement(10, openedProjectCard);
             return this;
         }
 
@@ -243,8 +424,7 @@ namespace AutoGTP2Tests
         {
             MouseClickImitation(By.XPath("//div[@class = 'header']"));
             driver.FindElement(By.Id("DASHPORT_GANTT_0_PROJECT_IN_LIST")).Click();
-            WaitUntilFindElement(10,
-                By.XPath("//div[@class = 'styles_modal__gNwvD styles_modalCenter__L9F2w project-card-modal']"));
+            WaitUntilFindElement(10, openedProjectCard);
             return this;
         }
 
@@ -270,10 +450,9 @@ namespace AutoGTP2Tests
             driver.FindElement(By.Id("DASHPORT_GANTT_APPLY_BUTTON")).Click();
             return this;
         }
-        public bool ProjectPopupIsPresent()
+        public bool ProjectCardIsOpen()
         {
-            return IsElementPresent(
-                By.XPath("//div[@class = 'styles_modal__gNwvD styles_modalCenter__L9F2w project-card-modal']"));
+            return IsElementPresent(openedProjectCard);
         }
 
         public bool ProjectLinePopupIsPresent()

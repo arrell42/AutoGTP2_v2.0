@@ -14,14 +14,14 @@ namespace AutoGTP2Tests
         public void ProjectFromTableNameTest()
         {
             app.Dashport.OpenProjectFromTableName();
-            Assert.IsTrue(app.Dashport.ProjectPopupIsPresent());
+            Assert.IsTrue(app.Dashport.ProjectCardIsOpen());
         }
 
         [Test]
         public void ProjectFromTableLineTest()
         {
             app.Dashport.OpenProjectFromTableLine();
-            Assert.IsTrue(app.Dashport.ProjectPopupIsPresent());
+            Assert.IsTrue(app.Dashport.ProjectCardIsOpen());
         }
 
         [Test]
