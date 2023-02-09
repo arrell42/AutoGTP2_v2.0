@@ -8,7 +8,8 @@ namespace AutoGTP2Tests
     
     public class BudgetCreateTests : AuthTestBase
     {        
-        [Test]        
+        [Test]
+        [Category("Budgets")]
         public void CreateBudgetTest()
         {
             BudgetData budgetData = new BudgetData("", "")
@@ -37,6 +38,7 @@ namespace AutoGTP2Tests
 
         // GTP2-R-06-02
         [Test]
+        [Category("Budgets")]
         public void NewBudgetModalOpenTest()
         {
             app.Budgets.NewBudgetModalOpen();
@@ -47,6 +49,7 @@ namespace AutoGTP2Tests
 
         // GTP2-R-06-03
         [Test]
+        [Category("Budgets")]
         public void FillNewBudgetPOFieldTest()
         {
             BudgetData budgetData = new BudgetData("", "")
@@ -62,6 +65,7 @@ namespace AutoGTP2Tests
 
         // GTP2-R-06-04
         [Test]
+        [Category("Budgets")]
         public void FillNewBudgetPOAndCostFieldTest()
         {
             BudgetData budgetData = new BudgetData("", "")
@@ -78,6 +82,7 @@ namespace AutoGTP2Tests
 
         // GTP2-R-06-05
         [Test]
+        [Category("Budgets")]
         public void FillNewBudgetPOAndCostFieldAndSelectCurrencyTest()
         {
             BudgetData budgetData = new BudgetData("", "")
@@ -94,6 +99,7 @@ namespace AutoGTP2Tests
 
         // GTP2-R-06-09
         [Test]
+        [Category("Budgets")]
         public void OpenBudgetWithoutProjectsTest()
         {
             BudgetData budgetData = new BudgetData("", "")
@@ -111,6 +117,7 @@ namespace AutoGTP2Tests
 
         // GTP2-R-06-10
         [Test]
+        [Category("Budgets")]
         public void OpenBudgetWithProjectsTest()
         {
             app.Budgets.OpenBudgetWithProjects();
@@ -122,6 +129,7 @@ namespace AutoGTP2Tests
 
         // GTP2-R-06-13
         [Test]
+        [Category("Budgets")]
         public void MagnifyingGlassClickTest()
         {
             app.Budgets.SearchingFieldClick();
@@ -132,6 +140,7 @@ namespace AutoGTP2Tests
 
         // GTP2-R-06-14
         [Test]
+        [Category("Budgets")]
         public void DeleteTextFromSearchBarTest()
         {            
             app.Budgets.AddThenDeleteTextFromSearchBar();
@@ -141,6 +150,7 @@ namespace AutoGTP2Tests
 
         // GTP2-R-06-15
         [Test]
+        [Category("Budgets")]
         public void SearchExistingBudgetWithMagnifyingGlassClickTest()
         {            
             app.Budgets.EnterExistingBudgetNameAndClickMagnifyingGlass();
@@ -150,6 +160,7 @@ namespace AutoGTP2Tests
 
         // GTP2-R-06-16
         [Test]
+        [Category("Budgets")]
         public void SearchExistingBudgetWithEnterTest()
         {
             app.Budgets.EnterExistingBudgetNameAndPushEnter();
@@ -159,6 +170,7 @@ namespace AutoGTP2Tests
 
         // GTP2-R-06-17
         [Test]
+        [Category("Budgets")]
         public void SearchNotExistingBudgetTest()
         {
             app.Budgets.EnterNotExistingBudgetName();
@@ -168,6 +180,7 @@ namespace AutoGTP2Tests
 
         // GTP2-R-06-18
         [Test]
+        [Category("Budgets")]
         public void BudgetColumnsButtonTest()
         {
             app.Budgets.OpenColumnsButtonPopup();
@@ -179,6 +192,7 @@ namespace AutoGTP2Tests
 
         // GTP2-R-06-19
         [Test]
+        [Category("Budgets")]
         public void BudgetColumnsTurnOffTest()
         {
             BudgetColumnsData budgetColumnsData = new BudgetColumnsData()
@@ -196,6 +210,7 @@ namespace AutoGTP2Tests
 
         // GTP2-R-06-20
         [Test]
+        [Category("Budgets")]
         public void TurnOffAllBudgetColumnsTest()
         {
             BudgetColumnsData budgetColumnsData = new BudgetColumnsData()

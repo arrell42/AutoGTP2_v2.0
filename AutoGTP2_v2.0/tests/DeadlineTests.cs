@@ -12,6 +12,7 @@ namespace AutoGTP2Tests
     {
         // GTP2-R-01-11.1
         [Test]
+        [Category("Deadline")]
         public void DeadlineTooltipTest()
         {
             app.Dashport.OpenDeadlineAndQuestionMarkClick();
@@ -22,6 +23,7 @@ namespace AutoGTP2Tests
 
         // GTP2-R-01-11.1
         [Test]
+        [Category("Deadline")]
         public void OpenProjectInDeadlineTest()
         {
             app.Dashport.OpenProjectInDeadline();

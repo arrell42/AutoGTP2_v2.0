@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Threading;
+using AventStack.ExtentReports;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
@@ -20,6 +21,7 @@ namespace AutoGTP2Tests
         public string expressFile8001;
         public string expressFile7999;
         public string refFile;
+        
 
         //HELPERS ADD 
         protected LoginHelper loginHelper;
@@ -47,8 +49,8 @@ namespace AutoGTP2Tests
 
             driver = new ChromeDriver(options);
                         
-            //baseURL = "https://gtp-test.janusww.com:9999";
-            baseURL = "https://gtp2.janusww.com";
+            baseURL = "https://gtp-test.janusww.com:9999";
+            //baseURL = "https://gtp2.janusww.com";
             //baseURL = "https://81.90.180.117:9999";
             sourceFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"dataFiles\SourceTest.txt");
             CATLogFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"dataFiles\memoQ.csv");
@@ -84,7 +86,7 @@ namespace AutoGTP2Tests
         // Проверка на открытый браузер - если открыт, то НЕ открывать новый экземпляр
         public static ApplicationManager GetInstance()
         {
-            if(!app.IsValueCreated)
+            if (!app.IsValueCreated)
             {
                 ApplicationManager newInstance = new ApplicationManager();
                 newInstance.Navigator.GoToLoginPage();

@@ -8,7 +8,8 @@ namespace AutoGTP2Tests
     public class BudgetRemovalTests : AuthTestBase
     {
         [Test]
-        
+        [Category("Budgets")]
+
         public void BudgetRemovalCancelTest()
         {
             BudgetData budget = new BudgetData("", "")
@@ -31,6 +32,7 @@ namespace AutoGTP2Tests
         }
 
         [Test]
+        [Category("Budgets")]
         public void BudgetRemovalTest()
         {
             BudgetData budget = new BudgetData("", "")
