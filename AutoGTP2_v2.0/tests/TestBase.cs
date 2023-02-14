@@ -17,23 +17,23 @@ namespace AutoGTP2Tests
     public abstract class TestBase
     {
         protected ApplicationManager app;
-        protected ExtentReports _extent;
+        public static ExtentReports _extent = new ExtentReports();
         protected ExtentTest _test;
 
         [OneTimeSetUp]
         protected void Setup()
-        {
+        {            
             var path = System.Reflection.Assembly.GetCallingAssembly().CodeBase;
             var actualPath = path.Substring(0, path.LastIndexOf("bin"));
             var projectPath = new Uri(actualPath).LocalPath;
             Directory.CreateDirectory(projectPath.ToString() + "Reports");
             var reportPath = projectPath + "Reports\\ExtentReport.html";
             var htmlReporter = new ExtentHtmlReporter(reportPath);
-            _extent = new ExtentReports();
+            
             _extent.AttachReporter(htmlReporter);
             _extent.AddSystemInfo("Host Name", "LocalHost");
             _extent.AddSystemInfo("Environment", "QA");
-            _extent.AddSystemInfo("UserName", "TestUser");
+            _extent.AddSystemInfo("UserName", "TestUser");            
         }
 
         
@@ -89,7 +89,7 @@ namespace AutoGTP2Tests
             }
 
             _test.Log(logstatus, "Test ended with " + logstatus + stacktrace); 
-            //_extent.Flush();
+            _extent.Flush();
             
         }
 

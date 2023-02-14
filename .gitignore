@@ -361,3 +361,5 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/AutoGTP2_v2.0/Reports/Screenshots
+/AutoGTP2_v2.0/Test_Execution_Reports
