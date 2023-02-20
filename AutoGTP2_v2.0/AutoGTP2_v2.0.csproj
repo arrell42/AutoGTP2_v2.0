@@ -503,6 +503,7 @@
     <Compile Include="appManager\ServiceHelper.cs" />
     <Compile Include="appManager\DashportHelper.cs" />
     <Compile Include="model\BudgetColumnsData.cs" />
+    <Compile Include="model\DashportData.cs" />
     <Compile Include="model\ProjectColumnsData.cs" />
     <Compile Include="model\ProjectData.cs" />
     <Compile Include="model\ServiceData.cs" />
@@ -538,6 +539,9 @@
     <None Include="dataFiles\correctLoginData.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="dataFiles\InvalidDatesForMySpending.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="dataFiles\invalidLoginData.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -550,6 +554,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="dataFiles\CorrcectDatesForMySpending.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <Content Include="dataFiles\Express7999.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

@@ -15,8 +15,6 @@ namespace AutoGTP2Tests
         {
         }
 
-
-
         //LOCATORS
         public readonly By slasMoreButton = By.Id("DASHPORT_SLAS_MORE_BUTTON");
         public readonly By slasQuestionMark = By.XPath("//*[local-name()='circle' and @id='Ellipse_32-2']");
@@ -34,10 +32,8 @@ namespace AutoGTP2Tests
         public readonly By mySpendingMoreButton = By.Id("MYSPENDING_MORE_BUTTON");
         public readonly By mySpendingQuestionMark = By.XPath("//div[@class= 'aNIhwSI1kcHehZT9A317']");
         public readonly By mySpendingQuestionMarkTooltip = By.XPath("//div[@class= 'ant-tooltip-inner']");
-
-
-
-
+        public readonly By feedbackButton = By.Id("FEEDBACK_BTN");
+        public readonly By datesPopup = By.XPath("//div[@class= 'popup-content ']");
 
         public DashportHelper OpenProjectFromTableName()
         {
@@ -165,6 +161,34 @@ namespace AutoGTP2Tests
             return this;
         }
 
+        public DashportHelper FeedbackButtonClickInDashport()
+        {
+            manager.Navigator.GoToDashportPage();
+            FeedbackFormButtonClick();
+            return this;
+        }
+
+        public DashportHelper OpenMySpendingAndEnterStartDates(DashportData dates)
+        {
+            manager.Navigator.GoToDashportPage();
+            MySpendingMoreButtonClick();
+            SetStartDates(dates);
+            MySpendingAplyButtonClick();
+            return this;
+        }
+
+        public DashportHelper OpenMySpendingAndEnterEndDates(DashportData dates)
+        {
+            manager.Navigator.GoToDashportPage();
+            MySpendingMoreButtonClick();
+            SetEndDates(dates);
+            MySpendingAplyButtonClick();
+            return this;
+        }
+
+
+
+
 
 
 
@@ -185,7 +209,58 @@ namespace AutoGTP2Tests
 
 
         // низкоуровневые методы
+        public DashportHelper SetEndDates(DashportData dates)
+        {
+            driver.FindElement(By.Id("MYSPENDING_FILTER_ENDDATE_FROM")).Click();
+            driver.FindElement(By.Id("MYSPENDING_FILTER_ENDDATE_FROM")).SendKeys(Keys.Control + "a");
+            driver.FindElement(By.Id("MYSPENDING_FILTER_ENDDATE_FROM")).SendKeys(Keys.Delete);
+            driver.FindElement(By.Id("MYSPENDING_FILTER_ENDDATE_FROM")).SendKeys(dates.EndDateFrom);
 
+            driver.FindElement(By.Id("MYSPENDING_FILTER_ENDDATE_TO")).Click();
+            driver.FindElement(By.Id("MYSPENDING_FILTER_ENDDATE_TO")).SendKeys(Keys.Control + "a");
+            driver.FindElement(By.Id("MYSPENDING_FILTER_ENDDATE_TO")).SendKeys(Keys.Delete);
+            driver.FindElement(By.Id("MYSPENDING_FILTER_ENDDATE_TO")).SendKeys(dates.EndDateTo);
+            return this;
+        }
+        public DashportHelper MySpendingAplyButtonClick()
+        {
+            driver.FindElement(By.Id("MYSPENDING_FILTER_APPLY_BUTTON")).Click();
+            return this;
+        }
+
+        public DashportHelper SetStartDates(DashportData dates)
+        {
+            driver.FindElement(By.Id("MYSPENDING_FILTER_STARTDATE_FROM")).Click();
+            driver.FindElement(By.Id("MYSPENDING_FILTER_STARTDATE_FROM")).SendKeys(Keys.Control + "a");
+            driver.FindElement(By.Id("MYSPENDING_FILTER_STARTDATE_FROM")).SendKeys(Keys.Delete);
+            driver.FindElement(By.Id("MYSPENDING_FILTER_STARTDATE_FROM")).SendKeys(dates.StartDateFrom);
+
+            driver.FindElement(By.Id("MYSPENDING_FILTER_STARTDATE_TO")).Click();
+            driver.FindElement(By.Id("MYSPENDING_FILTER_STARTDATE_TO")).SendKeys(Keys.Control + "a");
+            driver.FindElement(By.Id("MYSPENDING_FILTER_STARTDATE_TO")).SendKeys(Keys.Delete);
+            driver.FindElement(By.Id("MYSPENDING_FILTER_STARTDATE_TO")).SendKeys(dates.StartDateTo);
+            return this;
+        }
+
+        public bool? DatesPopupIsPresent()
+        {
+            return IsElementPresent(datesPopup);
+        }
+
+
+        public bool? NewTabOpenedWithCorrectURL()
+        {
+            driver.SwitchTo().Window(driver.WindowHandles.Last());
+            
+            if(driver.Url.Equals("https://worldwidesurvey.typeform.com/to/XuQP9wLu?typeform-source=gtp-test.janusww.com")
+                || driver.Url.Equals("https://worldwidesurvey.typeform.com/to/XuQP9wLu?typeform-source=gtp2.janusww.com")) { return true; }
+            return false;
+        }
+
+        public void FeedbackFormButtonClick()
+        {
+            driver.FindElement(feedbackButton).Click();
+        }
 
         public DashportHelper MySpendingMoreButtonClick()
         {

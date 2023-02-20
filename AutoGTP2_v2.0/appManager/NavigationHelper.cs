@@ -57,8 +57,6 @@ namespace AutoGTP2Tests
             if (driver.Url == "" + baseURL + "/projects")
             {
                 WaitUntilFindElement(10, projectList);
-                Thread.Sleep(1000);
-                if (CountOfProjectsOnPage() > 20) { manager.ProjectPage.SelectProjectCountOnPage("20"); }
                 manager.ProjectPage.ColumnsTurnOnIfItTurnOff();
                 return;
             }

@@ -55,5 +55,16 @@ namespace AutoGTP2Tests
             app.Auth.InvalidLogin(loginData);
             Assert.IsFalse(app.Auth.IsLoggedIn());
         }
+
+        // GTP2-R-01-22
+        [Test]
+        public void GoToDashportPageWithoutLoginTest()
+        {
+            app.Auth.GoToDashportPageWithoutLogin();
+
+            Assert.IsTrue(app.Auth.StayOnLoginPage());
+        }
+
+        
     }
 }

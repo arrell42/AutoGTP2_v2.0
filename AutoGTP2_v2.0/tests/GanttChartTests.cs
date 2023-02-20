@@ -32,7 +32,7 @@ namespace AutoGTP2Tests
         }
 
         [Test]
-        public void RegularProjectTypeTests()
+        public void RegularProjectTypeTest()
         {
             app.Dashport.RegularProjectTypeFilter();
             
@@ -40,7 +40,7 @@ namespace AutoGTP2Tests
         }
 
         [Test]
-        public void ExpressProjectTypeTests()
+        public void ExpressProjectTypeTest()
         {
             app.Dashport.ExpressProjectTypeFilter();
             
@@ -48,7 +48,7 @@ namespace AutoGTP2Tests
         }
 
         [Test]
-        public void ProjectStatusesOrderedFilterTests()
+        public void ProjectStatusesOrderedFilterTest()
         {
             app.Dashport.OrderedProjectStatusesFilter();             
 
@@ -56,7 +56,7 @@ namespace AutoGTP2Tests
         }
 
         [Test]
-        public void ProjectStatusesInProgressFilterTests()
+        public void ProjectStatusesInProgressFilterTest()
         {
             app.Dashport.InProgressProjectStatusesFilter();
 
@@ -64,7 +64,7 @@ namespace AutoGTP2Tests
         }
 
         [Test]
-        public void ClearButtonTests()
+        public void ClearButtonTest()
         {
             app.Dashport.FillFilterAndClearButtonClick();
 
@@ -73,7 +73,7 @@ namespace AutoGTP2Tests
         }
 
         [Test]
-        public void GanttCloseButtonTests()
+        public void GanttCloseButtonTest()
         {
             app.Dashport.GanttClose();
 
@@ -81,12 +81,21 @@ namespace AutoGTP2Tests
         }
 
         [Test]
-        public void GanttQuestionMarkPopupTests()
+        public void GanttQuestionMarkPopupTest()
         {
             app.Dashport.GanttQuestionMarkPopup();
 
             Assert.IsTrue(app.Dashport.GanttQuestionMarkPopupIsPresent());
             Assert.IsTrue(app.Dashport.GanttQuestionMarkPopupIsFilled());
+        }
+
+        // GTP2-R-01-23
+        [Test]
+        public void FeedbackFormButtonTest()
+        {
+            app.Dashport.FeedbackButtonClickInDashport();
+
+            Assert.IsTrue(app.Dashport.NewTabOpenedWithCorrectURL());
         }
 
     }
