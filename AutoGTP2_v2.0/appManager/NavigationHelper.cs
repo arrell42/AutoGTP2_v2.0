@@ -27,13 +27,13 @@ namespace AutoGTP2Tests
         }
 
         public void GoToBudgetPage()
-        {
+        {            
             if (driver.Url == "" + baseURL + "/budgets")
             {                
                 WaitUntilFindElement(10, By.XPath("//div[@class= 'vKOuKRPiTZr_i_RoPDcw']"));
                 manager.Budgets.ColumnsTurnOnIfItTurnOff();
                 return;                
-            }
+            }            
             driver.FindElement(By.Id("MENU_BUDGETS")).Click();
             WaitUntilElementIsHide(5, By.XPath("//div[@class = 'uAVm9bKcbGvOpCLx2Whj']"));
             if (NoBudgetsForDisplay())
@@ -70,7 +70,7 @@ namespace AutoGTP2Tests
         }
 
         public void GoToDashportPage()
-        {
+        {            
             if (driver.Url == "" + baseURL + "/dashport")
             {
                 WaitUntilFindElement(10, By.Id("DASHPORT_GANTT_0_PROJECT_IN_LIST"));

@@ -34,6 +34,13 @@ namespace AutoGTP2Tests
         public readonly By mySpendingQuestionMarkTooltip = By.XPath("//div[@class= 'ant-tooltip-inner']");
         public readonly By feedbackButton = By.Id("FEEDBACK_BTN");
         public readonly By datesPopup = By.XPath("//div[@class= 'popup-content ']");
+        public readonly By mySpendingFilterEnddateFrom = By.Id("MYSPENDING_FILTER_ENDDATE_FROM");
+        public readonly By mySpendingFilterEnddateTo = By.Id("MYSPENDING_FILTER_ENDDATE_TO");
+        public readonly By mySpendingFilterApplyButton = By.Id("MYSPENDING_FILTER_APPLY_BUTTON");
+        public readonly By mySpendingFilterStartdateFrom = By.Id("MYSPENDING_FILTER_STARTDATE_FROM");
+        public readonly By mySpendingFilterStartdateTo = By.Id("MYSPENDING_FILTER_STARTDATE_TO");
+
+        
 
         public DashportHelper OpenProjectFromTableName()
         {
@@ -173,7 +180,7 @@ namespace AutoGTP2Tests
             manager.Navigator.GoToDashportPage();
             MySpendingMoreButtonClick();
             SetStartDates(dates);
-            MySpendingAplyButtonClick();
+            MySpendingApplyButtonClick();
             return this;
         }
 
@@ -182,7 +189,7 @@ namespace AutoGTP2Tests
             manager.Navigator.GoToDashportPage();
             MySpendingMoreButtonClick();
             SetEndDates(dates);
-            MySpendingAplyButtonClick();
+            MySpendingApplyButtonClick();
             return this;
         }
 
@@ -211,39 +218,40 @@ namespace AutoGTP2Tests
         // низкоуровневые методы
         public DashportHelper SetEndDates(DashportData dates)
         {
-            driver.FindElement(By.Id("MYSPENDING_FILTER_ENDDATE_FROM")).Click();
-            driver.FindElement(By.Id("MYSPENDING_FILTER_ENDDATE_FROM")).SendKeys(Keys.Control + "a");
-            driver.FindElement(By.Id("MYSPENDING_FILTER_ENDDATE_FROM")).SendKeys(Keys.Delete);
-            driver.FindElement(By.Id("MYSPENDING_FILTER_ENDDATE_FROM")).SendKeys(dates.EndDateFrom);
+            driver.FindElement(mySpendingFilterEnddateFrom).Click();
+            driver.FindElement(mySpendingFilterEnddateFrom).SendKeys(Keys.Control + "a");
+            driver.FindElement(mySpendingFilterEnddateFrom).SendKeys(Keys.Delete);
+            driver.FindElement(mySpendingFilterEnddateFrom).SendKeys(dates.EndDateFrom);
 
-            driver.FindElement(By.Id("MYSPENDING_FILTER_ENDDATE_TO")).Click();
-            driver.FindElement(By.Id("MYSPENDING_FILTER_ENDDATE_TO")).SendKeys(Keys.Control + "a");
-            driver.FindElement(By.Id("MYSPENDING_FILTER_ENDDATE_TO")).SendKeys(Keys.Delete);
-            driver.FindElement(By.Id("MYSPENDING_FILTER_ENDDATE_TO")).SendKeys(dates.EndDateTo);
+            driver.FindElement(mySpendingFilterEnddateTo).Click();
+            driver.FindElement(mySpendingFilterEnddateTo).SendKeys(Keys.Control + "a");
+            driver.FindElement(mySpendingFilterEnddateTo).SendKeys(Keys.Delete);
+            driver.FindElement(mySpendingFilterEnddateTo).SendKeys(dates.EndDateTo);
             return this;
         }
-        public DashportHelper MySpendingAplyButtonClick()
+        public DashportHelper MySpendingApplyButtonClick()
         {
-            driver.FindElement(By.Id("MYSPENDING_FILTER_APPLY_BUTTON")).Click();
+            // element intercepted by overlay, thats why use MouseClickImitation()          
+            MouseClickImitation(mySpendingFilterApplyButton);
             return this;
         }
 
         public DashportHelper SetStartDates(DashportData dates)
         {
-            driver.FindElement(By.Id("MYSPENDING_FILTER_STARTDATE_FROM")).Click();
-            driver.FindElement(By.Id("MYSPENDING_FILTER_STARTDATE_FROM")).SendKeys(Keys.Control + "a");
-            driver.FindElement(By.Id("MYSPENDING_FILTER_STARTDATE_FROM")).SendKeys(Keys.Delete);
-            driver.FindElement(By.Id("MYSPENDING_FILTER_STARTDATE_FROM")).SendKeys(dates.StartDateFrom);
+            driver.FindElement(mySpendingFilterStartdateFrom).Click();
+            driver.FindElement(mySpendingFilterStartdateFrom).SendKeys(Keys.Control + "a");
+            driver.FindElement(mySpendingFilterStartdateFrom).SendKeys(Keys.Delete);
+            driver.FindElement(mySpendingFilterStartdateFrom).SendKeys(dates.StartDateFrom);
 
-            driver.FindElement(By.Id("MYSPENDING_FILTER_STARTDATE_TO")).Click();
-            driver.FindElement(By.Id("MYSPENDING_FILTER_STARTDATE_TO")).SendKeys(Keys.Control + "a");
-            driver.FindElement(By.Id("MYSPENDING_FILTER_STARTDATE_TO")).SendKeys(Keys.Delete);
-            driver.FindElement(By.Id("MYSPENDING_FILTER_STARTDATE_TO")).SendKeys(dates.StartDateTo);
+            driver.FindElement(mySpendingFilterStartdateTo).Click();
+            driver.FindElement(mySpendingFilterStartdateTo).SendKeys(Keys.Control + "a");
+            driver.FindElement(mySpendingFilterStartdateTo).SendKeys(Keys.Delete);
+            driver.FindElement(mySpendingFilterStartdateTo).SendKeys(dates.StartDateTo);
             return this;
         }
 
         public bool? DatesPopupIsPresent()
-        {
+        {            
             return IsElementPresent(datesPopup);
         }
 

@@ -37,8 +37,9 @@ namespace AutoGTP2Tests
         }
 
 
+        // GTP2-R-01-18
 
-        //[Test, TestCaseSource("CorrectDatesFromFile")]
+        [Test, TestCaseSource("CorrectDatesFromFile")]
         public void CorrectStartDatesInMySpendingFilterTest(DashportData dates)
         {
             app.Dashport.OpenMySpendingAndEnterStartDates(dates);
@@ -46,7 +47,7 @@ namespace AutoGTP2Tests
             Assert.IsFalse(app.Dashport.DatesPopupIsPresent());
         }
 
-        //[Test, TestCaseSource("CorrectDatesFromFile")]
+        [Test, TestCaseSource("CorrectDatesFromFile")]
         public void CorrectEndDatesInMySpendingFilterTest(DashportData dates)
         {
             app.Dashport.OpenMySpendingAndEnterEndDates(dates);
@@ -54,7 +55,7 @@ namespace AutoGTP2Tests
             Assert.IsFalse(app.Dashport.DatesPopupIsPresent());
         }
 
-        //[Test, TestCaseSource("InvalidDatesFromFile")]
+        [Test, TestCaseSource("InvalidDatesFromFile")]
         public void InvalidStartDatesInMySpendingFilterTest(DashportData dates)
         {
             app.Dashport.OpenMySpendingAndEnterStartDates(dates);
@@ -62,7 +63,7 @@ namespace AutoGTP2Tests
             Assert.IsTrue(app.Dashport.DatesPopupIsPresent());
         }
 
-        //[Test, TestCaseSource("InvalidDatesFromFile")]
+        [Test, TestCaseSource("InvalidDatesFromFile")]
         public void InvalidEndDatesInMySpendingFilterTest(DashportData dates)
         {
             app.Dashport.OpenMySpendingAndEnterEndDates(dates);

@@ -96,6 +96,8 @@ namespace AutoGTP2Tests
             app.Dashport.FeedbackButtonClickInDashport();
 
             Assert.IsTrue(app.Dashport.NewTabOpenedWithCorrectURL());
+            app.CloseBrowserTab();
+            
         }
 
     }
