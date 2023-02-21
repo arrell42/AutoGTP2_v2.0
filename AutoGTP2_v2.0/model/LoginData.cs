@@ -1,5 +1,4 @@
-﻿
-namespace AutoGTP2Tests
+﻿namespace AutoGTP2Tests
 {
     public class LoginData
     {

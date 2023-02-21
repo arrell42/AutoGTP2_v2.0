@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using System;
 using System.Threading;
 
 namespace AutoGTP2Tests
@@ -40,8 +39,8 @@ namespace AutoGTP2Tests
             {
                 BudgetData budgetData = new BudgetData("", "")
                 {
-                    BudgetPO = manager.TextGenerator(1, 5),
-                    BudgetCost = manager.TextGenerator(1, 3),
+                    BudgetPO = TextGenerator(1, 5),
+                    BudgetCost = TextGenerator(1, 3),
                     BudgetTotal = "1000"
                 };
                 CreateNewBudget(budgetData);

@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using OpenQA.Selenium;
 using System.Collections.Generic;
 
 namespace AutoGTP2Tests
@@ -14,8 +13,8 @@ namespace AutoGTP2Tests
         {
             BudgetData budget = new BudgetData("", "")
             {
-                BudgetPO = app.TextGenerator(1, 5),
-                BudgetCost = app.TextGenerator(1, 3),
+                BudgetPO = app.Base.TextGenerator(1, 5),
+                BudgetCost = app.Base.TextGenerator(1, 3),
                 BudgetTotal = "1000"
             };            
 
@@ -37,8 +36,8 @@ namespace AutoGTP2Tests
         {
             BudgetData budget = new BudgetData("", "")
             {
-                BudgetPO = app.TextGenerator(1, 5),
-                BudgetCost = app.TextGenerator(1, 3),
+                BudgetPO = app.Base.TextGenerator(1, 5),
+                BudgetCost = app.Base.TextGenerator(1, 3),
                 BudgetTotal = "1000"
             };
             

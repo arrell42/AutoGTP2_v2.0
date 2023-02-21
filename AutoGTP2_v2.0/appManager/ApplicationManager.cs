@@ -1,12 +1,11 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
 using System.Threading;
-using AventStack.ExtentReports;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-
-
+using WebDriverManager;
+using WebDriverManager.DriverConfigs.Impl;
+using WebDriverManager.Helpers;
 
 namespace AutoGTP2Tests
 {
@@ -21,9 +20,9 @@ namespace AutoGTP2Tests
         public string expressFile8001;
         public string expressFile7999;
         public string refFile;
-        
 
         //HELPERS ADD 
+        protected BaseHelper baseHelper;
         protected LoginHelper loginHelper;
         protected NavigationHelper navigationHelper;
         protected BudgetHelper budgetHelper;
@@ -33,24 +32,23 @@ namespace AutoGTP2Tests
         protected ProjectPageHelper projectPageHelper;
 
         private static readonly ThreadLocal<ApplicationManager> app = new ThreadLocal<ApplicationManager>();
-
         public IWebDriver Driver { get { return driver; } }
-
         
         // Начало теста - открыть браузер, перейти на нужную страницу, инициализация хелперов
         private ApplicationManager()
         {
+            new DriverManager().SetUpDriver(new ChromeConfig(), VersionResolveStrategy.MatchingBrowser); // Autoupdate chromedriver
+
             ChromeOptions options = new ChromeOptions();
 
-            options.Proxy = null;
             options.AddArguments("start-maximized");            
             options.AddUserProfilePreference("profile.default_content_setting_values.automatic_downloads", 1);
             options.AddArguments("ignore-certificate-errors");            
 
             driver = new ChromeDriver(options);
                         
-            baseURL = "https://gtp-test.janusww.com:9999";
-            //baseURL = "https://gtp2.janusww.com";
+            //baseURL = "https://gtp-test.janusww.com:9999";
+            baseURL = "https://gtp2.janusww.com";
             //baseURL = "https://81.90.180.117:9999";
             sourceFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"dataFiles\SourceTest.txt");
             CATLogFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"dataFiles\memoQ.csv");
@@ -61,6 +59,7 @@ namespace AutoGTP2Tests
             refFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"dataFiles\RefTest.txt");
 
             //HELPERS INIT
+            baseHelper = new BaseHelper(this);
             loginHelper = new LoginHelper(this);
             navigationHelper = new NavigationHelper(this, baseURL);
             budgetHelper = new BudgetHelper(this);
@@ -96,44 +95,11 @@ namespace AutoGTP2Tests
             return app.Value;
         }
 
-        // Генератор рандомных слов        
-        public static Random rnd = new Random();
-        public string TextGenerator(int wrd, int let)
-        {
-            string result = "";
-            char[] letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
-            
-            for (int i = 1; i <= wrd; i++)
-            {
-                string word = "";
-                for(int j = 0; j < let; j++)
-                {
-                    int letter_num = rnd.Next(0, letters.Length - 1);
-                    word += letters[letter_num];
-                }
-                result = result + " " + word;
-            }
-            return result.Trim();
-        }
-
-        
-
-        // генерация набора случайных символов
-        public string GetRandomString(int length)
-        {
-            var r = new Random();
-            return new string(Enumerable.Range(0, length).Select(n => (Char)(r.Next(32, 127))).ToArray());
-        }
-
-        public void CloseBrowserTab()
-        {
-            driver.SwitchTo().Window(driver.WindowHandles.Last()).Close();
-            driver.SwitchTo().Window(driver.WindowHandles.First());
-        }
-
-
-
         // Property for helpers - чтобы не делать их public
+        public BaseHelper Base
+        {
+            get { return baseHelper; }
+        }
         public LoginHelper Auth
         {
             get { return loginHelper; }
@@ -161,6 +127,8 @@ namespace AutoGTP2Tests
         public ProjectPageHelper ProjectPage
         {
             get { return projectPageHelper; }
-        }        
+        }
+
+
     }
 }

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using NUnit.Framework;
 
-
 namespace AutoGTP2Tests
 {
     [TestFixture]
@@ -445,8 +444,8 @@ namespace AutoGTP2Tests
             {
                 ProjectName = "BigProjectE2E " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest",
                 Status = "Manual evaluation",
-                BudgetCost = app.TextGenerator(1, 3),
-                BudgetPO = app.TextGenerator(1, 5),
+                BudgetCost = app.Base.TextGenerator(1, 3),
+                BudgetPO = app.Base.TextGenerator(1, 5),
                 BudgetTotal = "100000"
             };
             ServiceData serviceData500 = new ServiceData("500");

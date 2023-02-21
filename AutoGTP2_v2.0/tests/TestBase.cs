@@ -10,7 +10,9 @@ using System.Threading.Tasks;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System.IO;
-
+using WebDriverManager;
+using WebDriverManager.DriverConfigs.Impl;
+using WebDriverManager.Helpers;
 
 namespace AutoGTP2Tests
 {    
@@ -47,7 +49,7 @@ namespace AutoGTP2Tests
         [SetUp]        
         
         public void SetupApplicationManager()
-        {
+        {            
             app = ApplicationManager.GetInstance();
         }
 
@@ -89,10 +91,8 @@ namespace AutoGTP2Tests
             }
 
             _test.Log(logstatus, "Test ended with " + logstatus + stacktrace); 
-            _extent.Flush();
-            
+            _extent.Flush();            
         }
-
 
         public static string Capture(IWebDriver driver, String screenShotName)
         {

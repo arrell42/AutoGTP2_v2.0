@@ -383,15 +383,6 @@ namespace AutoGTP2Tests
             .Select(x => x.Text).ToList();
 
 
-
-        
-
-
-
-
-
-
-
         //Получение списка проектов                
 
         public List<ProjectData> GetProjectList()

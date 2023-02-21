@@ -1,6 +1,6 @@
 ﻿using System;
 using System.IO;
-using System.Runtime.InteropServices;
+using System.Linq;
 using System.Text;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
@@ -17,6 +17,40 @@ namespace AutoGTP2Tests
         {
             this.manager = manager;
             driver = manager.Driver;
+        }
+
+
+        // Генератор рандомных слов        
+        public static Random rnd = new Random();
+        public string TextGenerator(int wrd, int let)
+        {
+            string result = "";
+            char[] letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
+
+            for (int i = 1; i <= wrd; i++)
+            {
+                string word = "";
+                for (int j = 0; j < let; j++)
+                {
+                    int letter_num = rnd.Next(0, letters.Length - 1);
+                    word += letters[letter_num];
+                }
+                result = result + " " + word;
+            }
+            return result.Trim();
+        }
+
+        // генерация набора случайных символов
+        public string GetRandomString(int length)
+        {
+            var r = new Random();
+            return new string(Enumerable.Range(0, length).Select(n => (Char)(r.Next(32, 127))).ToArray());
+        }
+
+        public void CloseBrowserTab()
+        {
+            driver.SwitchTo().Window(driver.WindowHandles.Last()).Close();
+            driver.SwitchTo().Window(driver.WindowHandles.First());
         }
 
         // чтение текста из файла

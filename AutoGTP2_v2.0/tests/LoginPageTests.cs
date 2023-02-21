@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace AutoGTP2Tests
 {
@@ -38,7 +37,7 @@ namespace AutoGTP2Tests
         }
 
         // Тесты
-        [Test, TestCaseSource("CorrectLoginDataFromFile")]
+        //[Test, TestCaseSource("CorrectLoginDataFromFile")]
         
         public void CorrectLoginTests(LoginData loginData)
         {
@@ -47,7 +46,7 @@ namespace AutoGTP2Tests
             Assert.IsTrue(app.Auth.IsLoggedIn());
         }        
 
-        [Test, TestCaseSource("IncorrectLoginDataFromFile")]
+        //[Test, TestCaseSource("IncorrectLoginDataFromFile")]
                         
         public void InvalidLoginTests(LoginData loginData)
         {

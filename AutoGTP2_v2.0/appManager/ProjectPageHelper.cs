@@ -1,11 +1,6 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Interactions;
-using OpenQA.Selenium.Support.UI;
-using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading;
 
 namespace AutoGTP2Tests
@@ -519,7 +514,7 @@ namespace AutoGTP2Tests
 
         public ProjectPageHelper EnterRandomTextInSearchingField()
         {
-            string text = manager.TextGenerator(1, 8);
+            string text = TextGenerator(1, 8);
             driver.FindElement(searchingField).SendKeys(text);
             return this;
         }

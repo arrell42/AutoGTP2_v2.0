@@ -2,9 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AutoGTP2Tests
 {
@@ -70,10 +67,6 @@ namespace AutoGTP2Tests
 
             Assert.IsTrue(app.Dashport.DatesPopupIsPresent());
         }
-
-        
-
-
 
         // GTP2-R-01-13
         [Test]

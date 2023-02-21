@@ -8,7 +8,6 @@ namespace AutoGTP2Tests
     public class ServiceRemovalTests : AuthTestBase
     {
         [Test]
-
         public void ServiceDeclineTest()
         {
             ProjectData projectData = new ProjectData()
@@ -22,9 +21,7 @@ namespace AutoGTP2Tests
             Assert.IsFalse(app.Services.WarningOverlayIsPresent());
         }
 
-
         [Test]
-
         public void ServiceDeleteConfirmTest()
         {
             ProjectData projectData = new ProjectData()

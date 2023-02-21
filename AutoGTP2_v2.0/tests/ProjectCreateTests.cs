@@ -169,7 +169,7 @@ namespace AutoGTP2Tests
             ProjectData projectData = new ProjectData()
             {
                 ProjectName = "R-02-12 " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest",
-                BudgetCost = app.TextGenerator(1, 5),
+                BudgetCost = app.Base.TextGenerator(1, 5),
                 BudgetPO = "Test budget",
                 BudgetTotal = "100"
             };
@@ -189,7 +189,7 @@ namespace AutoGTP2Tests
             {
                 ProjectName = "R-02-13 " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest",
                 BudgetCost = "Test budget",
-                BudgetPO = app.TextGenerator(1, 5),
+                BudgetPO = app.Base.TextGenerator(1, 5),
                 BudgetTotal = "100"
             };
 
@@ -208,8 +208,8 @@ namespace AutoGTP2Tests
             {
                 ProjectName = "R-02-14 " + DateTime.Now.ToString("[dd.MM.yyyy HH:mm:ss]") + " autotest",
                 Status = "Pending",
-                BudgetCost = app.TextGenerator(1, 3),
-                BudgetPO = app.TextGenerator(1, 5),
+                BudgetCost = app.Base.TextGenerator(1, 3),
+                BudgetPO = app.Base.TextGenerator(1, 5),
                 BudgetTotal = "100",                
             };
             

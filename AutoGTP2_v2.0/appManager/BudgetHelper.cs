@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Interactions;
 
 namespace AutoGTP2Tests
 {
@@ -393,7 +391,7 @@ namespace AutoGTP2Tests
 
         public BudgetHelper EnterRandomTextInSearchingField()
         {
-            string text = manager.TextGenerator(1, 8);
+            string text = TextGenerator(1, 8);
             driver.FindElement(searchField).SendKeys(text);
             return this;
         }

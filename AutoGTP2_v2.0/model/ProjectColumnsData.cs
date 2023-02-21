@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace AutoGTP2Tests
+﻿namespace AutoGTP2Tests
 {
     public class ProjectColumnsData
     {

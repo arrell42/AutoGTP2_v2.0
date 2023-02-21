@@ -1,6 +1,5 @@
 ﻿using NUnit.Framework;
 using System.Collections.Generic;
-using System;
 
 namespace AutoGTP2Tests
 {
@@ -14,8 +13,8 @@ namespace AutoGTP2Tests
         {
             BudgetData budgetData = new BudgetData("", "")
             {
-                BudgetPO = app.TextGenerator(1, 5),
-                BudgetCost = app.TextGenerator(1, 3),
+                BudgetPO = app.Base.TextGenerator(1, 5),
+                BudgetCost = app.Base.TextGenerator(1, 3),
                 BudgetTotal = "1000"
             };
 
@@ -54,7 +53,7 @@ namespace AutoGTP2Tests
         {
             BudgetData budgetData = new BudgetData("", "")
             {
-                BudgetPO = app.TextGenerator(1, 5)
+                BudgetPO = app.Base.TextGenerator(1, 5)
             };
 
             app.Budgets.FillNewBudgetPOField(budgetData);
@@ -70,8 +69,8 @@ namespace AutoGTP2Tests
         {
             BudgetData budgetData = new BudgetData("", "")
             {
-                BudgetPO = app.TextGenerator(1, 5),
-                BudgetCost = app.TextGenerator(1, 3)
+                BudgetPO = app.Base.TextGenerator(1, 5),
+                BudgetCost = app.Base.TextGenerator(1, 3)
             };
 
             app.Budgets.FillNewBudgetPOFAndCostield(budgetData);
@@ -87,8 +86,8 @@ namespace AutoGTP2Tests
         {
             BudgetData budgetData = new BudgetData("", "")
             {
-                BudgetPO = app.TextGenerator(1, 5),
-                BudgetCost = app.TextGenerator(1, 3)
+                BudgetPO = app.Base.TextGenerator(1, 5),
+                BudgetCost = app.Base.TextGenerator(1, 3)
             };
 
             app.Budgets.FillNewBudgetPOAndCostFieldAndSelectCurrency(budgetData);
@@ -104,8 +103,8 @@ namespace AutoGTP2Tests
         {
             BudgetData budgetData = new BudgetData("", "")
             {
-                BudgetPO = app.TextGenerator(1, 5),
-                BudgetCost = app.TextGenerator(1, 3),
+                BudgetPO = app.Base.TextGenerator(1, 5),
+                BudgetCost = app.Base.TextGenerator(1, 3),
                 BudgetTotal = "1000"
             };
 
