@@ -90,7 +90,7 @@ namespace AutoGTP2Tests
         public ProjectHelper ExpressProjectRequestQuote(ProjectData projectData)
         {
             OpenNewExpressProject(projectData);
-            manager.Services.SourceFileAttach();
+            manager.Services.SourceFileAttach(manager.sourceFile);
             manager.Services.RequestQuoteButtonClick();
             return this;
         }
@@ -112,7 +112,7 @@ namespace AutoGTP2Tests
             manager.Services.RequestQuoteButtonClick();            
             PlaceOrderButtonClick();            
             OpenThisProject(projectData);            
-            manager.Services.OpenAndEditButtonClick();
+            manager.Services.OpenAndEditButtonClick(1);
             return this;
         }
                 
@@ -303,7 +303,7 @@ namespace AutoGTP2Tests
         public ProjectHelper ExpressProjectFileAndTextAttach(ProjectData projectData, string filePath)
         {
             OpenNewExpressProject(projectData);
-            manager.Services.SourceFileAttach();
+            manager.Services.SourceFileAttach(manager.sourceFile);
             FillTextAreaFromFile(filePath);
             manager.Services.RequestQuoteButtonClick();
             return this;
@@ -341,7 +341,7 @@ namespace AutoGTP2Tests
         {
             OpenNewExpressProject(projectData);
             FillTextAreaFromFile(filePath);
-            manager.Services.SourceFileAttach();
+            manager.Services.SourceFileAttach(manager.sourceFile);
             manager.Services.RequestQuoteButtonClick();
             PlaceOrderButtonClick();
             return this;
@@ -350,7 +350,7 @@ namespace AutoGTP2Tests
         public ProjectHelper ExpressProjectFileAttachAndPlaceOrder(ProjectData projectData)
         {
             OpenNewExpressProject(projectData);
-            manager.Services.SourceFileAttach();
+            manager.Services.SourceFileAttach(manager.sourceFile);
             PlaceOrderButtonClick();
             OpenThisProject(projectData);
             WaitUntilProjectIsCalculated();
@@ -360,7 +360,7 @@ namespace AutoGTP2Tests
         public ProjectHelper ExpressProjectFileAttachThanFillTextarea(ProjectData projectData, string filePath)
         {
             OpenNewExpressProject(projectData);
-            manager.Services.SourceFileAttach();
+            manager.Services.SourceFileAttach(manager.sourceFile);
             manager.Services.RequestQuoteButtonClick();
             FillTextAreaFromFile(filePath);
             manager.Services.RequestQuoteButtonClick();

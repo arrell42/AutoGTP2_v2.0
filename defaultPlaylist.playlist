@@ -1,0 +1,947 @@
+<Playlist Version="2.0">
+  <Rule Name="Includes" Match="Any">
+    <Rule Match="All">
+      <Property Name="Solution" />
+      <Rule Match="Any">
+        <Rule Match="All">
+          <Property Name="Project" Value="AutoGTP2_v2.0" />
+          <Rule Match="Any">
+            <Rule Match="All">
+              <Property Name="Namespace" Value="AutoGTP2Tests" />
+              <Rule Match="Any">
+                <Rule Match="All">
+                  <Property Name="Class" Value="BudgetCreateTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.BudgetCreateTests.BudgetColumnsButtonTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="BudgetColumnsButtonTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.BudgetCreateTests.BudgetColumnsTurnOffTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="BudgetColumnsTurnOffTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.BudgetCreateTests.CreateBudgetTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CreateBudgetTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.BudgetCreateTests.DeleteTextFromSearchBarTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="DeleteTextFromSearchBarTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.BudgetCreateTests.FillNewBudgetPOAndCostFieldAndSelectCurrencyTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="FillNewBudgetPOAndCostFieldAndSelectCurrencyTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.BudgetCreateTests.FillNewBudgetPOAndCostFieldTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="FillNewBudgetPOAndCostFieldTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.BudgetCreateTests.FillNewBudgetPOFieldTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="FillNewBudgetPOFieldTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.BudgetCreateTests.MagnifyingGlassClickTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="MagnifyingGlassClickTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.BudgetCreateTests.NewBudgetModalOpenTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="NewBudgetModalOpenTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.BudgetCreateTests.OpenBudgetWithProjectsTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="OpenBudgetWithProjectsTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.BudgetCreateTests.OpenBudgetWithoutProjectsTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="OpenBudgetWithoutProjectsTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.BudgetCreateTests.SearchExistingBudgetWithEnterTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="SearchExistingBudgetWithEnterTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.BudgetCreateTests.SearchExistingBudgetWithMagnifyingGlassClickTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="SearchExistingBudgetWithMagnifyingGlassClickTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.BudgetCreateTests.SearchNotExistingBudgetTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="SearchNotExistingBudgetTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.BudgetCreateTests.TurnOffAllBudgetColumnsTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="TurnOffAllBudgetColumnsTest" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="MySpendingTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.MySpendingTests.CorrectEndDatesInMySpendingFilterTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CorrectEndDatesInMySpendingFilterTest(AutoGTP2Tests.DashportData)" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.MySpendingTests.CorrectStartDatesInMySpendingFilterTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CorrectStartDatesInMySpendingFilterTest(AutoGTP2Tests.DashportData)" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.MySpendingTests.InvalidEndDatesInMySpendingFilterTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="InvalidEndDatesInMySpendingFilterTest(AutoGTP2Tests.DashportData)" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.MySpendingTests.InvalidStartDatesInMySpendingFilterTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="InvalidStartDatesInMySpendingFilterTest(AutoGTP2Tests.DashportData)" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.MySpendingTests.MySpendingTooltipTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="MySpendingTooltipTest" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="ProjectPageTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ProjectPageTests.CancelledProjectChangeTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CancelledProjectChangeTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ProjectPageTests.ClearFilterTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ClearFilterTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ProjectPageTests.ClearSearchingFieldTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ClearSearchingFieldTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ProjectPageTests.CompleteProjectChangeTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CompleteProjectChangeTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ProjectPageTests.CreationDateInFiltersPopupTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CreationDateInFiltersPopupTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ProjectPageTests.DefferedProjectChangeTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="DefferedProjectChangeTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ProjectPageTests.DeleteStatusFromStatusesListInFiltersTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="DeleteStatusFromStatusesListInFiltersTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ProjectPageTests.EditButtonInProjectBurgerTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="EditButtonInProjectBurgerTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ProjectPageTests.EndDateInFiltersPopupTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="EndDateInFiltersPopupTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ProjectPageTests.EndDateInFiltersWordTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="EndDateInFiltersWordTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ProjectPageTests.ExpressProjectTypeInFiltersTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ExpressProjectTypeInFiltersTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ProjectPageTests.InProgressProjectChangeTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="InProgressProjectChangeTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ProjectPageTests.MagnifyingGlassClickTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="MagnifyingGlassClickTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ProjectPageTests.ManualEvaluationProjectChangeTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ManualEvaluationProjectChangeTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ProjectPageTests.MessageButtonInProjectBurgerTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="MessageButtonInProjectBurgerTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ProjectPageTests.OrderedProjectChangeTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="OrderedProjectChangeTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ProjectPageTests.PMSortInFiltersTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="PMSortInFiltersTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ProjectPageTests.PendingProjectChangeTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="PendingProjectChangeTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ProjectPageTests.ProjectsColumnButtonClickTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ProjectsColumnButtonClickTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ProjectPageTests.QuotationCompletedProjectChangeTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="QuotationCompletedProjectChangeTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ProjectPageTests.QuotationCompletedStatusDeleteTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="QuotationCompletedStatusDeleteTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ProjectPageTests.RegularProjectTypeInFiltersTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="RegularProjectTypeInFiltersTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ProjectPageTests.RepresentativeSortInFiltersTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="RepresentativeSortInFiltersTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ProjectPageTests.SearchExistingProjectWithEnterTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="SearchExistingProjectWithEnterTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ProjectPageTests.SearchExistingProjectWithMagnifyingGlassClickTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="SearchExistingProjectWithMagnifyingGlassClickTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ProjectPageTests.SearchNotExistingProjectTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="SearchNotExistingProjectTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ProjectPageTests.ShownOnPage100Test" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ShownOnPage100Test" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ProjectPageTests.ShownOnPage20Test" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ShownOnPage20Test" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ProjectPageTests.ShownOnPage50Test" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ShownOnPage50Test" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ProjectPageTests.StartDateInFiltersPopupTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="StartDateInFiltersPopupTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ProjectPageTests.StartDateInFiltersWordTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="StartDateInFiltersWordTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ProjectPageTests.StatusSortInFiltersTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="StatusSortInFiltersTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ProjectPageTests.TurnOffAllProjectsColumnTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="TurnOffAllProjectsColumnTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ProjectPageTests.TurnOffProjectsColumnTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="TurnOffProjectsColumnTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ProjectPageTests.TwoStatusesSortInFiltersTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="TwoStatusesSortInFiltersTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ProjectPageTests.VendorSortInFiltersTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="VendorSortInFiltersTest" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="ServiceRemovalTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ServiceRemovalTests.ServiceDeclineTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ServiceDeclineTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ServiceRemovalTests.ServiceDeleteConfirmTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ServiceDeleteConfirmTest" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="ServiceCreateTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ServiceCreateTests.AssignAllLanguagePairsButtonTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="AssignAllLanguagePairsButtonTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ServiceCreateTests.BigProjectE2ETest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="BigProjectE2ETest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ServiceCreateTests.CATToolFieldInSecondServiceTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CATToolFieldInSecondServiceTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ServiceCreateTests.DeleteFileFromLanguagePairsTableTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="DeleteFileFromLanguagePairsTableTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ServiceCreateTests.DescriptionInLanguagePairsTableTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="DescriptionInLanguagePairsTableTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ServiceCreateTests.DownloadFileFromLanguagePairsTableTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="DownloadFileFromLanguagePairsTableTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ServiceCreateTests.LanguagePairsTableInService_SourceFileTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="LanguagePairsTableInService_SourceFileTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ServiceCreateTests.QuantityTypeAutoServiceSaveTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="QuantityTypeAutoServiceSaveTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ServiceCreateTests.ServiceAutoCountRequestQuoteTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ServiceAutoCountRequestQuoteTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ServiceCreateTests.ServiceCATLogWithOutCATFileCancelButtonTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ServiceCATLogWithOutCATFileCancelButtonTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ServiceCreateTests.ServiceCATLogWithOutCATFileContinueButtonTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ServiceCATLogWithOutCATFileContinueButtonTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ServiceCreateTests.ServiceCATLogWithoutCATFileTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ServiceCATLogWithoutCATFileTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ServiceCreateTests.ServiceCATStatisticButtonTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ServiceCATStatisticButtonTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ServiceCreateTests.ServiceCATStatisticUploadButtonTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ServiceCATStatisticUploadButtonTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ServiceCreateTests.ServiceCancelButtonTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ServiceCancelButtonTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ServiceCreateTests.ServiceCreateAutoCountTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ServiceCreateAutoCountTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ServiceCreateTests.ServiceCreateCATLogTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ServiceCreateCATLogTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ServiceCreateTests.ServiceManualCorrectQuantityTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ServiceManualCorrectQuantityTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ServiceCreateTests.ServiceManualQuantityMinusTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ServiceManualQuantityMinusTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ServiceCreateTests.ServiceManualQuantitySymbolsTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ServiceManualQuantitySymbolsTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ServiceCreateTests.ServiceManualQuantityWordTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ServiceManualQuantityWordTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ServiceCreateTests.ServiceManualQuantityZeroFirstTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ServiceManualQuantityZeroFirstTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ServiceCreateTests.ServiceWithTwoLanguagePairsTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ServiceWithTwoLanguagePairsTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ServiceCreateTests.SubjectAreaInServiceTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="SubjectAreaInServiceTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ServiceCreateTests.TwoLanguagePairs_CATFileTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="TwoLanguagePairs_CATFileTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ServiceCreateTests.TypeOfServiceSelectWithUnitTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="TypeOfServiceSelectWithUnitTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ServiceCreateTests.TypeOfServiceWithoutUnitTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="TypeOfServiceWithoutUnitTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ServiceCreateTests.WarningCATFileUploadTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="WarningCATFileUploadTest" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="ProjectRemovalTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ProjectRemovalTests.RemoveProjectConfirmTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="RemoveProjectConfirmTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ProjectRemovalTests.RemoveProjectDeclineTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="RemoveProjectDeclineTest" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="SLAsTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.SLAsTests.OpenProjectInSLAsTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="OpenProjectInSLAsTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.SLAsTests.SLAsTooltipTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="SLAsTooltipTest" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="FilesTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.FilesTests.DownloadCATLogFileTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="DownloadCATLogFileTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.FilesTests.DownloadSourceFileFromEditPageTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="DownloadSourceFileFromEditPageTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.FilesTests.DownloadSourceFileFromServiceListTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="DownloadSourceFileFromServiceListTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.FilesTests.SourceFileRemoveTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="SourceFileRemoveTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.FilesTests.UploadInvalidSourceFileTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="UploadInvalidSourceFileTest" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="LoginPageTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.LoginPageTests.GoToDashportPageWithoutLoginTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="GoToDashportPageWithoutLoginTest" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="ExpressProjectTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ExpressProjectTests.ExpressProject7999Test" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ExpressProject7999Test" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ExpressProjectTests.ExpressProject8001RequestQuoteTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ExpressProject8001RequestQuoteTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ExpressProjectTests.ExpressProjectExclamationPopupTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ExpressProjectExclamationPopupTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ExpressProjectTests.ExpressProjectFileAndTextAttachTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ExpressProjectFileAndTextAttachTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ExpressProjectTests.ExpressProjectFileAttachAndPlaceOrderTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ExpressProjectFileAttachAndPlaceOrderTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ExpressProjectTests.ExpressProjectFileAttachThanFillTextareaTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ExpressProjectFileAttachThanFillTextareaTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ExpressProjectTests.ExpressProjectLimitPopupCancelButtonTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ExpressProjectLimitPopupCancelButtonTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ExpressProjectTests.ExpressProjectLimitPopupSwitchButtonTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ExpressProjectLimitPopupSwitchButtonTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ExpressProjectTests.ExpressProjectRequestQuoteTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ExpressProjectRequestQuoteTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ExpressProjectTests.ExpressProjectToggleOnAndOffTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ExpressProjectToggleOnAndOffTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ExpressProjectTests.ExpressProjectToggleOnTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ExpressProjectToggleOnTest" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="ProjectCreateTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ProjectCreateTests.AddAndDeleteBudgetInProjectTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="AddAndDeleteBudgetInProjectTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ProjectCreateTests.CancelButtonTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CancelButtonTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ProjectCreateTests.CancelOrderedProjectConfirmTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CancelOrderedProjectConfirmTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ProjectCreateTests.CancelOrderedProjectDeclineTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CancelOrderedProjectDeclineTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ProjectCreateTests.CreateBudgetInProjectExistCostTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CreateBudgetInProjectExistCostTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ProjectCreateTests.CreateBudgetInProjectExistPOTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CreateBudgetInProjectExistPOTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ProjectCreateTests.CreateBudgetInProjectTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CreateBudgetInProjectTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ProjectCreateTests.CreateEmptyProjectPopupTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CreateEmptyProjectPopupTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ProjectCreateTests.CreateEmptyProjectTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CreateEmptyProjectTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ProjectCreateTests.CreateExpressProjectTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CreateExpressProjectTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ProjectCreateTests.CreatePendingProjectTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CreatePendingProjectTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ProjectCreateTests.MessagesInProjectTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="MessagesInProjectTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ProjectCreateTests.OpenBudgetFormInProjectButtonTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="OpenBudgetFormInProjectButtonTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ProjectCreateTests.ProjectPlaceOrderButtonTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ProjectPlaceOrderButtonTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ProjectCreateTests.RefFileDeleteTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="RefFileDeleteTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ProjectCreateTests.RefFileDescriptionTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="RefFileDescriptionTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ProjectCreateTests.RefFileDownloadTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="RefFileDownloadTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ProjectCreateTests.RefFilesDownloadAllButtonTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="RefFilesDownloadAllButtonTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ProjectCreateTests.RefTabInProjectFileAttachTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="RefTabInProjectFileAttachTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ProjectCreateTests.RefTabInProjectMultipleFileAttachTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="RefTabInProjectMultipleFileAttachTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ProjectCreateTests.RefTabInProjectTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="RefTabInProjectTest" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="DeadlineTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.DeadlineTests.DeadlineTooltipTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="DeadlineTooltipTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.DeadlineTests.OpenProjectInDeadlineTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="OpenProjectInDeadlineTest" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="BudgetRemovalTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.BudgetRemovalTests.BudgetRemovalCancelTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="BudgetRemovalCancelTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.BudgetRemovalTests.BudgetRemovalTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="BudgetRemovalTest" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="GanttChartTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.GanttChartTests.ClearButtonTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ClearButtonTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.GanttChartTests.ExpressProjectTypeTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ExpressProjectTypeTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.GanttChartTests.FeedbackFormButtonTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="FeedbackFormButtonTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.GanttChartTests.GanttCloseButtonTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="GanttCloseButtonTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.GanttChartTests.GanttQuestionMarkPopupTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="GanttQuestionMarkPopupTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.GanttChartTests.ProjectFromTableLinePopupTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ProjectFromTableLinePopupTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.GanttChartTests.ProjectFromTableLineTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ProjectFromTableLineTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.GanttChartTests.ProjectFromTableNameTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ProjectFromTableNameTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.GanttChartTests.ProjectStatusesInProgressFilterTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ProjectStatusesInProgressFilterTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.GanttChartTests.ProjectStatusesOrderedFilterTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ProjectStatusesOrderedFilterTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.GanttChartTests.RegularProjectTypeTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="RegularProjectTypeTest" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+              </Rule>
+            </Rule>
+          </Rule>
+        </Rule>
+      </Rule>
+    </Rule>
+  </Rule>
+</Playlist>

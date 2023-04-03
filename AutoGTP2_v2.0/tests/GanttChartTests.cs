@@ -1,10 +1,13 @@
-﻿using NUnit.Framework;
+﻿using AventStack.ExtentReports;
+using AventStack.ExtentReports.Reporter;
+using NUnit.Framework;
 
 namespace AutoGTP2Tests
 {
     [TestFixture]
     public class GanttChartTests : AuthTestBase
-    {
+    { 
+
         [Test]
         public void ProjectFromTableNameTest()
         {
@@ -36,7 +39,7 @@ namespace AutoGTP2Tests
 
         [Test]
         public void ExpressProjectTypeTest()
-        {
+        {            
             app.Dashport.ExpressProjectTypeFilter();
             
             Assert.IsTrue(app.Dashport.ExpressProjectsPresent());
@@ -55,12 +58,12 @@ namespace AutoGTP2Tests
         {
             app.Dashport.InProgressProjectStatusesFilter();
 
-            Assert.IsTrue(app.Dashport.ProjectsStatusesInListIsCorrect(10, "In progress"));
+            Assert.IsTrue(app.Dashport.ProjectsStatusesInListIsCorrect(10, "In progress"), "Project status is not <In progress>");
         }
 
         [Test]
         public void ClearButtonTest()
-        {
+        {            
             app.Dashport.FillFilterAndClearButtonClick();
 
             Assert.IsTrue(app.Dashport.GanttAllButtonIsActive());

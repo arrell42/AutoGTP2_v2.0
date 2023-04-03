@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Remote;
 using WebDriverManager;
 using WebDriverManager.DriverConfigs.Impl;
 using WebDriverManager.Helpers;
@@ -14,6 +16,9 @@ namespace AutoGTP2Tests
         protected IWebDriver driver;
         public string baseURL;
         public string sourceFile;
+        public string sourceFile2;
+        public string sourceFile3;
+        public string sourceFile4;        
         public string CATLogFilePath;
         public string invalidSourceFilePath;
         public string expressFile8000;
@@ -30,6 +35,8 @@ namespace AutoGTP2Tests
         protected ServiceHelper serviceHelper;
         protected DashportHelper dashportHelper;
         protected ProjectPageHelper projectPageHelper;
+        protected MemoQHelper memoQHelper;
+        
 
         private static readonly ThreadLocal<ApplicationManager> app = new ThreadLocal<ApplicationManager>();
         public IWebDriver Driver { get { return driver; } }
@@ -46,11 +53,26 @@ namespace AutoGTP2Tests
             options.AddArguments("ignore-certificate-errors");            
 
             driver = new ChromeDriver(options);
-                        
+
+            ICapabilities capabilities = ((RemoteWebDriver)driver).Capabilities;
+            Console.WriteLine((capabilities.GetCapability("chrome") as Dictionary<string, object>)["chromedriverVersion"]);
+            /*
+            string browserName = string.Empty;
+            if (capabilities.HasCapability("browserName"))
+            {
+                browserName = capabilities.GetCapability("browserName").ToString();
+            }
+            */
+
+
             //baseURL = "https://gtp-test.janusww.com:9999";
             baseURL = "https://gtp2.janusww.com";
             //baseURL = "https://81.90.180.117:9999";
+
             sourceFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"dataFiles\SourceTest.txt");
+            sourceFile2 = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"dataFiles\SourceTest2.txt");
+            sourceFile3 = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"dataFiles\SourceTest3.txt");
+            sourceFile4 = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"dataFiles\SourceTest4.txt");
             CATLogFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"dataFiles\memoQ.csv");
             invalidSourceFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"dataFiles\InvaildSourceFileTest.dwg");
             expressFile8000 = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"dataFiles\Express8000.txt");
@@ -67,7 +89,8 @@ namespace AutoGTP2Tests
             serviceHelper = new ServiceHelper(this);
             dashportHelper = new DashportHelper(this);
             projectPageHelper = new ProjectPageHelper(this);
-    }
+            memoQHelper = new MemoQHelper(this);
+        }
 
         
         //Завершение теста - закрыть браузер
@@ -128,7 +151,10 @@ namespace AutoGTP2Tests
         {
             get { return projectPageHelper; }
         }
-
-
+        public MemoQHelper MemoQ
+        {
+            get { return memoQHelper; }
+        }
+        
     }
 }

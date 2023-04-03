@@ -77,7 +77,7 @@ namespace AutoGTP2Tests
         public ServiceHelper ServiceDeleteConfirm(ProjectData projectData, ServiceData serviceData)
         {
             manager.Services.ServiceManualCorrectQuantity(projectData, serviceData);
-            OpenAndEditButtonClick();
+            OpenAndEditButtonClick(1);
             ServiceDeleteButtonClick();
             ServiceDeleteConfirmButtonClick();
             return this;
@@ -86,7 +86,7 @@ namespace AutoGTP2Tests
         public ServiceHelper ServiceDeleteDecline(ProjectData projectData, ServiceData serviceData)
         {
             manager.Services.ServiceManualCorrectQuantity(projectData, serviceData);
-            OpenAndEditButtonClick();
+            OpenAndEditButtonClick(1);
             ServiceDeleteButtonClick();
             ServiceDeleteDeclineButtonClick();
             return this;
@@ -99,7 +99,7 @@ namespace AutoGTP2Tests
             SelectSourceLanguage();
             SelectTargetLanguage(1);
             SelectQuantityTypeAuto();
-            SourceFileAttach();
+            SourceFileAttach(manager.sourceFile);
             SaveServiceButtonClick();
             SourceFileClick();
             return this;
@@ -113,7 +113,7 @@ namespace AutoGTP2Tests
             SelectSourceLanguage();
             SelectTargetLanguage(1);
             SelectQuantityTypeAuto();
-            SourceFileAttach();
+            SourceFileAttach(manager.sourceFile);
             SaveServiceButtonClick();
             RequestQuoteButtonClick();
             return this;
@@ -139,10 +139,10 @@ namespace AutoGTP2Tests
             SelectSourceLanguage();
             SelectTargetLanguage(1);
             SelectQuantityTypeAuto();
-            SourceFileAttach();
+            SourceFileAttach(manager.sourceFile);
             Thread.Sleep(200);
             SaveServiceButtonClick();
-            OpenAndEditButtonClick();
+            OpenAndEditButtonClick(1);
             SourceFileInServiceEditPageDownloadButtonClick();            
             return this;
         }
@@ -154,7 +154,7 @@ namespace AutoGTP2Tests
             SelectSourceLanguage();
             SelectTargetLanguage(1);
             SelectQuantityTypeAuto();
-            SourceFileAttach();
+            SourceFileAttach(manager.sourceFile);
             Thread.Sleep(200);
             SaveServiceButtonClick();            
             SourceFileInServiceListDownloadButtonClick();            
@@ -171,7 +171,7 @@ namespace AutoGTP2Tests
             SelectCATToolMemoQ();
             UploadCATFile();
             SaveServiceButtonClick();
-            OpenAndEditButtonClick();
+            OpenAndEditButtonClick(1);
             CATFileDownloadButtonClick();
             return this;
         }
@@ -183,10 +183,10 @@ namespace AutoGTP2Tests
             SelectSourceLanguage();
             SelectTargetLanguage(1);
             SelectQuantityTypeAuto();
-            SourceFileAttach();
+            SourceFileAttach(manager.sourceFile);
             Thread.Sleep(200);
             SaveServiceButtonClick();
-            OpenAndEditButtonClick();            
+            OpenAndEditButtonClick(1);            
             SourceFileRemoveButtonClick();
             return this;
         }
@@ -280,7 +280,7 @@ namespace AutoGTP2Tests
             SelectCATToolMemoQ();
             UploadCATFile();
             SaveServiceButtonClick();
-            OpenAndEditButtonClick();
+            OpenAndEditButtonClick(1);
             CATFileDeleteButtonClick();
             return this;
         }
@@ -295,7 +295,7 @@ namespace AutoGTP2Tests
             SelectCATToolMemoQ();
             UploadCATFile();
             SaveServiceButtonClick();
-            OpenAndEditButtonClick();
+            OpenAndEditButtonClick(1);
             CATFileDeleteButtonClick();
             SaveServiceButtonClick();
             return this;
@@ -331,7 +331,7 @@ namespace AutoGTP2Tests
             SelectCATToolMemoQ();
             UploadCATFile();
             SaveServiceButtonClick();
-            OpenAndEditButtonClick();
+            OpenAndEditButtonClick(1);
             CATFileDeleteButtonClick();
             SaveServiceButtonClick();
             WarningContinueButtonClick();
@@ -378,7 +378,7 @@ namespace AutoGTP2Tests
             SelectTargetLanguage(1);            
             SelectTargetLanguage(2);
             MouseClickImitation(By.XPath("//p[@class = 'RWdtSGyL9LH9qs2LKXGO']"));
-            SourceFileAttach();
+            SourceFileAttach(manager.sourceFile);
             Thread.Sleep(500);
             return this;
         }
@@ -409,7 +409,7 @@ namespace AutoGTP2Tests
             SaveServiceButtonClick();
             manager.Projects.SaveProjectButtonClick();
             manager.Projects.OpenThisProject(projectData);
-            OpenAndEditButtonClick();
+            OpenAndEditButtonClick(1);
             manager.Projects.DownloadFileButtonClick();
             return this;
         }
@@ -421,7 +421,7 @@ namespace AutoGTP2Tests
             SaveServiceButtonClick();
             manager.Projects.SaveProjectButtonClick();
             manager.Projects.OpenThisProject(projectData);
-            OpenAndEditButtonClick();
+            OpenAndEditButtonClick(1);
             manager.Projects.DeleteFileButtonClick();
             return this;
         }
@@ -485,7 +485,7 @@ namespace AutoGTP2Tests
             SelectSourceLanguage();
             SelectTargetLanguage(1);
             SelectQuantityTypeAuto();
-            SourceFileAttach();
+            SourceFileAttach(manager.sourceFile);
             SaveServiceButtonClick();
             return this;
         }
@@ -996,9 +996,9 @@ namespace AutoGTP2Tests
             return driver.FindElements(By.Id("SERVICE_CAT_STATISTIC")).Count >= 1;
         }
 
-        public ServiceHelper SourceFileAttach()
+        public ServiceHelper SourceFileAttach(string i)
         {
-            driver.FindElement(By.Id("FILE_LOADER")).SendKeys(manager.sourceFile);            
+            driver.FindElement(By.Id("FILE_LOADER")).SendKeys(i);            
             if (IsElementPresent(By.XPath("//div[@class = 'glPRJNnEF2QbMnC0ZqIX  ']")))
             {                
                 WaitUntilElementIsHide(10, By.XPath("//p[@class = 'CjLCnWG2I76az0SPKDXC ZqX4aBORRQ0nnzF9Y5P5']"));
@@ -1041,10 +1041,10 @@ namespace AutoGTP2Tests
             return this;
         }
 
-        public ServiceHelper OpenAndEditButtonClick()
+        public ServiceHelper OpenAndEditButtonClick(int i)
         {
-            WaitUntilFindElement(10, By.Id("SERVICE_OPEN_AND_EDIT"));
-            driver.FindElement(By.Id("SERVICE_OPEN_AND_EDIT")).Click();
+            WaitUntilFindElement(10, By.XPath("//div[contains(@class, 'service-card')]["+i+"]//div[@id= 'SERVICE_OPEN_AND_EDIT']"));
+            driver.FindElement(By.XPath("//div[contains(@class, 'service-card')][" + i + "]//div[@id= 'SERVICE_OPEN_AND_EDIT']")).Click();
             return this;
         }
 

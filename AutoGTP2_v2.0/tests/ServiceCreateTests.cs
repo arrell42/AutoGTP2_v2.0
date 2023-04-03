@@ -444,7 +444,7 @@ namespace AutoGTP2Tests
             {
                 ProjectName = "BigProjectE2E " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest",
                 Status = "Manual evaluation",
-                BudgetCost = app.Base.TextGenerator(1, 3),
+                BudgetCost = app.Base.TextGenerator(1, 4),
                 BudgetPO = app.Base.TextGenerator(1, 5),
                 BudgetTotal = "100000"
             };

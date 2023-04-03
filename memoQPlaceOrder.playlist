@@ -1,0 +1,132 @@
+<Playlist Version="2.0">
+  <Rule Name="Includes" Match="Any">
+    <Rule Match="All">
+      <Property Name="Solution" />
+      <Rule Match="Any">
+        <Rule Match="All">
+          <Property Name="Project" Value="AutoGTP2_v2.0" />
+          <Rule Match="Any">
+            <Rule Match="All">
+              <Property Name="Namespace" Value="AutoGTP2Tests" />
+              <Rule Match="Any">
+                <Rule Match="All">
+                  <Property Name="Class" Value="MemoQAutoProjectsTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.MemoQAutoProjectsTests.ERP_MQ_10_PlaceOrder" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ERP_MQ_10_PlaceOrder" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.MemoQAutoProjectsTests.ERP_MQ_11_PlaceOrder" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ERP_MQ_11_PlaceOrder" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.MemoQAutoProjectsTests.ERP_MQ_12_PlaceOrder" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ERP_MQ_12_PlaceOrder" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.MemoQAutoProjectsTests.ERP_MQ_13_PlaceOrder" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ERP_MQ_13_PlaceOrder" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.MemoQAutoProjectsTests.ERP_MQ_14_PlaceOrder" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ERP_MQ_14_PlaceOrder" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.MemoQAutoProjectsTests.ERP_MQ_8_PlaceOrder" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ERP_MQ_8_PlaceOrder" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.MemoQAutoProjectsTests.ERP_MQ_9_PlaceOrder" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ERP_MQ_9_PlaceOrder" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.MemoQAutoProjectsTests.ERP_MQ_1_PlaceOrder" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ERP_MQ_1_PlaceOrder" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.MemoQAutoProjectsTests.ERP_MQ_2_PlaceOrder" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ERP_MQ_2_PlaceOrder" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.MemoQAutoProjectsTests.ERP_MQ_3_PlaceOrder" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ERP_MQ_3_PlaceOrder" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.MemoQAutoProjectsTests.ERP_MQ_4_PlaceOrder" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ERP_MQ_4_PlaceOrder" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.MemoQAutoProjectsTests.ERP_MQ_5_PlaceOrder" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ERP_MQ_5_PlaceOrder" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.MemoQAutoProjectsTests.ERP_MQ_6_PlaceOrder" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ERP_MQ_6_PlaceOrder" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.MemoQAutoProjectsTests.ERP_MQ_7_PlaceOrder" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ERP_MQ_7_PlaceOrder" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.MemoQAutoProjectsTests.ERP_MQ_15_PlaceOrder" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ERP_MQ_15_PlaceOrder" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.MemoQAutoProjectsTests.ERP_MQ_16_PlaceOrder" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ERP_MQ_16_PlaceOrder" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.MemoQAutoProjectsTests.ERP_MQ_17_PlaceOrder" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ERP_MQ_17_PlaceOrder" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.MemoQAutoProjectsTests.ERP_MQ_18_PlaceOrder" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ERP_MQ_18_PlaceOrder" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+              </Rule>
+            </Rule>
+          </Rule>
+        </Rule>
+      </Rule>
+    </Rule>
+  </Rule>
+</Playlist>
