@@ -55,13 +55,13 @@ namespace AutoGTP2Tests
         {
             if (driver.Url == "" + baseURL + "/projects")
             {
-                WaitUntilFindElement(10, projectList);
+                WaitUntilFindElement(15, projectList);
                 manager.ProjectPage.ColumnsTurnOnIfItTurnOff();
                 return;
             }
             driver.FindElement(projectsButtonInNavBar).Click();            
             WaitUntilElementIsHide(5, loadingCircle);
-            WaitUntilFindElement(10, projectList);
+            WaitUntilFindElement(15, projectList);
             Thread.Sleep(1000);
             if(CountOfProjectsOnPage() > 20) { manager.ProjectPage.SelectProjectCountOnPage("20"); }
             manager.ProjectPage.ColumnsTurnOnIfItTurnOff();

@@ -443,7 +443,7 @@ namespace AutoGTP2Tests
             ProjectData projectData = new ProjectData()
             {
                 ProjectName = "BigProjectE2E " + DateTime.Now.ToString("[dd.MM.yyyy HH: mm:ss]") + " autotest",
-                Status = "Manual evaluation",
+                Status = "Pending",
                 BudgetCost = app.Base.TextGenerator(1, 4),
                 BudgetPO = app.Base.TextGenerator(1, 5),
                 BudgetTotal = "100000"

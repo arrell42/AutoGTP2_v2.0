@@ -114,6 +114,24 @@
                         <Property Name="DisplayName" Value="ERP_MQ_1_RequestQuote" />
                       </Rule>
                     </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.MemoQAutoProjectsTests.ERP_MQ_14_PlaceOrder" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ERP_MQ_14_PlaceOrder" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.MemoQAutoProjectsTests.ERP_MQ_14" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ERP_MQ_14" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.MemoQAutoProjectsTests.ERP_MQ_18" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ERP_MQ_18" />
+                      </Rule>
+                    </Rule>
                   </Rule>
                 </Rule>
               </Rule>

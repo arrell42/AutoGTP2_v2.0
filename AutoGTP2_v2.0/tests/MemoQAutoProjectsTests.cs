@@ -7,6 +7,7 @@ namespace AutoGTP2Tests
     [TestFixture]
     public class MemoQAutoProjectsTests : AuthTestBase
     {
+        readonly int i = 60000;
         /* PLACE ORDER PROJECTS*/
 
         // ERP-MQ-1_PlaceOrder
@@ -22,7 +23,7 @@ namespace AutoGTP2Tests
 
             app.MemoQ.CreateERP_MQ_1(projectData, button);
 
-            Thread.Sleep(30000);
+            Thread.Sleep(i);
         }
 
         // ERP-MQ-2_PlaceOrder
@@ -37,7 +38,7 @@ namespace AutoGTP2Tests
             string button = "PO"; // RQ - request quote / PO - place order / SAVE - save and exit
 
             app.MemoQ.CreateERP_MQ_2(projectData, button);
-            Thread.Sleep(30000);
+            Thread.Sleep(i);
         }
 
         // ERP-MQ-3_PlaceOrder
@@ -52,7 +53,7 @@ namespace AutoGTP2Tests
             string button = "PO"; // RQ - request quote / PO - place order / SAVE - save and exit
 
             app.MemoQ.CreateERP_MQ_3(projectData, button);
-            Thread.Sleep(30000);
+            Thread.Sleep(i);
         }
 
         // ERP-MQ-4_PlaceOrder
@@ -67,7 +68,7 @@ namespace AutoGTP2Tests
             string button = "PO"; // RQ - request quote / PO - place order / SAVE - save and exit
 
             app.MemoQ.CreateERP_MQ_4(projectData, button);
-            Thread.Sleep(30000);
+            Thread.Sleep(i);
         }
 
         // ERP-MQ-5_PlaceOrder
@@ -82,7 +83,7 @@ namespace AutoGTP2Tests
             string button = "PO"; // RQ - request quote / PO - place order / SAVE - save and exit
 
             app.MemoQ.CreateERP_MQ_5(projectData, button);
-            Thread.Sleep(30000);
+            Thread.Sleep(i);
         }
 
         // ERP-MQ-6_PlaceOrder
@@ -97,7 +98,7 @@ namespace AutoGTP2Tests
             string button = "PO"; // RQ - request quote / PO - place order / SAVE - save and exit
 
             app.MemoQ.CreateERP_MQ_6(projectData, button);
-            Thread.Sleep(30000);
+            Thread.Sleep(i);
         }
 
         // ERP-MQ-7_PlaceOrder
@@ -112,7 +113,7 @@ namespace AutoGTP2Tests
             string button = "PO"; // RQ - request quote / PO - place order / SAVE - save and exit
 
             app.MemoQ.CreateERP_MQ_7(projectData, button);
-            Thread.Sleep(30000);
+            Thread.Sleep(i);
         }
 
         // ERP-MQ-8_PlaceOrder
@@ -127,7 +128,7 @@ namespace AutoGTP2Tests
             string button = "PO"; // RQ - request quote / PO - place order / SAVE - save and exit
 
             app.MemoQ.CreateERP_MQ_8(projectData, button);
-            Thread.Sleep(30000);
+            Thread.Sleep(i);
         }
 
         // ERP-MQ-9_PlaceOrder
@@ -142,7 +143,7 @@ namespace AutoGTP2Tests
             string button = "PO"; // RQ - request quote / PO - place order / SAVE - save and exit
 
             app.MemoQ.CreateERP_MQ_9(projectData, button);
-            Thread.Sleep(30000);
+            Thread.Sleep(i);
         }
 
         // ERP-MQ-10_PlaceOrder
@@ -157,7 +158,7 @@ namespace AutoGTP2Tests
             string button = "PO"; // RQ - request quote / PO - place order / SAVE - save and exit
 
             app.MemoQ.CreateERP_MQ_10(projectData, button);
-            Thread.Sleep(30000);
+            Thread.Sleep(i);
         }
 
         // ERP-MQ-11_PlaceOrder
@@ -172,7 +173,7 @@ namespace AutoGTP2Tests
             string button = "PO"; // RQ - request quote / PO - place order / SAVE - save and exit
 
             app.MemoQ.CreateERP_MQ_11(projectData, button);
-            Thread.Sleep(30000);
+            Thread.Sleep(i);
         }
 
         // ERP-MQ-12_PlaceOrder
@@ -187,7 +188,7 @@ namespace AutoGTP2Tests
             string button = "PO"; // RQ - request quote / PO - place order / SAVE - save and exit
 
             app.MemoQ.CreateERP_MQ_12(projectData, button);
-            Thread.Sleep(30000);
+            Thread.Sleep(i);
         }
 
         // ERP-MQ-13_PlaceOrder
@@ -202,20 +203,20 @@ namespace AutoGTP2Tests
             string button = "PO"; // RQ - request quote / PO - place order / SAVE - save and exit
 
             app.MemoQ.CreateERP_MQ_13(projectData, button);
-            Thread.Sleep(30000);
+            Thread.Sleep(i);
         }
 
         // ERP-MQ-14_PlaceOrder
         [Test]
-        public void ERP_MQ_14_PlaceOrder()
+        public void ERP_MQ_14()
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "ERP-MQ-14_PlaceOrder " + DateTime.Now.ToString("[dd_MM HH_mm]")
+                ProjectName = "ERP-MQ-14 " + DateTime.Now.ToString("[dd_MM HH_mm]")
             };            
 
             app.MemoQ.CreateERP_MQ_14(projectData);
-            Thread.Sleep(30000);
+            Thread.Sleep(i);
         }
 
         // ERP-MQ-15_PlaceOrder
@@ -230,7 +231,7 @@ namespace AutoGTP2Tests
             string button = "PO"; // RQ - request quote / PO - place order / SAVE - save and exit
 
             app.MemoQ.CreateERP_MQ_15(projectData, button);
-            Thread.Sleep(30000);
+            Thread.Sleep(i);
         }
 
         // ERP-MQ-16_PlaceOrder
@@ -245,7 +246,7 @@ namespace AutoGTP2Tests
             string button = "PO"; // RQ - request quote / PO - place order / SAVE - save and exit
 
             app.MemoQ.CreateERP_MQ_16(projectData, button);
-            Thread.Sleep(30000);
+            Thread.Sleep(i);
         }
 
         // ERP-MQ-17_PlaceOrder
@@ -260,20 +261,20 @@ namespace AutoGTP2Tests
             string button = "PO"; // RQ - request quote / PO - place order / SAVE - save and exit
 
             app.MemoQ.CreateERP_MQ_17(projectData, button);
-            Thread.Sleep(30000);
+            Thread.Sleep(i);
         }
 
         // ERP-MQ-18_PlaceOrder
         [Test]
-        public void ERP_MQ_18_PlaceOrder()
+        public void ERP_MQ_18()
         {
             ProjectData projectData = new ProjectData()
             {
-                ProjectName = "ERP-MQ-18_PlaceOrder " + DateTime.Now.ToString("[dd_MM HH_mm]")
+                ProjectName = "ERP-MQ-18 " + DateTime.Now.ToString("[dd_MM HH_mm]")
             };            
 
             app.MemoQ.CreateERP_MQ_18(projectData);
-            Thread.Sleep(30000);
+            Thread.Sleep(i);
         }
 
 
@@ -292,7 +293,7 @@ namespace AutoGTP2Tests
             string button = "RQ"; // RQ - request quote / PO - place order / SAVE - save and exit
 
             app.MemoQ.CreateERP_MQ_1(projectData, button);
-            Thread.Sleep(30000);
+            Thread.Sleep(i);
         }
 
         // ERP-MQ-2_RequestQuote
@@ -307,7 +308,7 @@ namespace AutoGTP2Tests
             string button = "RQ"; // RQ - request quote / PO - place order / SAVE - save and exit
 
             app.MemoQ.CreateERP_MQ_2(projectData, button);
-            Thread.Sleep(30000);
+            Thread.Sleep(i);
         }
 
         // ERP-MQ-3_RequestQuote
@@ -322,7 +323,7 @@ namespace AutoGTP2Tests
             string button = "RQ"; // RQ - request quote / PO - place order / SAVE - save and exit
 
             app.MemoQ.CreateERP_MQ_3(projectData, button);
-            Thread.Sleep(30000);
+            Thread.Sleep(i);
         }
 
         // ERP-MQ-4_RequestQuote
@@ -337,7 +338,7 @@ namespace AutoGTP2Tests
             string button = "RQ"; // RQ - request quote / PO - place order / SAVE - save and exit
 
             app.MemoQ.CreateERP_MQ_4(projectData, button);
-            Thread.Sleep(30000);
+            Thread.Sleep(i);
         }
 
         // ERP-MQ-5_RequestQuote
@@ -352,7 +353,7 @@ namespace AutoGTP2Tests
             string button = "RQ"; // RQ - request quote / PO - place order / SAVE - save and exit
 
             app.MemoQ.CreateERP_MQ_5(projectData, button);
-            Thread.Sleep(30000);
+            Thread.Sleep(i);
         }
 
         // ERP-MQ-6_RequestQuote
@@ -367,7 +368,7 @@ namespace AutoGTP2Tests
             string button = "RQ"; // RQ - request quote / PO - place order / SAVE - save and exit
 
             app.MemoQ.CreateERP_MQ_6(projectData, button);
-            Thread.Sleep(30000);
+            Thread.Sleep(i);
         }
 
         // ERP-MQ-7_RequestQuote
@@ -382,7 +383,7 @@ namespace AutoGTP2Tests
             string button = "RQ"; // RQ - request quote / PO - place order / SAVE - save and exit
 
             app.MemoQ.CreateERP_MQ_7(projectData, button);
-            Thread.Sleep(30000);
+            Thread.Sleep(i);
         }
 
         // ERP-MQ-8_RequestQuote
@@ -397,7 +398,7 @@ namespace AutoGTP2Tests
             string button = "RQ"; // RQ - request quote / PO - place order / SAVE - save and exit
 
             app.MemoQ.CreateERP_MQ_8(projectData, button);
-            Thread.Sleep(30000);
+            Thread.Sleep(i);
         }
 
         // ERP-MQ-9_RequestQuote
@@ -412,7 +413,7 @@ namespace AutoGTP2Tests
             string button = "RQ"; // RQ - request quote / PO - place order / SAVE - save and exit
 
             app.MemoQ.CreateERP_MQ_9(projectData, button);
-            Thread.Sleep(30000);
+            Thread.Sleep(i);
         }
 
         // ERP-MQ-10_RequestQuote
@@ -427,7 +428,7 @@ namespace AutoGTP2Tests
             string button = "RQ"; // RQ - request quote / PO - place order / SAVE - save and exit
 
             app.MemoQ.CreateERP_MQ_10(projectData, button);
-            Thread.Sleep(30000);
+            Thread.Sleep(i);
         }
 
         // ERP-MQ-11_RequestQuote
@@ -442,7 +443,7 @@ namespace AutoGTP2Tests
             string button = "RQ"; // RQ - request quote / PO - place order / SAVE - save and exit
 
             app.MemoQ.CreateERP_MQ_11(projectData, button);
-            Thread.Sleep(30000);
+            Thread.Sleep(i);
         }
 
         // ERP-MQ-12_RequestQuote
@@ -457,7 +458,7 @@ namespace AutoGTP2Tests
             string button = "RQ"; // RQ - request quote / PO - place order / SAVE - save and exit
 
             app.MemoQ.CreateERP_MQ_12(projectData, button);
-            Thread.Sleep(30000);
+            Thread.Sleep(i);
         }
 
         // ERP-MQ-13_RequestQuote
@@ -472,7 +473,7 @@ namespace AutoGTP2Tests
             string button = "RQ"; // RQ - request quote / PO - place order / SAVE - save and exit
 
             app.MemoQ.CreateERP_MQ_13(projectData, button);
-            Thread.Sleep(30000);
+            Thread.Sleep(i);
         }
 
         // ERP-MQ-15_RequestQuote
@@ -487,7 +488,7 @@ namespace AutoGTP2Tests
             string button = "RQ"; // RQ - request quote / PO - place order / SAVE - save and exit
 
             app.MemoQ.CreateERP_MQ_15(projectData, button);
-            Thread.Sleep(30000);
+            Thread.Sleep(i);
         }
 
         // ERP-MQ-16_RequestQuote
@@ -502,7 +503,7 @@ namespace AutoGTP2Tests
             string button = "RQ"; // RQ - request quote / PO - place order / SAVE - save and exit
 
             app.MemoQ.CreateERP_MQ_16(projectData, button);
-            Thread.Sleep(30000);
+            Thread.Sleep(i);
         }
 
         // ERP-MQ-17_RequestQuote
@@ -517,7 +518,7 @@ namespace AutoGTP2Tests
             string button = "RQ"; // RQ - request quote / PO - place order / SAVE - save and exit
 
             app.MemoQ.CreateERP_MQ_17(projectData, button);
-            Thread.Sleep(30000);
+            Thread.Sleep(i);
         }
 
 

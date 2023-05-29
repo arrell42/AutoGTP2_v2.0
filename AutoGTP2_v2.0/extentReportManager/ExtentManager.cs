@@ -9,9 +9,9 @@ namespace AutoGTP2Tests
 {
     public class ExtentManager
     {
-        private static readonly Lazy<ExtentReports> _lazy = new Lazy<ExtentReports>(() => new ExtentReports());
+        private static readonly Lazy<ExtentReports> lazy = new Lazy<ExtentReports>(() => new ExtentReports());
 
-        public static ExtentReports Instance { get { return _lazy.Value; } }
+        public static ExtentReports Instance { get { return lazy.Value; } }
 
         static ExtentManager()
         {

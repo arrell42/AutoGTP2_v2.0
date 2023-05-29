@@ -8,7 +8,8 @@ namespace AutoGTP2Tests
         public MemoQHelper(ApplicationManager manager) : base(manager)
         {
         }
-        
+
+        //readonly string language = "";
         public readonly By sourceFilePopup = By.XPath("//div[@class= 'ZIJuzPuVJpR9HfMlmjAo  ']");
         public readonly By assignAllPairsButton = By.XPath("//span[@class= 'btn secondary-btn']");
         

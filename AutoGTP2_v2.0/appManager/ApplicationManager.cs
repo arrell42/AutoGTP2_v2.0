@@ -48,21 +48,40 @@ namespace AutoGTP2Tests
 
             ChromeOptions options = new ChromeOptions();
 
-            options.AddArguments("start-maximized");            
-            options.AddUserProfilePreference("profile.default_content_setting_values.automatic_downloads", 1);
-            options.AddArguments("ignore-certificate-errors");            
+            //========================HEADLESS=====================================
+            string headlessOption = "on";
+            //string headlessOption = "off";
+
+            if (headlessOption == "on")
+            {
+                //options.AddArguments("--remote-debugging-port=9222"); // настройка дебагера для хедлесс режима, керио не дает подключится. Можно попробовать исправить через тикет
+                options.AddArguments("--headless=new");
+                options.AddArguments("--disable-gpu");                
+                options.AddArguments("--enable-javascript");
+                options.AddArguments("--user-agent='Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Mobile Safari/537.36'");
+                options.AddArguments("--no-sandbox");
+                options.AddArguments("--ignore-certificate-errors");
+                options.AddArguments("--allow-insecure-localhost");
+                options.AddUserProfilePreference("profile.default_content_setting_values.automatic_downloads", 1);
+                options.AddArguments("ignore-certificate-errors");
+                options.AddArguments("--window-size=1920,1080");
+            }
+
+            if (headlessOption == "off")
+            {
+                options.AddArguments("start-maximized");
+                options.AddUserProfilePreference("profile.default_content_setting_values.automatic_downloads", 1);
+                options.AddArguments("ignore-certificate-errors");
+                //options.AddArguments("--wm-window-animations-disabled"); // отключение анимации css, надо тестировать. На первый взгляд ни чего не отключает.        
+            }
+                       
 
             driver = new ChromeDriver(options);
 
+            //chromedriver autoupdate
             ICapabilities capabilities = ((RemoteWebDriver)driver).Capabilities;
             Console.WriteLine((capabilities.GetCapability("chrome") as Dictionary<string, object>)["chromedriverVersion"]);
-            /*
-            string browserName = string.Empty;
-            if (capabilities.HasCapability("browserName"))
-            {
-                browserName = capabilities.GetCapability("browserName").ToString();
-            }
-            */
+            
 
 
             //baseURL = "https://gtp-test.janusww.com:9999";

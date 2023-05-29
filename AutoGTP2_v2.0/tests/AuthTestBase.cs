@@ -12,11 +12,12 @@ namespace AutoGTP2Tests
             
             if(app.baseURL.Contains("https://gtp-test.janusww.com:9999"))
             {
-                //app.Auth.Login(new LoginData("Main_test", "123456"));
-                app.Auth.Login(new LoginData("Dmitriy Semenov CR", "123456"));
+                app.Auth.Login(new LoginData("Main_test", "123456"));
+                //app.Auth.Login(new LoginData("Dmitriy Semenov CR", "123456"));
+                //app.Auth.Login(new LoginData("MemoQTestClient_2_User", "123456"));
                 //app.Auth.Login(new LoginData("IvanTest_Copy_7User", "123456"));                
             }
-            
+
             if (app.baseURL.Contains("https://gtp2.janusww.com"))
             {
                 app.Auth.Login(new LoginData("Denis Inozemtsev CR", "xe3q7z-"));

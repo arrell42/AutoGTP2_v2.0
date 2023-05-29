@@ -37,12 +37,6 @@
                       </Rule>
                     </Rule>
                     <Rule Match="All">
-                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.MemoQAutoProjectsTests.ERP_MQ_14_PlaceOrder" />
-                      <Rule Match="Any">
-                        <Property Name="DisplayName" Value="ERP_MQ_14_PlaceOrder" />
-                      </Rule>
-                    </Rule>
-                    <Rule Match="All">
                       <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.MemoQAutoProjectsTests.ERP_MQ_8_PlaceOrder" />
                       <Rule Match="Any">
                         <Property Name="DisplayName" Value="ERP_MQ_8_PlaceOrder" />

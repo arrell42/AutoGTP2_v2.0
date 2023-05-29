@@ -144,7 +144,7 @@ namespace AutoGTP2Tests
         {            
             app.Budgets.EnterExistingBudgetNameAndClickMagnifyingGlass();
 
-            Assert.IsTrue(app.Budgets.SearchingIsCorrect());
+            Assert.IsTrue(app.Budgets.SearchingIsCorrect(), "Budget not found");
         }
 
         // GTP2-R-06-16
@@ -173,7 +173,7 @@ namespace AutoGTP2Tests
 
             Assert.IsTrue(app.Budgets.ColumnsPopupIsOpen());
             Assert.IsTrue(app.Budgets.ColumnsPopupHaveColumnsName());
-            Assert.IsTrue(app.Budgets.AllColumnsIsTurnOn(6));            
+            Assert.IsTrue(app.Budgets.AllColumnsIsTurnOn(6));    
         }
 
         // GTP2-R-06-19

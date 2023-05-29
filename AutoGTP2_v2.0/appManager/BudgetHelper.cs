@@ -53,8 +53,13 @@ namespace AutoGTP2Tests
         public readonly By searchingFieldHint = By.XPath("//p[@class= 'search-text']");
         public readonly By searchingFieldCross = By.XPath("//p[@class= 'search-delete']");
 
+        public readonly By filterButton = By.XPath("//p[contains(text(), 'Filters')]");
 
-        
+        public readonly By relatedProjectFieldInFilter = By.XPath("//p[contains(text(), 'Related project')]//following-sibling::div");
+        public readonly By firstProjectInFilter = By.XPath("//div[@class= 'YxhDSz1flbKA8yowp3RE  '][1]");
+        public readonly By applyButtonInFilter = By.XPath("//button[@class= 'btn primary-btn']");
+
+
 
 
 
@@ -473,7 +478,16 @@ namespace AutoGTP2Tests
         }
 
         public BudgetHelper FindBudgetWithProjectsAndOpenBurger()
-        {   
+        {
+            //нужно добавить поиск бюджета с проектом через фильтр
+            /*
+            driver.FindElement(filterButton).Click();
+            driver.FindElement(relatedProjectFieldInFilter).Click();
+            driver.FindElement(firstProjectInFilter).Click();
+            driver.FindElement(applyButtonInFilter).Click();
+            Thread.Sleep(2000);
+            */
+
             driver.FindElement(budgetBurgerWithProjects).Click();
             return this;
         }
