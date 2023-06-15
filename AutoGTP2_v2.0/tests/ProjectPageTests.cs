@@ -147,20 +147,20 @@ namespace AutoGTP2Tests
 
         //GTP2-R-04-24
         [Test]
-        public void StatusSortInFiltersTest()
+        public void CompletedStatusSortInFiltersTest()
         {            
             app.ProjectPage.SortByCompletedStatusInFilters();
-
+            
             Assert.IsTrue(app.ProjectPage.StatusInProjectIsCorrect());
         }
 
         //GTP2-R-04-25
         [Test]
-        public void TwoStatusesSortInFiltersTest()
+        public void DeferredAndCompletedStatusesSortInFiltersTest()
         {
             app.ProjectPage.SortByDeferredAndCompletedStatusInFilters();
 
-            Assert.IsTrue(app.ProjectPage.StatusInProjectIsCorrect());
+            Assert.IsTrue(app.ProjectPage.StatusesInProjectIsCorrect());
         }
 
         //GTP2-R-04-26

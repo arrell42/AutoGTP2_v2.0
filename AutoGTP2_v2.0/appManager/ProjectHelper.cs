@@ -271,7 +271,7 @@ namespace AutoGTP2Tests
 
         public ProjectHelper DeclineCancellationProject(ProjectData projectData)
         {            
-            FindOrderedProject(projectData); //если проектов в статусе Ordered не найдено - этот метод такой проект создает
+            FindAndOpenOrderedProject(projectData); //если проектов в статусе Ordered не найдено - этот метод такой проект создает
             CancelProjectButtonClick();
             CancelProjectDeclineButtonClick();
             return this;
@@ -279,7 +279,7 @@ namespace AutoGTP2Tests
 
         public ProjectHelper ConfirmCancellationProject(ProjectData projectData)
         {
-            FindOrderedProject(projectData);
+            FindAndOpenOrderedProject(projectData);
             CancelProjectButtonClick();            
             CancelProjectConfirmButtonClick();
             return this;
@@ -698,7 +698,7 @@ namespace AutoGTP2Tests
             return IsElementPresent(By.XPath("//div[@id= 'PROJECT_STATUS']//span[contains(text(), 'Cancelled')]"));
         }
 
-        public ProjectHelper FindOrderedProject(ProjectData projectData)
+        public ProjectHelper FindAndOpenOrderedProject(ProjectData projectData)
         {
             manager.Navigator.GoToProjectPage();
             SortProjectsByStatus("Ordered");

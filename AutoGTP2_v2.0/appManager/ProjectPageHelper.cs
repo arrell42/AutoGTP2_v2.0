@@ -207,7 +207,8 @@ namespace AutoGTP2Tests
             manager.Navigator.GoToProjectPage();
             FiltersButtonClick();
             SelectStatusInFilters("Completed");
-            ApplyButtonInFiltersClick();
+            Thread.Sleep(1000);
+            ApplyButtonInFiltersClick();            
             return this;
         }
         public ProjectPageHelper SortByDeferredAndCompletedStatusInFilters()
@@ -216,6 +217,7 @@ namespace AutoGTP2Tests
             FiltersButtonClick();
             SelectStatusInFilters("Completed");            
             SelectStatusInFilters("Deferred");
+            Thread.Sleep(1000);
             ApplyButtonInFiltersClick();
             return this;
         }
@@ -394,12 +396,21 @@ namespace AutoGTP2Tests
             ICollection<IWebElement> elements = driver.FindElements(By.Id("PROJECTS_PROJECT_NAME"));
             foreach (IWebElement element in elements)
             {
-                if (statusName == "Completed" || statusName == "Deferred")
+                if (statusName == "Completed")
                 {
                     continue;
                 }
                 else { return result = false; }
             }
+            return result;
+        }
+
+        public bool? StatusesInProjectIsCorrect()
+        {
+            bool result = false;
+            List<string> AllStatusesOnPage() => driver.FindElements(statusNameInProjectList).Select(x => x.Text).ToList();
+
+            if (AllStatusesOnPage().Contains("Completed") && AllStatusesOnPage().Contains("Deferred")) { return result = true; }            
             return result;
         }
 

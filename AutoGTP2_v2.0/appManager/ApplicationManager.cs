@@ -14,6 +14,7 @@ namespace AutoGTP2Tests
     public class ApplicationManager
     {        
         protected IWebDriver driver;
+        //========================Variables=====================================
         public string baseURL;
         public string sourceFile;
         public string sourceFile2;
@@ -26,7 +27,7 @@ namespace AutoGTP2Tests
         public string expressFile7999;
         public string refFile;
 
-        //HELPERS ADD 
+        //========================HELPERS ADD===================================== 
         protected BaseHelper baseHelper;
         protected LoginHelper loginHelper;
         protected NavigationHelper navigationHelper;
@@ -40,14 +41,15 @@ namespace AutoGTP2Tests
 
         private static readonly ThreadLocal<ApplicationManager> app = new ThreadLocal<ApplicationManager>();
         public IWebDriver Driver { get { return driver; } }
-        
-        // Начало теста - открыть браузер, перейти на нужную страницу, инициализация хелперов
+
+        //========================Start=====================================
         private ApplicationManager()
         {
-            new DriverManager().SetUpDriver(new ChromeConfig(), VersionResolveStrategy.MatchingBrowser); // Autoupdate chromedriver
+            //========================Autoupdate chromedriver=====================================
+            new DriverManager().SetUpDriver(new ChromeConfig(), VersionResolveStrategy.MatchingBrowser); 
+
 
             ChromeOptions options = new ChromeOptions();
-
             //========================HEADLESS=====================================
             string headlessOption = "on";
             //string headlessOption = "off";
@@ -66,7 +68,6 @@ namespace AutoGTP2Tests
                 options.AddArguments("ignore-certificate-errors");
                 options.AddArguments("--window-size=1920,1080");
             }
-
             if (headlessOption == "off")
             {
                 options.AddArguments("start-maximized");
@@ -74,20 +75,27 @@ namespace AutoGTP2Tests
                 options.AddArguments("ignore-certificate-errors");
                 //options.AddArguments("--wm-window-animations-disabled"); // отключение анимации css, надо тестировать. На первый взгляд ни чего не отключает.        
             }
-                       
 
+
+
+            //========================Driver init=====================================
             driver = new ChromeDriver(options);
+            //driver.Manage().Timeouts().PageLoad.Seconds.Equals(15);
+            //driver.Manage().Timeouts().ImplicitWait.Seconds.Equals(15);
 
-            //chromedriver autoupdate
+
+            //========================Get browser name=====================================
             ICapabilities capabilities = ((RemoteWebDriver)driver).Capabilities;
             Console.WriteLine((capabilities.GetCapability("chrome") as Dictionary<string, object>)["chromedriverVersion"]);
-            
 
 
+
+            //========================URL=====================================
             //baseURL = "https://gtp-test.janusww.com:9999";
             baseURL = "https://gtp2.janusww.com";
             //baseURL = "https://81.90.180.117:9999";
 
+            //========================Files=====================================
             sourceFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"dataFiles\SourceTest.txt");
             sourceFile2 = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"dataFiles\SourceTest2.txt");
             sourceFile3 = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"dataFiles\SourceTest3.txt");
@@ -99,7 +107,7 @@ namespace AutoGTP2Tests
             expressFile7999 = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"dataFiles\Express7999.txt");
             refFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"dataFiles\RefTest.txt");
 
-            //HELPERS INIT
+            //========================HELPERS INIT=====================================
             baseHelper = new BaseHelper(this);
             loginHelper = new LoginHelper(this);
             navigationHelper = new NavigationHelper(this, baseURL);
@@ -111,8 +119,8 @@ namespace AutoGTP2Tests
             memoQHelper = new MemoQHelper(this);
         }
 
-        
-        //Завершение теста - закрыть браузер
+
+        //========================End=====================================
         ~ApplicationManager()
         {
             try

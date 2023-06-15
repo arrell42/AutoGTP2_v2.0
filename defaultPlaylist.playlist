@@ -358,6 +358,18 @@
                         <Property Name="DisplayName" Value="VendorSortInFiltersTest" />
                       </Rule>
                     </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ProjectPageTests.CompletedStatusSortInFiltersTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CompletedStatusSortInFiltersTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.ProjectPageTests.DeferredAndCompletedStatusesSortInFiltersTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="DeferredAndCompletedStatusesSortInFiltersTest" />
+                      </Rule>
+                    </Rule>
                   </Rule>
                 </Rule>
                 <Rule Match="All">
