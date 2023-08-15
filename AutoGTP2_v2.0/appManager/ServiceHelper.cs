@@ -458,7 +458,7 @@ namespace AutoGTP2Tests
             AutoServiceForBigProject();
             AutoServiceForBigProject();
             AutoServiceForBigProject();
-            manager.Projects.OpenRefTab();
+            manager.Projects.OpenReferenceTabInProject();
             manager.Projects.RefFileAttach(1);
             manager.Projects.OpenMessageTab();
             manager.Projects.SendMessage("Test");            
@@ -1050,6 +1050,7 @@ namespace AutoGTP2Tests
 
         public ServiceHelper ServiceDeleteButtonClick()
         {
+            WaitUntilFindElement(10, By.Id("SERVICE_DELETE"));
             driver.FindElement(By.Id("SERVICE_DELETE")).Click();
             return this;
         }

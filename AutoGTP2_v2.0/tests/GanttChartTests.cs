@@ -1,6 +1,4 @@
-﻿using AventStack.ExtentReports;
-using AventStack.ExtentReports.Reporter;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace AutoGTP2Tests
 {

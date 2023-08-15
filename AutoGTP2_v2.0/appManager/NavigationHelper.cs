@@ -60,7 +60,7 @@ namespace AutoGTP2Tests
                 return;
             }
             driver.FindElement(projectsButtonInNavBar).Click();            
-            WaitUntilElementIsHide(5, loadingCircle);
+            WaitUntilElementIsHide(10, loadingCircle);
             WaitUntilFindElement(15, projectList);
             Thread.Sleep(1000);
             if(CountOfProjectsOnPage() > 20) { manager.ProjectPage.SelectProjectCountOnPage("20"); }

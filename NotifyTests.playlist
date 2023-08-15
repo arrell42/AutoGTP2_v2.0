@@ -1,0 +1,84 @@
+<Playlist Version="2.0">
+  <Rule Name="Includes" Match="Any">
+    <Rule Match="All">
+      <Property Name="Solution" />
+      <Rule Match="Any">
+        <Rule Match="All">
+          <Property Name="Project" Value="AutoGTP2_v2.0" />
+          <Rule Match="Any">
+            <Rule Match="All">
+              <Property Name="Namespace" Value="AutoGTP2Tests" />
+              <Rule Match="Any">
+                <Rule Match="All">
+                  <Property Name="Class" Value="NotificationGTPTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.NotificationGTPTests.NewServiseAddingToExistingProjectTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="NewServiseAddingToExistingProjectTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.NotificationGTPTests.NewSourceFileLoadedIntoProjectTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="NewSourceFileLoadedIntoProjectTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.NotificationGTPTests.ProjectBudgetChangedInGTPTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ProjectBudgetChangedInGTPTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.NotificationGTPTests.ProjectCancelledInGTPTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ProjectCancelledInGTPTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.NotificationGTPTests.ProjectDateChangedInGTPTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ProjectDateChangedInGTPTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.NotificationGTPTests.ProjectSAChangedInGTPTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ProjectSAChangedInGTPTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.NotificationGTPTests.ServiseADeletedInExistingProjectTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ServiseADeletedInExistingProjectTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.NotificationGTPTests.ChatMessageWasWrittenInOrderedProjectTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ChatMessageWasWrittenInOrderedProjectTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.NotificationGTPTests.ReferenceFileLoadedIntoOrderedProjectTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ReferenceFileLoadedIntoOrderedProjectTest" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="AutoGTP2Tests.NotificationGTPTests.ServiceDeletedInExistingProjectTest" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ServiceDeletedInExistingProjectTest" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+              </Rule>
+            </Rule>
+          </Rule>
+        </Rule>
+      </Rule>
+    </Rule>
+  </Rule>
+</Playlist>

@@ -32,6 +32,7 @@ namespace AutoGTP2Tests
 
             app.Services.ServiceDeleteConfirm(projectData, serviceData);
 
+            // Проверка наличия блока с текстом "To get a quote or place an order at least one service has to be added."
             Assert.IsTrue(app.Services.PlugItemIsPresent());
         }
     }

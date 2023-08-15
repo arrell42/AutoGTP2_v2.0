@@ -533,22 +533,28 @@ namespace AutoGTP2Tests
         public bool? VendorInProjectIsCorrect()
         {
             FiltersButtonClick();
-            bool result = true;
-            string vendorName = driver.FindElement(vendorFieldInFilters).Text;
-            
-            ICollection<IWebElement> elements = driver.FindElements(By.Id("PROJECTS_PROJECT_NAME"));
-            foreach (IWebElement element in elements)
+            if (IsElementPresent(vendorFieldInFilters))
             {
-                element.Click();
-                WaitUntilFindElement(4, projectCard);
-                string vendorNameInProjectCard = driver.FindElement(vendorInProjectCardField).Text;
-                if (vendorNameInProjectCard.Contains(vendorName))
-                { 
-                    manager.Projects.CancelButtonInProjectCardClick();                    
-                    continue; 
-                } else { return result = false; }
-            }            
-            return result;
+                bool result = true;
+                string vendorName = driver.FindElement(vendorFieldInFilters).Text;
+
+                ICollection<IWebElement> elements = driver.FindElements(By.Id("PROJECTS_PROJECT_NAME"));
+                foreach (IWebElement element in elements)
+                {
+                    element.Click();
+                    WaitUntilFindElement(4, projectCard);
+                    string vendorNameInProjectCard = driver.FindElement(vendorInProjectCardField).Text;
+                    if (vendorNameInProjectCard.Contains(vendorName))
+                    {
+                        manager.Projects.CancelButtonInProjectCardClick();
+                        continue;
+                    }
+                    else { return result = false; }
+                }
+                return result;
+            }
+
+            return true;
         }
 
         public bool? StartDatePopupInFiltersContainsCorrectText()
@@ -654,11 +660,15 @@ namespace AutoGTP2Tests
 
         public ProjectPageHelper SelectVendorInFilters(int i)
         {
-            IWebElement vendorField = driver.FindElement(By.XPath("//input[@name= 'VENDOR_DROPDOWN']"));
-            vendorField.Click();
+            if (IsElementPresent(By.XPath("//input[@name= 'VENDOR_DROPDOWN']")))
+            {
+                IWebElement vendorField = driver.FindElement(By.XPath("//input[@name= 'VENDOR_DROPDOWN']"));
+                vendorField.Click();
 
-            IWebElement vendor = driver.FindElement(By.Id("VENDOR_DROPDOWN_OPTION_" + (i + 1) + ""));
-            vendor.Click();
+                IWebElement vendor = driver.FindElement(By.Id("VENDOR_DROPDOWN_OPTION_" + (i + 1) + ""));
+                vendor.Click();
+            }
+
             return this;
         }
 

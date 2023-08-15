@@ -35,6 +35,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -581,6 +582,7 @@
     <Compile Include="tests\GanttChartTests.cs" />
     <Compile Include="tests\MemoQAutoProjectsTests.cs" />
     <Compile Include="tests\MySpendingTests.cs" />
+    <Compile Include="tests\NotificationGTPTests.cs" />
     <Compile Include="tests\ProjectPageTests.cs" />
     <Compile Include="tests\ServiceCreateTests.cs" />
     <Compile Include="tests\ProjectRemovalTests.cs" />

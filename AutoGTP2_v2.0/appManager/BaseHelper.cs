@@ -19,6 +19,13 @@ namespace AutoGTP2Tests
             driver = manager.Driver;
         }
 
+        // Генератор члучайного числа от 1 до 5
+        public static readonly Random random = new Random();
+        public int AddRandomNumberFrom1To5()
+        {
+            return random.Next(1, 6);  // Random.Next будет включать нижний предел, но исключать верхний, так что 26 не включается
+        }
+
 
         // Генератор рандомных слов        
         public static Random rnd = new Random();

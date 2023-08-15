@@ -22,6 +22,7 @@ namespace AutoGTP2Tests
             {
                 app.Auth.Login(new LoginData("Denis Inozemtsev CR", "xe3q7z-"));
                 //app.Auth.Login(new LoginData("Sergey Zezyulinsky CR", "irhj-d/"));
+                //app.Auth.Login(new LoginData("Albert Kasimov CR", @"4xvxcy"""));
             }
 
             if (app.baseURL.Contains("https://81.90.180.117:9999"))
