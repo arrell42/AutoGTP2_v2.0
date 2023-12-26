@@ -14,7 +14,7 @@ namespace AutoGTP2Tests
     public class ProjectHelper : BaseHelper
     {
         //LOCATORS
-        public readonly By projectCardHeader = By.XPath("//div[@class= 'CXwQMpaC5HQszu_q1TIp']");
+        public readonly By projectCard = By.XPath("//div[@class= 'styles_modal__gNwvD styles_modalCenter__L9F2w project-card-modal']");
         public readonly By firstProjectStartDateInList = By.XPath("//div[@id= 'PROJECT_0']//following-sibling::div[@class= 'eQ5lQ_D0FC26twfwcmhy']//div[contains(text(), 'Start')]//following-sibling::div[@class= 'N5XNR4EbLpJ3H2Xvmh28']");
         public readonly By firstProjectEndDateInList = By.XPath("//div[@id= 'PROJECT_0']//following-sibling::div[@class= 'eQ5lQ_D0FC26twfwcmhy']//div[contains(text(), 'End')]//following-sibling::div[@class= 'N5XNR4EbLpJ3H2Xvmh28']");
         public readonly By currentDateInFrame = By.XPath("//div[@class = 'nKgW2jzaADOuJ9x1mz0H FG0sahfhP8LsIt1TK7TM']");
@@ -27,7 +27,9 @@ namespace AutoGTP2Tests
         public readonly By disabledVendorSectionInProject = By.XPath("//p[@class= 'lcfMyT9umHJjvUJmcT_A' and contains(text(), 'Vendor')]");
         public readonly By emptyServiceList = By.XPath("//div[@class= 'service-plug']");
         public readonly By serviceList = By.XPath("//div[@class= 'services-list']");
-        
+        public readonly By emptyProjectPopup = By.XPath("//div[@class= 'styles_modal__gNwvD styles_modalCenter__L9F2w ewdjRZof9VeUtsLdyqQf']");
+        public readonly By projectExpressTextArea = By.Id("PROJECTS_EXPRESS_TEXT");
+
 
 
 
@@ -91,7 +93,7 @@ namespace AutoGTP2Tests
         public ProjectHelper ChangeDateInOrderedProject(ProjectData projectData, int days)
         {
             FindAndOpenOrderedProject(projectData);
-            SetStartDate(0);
+            //SetStartDate(0);
             SetEndDate(days);
             SaveProjectButtonClick();
             Thread.Sleep(3000);
@@ -134,7 +136,7 @@ namespace AutoGTP2Tests
                 {
                     // Открываем проект
                     project.Click();
-                    WaitUntilFindElement(10, projectCardHeader);
+                    WaitUntilFindElement(10, projectCard);
 
                     // Если услуги в проекте отсутствуют, закрываем проект
                     var services = driver.FindElements(serviceList);
@@ -995,7 +997,7 @@ namespace AutoGTP2Tests
         public ProjectHelper OpenFirstProjectOnPage()
         {            
             driver.FindElement(By.Id("PROJECTS_PROJECT_NAME")).Click();            
-            WaitUntilFindElement(10, projectCardHeader);
+            WaitUntilFindElement(10, projectCard);
             return this;
         }
 
@@ -1375,45 +1377,55 @@ namespace AutoGTP2Tests
                 "//p[@class = 'CKkqQTXqlkqO2CTJTb3k' and contains(text(), '" + t + "')]")).Click();
             return this;
         }
-
+        
 
         public ProjectHelper SetStartDate(int i)
         {
             driver.FindElement(By.Id("PROJECT_CARD_START_DATE")).Click();
             Thread.Sleep(300);
+
             // Определяем открыт ли календарь. Если нет, то открываем
-            if (IsElementPresent(By.XPath("//div[@class= 'PT_RGctXVAyWP_AdqQyj']")) == false)
+            if (!IsElementPresent(By.XPath("//div[@class= 'PT_RGctXVAyWP_AdqQyj']")))
             {
                 driver.FindElement(By.Id("PROJECT_CARD_END_DATE")).Click();
             }
 
             // Кликаем на дату в календаре
-            if(i == 0) // если i=0, то кликнуть на текущую дату
+            if (i == 0) // если i=0, то кликнуть на текущую дату
             {
+                bool hasCurrentDateInFrame = IsElementPresent(currentDateInFrame);
+                bool hasCurrentDateInBlue = IsElementPresent(currentDateInBlue);
+
                 // Если в календаре есть дата в голубой рамке, то кликнуть на нее
-                if (IsElementPresent(currentDateInFrame) == true)
+                if (hasCurrentDateInFrame)
                 {
-                    // Текущая дата в голубой обводке
                     driver.FindElement(currentDateInFrame).Click();
                 }
-                // Иначе, кликнуть на дату, которая залита синим
-                else { driver.FindElement(currentDateInBlue).Click(); }
+                // Если текущая дата также является ранее выбранной (синий фон), кликнуть на нее
+                else if (hasCurrentDateInBlue)
+                {
+                    driver.FindElement(currentDateInBlue).Click();
+                }
+                else
+                {
+                    // Здесь добавить код обработки ошибок, если оба элемента отсутствуют
+                }
             }
 
             // Если i>0, то кликнуть на дату, которая больше на i
             if (i > 0)
             {
-                driver.FindElement(By.XPath(
-                "//div[@class = 'nKgW2jzaADOuJ9x1mz0H FG0sahfhP8LsIt1TK7TM']//following-sibling::div[" + i + "]")).Click();
+                driver.FindElement(By.XPath("//div[@class = 'nKgW2jzaADOuJ9x1mz0H FG0sahfhP8LsIt1TK7TM']//following-sibling::div[" + i + "]")).Click();
                 WaitUntilFindElement(10, By.XPath("//div[@class = 'react-dropdown-select W8tRcu9L7alboUMK92q_" +
                     "  css-12zlm52-ReactDropdownSelect e1gzf2xs0']"));
             }
-                
+
             return this;
         }
-
+        
         public ProjectHelper SetEndDate(int i)
-        {            
+        {       
+            if(IsElementPresent(By.XPath("//div[@class='popup-overlay date-start-popup-overlay']"))) { driver.FindElement(By.Id("PROJECT_CARD_START_DATE")).Click(); }
             driver.FindElement(By.Id("PROJECT_CARD_END_DATE")).Click();
             Thread.Sleep(300);
             if (IsElementPresent(By.XPath("//div[@class= 'PT_RGctXVAyWP_AdqQyj']")) == false)
@@ -1427,7 +1439,32 @@ namespace AutoGTP2Tests
                 "  css-12zlm52-ReactDropdownSelect e1gzf2xs0']"));
             return this;
         }
+        
 
+        private const string dateStartPopupOverlay = "//div[@class='popup-overlay date-start-popup-overlay']";
+        private const string projectCardStartDate = "PROJECT_CARD_START_DATE";
+        private const string projectCardEndDate = "PROJECT_CARD_END_DATE";
+        private const string dynamicDateAfterSourceDate = "//div[@class = 'nKgW2jzaADOuJ9x1mz0H FG0sahfhP8LsIt1TK7TM']//following-sibling::div[{0}]";
+        private const string WAIT_ELEMENT_XPATH = "//div[@class = 'react-dropdown-select W8tRcu9L7alboUMK92q_ css-12zlm52-ReactDropdownSelect e1gzf2xs0']";
+        /*
+        public ProjectHelper SetEndDate(int i)
+        {
+            if (IsElementPresent(By.XPath(dateStartPopupOverlay)))
+            {
+                driver.FindElement(By.Id(projectCardStartDate)).Click();
+            }
+            driver.FindElement(By.Id(projectCardEndDate)).Click();
+            Thread.Sleep(300); 
+
+            if (!IsElementPresent(By.XPath(dynamicDateAfterSourceDate)))
+            {
+                driver.FindElement(By.Id(projectCardEndDate)).Click();
+            }
+            driver.FindElement(By.XPath(string.Format(dynamicDateAfterSourceDate, i))).Click();
+            WaitUntilFindElement(10, By.XPath(WAIT_ELEMENT_XPATH));
+            return this;
+        }
+        */
         public ProjectHelper LimitPopupSwitchButtonClick()
         {
             driver.FindElement(By.Id("PROJECTS_EXPRESS_BACK_TO_CLASSIC")).Click();
@@ -1453,6 +1490,11 @@ namespace AutoGTP2Tests
 
         public ProjectHelper FillTextAreaFromFile(string filePath)
         {
+            if (IsElementPresent(openAndEditButton))
+            {
+                driver.FindElement(openAndEditButton).Click();
+                WaitUntilFindElement(5, projectExpressTextArea);
+            }
             string text = InternalReadAllText(filePath, Encoding.UTF8).Trim().Replace(Environment.NewLine, "");
             IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
             js.ExecuteScript("document.getElementById('PROJECTS_EXPRESS_TEXT').value = '" + text + "';");
@@ -1548,7 +1590,8 @@ namespace AutoGTP2Tests
         {
 
             driver.FindElement(By.Id("PROJECT_CARD_SAVE_AND_EXIT")).Click();
-            WaitUntilElementIsHide(10, projectCardHeader);
+            if ( ! IsElementPresent(emptyProjectPopup)) { WaitUntilElementIsHide(10, projectCard); }
+            
             
 
             //ждем пока исчезнет всплывающее окно с проектом

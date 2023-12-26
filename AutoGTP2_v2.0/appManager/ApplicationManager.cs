@@ -51,8 +51,8 @@ namespace AutoGTP2Tests
 
             ChromeOptions options = new ChromeOptions();
             //========================HEADLESS=====================================
-            //string headlessOption = "on";
-            string headlessOption = "off";
+            string headlessOption = "on";
+            //string headlessOption = "off";
 
             if (headlessOption == "on")
             {
@@ -91,8 +91,8 @@ namespace AutoGTP2Tests
 
 
             //========================URL=====================================
-            baseURL = "https://gtp-test.janusww.com:9999";
-            //baseURL = "https://gtp2.janusww.com";
+            //baseURL = "https://gtp-test.janusww.com:9999";
+            baseURL = "https://gtp2.janusww.com";
             //baseURL = "https://81.90.180.117:9999";
 
             //========================Files=====================================
@@ -145,7 +145,7 @@ namespace AutoGTP2Tests
             return app.Value;
         }
 
-        // Property for helpers - чтобы не делать их public
+        // Property for helpers
         public BaseHelper Base
         {
             get { return baseHelper; }

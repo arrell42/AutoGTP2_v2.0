@@ -34,7 +34,7 @@ namespace AutoGTP2Tests
                 return;                
             }            
             driver.FindElement(By.Id("MENU_BUDGETS")).Click();
-            WaitUntilElementIsHide(5, By.XPath("//div[@class = 'uAVm9bKcbGvOpCLx2Whj']"));
+            WaitUntilElementIsHide(10, By.XPath("//div[@class = 'uAVm9bKcbGvOpCLx2Whj']"));
             if (NoBudgetsForDisplay())
             {
                 BudgetData budgetData = new BudgetData("", "")

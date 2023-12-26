@@ -20,7 +20,7 @@ namespace AutoGTP2Tests
 
             if (app.baseURL.Contains("https://gtp2.janusww.com"))
             {
-                app.Auth.Login(new LoginData("Denis Inozemtsev CR", "xe3q7z-"));
+                app.Auth.Login(new LoginData("Denis Inozemtsev CR", "c4f0?6#COX"));
                 //app.Auth.Login(new LoginData("Sergey Zezyulinsky CR", "irhj-d/"));
                 //app.Auth.Login(new LoginData("Albert Kasimov CR", @"4xvxcy"""));
             }

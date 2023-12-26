@@ -53,7 +53,7 @@ namespace AutoGTP2Tests
             app.Projects.ChangeDateInOrderedProject(projectData, daysFromStartDate);
 
             Assert.IsTrue(app.Projects.EndDateIsCorrect(daysFromStartDate));
-            Thread.Sleep(i);
+            //Thread.Sleep(i);
         }
         
 
